@@ -1,9 +1,11 @@
-// 효원균형교양 "사상과 역사" 영역 개별 강의계획서 상세 데이터 (평가방법/교재/커리큘럼/원본 PDF)
-// 나머지 7개 영역(인성과 사회봉사/사회와 문화/세계와 소통/융합과 창의/문학과 예술/과학과 기술/건강과 레포츠)은
+// 효원균형교양 "사상과 역사" · "사회와 문화" 영역 개별 강의계획서 상세 데이터 (평가방법/교재/커리큘럼/원본 PDF)
+// 나머지 영역(인성과 사회봉사/세계와 소통/융합과 창의/문학과 예술/과학과 기술/건강과 레포츠)은
 // 아직 개별 강의계획서 PDF가 제공되지 않아 분반·교수·시간표 정보만 표시됩니다.
 // 참고: 원본 폴더의 "미디어와미래사회의응용윤리001.pdf" 파일은 실제로는 다른 과목("금지로읽는한국사" 001분반, 송정란 교수)의
 // 강의계획서였습니다. 파일명과 내용이 일치하지 않아 실제 내용 기준으로 "금지로읽는한국사"에 배치했으며,
 // "미디어와미래사회의응용윤리" 001분반의 진짜 강의계획서는 이 폴더에서 찾을 수 없어 상세 정보 없이 표시됩니다.
+// 참고: "성과사랑001"은 담당교수 필드에는 김인선으로 기재되어 있으나, 강의계획서 본문에는 "이 수업은 최나현이 진행합니다"라고
+// 명시되어 있어 실제 담당자와 다를 수 있습니다(원문 기재 그대로 담당교수 필드를 유지함).
 const SYLLABUS_BALANCE = {
  "20세기지구사": {
   "001": {
@@ -2937,6 +2939,4420 @@ const SYLLABUS_BALANCE = {
     }
    ],
    "pdf": "assets/syllabus/sasang/미디어와미래사회의응용윤리001.pdf"
+  }
+ },
+ "한국문화의이해": {
+  "001": {
+   "professor": "황은덕",
+   "evaluation": "출석10%, 중간고사 30% 기말고사 35%, 발표 15%, 수업참여 10%.",
+   "textbook": "주교재: John H. Koo & Andrew C Nahm. Eds. An Introduction to Korean Culture, Hollym, 2010/2020. 주교재 이외 주요 강의 자료는 담당교수가 제공한다.",
+   "goals": "본 교과목은 내국인 및 외국인 학생들을 대상으로 영어로 강의가 진행되며, 한국의 전통문화 및 현대문화를 포함한 문화 전반에 대한 이해와 교양함양을 교수목표로 삼는다. 본 강의는 한국의 자연환경, 역사, 정치·경제 및 사회, 종교, 문학, 여가와 일상생활, K-pop을 포함한 대중문화 등을 중점 내용으로 다룰 것이며, 각 주제에 관한 올바른 이해를 통해 '한류'라는 세계적인 문화 현상에 하나의 방향성과 지침을 제공하게 될 것이다.",
+   "overview": "본 강의는 한국문화에 관한 폭넓고 깊이 있는 정보를 제공함으로써 내국인 및 외국인 학생들이 한국문화의 전통과 현주소를 파악하여 '한류'라는 세계적 흐름을 올바르게 이해하도록 돕게 될 것이다. 강의를 진행함에 있어서 일방적인 설명식의 교수법을 지양하고 다양한 시청각 매체와 문화 콘텐츠 등을 강의 자료로 활용할 것이며, 학생들이 능동적이고 주도적으로 참여하는 발표 및 토론을 통해 한국문화에 대한 보다 통합적이고 효과적인 이해를 이끌어 낼 것이다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의소개: 한국문화 개괄"
+    },
+    {
+     "week": 2,
+     "topic": "한국인의 일상(1):음식과 문화"
+    },
+    {
+     "week": 3,
+     "topic": "한국인의 일상(2): 주거 및 의복과 문화"
+    },
+    {
+     "week": 4,
+     "topic": "현대 한국의 가족 문화(1)"
+    },
+    {
+     "week": 5,
+     "topic": "현대 한국의 가족문화(2)"
+    },
+    {
+     "week": 6,
+     "topic": "한국의 종교(1): 샤머니즘과 불교"
+    },
+    {
+     "week": 7,
+     "topic": "한국의 종교(2): 유교와 전통 종교"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "20세기 한국 대중문화"
+    },
+    {
+     "week": 10,
+     "topic": "한류(1): 영화, 드라마, 문학"
+    },
+    {
+     "week": 11,
+     "topic": "한류(2): K-Pop"
+    },
+    {
+     "week": 12,
+     "topic": "한국의 전통예술: 판소리, 탈춤, 전통놀이"
+    },
+    {
+     "week": 13,
+     "topic": "문화 속에 나타난 분단 (1)"
+    },
+    {
+     "week": 14,
+     "topic": "문화 속에 나타난 분단 (2)"
+    },
+    {
+     "week": 15,
+     "topic": "보충 강의 & 복습"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/한국문화의이해001.pdf"
+  }
+ },
+ "MZ세대를위한조직생활": {
+  "001": {
+   "professor": "전경주",
+   "evaluation": null,
+   "textbook": "Text: Fundamentals of Human Resource Management by Noe, Hollenbeck, Gerhart & Wright",
+   "goals": "This course is intended to introduce students to human resource management related issues and practices with the aim of helping them understand how and why organizations manage their employees the way they do.",
+   "overview": "This is an all-English course. Students need to have adequate, listening, reading, and speaking comprehension competencies to handle this class. In this course, students will learn about various issues and practices dealing with managing people in organizations. Increased knowledge in this area should help students understand how organizations and employees make human resource decisions to compete and operate in today's world.",
+   "curriculum": [
+    {
+     "week": 1
+    },
+    {
+     "week": 2
+    },
+    {
+     "week": 3
+    },
+    {
+     "week": 4
+    },
+    {
+     "week": 5
+    },
+    {
+     "week": 6
+    },
+    {
+     "week": 7
+    },
+    {
+     "week": 8
+    },
+    {
+     "week": 9
+    },
+    {
+     "week": 10
+    },
+    {
+     "week": 11
+    },
+    {
+     "week": 12
+    },
+    {
+     "week": 13
+    },
+    {
+     "week": 14
+    },
+    {
+     "week": 15
+    },
+    {
+     "week": 16
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/MZ세대를위한조직생활001.pdf"
+  }
+ },
+ "공정사회로가는계약법": {
+  "068": {
+   "professor": "윤석찬",
+   "evaluation": "출석 10% (K-MOOC 이수증 제출로 인정됨) 시험은 기말고사 1회로 90% (대면 기말고사로만 학점 부여, 이수증 발급되지 않을 경우 시험 자체 응시 불가) 시험유형은 O,X 형",
+   "textbook": "(주교재)교수 강의안 / (부교재1)본인의 선택에 따른 민법 기본서 (법학도서관에서 검색 가능)",
+   "goals": "민사법의 기본적이고 전반적으로 알아야 할 점을 특히 계약법을 중심으로 하여 설명이 이루어지면서 아울러 실제로 발생하는 일상생활에서의 분쟁사례를 해결할 수 있는 능력을 배양한다.",
+   "overview": "본 강좌는 민법의 핵심적 영역인 계약법에 한정하여 그 전반에 걸친 내용을 암기가 아닌 이해를 통한 법학의 공부에 중점을 둔다. 그리하여 암기를 통한 법학학습 보다는 법리에 대한 이해를 돕기 위하여 개별적인 사례를 많이 들면서 강의가 이루어진다. 또한 기초적 법학개념과 용어에 관해서도 자세히 설명되어서 난해한 법률용어에 대한 거부감 내지 혐오감을 불식시킨다. KMOOC 강좌로 진행되며 대면 기말고사가 별도로 실시된다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "일상적인 약속과 법적 구속력이 있는 계약의 구별"
+    },
+    {
+     "week": 2,
+     "topic": "술을 먹고 만취상태에서 체결한 계약의 효력"
+    },
+    {
+     "week": 3,
+     "topic": "인간의 신체로서 신장과 같은 장기매매계약의 효력"
+    },
+    {
+     "week": 4,
+     "topic": "계약위반의 효력"
+    },
+    {
+     "week": 5,
+     "topic": "의료계약상 의사의 채무불이행 유형"
+    },
+    {
+     "week": 6,
+     "topic": "손해의 개념, 손해배상청구권의 성립요건"
+    },
+    {
+     "week": 7,
+     "topic": "중간과정 복습"
+    },
+    {
+     "week": 8,
+     "topic": "하자담보책임과 완전물급부청구권"
+    },
+    {
+     "week": 9,
+     "topic": "부동산매매로서 토지매매와 건물매매의 차이"
+    },
+    {
+     "week": 10,
+     "topic": "은행과의 대출계약의 내용"
+    },
+    {
+     "week": 11,
+     "topic": "원룸에 대한 임대차 계약과 아파트 전세계약의 구별"
+    },
+    {
+     "week": 12,
+     "topic": "의료과오가 발생한 경우에서의 의료인의 책임"
+    },
+    {
+     "week": 13,
+     "topic": "여행계약"
+    },
+    {
+     "week": 14,
+     "topic": "혼인계약, 이혼시 공동양육권의 인정"
+    },
+    {
+     "week": 15,
+     "topic": "보강필요시 보강함"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사, O, X 형"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/공정사회로가는계약법068.pdf"
+  }
+ },
+ "국제법입문": {
+  "068": {
+   "professor": "정세정",
+   "evaluation": "중간고사 45%, 기말고사 45%, 출석 10%.",
+   "textbook": "주교재: 정인섭, 『신국제법입문』-박영사(2025). 참고자료: 정인섭, 『국제법을 통한 세상 읽기』-일조각(2026). [주교재] 강의안 배부",
+   "goals": "본 교과목은 국제법의 기본 원칙과 규범 체계를 바탕으로 국가가 국제사회에서 어떻게 법적으로 규율되는지 이해하는 데 필요한 기초 지식을 습득하는 것을 목표로 한다. 수강생들은 조약과 관습국제법 등 국제법의 법원을 시작으로 국제법과 국내법의 관계, 국가 관할권의 행사와 면제, 조약법, 국가책임법 등 국제법의 일반 이론을 체계적으로 학습한다. 또한 영토와 해양을 둘러싼 국가 관할의 범위, 기후변화 등 국제환경법, 국제인권법, 유엔 헌장상의 무력사용 금지 원칙, 국제사법재판소(ICJ)의 기능과 판례, 그리고 WTO/FTA 등 국제통상법까지 다룬다.",
+   "overview": "본 강의는 국제사회의 법질서를 구성하는 기본 규범 체계인 국제법에 대한 기초적 이해를 위한 입문 과목이다. 오늘날 국제사회에서 벌어지는 영토분쟁, 군사충돌, 난민 문제, 기후변화, 통상 분쟁, 인권 침해 등 다양한 이슈는 모두 국제법의 규율 대상이다. 본 강의는 이러한 현실 문제를 분석할 수 있도록 국제법의 개념과 작동 원리를 기본 원칙부터 분야별 규범까지 폭넓게 다루고자 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 개요, 국제법의 의의와 역사"
+    },
+    {
+     "week": 2,
+     "topic": "국제법의 법원과 국내법과의 관계 (조약, 관습국제법)"
+    },
+    {
+     "week": 3,
+     "topic": "국가 (국가의 개념, 국가승인, 국가승계)"
+    },
+    {
+     "week": 4,
+     "topic": "국가의 관할권 행사와 면제 (주권면제, 외교면제, 범죄인 인도제도)"
+    },
+    {
+     "week": 5,
+     "topic": "조약법 (조약의 체결, 유보, 해석, 무효와 종료)"
+    },
+    {
+     "week": 6,
+     "topic": "국가책임 (국가책임의 요건, 국가책임의 추궁)"
+    },
+    {
+     "week": 7,
+     "topic": "국가영역 (영토와 영공, 동아시아의 영토 분쟁)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "해양법 (영해, 배타적 경제수역, 대륙붕, 공해와 심해저)"
+    },
+    {
+     "week": 10,
+     "topic": "국제환경법 (기본 개념, 최근 논의 동향)"
+    },
+    {
+     "week": 11,
+     "topic": "국제인권법 (국제인권조약)"
+    },
+    {
+     "week": 12,
+     "topic": "국제사회에서의 무력 사용 (UN 체제에서의 무력 사용)"
+    },
+    {
+     "week": 13,
+     "topic": "국제연합과 국제사법재판소 (UN의 구성, 국제분쟁의 해결제도)"
+    },
+    {
+     "week": 14,
+     "topic": "국제통상법 (WTO/FTA 개관)"
+    },
+    {
+     "week": 15,
+     "topic": "총정리"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/국제법입문068.pdf"
+  }
+ },
+ "글로벌 사회의 디지털 시민 의식": {
+  "001": {
+   "professor": "HOLLISTER JONATHAN",
+   "evaluation": "참석 & 참여: 20%, 활동: 20%, 중간고사 프로젝트(개인 디지털 시민권 및 윤리 성명서): 20%, 최종 팀 프로젝트 연구 논문 및 발표(디지털 이슈 분석 및 제안 해결책): 40%",
+   "textbook": "(주교재)필수 교재가 없음; 추가 판독이 PLATO, 온라인 또는 PNU 도서관을 통해 제공됩니다. (부교재 및 참고자료 다수: Ribble(2017) Digital citizenship 외 영문 학술논문/보고서 20여편)",
+   "goals": "학기 말에 학생들은 디지털 시민권의 글로벌 컨텍스트를 이해하고 해석하며, 글로벌 디지털 사회와 관련된 과제 및 윤리 문제를 식별 및 논의하고, 문제 기반 학습을 활용한 개별 활동 및 프로젝트를 통해 디지털 시민권 및 윤리와 관련된 개인적인 견해를 명확히 설명하며, 다른 사람들과 협력하여 실제 디지털 문제를 해결하는 최종 프로젝트를 진행할 것으로 기대됩니다.",
+   "overview": "디지털 시민 정신은 사람들이 긍정적인 디지털 경험을 쌓는 데 다른 사람들을 이끌고 돕기를 기대하며, 우리의 행동이 다른 사람들에게 결과를 초래한다는 것을 인식하고, 공공의 이익을 위한 방식으로 참여하기를 기대하는 기술 사용에 관한 발전하는 일련의 표준이다(Ribble, 2017). Ribble(2017)의 디지털 시민권 9개 주제를 중심으로 디지털 액세스, 상업, 소셜 미디어, 미디어 및 정보 사용능력, 건강 및 웰빙, 법률, 인권, 보안 및 프라이버시와 관련된 주제를 탐색하고 토론한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "글로벌 맥락에서 디지털 시민 의식 소개"
+    },
+    {
+     "week": 2,
+     "topic": "디지털 시민의식의 정의; 규범윤리 제1부"
+    },
+    {
+     "week": 3,
+     "topic": "규범윤리 제2부; 의사결정을 위한 프레임워크"
+    },
+    {
+     "week": 4,
+     "topic": "디지털 액세스: 개방형 액세스, 정보 격차, 망 중립성, 다크 웹"
+    },
+    {
+     "week": 5,
+     "topic": "디지털 커머스: 지적재산권, 공정한 사용, 공유경제, 자동화 & A.I."
+    },
+    {
+     "week": 6,
+     "topic": "디지털 커뮤니케이션 및 협업: 소셜 미디어/SNS, ICT, 온라인 게임, 메타버스"
+    },
+    {
+     "week": 7,
+     "topic": "디지털 에티켓: 황금률, 문화적 의식과 역량, 윌 휘튼의 법칙"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사 주간"
+    },
+    {
+     "week": 9,
+     "topic": "디지털 유창성: 가짜 뉴스, 디지털, 미디어 및 정보 리터러시"
+    },
+    {
+     "week": 10,
+     "topic": "디지털 건강 및 복지: 온라인/오프에서 신체적, 정신적 안녕"
+    },
+    {
+     "week": 11,
+     "topic": "디지털 법률: 사이버 왕따, 치팅, 피싱, 사기 등"
+    },
+    {
+     "week": 12,
+     "topic": "디지털 권리 및 책임: 민주주의, 언론의 자유, 표현, 검열, 사회 정의"
+    },
+    {
+     "week": 13,
+     "topic": "디지털 보안 및 개인 정보: 온라인 안전 및 예방 관행"
+    },
+    {
+     "week": 14,
+     "topic": "팀 프로젝트 수업 중 작업 세션"
+    },
+    {
+     "week": 15,
+     "topic": "최종 프레젠테이션 및 코스 설명"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사 주간"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/글로벌 사회의 디지털 시민 의식001.pdf"
+  }
+ },
+ "금융·증권보험분쟁과피해자구제": {
+  "068": {
+   "professor": "최영주",
+   "evaluation": "중간고사 40%, 기말고사 40%, 출석 및 수업 참여도 20%",
+   "textbook": "(주교재)최영주, 「금융거래와 분쟁해결의 법리」, 부산대학교출판부. 매 강의에 앞서 \"강의자료\"(ppt파일) 별도 교부(PLATO)",
+   "goals": "이 과목은 평균적인 대학생과 일반시민으로서 필요한 금융거래 나아가 재테크에 관한 기본적인 법률지식의 습득을 목표로 한다. 금융에 관한 지식은 재산증식을 위해서도 필수적이지만, 사기적인 거래 또는 불법적인 거래로부터 내 재산을 잃지 않고 지키는데도 매우 중요하다.",
+   "overview": "강의는 금융의 기초지식, 금융거래에 따른 소비자보호, 은행거래와 분쟁, 투자와 분쟁, 위험보장과 보험분쟁의 순서로 진행한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "금융 기초지식 및 금융제도"
+    },
+    {
+     "week": 2,
+     "topic": "금융소비자 보호 제도(1)"
+    },
+    {
+     "week": 3,
+     "topic": "금융소비자 보호 제도(2)"
+    },
+    {
+     "week": 4,
+     "topic": "은행거래와 분쟁 (1)"
+    },
+    {
+     "week": 5,
+     "topic": "은행거래와 분쟁 (2)"
+    },
+    {
+     "week": 6,
+     "topic": "은행거래와 분쟁 (3)"
+    },
+    {
+     "week": 7,
+     "topic": "은행거래와 분쟁 (4)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "자본시장의 이해(1)"
+    },
+    {
+     "week": 10,
+     "topic": "자본시장의 이해(2)"
+    },
+    {
+     "week": 11,
+     "topic": "자본시장의 이해(3)"
+    },
+    {
+     "week": 12,
+     "topic": "자본시장의 이해(4)"
+    },
+    {
+     "week": 13,
+     "topic": "보험과 분쟁(1)"
+    },
+    {
+     "week": 14,
+     "topic": "보험과 분쟁(2)"
+    },
+    {
+     "week": 15,
+     "topic": "보험과 분쟁(3)"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/금융·증권보험분쟁과피해자구제068.pdf"
+  }
+ },
+ "기술과ESG경영": {
+  "001": {
+   "professor": "류정란(책임)",
+   "evaluation": "출석태도 10%, 기말고사 40%, 과제물 20%, 퀴즈 30% (계 100%)",
+   "textbook": "(주교재)Lecture note(ppt), Case study materials(PLATO). 참고자료: 유재열 외, 『환경, 지구를 위한 리셋 그리고 우리의 선택: ESG』-소금나무(2025) 등 ESG 관련 참고도서 3종",
+   "goals": "This course provides a balanced understanding of the latest societal trends to empower students as future techno-leaders. Broaden Professional Knowledge, Develop Analytical Skills, Cultivate Leadership Values.",
+   "overview": "The curriculum focuses on acquiring fundamental knowledge of technology management and establishing a clear vision for the future of technological advancement. PART I. MOT(Management of Technology): Understanding the evolving business environment and mastering the strategic management process. PART II. ESG Management: Exploring the intersection of ESG and Technology, analyzing global ESG trends, and examining critical international issues.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Orientation"
+    },
+    {
+     "week": 2,
+     "topic": "[PART I] Introducing Global Issues/Understanding of business environment/ Technology & management"
+    },
+    {
+     "week": 3,
+     "topic": "[PART I] Techno Leadership - overview of leader & leadership/being a leader/entrepreneurship & techno-knowledge"
+    },
+    {
+     "week": 4,
+     "topic": "[PART I] Strategic management - knowing your business/strategic management process"
+    },
+    {
+     "week": 5,
+     "topic": "[PART I] Technological commercialization & Business model / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 6,
+     "topic": "[PART I,II] Technology marketing & product marketing (1)- technomart/hitech marketing/marketing process"
+    },
+    {
+     "week": 7,
+     "topic": "[PART I] Technology marketing & product marketing (1) / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 8,
+     "topic": "Quiz (mid-term exam period)"
+    },
+    {
+     "week": 9,
+     "topic": "[PART I, II] Technology marketing & product marketing (2) & ESG"
+    },
+    {
+     "week": 10,
+     "topic": "[PART I] The sources of venture ideas and a case study on management strategy / [PART II] ESG Management"
+    },
+    {
+     "week": 11,
+     "topic": "[PART I, II] Engineering ethics & corporate social responsibility"
+    },
+    {
+     "week": 12,
+     "topic": "[PART I] Production & operations management, Accounting for management of technology - financial statements"
+    },
+    {
+     "week": 13,
+     "topic": "[PART II] ESG solution project Presentation"
+    },
+    {
+     "week": 14,
+     "topic": "[PART I, II] Environment & MOT - environmental management system/green management"
+    },
+    {
+     "week": 15,
+     "topic": "Make up (if needed)"
+    },
+    {
+     "week": 16,
+     "topic": "Final exam"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/기술과ESG경영001.pdf"
+  },
+  "002": {
+   "professor": "류정란(책임)",
+   "evaluation": "출석태도 10%, 기말고사 40%, 과제물 20%, 퀴즈 30% (계 100%)",
+   "textbook": "(주교재)Lecture note(ppt), Case study materials(PLATO). 참고자료: 유재열 외, 『환경, 지구를 위한 리셋 그리고 우리의 선택: ESG』-소금나무(2025) 등 ESG 관련 참고도서 3종",
+   "goals": "This course provides a balanced understanding of the latest societal trends to empower students as future techno-leaders. Broaden Professional Knowledge, Develop Analytical Skills, Cultivate Leadership Values.",
+   "overview": "The curriculum focuses on acquiring fundamental knowledge of technology management and establishing a clear vision for the future of technological advancement. PART I. MOT(Management of Technology): Understanding the evolving business environment and mastering the strategic management process. PART II. ESG Management: Exploring the intersection of ESG and Technology, analyzing global ESG trends, and examining critical international issues.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Orientation"
+    },
+    {
+     "week": 2,
+     "topic": "[PART I] Introducing Global Issues/Understanding of business environment/ Technology & management"
+    },
+    {
+     "week": 3,
+     "topic": "[PART I] Techno Leadership - overview of leader & leadership/being a leader/entrepreneurship & techno-knowledge"
+    },
+    {
+     "week": 4,
+     "topic": "[PART I] Strategic management - knowing your business/strategic management process"
+    },
+    {
+     "week": 5,
+     "topic": "[PART I] Technological commercialization & Business model / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 6,
+     "topic": "[PART I,II] Technology marketing & product marketing (1)- technomart/hitech marketing/marketing process"
+    },
+    {
+     "week": 7,
+     "topic": "[PART I] Technology marketing & product marketing (1) / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 8,
+     "topic": "Quiz (mid-term exam period)"
+    },
+    {
+     "week": 9,
+     "topic": "[PART I, II] Technology marketing & product marketing (2) & ESG"
+    },
+    {
+     "week": 10,
+     "topic": "[PART I] The sources of venture ideas and a case study on management strategy / [PART II] ESG Management"
+    },
+    {
+     "week": 11,
+     "topic": "[PART I, II] Engineering ethics & corporate social responsibility"
+    },
+    {
+     "week": 12,
+     "topic": "[PART I] Production & operations management, Accounting for management of technology - financial statements"
+    },
+    {
+     "week": 13,
+     "topic": "[PART II] ESG solution project Presentation"
+    },
+    {
+     "week": 14,
+     "topic": "[PART I, II] Environment & MOT - environmental management system/green management"
+    },
+    {
+     "week": 15,
+     "topic": "Make up (if needed)"
+    },
+    {
+     "week": 16,
+     "topic": "Final exam"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/기술과ESG경영002.pdf"
+  },
+  "003": {
+   "professor": "류정란(책임)",
+   "evaluation": "출석태도 10%, 기말고사 40%, 과제물 20%, 퀴즈 30% (계 100%)",
+   "textbook": "(주교재)Lecture note(ppt), Case study materials(PLATO). 참고자료: 유재열 외, 『환경, 지구를 위한 리셋 그리고 우리의 선택: ESG』-소금나무(2025) 등 ESG 관련 참고도서 3종",
+   "goals": "This course provides a balanced understanding of the latest societal trends to empower students as future techno-leaders. Broaden Professional Knowledge, Develop Analytical Skills, Cultivate Leadership Values.",
+   "overview": "The curriculum focuses on acquiring fundamental knowledge of technology management and establishing a clear vision for the future of technological advancement. PART I. MOT(Management of Technology): Understanding the evolving business environment and mastering the strategic management process. PART II. ESG Management: Exploring the intersection of ESG and Technology, analyzing global ESG trends, and examining critical international issues.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Orientation"
+    },
+    {
+     "week": 2,
+     "topic": "[PART I] Introducing Global Issues/Understanding of business environment/ Technology & management"
+    },
+    {
+     "week": 3,
+     "topic": "[PART I] Techno Leadership - overview of leader & leadership/being a leader/entrepreneurship & techno-knowledge"
+    },
+    {
+     "week": 4,
+     "topic": "[PART I] Strategic management - knowing your business/strategic management process"
+    },
+    {
+     "week": 5,
+     "topic": "[PART I] Technological commercialization & Business model / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 6,
+     "topic": "[PART I,II] Technology marketing & product marketing (1)- technomart/hitech marketing/marketing process"
+    },
+    {
+     "week": 7,
+     "topic": "[PART I] Technology marketing & product marketing (1) / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 8,
+     "topic": "Quiz (mid-term exam period)"
+    },
+    {
+     "week": 9,
+     "topic": "[PART I, II] Technology marketing & product marketing (2) & ESG"
+    },
+    {
+     "week": 10,
+     "topic": "[PART I] The sources of venture ideas and a case study on management strategy / [PART II] ESG Management"
+    },
+    {
+     "week": 11,
+     "topic": "[PART I, II] Engineering ethics & corporate social responsibility"
+    },
+    {
+     "week": 12,
+     "topic": "[PART I] Production & operations management, Accounting for management of technology - financial statements"
+    },
+    {
+     "week": 13,
+     "topic": "[PART II] ESG solution project Presentation"
+    },
+    {
+     "week": 14,
+     "topic": "[PART I, II] Environment & MOT - environmental management system/green management"
+    },
+    {
+     "week": 15,
+     "topic": "Make up (if needed)"
+    },
+    {
+     "week": 16,
+     "topic": "Final exam"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/기술과ESG경영003.pdf"
+  },
+  "004": {
+   "professor": "류정란(책임)",
+   "evaluation": "출석태도 10%, 기말고사 40%, 과제물 20%, 퀴즈 30% (계 100%)",
+   "textbook": "(주교재)Lecture note(ppt), Case study materials(PLATO). 참고자료: 유재열 외, 『환경, 지구를 위한 리셋 그리고 우리의 선택: ESG』-소금나무(2025) 등 ESG 관련 참고도서 3종",
+   "goals": "This course provides a balanced understanding of the latest societal trends to empower students as future techno-leaders. Broaden Professional Knowledge, Develop Analytical Skills, Cultivate Leadership Values.",
+   "overview": "The curriculum focuses on acquiring fundamental knowledge of technology management and establishing a clear vision for the future of technological advancement. PART I. MOT(Management of Technology): Understanding the evolving business environment and mastering the strategic management process. PART II. ESG Management: Exploring the intersection of ESG and Technology, analyzing global ESG trends, and examining critical international issues.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Orientation"
+    },
+    {
+     "week": 2,
+     "topic": "[PART I] Introducing Global Issues/Understanding of business environment/ Technology & management"
+    },
+    {
+     "week": 3,
+     "topic": "[PART I] Techno Leadership - overview of leader & leadership/being a leader/entrepreneurship & techno-knowledge"
+    },
+    {
+     "week": 4,
+     "topic": "[PART I] Strategic management - knowing your business/strategic management process"
+    },
+    {
+     "week": 5,
+     "topic": "[PART I] Technological commercialization & Business model / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 6,
+     "topic": "[PART I,II] Technology marketing & product marketing (1)- technomart/hitech marketing/marketing process"
+    },
+    {
+     "week": 7,
+     "topic": "[PART I] Technology marketing & product marketing (1) / [PART II] ESG Management: ESG & Tech, ESG trends"
+    },
+    {
+     "week": 8,
+     "topic": "Quiz (mid-term exam period)"
+    },
+    {
+     "week": 9,
+     "topic": "[PART I, II] Technology marketing & product marketing (2) & ESG"
+    },
+    {
+     "week": 10,
+     "topic": "[PART I] The sources of venture ideas and a case study on management strategy / [PART II] ESG Management"
+    },
+    {
+     "week": 11,
+     "topic": "[PART I, II] Engineering ethics & corporate social responsibility"
+    },
+    {
+     "week": 12,
+     "topic": "[PART I] Production & operations management, Accounting for management of technology - financial statements"
+    },
+    {
+     "week": 13,
+     "topic": "[PART II] ESG solution project Presentation"
+    },
+    {
+     "week": 14,
+     "topic": "[PART I, II] Environment & MOT - environmental management system/green management"
+    },
+    {
+     "week": 15,
+     "topic": "Make up (if needed)"
+    },
+    {
+     "week": 16,
+     "topic": "Final exam"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/기술과ESG경영004.pdf"
+  }
+ },
+ "다양성과 위기의 시대": {
+  "500": {
+   "professor": "김지훈",
+   "evaluation": "출석 20%, 퀴즈(10회, 총 20%, 객관식), 중간평가와 기말평가(각 30%, 온라인 평가, 세부 진행 사항은 10월초 공지)",
+   "textbook": "별도의 주교재는 없으며 참고할만한 읽기자료가 있을 경우 해당 주차에 제공한다.",
+   "goals": "다양성의 시대라고 정의될 수 있는 21세기에 나타나는 새롭고 다양한 정치사회적 현상을 정치적, 사회·문화적, 과학기술적 차원에서 조명함에 따라 현 시대의 변화를 좀 더 구체적으로 이해하고, 이러한 이해를 바탕으로 좀 더 심도 있는 토의를 이어갈 수 있다.",
+   "overview": "21세기 들어 여러 분야와 영역에서 나타나는 '다양성' 논의를 총체적으로 살펴본다. 첫째, 정치 영역에서 이뤄진 자유민주주의가 보장한 자유와 평등에 따라 나타난 다원주의를 논의한다. 둘째, 세계화에 따른 국제적 이주 현상으로 인해 나타난 다문화주의와 여기에 수반된 사회적 이슈를 살펴본다. 셋째, 인공지능으로 인해 나타나는 인간이란 존재 자체의 다양화 가능성을 탐구해 본다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "소개(1차시)+ 정체성 위기의 시대"
+    },
+    {
+     "week": 2,
+     "topic": "다양성의 시대(1)"
+    },
+    {
+     "week": 3,
+     "topic": "다양성의 시대(2)"
+    },
+    {
+     "week": 4,
+     "topic": "자기 선택이라는 신화: 나는 정말 자유롭게 판단할까?"
+    },
+    {
+     "week": 5,
+     "topic": "신자유주의와 공정: 자유와 평등을 위하여?"
+    },
+    {
+     "week": 6,
+     "topic": "다양성 시대에서 추구되는 공정이란: 과정은 다양하게, 평가는 일률적으로?"
+    },
+    {
+     "week": 7,
+     "topic": "공정이란 무엇인가: 우리는 어떤 공정을 원하는가"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "자유민주주의는 다양성과 친할까?"
+    },
+    {
+     "week": 10,
+     "topic": "틀리지 않고 다른: 다양성을 끌어안기 위해서는 누가 바뀌어야 하는가?"
+    },
+    {
+     "week": 11,
+     "topic": "다양성을 대하는 우리 (사회)의 태도: 낯섬과 반감, 융합과 인정, 그리고 무관심"
+    },
+    {
+     "week": 12,
+     "topic": "다양성을 두고 이뤄진 이론적 관점: 이민자 수용과 다문화 사회는 자연스럽게 이뤄지지 않는다"
+    },
+    {
+     "week": 13,
+     "topic": "정체성 위기와 혐오: 자유민주주의의 이란성 쌍둥이?"
+    },
+    {
+     "week": 14,
+     "topic": "허무와 의미 사이: 나를 찾는 여정"
+    },
+    {
+     "week": 15,
+     "topic": "기말고사"
+    },
+    {
+     "week": 16
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/다양성과 위기의 시대500.pdf"
+  },
+  "001": {
+   "professor": "김지훈",
+   "evaluation": "출석 20%, 퀴즈(10회, 총 20%, 객관식), 중간고사와 기말고사(각 30%, 객관식, CBT 방식으로 오프라인 시험)",
+   "textbook": "별도의 주교재는 없으며 참고할만한 읽기자료가 있을 경우 해당 주차에 제공한다.",
+   "goals": "다양성의 시대라고 정의될 수 있는 21세기에 나타나는 새롭고 다양한 정치사회적 현상을 정치적, 사회·문화적, 과학기술적 차원에서 조명함에 따라 현 시대의 변화를 좀 더 구체적으로 이해하고, 이러한 이해를 바탕으로 좀 더 심도 있는 토의를 이어갈 수 있다.",
+   "overview": "21세기 들어 여러 분야와 영역에서 나타나는 '다양성' 논의를 총체적으로 살펴본다. 첫째, 정치 영역에서 이뤄진 자유민주주의가 보장한 자유와 평등에 따라 나타난 다원주의를 논의한다. 둘째, 세계화에 따른 국제적 이주 현상으로 인해 나타난 다문화주의와 여기에 수반된 사회적 이슈를 살펴본다. 셋째, 인공지능으로 인해 나타나는 인간이란 존재 자체의 다양화 가능성을 탐구해 본다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "소개(1차시)+ 정체성 위기의 시대"
+    },
+    {
+     "week": 2,
+     "topic": "다양성의 시대(1)"
+    },
+    {
+     "week": 3,
+     "topic": "다양성의 시대(2)"
+    },
+    {
+     "week": 4,
+     "topic": "자기 선택이라는 신화: 나는 정말 자유롭게 판단할까?"
+    },
+    {
+     "week": 5,
+     "topic": "신자유주의와 공정: 자유와 평등을 위하여?"
+    },
+    {
+     "week": 6,
+     "topic": "다양성 시대에서 추구되는 공정이란: 과정은 다양하게, 평가는 일률적으로?"
+    },
+    {
+     "week": 7,
+     "topic": "공정이란 무엇인가: 우리는 어떤 공정을 원하는가"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "자유민주주의는 다양성과 친할까?"
+    },
+    {
+     "week": 10,
+     "topic": "틀리지 않고 다른: 다양성을 끌어안기 위해서는 누가 바뀌어야 하는가?"
+    },
+    {
+     "week": 11,
+     "topic": "다양성을 대하는 우리 (사회)의 태도: 낯섬과 반감, 융합과 인정, 그리고 무관심"
+    },
+    {
+     "week": 12,
+     "topic": "다양성을 두고 이뤄진 이론적 관점: 이민자 수용과 다문화 사회는 자연스럽게 이뤄지지 않는다"
+    },
+    {
+     "week": 13,
+     "topic": "정체성 위기와 혐오: 자유민주주의의 이란성 쌍둥이?"
+    },
+    {
+     "week": 14,
+     "topic": "허무와 의미 사이: 나를 찾는 여정"
+    },
+    {
+     "week": 15,
+     "topic": "기말고사"
+    },
+    {
+     "week": 16
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/다양성과 위기의 시대001.pdf"
+  }
+ },
+ "대학생을 위한 정보자료의 활용": {
+  "001": {
+   "professor": "주소현",
+   "evaluation": "출석 10% / 상호존중태도 10% / 과제 30% / 중간고사 25% / 기말고사 25%",
+   "textbook": "(주교재)PPT, 수업 시간에 배부되는 자료. (부교재) 곽동철 등저, 『학술정보의 탐색 및 활용』-조은글터(2015). 다수의 참고자료(정보윤리, 저작권법, 도서관사 등 10종)",
+   "goals": "수많은 미디어에서 정보가 쏟아져 나오는 지금, 정보의 본질을 이해하고 속성을 파악하며 본인이 필요로 하는 유용한 지식과 정보를 선별하여 활용하는 능력, 즉 정보활용능력(information literacy)의 중요성은 더욱 커지고 있다. 대학생이 자신을 둘러싼 정보 환경을 이해하고 과제 수행과 자기주도적 학습, 그리고 일상에서 요구되는 정보활용능력을 함양하는 데에 교육의 목표를 둔다.",
+   "overview": "정보사회에서 정보가 가지는 의미와 가치를 이해하고, 정보서비스의 핵심 기관으로서 도서관의 역사와 가치, 발전 과정을 이해한다. 다양한 정보자료의 유형과 특성을 파악하고, 이들 정보원에 효과적으로 접근하기 위한 경로와 방법을 숙지하며, 다양한 정보검색시스템을 활용하여 원하는 정보를 탐색한다. 정보 이용을 둘러싼 사회적, 경제적, 법적, 심리적 문제를 이해하고 정보를 윤리적으로 이용하는 방법을 이해한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션 / 정보와 정보사회의 의미(1)"
+    },
+    {
+     "week": 2,
+     "topic": "정보와 정보사회의 의미(2) / 정보 공간으로서의 도서관"
+    },
+    {
+     "week": 3,
+     "topic": "정보활용능력과 정보활용과정(1)(2)"
+    },
+    {
+     "week": 4,
+     "topic": "정보자료의 유형과 특성(1) / 추석연휴"
+    },
+    {
+     "week": 5,
+     "topic": "정보자료의 유형과 특성(2) / 정보자료의 탐색 전략(1)"
+    },
+    {
+     "week": 6,
+     "topic": "정보자료의 탐색전략(2) / 정보자료의 분석과 활용(1)"
+    },
+    {
+     "week": 7,
+     "topic": "정보자료의 분석과 활용(2)(3)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "도서관 학술자료 검색법 / 참고문헌 관리도구, 표절예방프로그램 사용법"
+    },
+    {
+     "week": 10,
+     "topic": "학습정보자료의 활용법: 도서관 및 정보센터(1)(2)"
+    },
+    {
+     "week": 11,
+     "topic": "학습정보자료의 활용법: 국내외 학술 데이터베이스(1)(2)"
+    },
+    {
+     "week": 12,
+     "topic": "학습정보자료의 활용법: 정부기관 및 공공기관 / 종합포털 및 전문포털"
+    },
+    {
+     "week": 13,
+     "topic": "정보윤리(1)(2)"
+    },
+    {
+     "week": 14,
+     "topic": "저작권(1)(2)"
+    },
+    {
+     "week": 15,
+     "topic": "학습공동체"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/대학생을 위한 정보자료의 활용001.pdf"
+  }
+ },
+ "마음을움직이는경제학": {
+  "001": {
+   "professor": "원두환",
+   "evaluation": "출석 10%, 중간고사 40%, 기말고사 50%",
+   "textbook": "(주교재)승자의 저주 (리처드 세일러 지음, 최정규·하승아 옮김). (부교재1)무엇이 행동하게 하는가(유리 그니지, 존 리스트), 행동경제학(도모노 노리오 지음, 이명희 옮김), 나를 바꾸는 심리학의 지혜 프레임(최인철)",
+   "goals": "감성으로 움직이는 인간에 대해서 이해하고, 경제학 이론의 문제점들을 분석하고, 인간의 행동을 보다 나은 방향으로 옮겨갈 수 있는 방안을 연구함. 전통경제학과 행동경제학의 차이점을 이해하고, 행동경제학의 기여를 이해하며, 의사결정 이론의 실제 적용을 분석한다.",
+   "overview": "경제 상황이 인간의 합리적인 판단에 의하기 보다는 직감이나 감정에 의해 움직이는 경우에 대해서 살펴보고, 인간에 대한 이해도를 증진한다. 강의는 전통경제학의 기본 가정과 행동경제학의 관점을 비교하는 것에서 출발하여, 휴리스틱, 인지편향, 전망이론, 자기통제 문제, 사회적 선호 등 핵심 주제를 다루며, 실제 정책, 금융, 소비, 조직 행동 등 다양한 분야에 어떻게 응용되는지를 학습한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "경제학이란 무엇인가?"
+    },
+    {
+     "week": 2,
+     "topic": "사람들은 이기적인가?"
+    },
+    {
+     "week": 3,
+     "topic": "이성보다는 직감인가?"
+    },
+    {
+     "week": 4,
+     "topic": "공정한 것은 중요한 것인가?"
+    },
+    {
+     "week": 5,
+     "topic": "연봉은 그 사람의 능력을 보여주는가?"
+    },
+    {
+     "week": 6,
+     "topic": "승자의 저주란 무엇인가?"
+    },
+    {
+     "week": 7,
+     "topic": "내 것은 더욱 소중한가?"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "기다림은 선택에 어떠한 영향을 미치는가?"
+    },
+    {
+     "week": 10,
+     "topic": "모든 돈은 똑같은가?"
+    },
+    {
+     "week": 11,
+     "topic": "투자자들은 합리적인 선택을 하는가?"
+    },
+    {
+     "week": 12,
+     "topic": "인센티브는 효과가 있을까?"
+    },
+    {
+     "week": 13,
+     "topic": "성별 차이는 존재하는가?"
+    },
+    {
+     "week": 14,
+     "topic": "사람들이 차별하는 이유는 무엇인가?"
+    },
+    {
+     "week": 15,
+     "topic": "사람들의 선호는 이성적인가?"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/마음을움직이는경제학001.pdf"
+  }
+ },
+ "미국을뒤흔든세기의판결": {
+  "001": {
+   "professor": "김인선",
+   "evaluation": "출석 10%, 중간 20%, 기말시험 40%, 참여도 및 과제 30%",
+   "textbook": "주교재 다수: 김봉중, 『위험한 미국사』-RHK(2025); 하워드 진, 『미국민중사 세트』-이후(2006); L. 레너드 케스터·사이먼 정, 『미국을 발칵 뒤집은 판결 31』-현암사(2012); 이매뉴얼 월러스틴, 『반체제운동』-창작과비평사(1996); 김봉중, 『미국을 안다는 착각』-빅피시(2024) 외 다수의 참고도서(직접입력 목록 60여종)",
+   "goals": "1. 미국을 뒤흔든 세기의 판결과 '시대 정신' 살펴보기. 2. 미국사에 대한 이해를 토대로 한국 사회 읽기. 3. 타자와 차이를 이해하고 공감하는 '열린 자세' 배양하기",
+   "overview": "본 강의는 미국 역사 속 주요한 판결을 주제별로 선별해 미국의 문화, 사회, 역사에 대한 이해의 폭을 넓히는 것을 목표로 삼는다. 매주 선정된 재판 사건을 매개로 해당 판결이 내려진 시대 상황 및 역사적 배경, 쟁점에 대해 이야기 나눔으로써 인문학적 교양을 풍부히 할 것이다. 매주 주제와 관련된 영화, 음악, 미술, 조각, 소설, 만화 등을 함께 감상하며 다각도의 질문을 던지고 문제의식을 공유할 것이다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의소개"
+    },
+    {
+     "week": 2,
+     "topic": "이만큼 가까운 미국 - 미국사를 어떻게 볼 것인가?"
+    },
+    {
+     "week": 3,
+     "topic": "서부는 어떻게 사라져 갔는가? - 헨리 데이비드 소로의 '시민 불복종'(1846)"
+    },
+    {
+     "week": 4,
+     "topic": "노예의 피부는 왜 검은색인가? - 흑인 노예제와 드레드 스콧 판결(1857)"
+    },
+    {
+     "week": 5,
+     "topic": "Black is beautiful! - 민권운동과 플레시 대 퍼거슨 판결(1896)"
+    },
+    {
+     "week": 6,
+     "topic": "원폭투하 결정과 핵시대의 개막 - 코레마츠 대 미국 판결(1944)"
+    },
+    {
+     "week": 7,
+     "topic": "현대판 마녀사냥, 매카시즘 - 존 헨리 폴크 대 어웨어 판결(1956)"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "민주주의 허울 쓴 독재 - 영화 <디 벨레>"
+    },
+    {
+     "week": 10,
+     "topic": "혐오와 차별은 어떻게 '과학'이 되었나? - 우생학과 벅 대 벨 판결(1927)"
+    },
+    {
+     "week": 11,
+     "topic": "왜 어떤 몸은 다른 몸보다 우월한가? - 흑인의 성과 노예 실리아 판결(1855)"
+    },
+    {
+     "week": 12,
+     "topic": "금지를 금지한다 - 베트남전쟁과 코헨 대 캘리포니아 판결(1971)"
+    },
+    {
+     "week": 13,
+     "topic": "피임은 살인행위? - 성혁명과 로 대 웨이드 판결(1973)"
+    },
+    {
+     "week": 14,
+     "topic": "동성결혼은 사회를 어떻게 바꾸는가? - 오버거펠 대 호지스 판결(2015)"
+    },
+    {
+     "week": 15,
+     "topic": "지정보강주"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/미국을뒤흔든세기의판결001.pdf"
+  }
+ },
+ "생활과경제": {
+  "001": {
+   "professor": "김현석",
+   "evaluation": "중간고사 40%, 기말고사 40%, 과제 10%, 출석 10%",
+   "textbook": "(주교재) 경제이론과 현실경제, 김현석·박수남·장지용·정경숙·조준현 지음, 시그마프레스. (부교재1) 유일선 외, 경제학의 이해, 시그마프레스. 조준현, 내일을 위한 경제학, 다시봄. 이준구, 열린경제학, 문우사",
+   "goals": "현실 경제를 경제학 이론에 대한 예를 통해서 살펴본다.",
+   "overview": "실물경제에서 발생하는 경제현상을 이해하기 위해, 이론적 토대, 시장기능과 작동 메커니즘 중심의 주제를 다룬다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "경제생활과 경제문제"
+    },
+    {
+     "week": 2,
+     "topic": "시장과 합리적 경제행위"
+    },
+    {
+     "week": 3,
+     "topic": "시장 실패와 정부 역할"
+    },
+    {
+     "week": 4,
+     "topic": "화폐와 금리"
+    },
+    {
+     "week": 5,
+     "topic": "금융자산과 금융시장"
+    },
+    {
+     "week": 6,
+     "topic": "국민 경제활동"
+    },
+    {
+     "week": 7,
+     "topic": "인플레이션과 실업"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "경제성장과 경제발전"
+    },
+    {
+     "week": 10,
+     "topic": "경제안정화 정책"
+    },
+    {
+     "week": 11,
+     "topic": "통화정책"
+    },
+    {
+     "week": 12,
+     "topic": "재정정책"
+    },
+    {
+     "week": 13,
+     "topic": "형평성과 빈곤"
+    },
+    {
+     "week": 14,
+     "topic": "경제와 환경"
+    },
+    {
+     "week": 15,
+     "topic": "경제와 도시문제"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활과경제001.pdf"
+  }
+ },
+ "생활속의심리학": {
+  "001": {
+   "professor": "서수균",
+   "evaluation": "중간 35%, 기말 35%, 출석 10%, 리포트 20% (심리학 연구 참여 점수가 일부 포함될 수 있음)",
+   "textbook": "(주교재)긍정심리학(2009). 안신호 7인 번역. 시그마프레스. (부교재1)긍정심리학-행복의 과학적 탐구-(2008). 권석만. 학지사. 행복의 조건(하버드대학교 인생성장보고서)(2010). 조지 베일런트. 프런티어.",
+   "goals": "사람은 누구나 행복하기를 원한다. 행복은 무엇이며, 어떻게 사는 것이 행복한 삶인가? 행복의 심리학은 행복이라는 주제에 대한 과학적 접근을 토대로 얻어진 다양한 심리학적 발견을 소개하고자 한다.",
+   "overview": "행복의 개념과 행복의 의미, 행복의 측정 방법, 그리고 행복과 관련된 객관적 조건, 사회적 조건, 개인적 특성 등에 관한 내용이 강의의 주 내용이 될 것이다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션, 행복의 의미"
+    },
+    {
+     "week": 2,
+     "topic": "행복을 어떻게 측정할 것인가"
+    },
+    {
+     "week": 3,
+     "topic": "긍정심리학이란"
+    },
+    {
+     "week": 4,
+     "topic": "긍정적 정서와 웰빙"
+    },
+    {
+     "week": 5,
+     "topic": "심리적 탄력성의 기능"
+    },
+    {
+     "week": 6,
+     "topic": "행복 그리고 화 / 외상을 통한 성장"
+    },
+    {
+     "week": 7,
+     "topic": "행복과 생활 환경 및 인구학적 특징"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "돈과 행복(1)"
+    },
+    {
+     "week": 10,
+     "topic": "돈과 행복(2)"
+    },
+    {
+     "week": 11,
+     "topic": "문화와 행복 / 개인적 목표와 웰빙"
+    },
+    {
+     "week": 12,
+     "topic": "행복을 위한 계획세우기 / 감사하기/낙관주의"
+    },
+    {
+     "week": 13,
+     "topic": "과도한 자기생각과 사회비교 / 관계와 웰빙(이타적 행동)"
+    },
+    {
+     "week": 14,
+     "topic": "관계와 웰빙(친밀한 관계) / 사랑과 행복"
+    },
+    {
+     "week": 15,
+     "topic": "기말고사"
+    },
+    {
+     "week": 16,
+     "topic": "보충(필요시)"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학001.pdf"
+  },
+  "002": {
+   "professor": "이동훈",
+   "evaluation": "중간고사 30점, 기말고사 30점, 레포트 30점(3번, 각 10점), 출석 10점 (연구참가 추가점수 5점 부여 가능)",
+   "textbook": "주교재: Ronald B. Adler, Russell F. Proctor II, 『인간관계와 의사소통의 심리학』-박영스토리(2021)",
+   "goals": "본 강의는 자기개념, 지각, 감정, 의사소통과 듣기에 대한 심리학적 지식을 배우며, 보다 나은 삶을 위해 심리학적 지식을 어떻게 활용할 것인지를 고찰한다.",
+   "overview": "보다 나은 삶을 위해 자신에 대한 이해를 시작으로 우리는 왜 서로 다른 생각을 가지고 서로 다른 감정을 느끼는지 이해하며, 그리고 소통을 통해 자신의 견해와 감정을 표현하고 다른 사람의 생각과 감정을 이해하는 방법을 심리학을 통해 배운다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션/자아개념과 자아존중감 - 나라는 존재에 대한 개념과 가치는 어떻게 형성되는가?"
+    },
+    {
+     "week": 2,
+     "topic": "자신에 대한 믿음 - 자기충족적 예언과 마인드셋 이론"
+    },
+    {
+     "week": 3,
+     "topic": "정체성 관리와 자기 노출 - 인간 관계에서 정체성 관리 및 자기 노출이 중요한 이유"
+    },
+    {
+     "week": 4,
+     "topic": "지각과정 - 나는 세상을 어떻게 보는가?"
+    },
+    {
+     "week": 5,
+     "topic": "지각과정 - 지각에 영향을 미치는 요인들과 지각편향"
+    },
+    {
+     "week": 6,
+     "topic": "감정이란? - 감정의 생득적 측면과 사회문화적 측면"
+    },
+    {
+     "week": 7,
+     "topic": "감정 표현과 조절"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "언어적 의사소통"
+    },
+    {
+     "week": 10,
+     "topic": "언어적 의사소통/비언어적 의사소통"
+    },
+    {
+     "week": 11,
+     "topic": "비언어적 의사소통"
+    },
+    {
+     "week": 12,
+     "topic": "효과적인 의사소통을 위한 듣기 과정의 이해"
+    },
+    {
+     "week": 13,
+     "topic": "효과적인 의사소통을 위한 듣기 과정의 이해"
+    },
+    {
+     "week": 14,
+     "topic": "의사소통과 인간관계의 역동"
+    },
+    {
+     "week": 15,
+     "topic": "보강 주간"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학002.pdf"
+  },
+  "003": {
+   "professor": "조승빈",
+   "evaluation": "Exams 76%, Attendance 4%, Assignments 20%, Research participation (optional, extra 5%)",
+   "textbook": "Online open textbook: https://nobaproject.com/ (섹션은 수업 진행에 따라 공지)",
+   "goals": "i. To introduce how psychology understands human behaviors. ii. To understand how psychological knowledge is applied to our lives. iii. To understand how psychological knowledge is misunderstood",
+   "overview": "Psychology is the science of human behavior. Therefore, knowledge from psychology is readily applicable to our lives. In this course, we will review how psychological knowledge is developed and how they are applied to our lives.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Course overview and introduction, What is psychology?"
+    },
+    {
+     "week": 2,
+     "topic": "What is psychology?"
+    },
+    {
+     "week": 3,
+     "topic": "How do psychologists understand human mind?"
+    },
+    {
+     "week": 4,
+     "topic": "Intelligence: measurements in psychology"
+    },
+    {
+     "week": 5,
+     "topic": "A fundamental question: nature vs. nurture"
+    },
+    {
+     "week": 6,
+     "topic": "Nature: biological basis of human mind"
+    },
+    {
+     "week": 7,
+     "topic": "Nurture: how experience shapes our behavior"
+    },
+    {
+     "week": 8,
+     "topic": "Midterm"
+    },
+    {
+     "week": 9,
+     "topic": "Nurture: how experience shapes our behavior"
+    },
+    {
+     "week": 10,
+     "topic": "How we become us: Development"
+    },
+    {
+     "week": 11,
+     "topic": "A view from psychology about love"
+    },
+    {
+     "week": 12,
+     "topic": "A view from psychology about happiness"
+    },
+    {
+     "week": 13,
+     "topic": "Emerging adulthood, mental health and college students"
+    },
+    {
+     "week": 14,
+     "topic": "Is human brain like computer memory?"
+    },
+    {
+     "week": 15,
+     "topic": "Psychological disorders"
+    },
+    {
+     "week": 16,
+     "topic": "Final"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학003.pdf"
+  },
+  "004": {
+   "professor": "임정은",
+   "evaluation": "중간고사 35점, 기말고사 35점, 과제 20점, 출석 10점, 추가점수 5점",
+   "textbook": "주교재: 데이비드 G. 마이어스, 네이선 드월, 『(마이어스의)심리학개론』-시그마프레스(2022)",
+   "goals": "본 강의는 일상의 우리 인간의 행동과 마음을 심리학적 지식을 기반으로 이해하고자 한다. 사회생물심리학적인 관점에 기반하여 인간 마음의 작동 원리를 이해하며, 나 자신과 타인에 관한 이해의 폭을 넓히며, 의미있고 만족스러운 삶을 살아가도록 돕고자 한다.",
+   "overview": "본 강의는 점성술, 최면술 등과 구별되는 과학으로서의 심리학에 대한 이해를 바탕으로 시작한다. 수강생들은 다양한 심리학 분야에서 수행된 경험적 연구를 통해 축적된 지식을 학습하고, 이러한 심리학적 지식이 인간의 삶의 질 향상에 어떠한 방식으로 기여하는지 탐구하게 된다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 소개 / 심리학은 무엇인가?"
+    },
+    {
+     "week": 2,
+     "topic": "심리학이 발전되어온 과정은 어떠한가? 심리학의 분야는 무엇이 있는가?"
+    },
+    {
+     "week": 3,
+     "topic": "성격의 이해: 인간을 설명하는 다양한 틀"
+    },
+    {
+     "week": 4,
+     "topic": "일상 속 학습의 비밀"
+    },
+    {
+     "week": 5,
+     "topic": "생물학적인 인간 이해"
+    },
+    {
+     "week": 6,
+     "topic": "기억과 망각"
+    },
+    {
+     "week": 7,
+     "topic": "중간고사"
+    },
+    {
+     "week": 8,
+     "topic": "태어남 그 이후"
+    },
+    {
+     "week": 9,
+     "topic": "타인의 존재에 의한 영향"
+    },
+    {
+     "week": 10,
+     "topic": "진짜 나와 거짓 나"
+    },
+    {
+     "week": 11,
+     "topic": "행복을 찾아서"
+    },
+    {
+     "week": 12,
+     "topic": "스트레스 다루기"
+    },
+    {
+     "week": 13,
+     "topic": "심리적 고통 이해하기"
+    },
+    {
+     "week": 14,
+     "topic": "인간의 변화기제"
+    },
+    {
+     "week": 15,
+     "topic": "필요시 보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학004.pdf"
+  },
+  "005": {
+   "professor": "신현희",
+   "evaluation": "출석 10%, 수업참여 10%, 중간고사 30%, 기말고사 30%, 과제 20%, 연구참여",
+   "textbook": "참고자료: 박광열, 『생활속의 심리학』-퍼플(2025); 데이비드 G. 마이어스, 네이선 드월, 『(마이어스의)심리학개론』-시그마프레스(2022). 강의교안 중심으로 진행하며, 매주차 플라토에 업로드 할 예정임.",
+   "goals": "본 강의는 개인의 자기이해와 긍정적 자기개념 형성을 출발점으로 하여, 대인관계와 의사소통, 문화 및 예술을 포함한 심리학의 다양한 응용 영역을 다룬다.",
+   "overview": "심리학적 지식은 우리의 삶과 일상 전반에 걸쳐 다양하게 활용되며, 인간의 사고와 감정 그리고 행동을 이해하고 조절하는데 기본적인 틀을 제공한다. 본 강의에서는 실제 삶에서 적용되고 있는 심리학적 개념과 사례를 중심으로 학생 스스로 자신의 삶을 성찰하고, 회복하며 타인과 관계 맺는 힘을 기르는데 도움을 주고자 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "나는 누구인가? - 성격심리학과 자기개념이론"
+    },
+    {
+     "week": 3,
+     "topic": "나는 누구인가? - 사고, 감정, 행동, 신체 반응의 연결"
+    },
+    {
+     "week": 4,
+     "topic": "스트레스와 트라우마 - 일상적인 스트레스 반응에서 외상적 경험까지"
+    },
+    {
+     "week": 5,
+     "topic": "스트레스와 트라우마 - 대처 방식과 회복탄력성"
+    },
+    {
+     "week": 6,
+     "topic": "추석연휴"
+    },
+    {
+     "week": 7,
+     "topic": "중간고사"
+    },
+    {
+     "week": 8,
+     "topic": "긍정심리 - 강점 발견과 몰입경험"
+    },
+    {
+     "week": 9,
+     "topic": "긍정심리 - 긍정적 정서의 의미와 실천"
+    },
+    {
+     "week": 10,
+     "topic": "관계 및 의사소통 - 애착 유형과 친밀감"
+    },
+    {
+     "week": 11,
+     "topic": "관계 및 의사소통 - 공감적 소통"
+    },
+    {
+     "week": 12,
+     "topic": "관계 및 의사소통 - 갈등 조절 및 관계 회복"
+    },
+    {
+     "week": 13,
+     "topic": "사회 및 문화심리 - 집단 심리와 사회적 편견"
+    },
+    {
+     "week": 14,
+     "topic": "사회 및 문화 심리 - 문화 간 자기, 정서, 관계 인식 차이"
+    },
+    {
+     "week": 15,
+     "topic": "통합 - 심리학적 관점 구성 및 정리"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학005.pdf"
+  },
+  "006": {
+   "professor": "이화진",
+   "evaluation": "중간고사 35점, 기말고사 35점, 출석 10점, 과제 20점(추가점수 5점)",
+   "textbook": "(주교재)저는 심리학이 처음인데요(강현식 저, 한빛비즈). (부교재1)일상생활의 심리학(시그마프레스). (부교재2)더 알고 싶은 심리학(한국심리학회 편)",
+   "goals": "본 교과목은 교양 선택 과목으로써, 심리학 하위 분야의 주요 기본 개념 및 이론 등을 학습하고, 심리학의 원리나 이론을 실제 생활에 적용할 수 있는 능력을 함양할 수 있도록 한다.",
+   "overview": "심리학은 상대의 생각을 읽거나 텔레파시를 나누는 학문이 아니며 운명을 맞이하거나 점을 보는 학문이 아니다. 과학으로서의 심리학을 이해하고 사회문화적인 현상을 통한 우리 삶에서의 심리학의 역할에 대해 안내한다. 학습한 내용을 과제물을 통해 수업내용을 적용해보는 기회를 가져보도록 할 것이다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션 (강의소개, 표절 및 시험 부정행위 예방교육 및 실험·실습 안전교육 실시)"
+    },
+    {
+     "week": 2,
+     "topic": "심리학을 소개합니다 (과학으로서의 심리학, 다양한 심리학 분야)"
+    },
+    {
+     "week": 3,
+     "topic": "나의 역사, 그것이 나다: 발달심리학 (애착, 기질, 환경, 아빠 효과, 전생애발달)"
+    },
+    {
+     "week": 4,
+     "topic": "내 성격은 도대체 왜 이럴까: 성격심리학 (혈액형별 성격유형의 진실, Big Five 이론, 특질이론)"
+    },
+    {
+     "week": 5,
+     "topic": "내가 뇌인가, 뇌가 나인가: 생리심리학 (뇌, 뇌의 구조 및 기능)"
+    },
+    {
+     "week": 6,
+     "topic": "추석"
+    },
+    {
+     "week": 7,
+     "topic": "학습을 통해 변화 한다: 학습심리학 (고전적 조건형성, 조작적 조건형성, 강화, 모방)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "내 정신과정을 따라가자: 인지심리학 (기억, 의사결정 및 문제해결)"
+    },
+    {
+     "week": 10,
+     "topic": "행동에 관한 함수: 사회심리학 (귀인과 편향, 동조, 복종)"
+    },
+    {
+     "week": 11,
+     "topic": "내가 이상하거니, 니가 이상한거니: 이상심리학 (이상의 기준, 우울증, 불안과 공포, 조현병)"
+    },
+    {
+     "week": 12,
+     "topic": "내 상처를 힐링해다오: 심리치료 (정신분석, 인지치료, 인간중심치료, 집단상담)"
+    },
+    {
+     "week": 13,
+     "topic": "심리학이 연쇄살인범을 잡다: 범죄심리학, 법정심리학 (반사회성 성격장애, 프로파일러)"
+    },
+    {
+     "week": 14,
+     "topic": "심리학이 해주는 연애코칭 (매력의 요인, 사랑법보다 중요한 싸움법)"
+    },
+    {
+     "week": 15,
+     "topic": "심리학에서 배우는 좋은 삶의 자세"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학006.pdf"
+  },
+  "007": {
+   "professor": "김미숙",
+   "evaluation": "중간고사 35점, 기말고사 35점, 기말 리포트 20점, 출석 10점, 추가점수 5점(실험참가)",
+   "textbook": "(주교재)미정",
+   "goals": "생활 속에서 겪는 인간 마음의 작용에 대해 심리학적 프레임으로 살펴본다. 일상생활에서 길어올릴 수 있는 심리학의 지혜를 배우는 시간을 갖는다.",
+   "overview": "나의 일상에서의 비효율을 점검하고 좀 더 효율적이고 생산적인 하루를 계획하고 실천할 수 있는 방법을 배울 기회를 제공한다. 내 마음의 정원을 가꿀 수 있는 방법을 안내하고 일상에 적용해 봄으로써 숨 쉴만한 일상을 사는데 목표를 둔다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "마음챙김으로 젊어질 수 있을까?"
+    },
+    {
+     "week": 3,
+     "topic": "내 뇌는 내 편일까?: 뇌과학에 대한 이해"
+    },
+    {
+     "week": 4,
+     "topic": "꿈은 나에게 무슨 말을 하고 싶은 걸까?"
+    },
+    {
+     "week": 5,
+     "topic": "단단한 하루 & 건강한 멘탈 & <유익한 습관 만들기 프로젝트>"
+    },
+    {
+     "week": 6,
+     "topic": "잊혀지는 게 힘들까, 잊지 못하는 게 힘들까?"
+    },
+    {
+     "week": 7,
+     "topic": "관계를 결정하는 내 마음의 지도: 애착이론과 내적 작동모델"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사 대체 리포트: 나 생애 분석 보고서"
+    },
+    {
+     "week": 9,
+     "topic": "보는 대로 믿을까, 믿는대로 볼까?: 지각의 민낯"
+    },
+    {
+     "week": 10,
+     "topic": "내 마음을 나도 잘 모르겠어요"
+    },
+    {
+     "week": 11,
+     "topic": "스트레스가 암을 유발할까?: 정신신경면역학에 대한 이해/ 스트레스 검사"
+    },
+    {
+     "week": 12,
+     "topic": "자존감이 높아지는 직업이 따로 있을까?: 자기이해와 삶의 풍요"
+    },
+    {
+     "week": 13,
+     "topic": "상대의 마음을 얻는 대화법이 따로 있을까?"
+    },
+    {
+     "week": 14,
+     "topic": "내가 정상일까, 네가 정상일까?: 심리장애의 이해와 치료"
+    },
+    {
+     "week": 15,
+     "topic": "'상위 목표는 차이를 압도한다': 사회심리학으로부터 얻는 통찰"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학007.pdf"
+  },
+  "008": {
+   "professor": "권소영",
+   "evaluation": "중간고사 35점, 기말고사 35점, 출석 10점, 과제 20점 (실험참가에 따른 추가 점수 5점 이내 부여 가능)",
+   "textbook": "(주교재)ppt(수업 전 업로드 예정)",
+   "goals": "본 강의에서는 심리학 지식을 소개하고 해당 지식을 바탕으로 자기, 타인, 생활을 이해하는 것을 목표로 함",
+   "overview": "우리의 삶 곳곳에는 심리학적 지식에 대한 대중화된 믿음들이 활용되고 있다. 본 과목에서는 인간 행동에 대한 대중적인 심리학에서의 흔한 오해와 직관을 점검해보고, 더 나은 생활의 지혜가 되는 심리학 지식을 쌓고자 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션/직관"
+    },
+    {
+     "week": 2,
+     "topic": "문화(문화심리학)"
+    },
+    {
+     "week": 3,
+     "topic": "나는 어떤 사람일까(자기개념)"
+    },
+    {
+     "week": 4,
+     "topic": "나는 세상을 어떻게 볼까(지각심리학)"
+    },
+    {
+     "week": 5,
+     "topic": "어떻게 학습할까(학습심리학)"
+    },
+    {
+     "week": 6,
+     "topic": "휴강"
+    },
+    {
+     "week": 7,
+     "topic": "조별 활동/정리 겸 질의응답"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "동기 알아보기(동기심리학)"
+    },
+    {
+     "week": 10,
+     "topic": "스트레스 알아보기"
+    },
+    {
+     "week": 11,
+     "topic": "감정 알아보기(감정심리학)"
+    },
+    {
+     "week": 12,
+     "topic": "'타인'과 '의사소통'하고 '관계' 형성하기(1)"
+    },
+    {
+     "week": 13,
+     "topic": "'타인'과 '의사소통'하고 '관계' 형성하기(2)"
+    },
+    {
+     "week": 14,
+     "topic": "'타인'과 '의사소통'하고 '관계' 형성하기(3)"
+    },
+    {
+     "week": 15,
+     "topic": "조별 활동/정리 겸 질의응답"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학008.pdf"
+  },
+  "009": {
+   "professor": "하혜주",
+   "evaluation": "중간 시험 30%, 기말 레포트 30%, 과제 20%, 수업 참여 및 활동 10%, 출석 10%",
+   "textbook": "(주교재)김교헌 외, 젊은이를 위한 정신건강, 학지사(2010). Niemiec, R. M., 긍정심리학 성격강점 기반 스트레스 대처와 성장 워크북, 학지사. (부교재1)이운영, 대학생을 위한 정신건강 수업, 바른북스(2023)",
+   "goals": "본 수업은 일상생활 전반에서 자신의 강점을 활용해 정신건강을 향상시킬 수 있는 심리적 방법을 학습하고자 합니다. 정신건강이 무엇인지, 자기개념, 성격, 강점에 대해 알아보고, 스트레스를 효과적으로 대처할 수 있는 심리학 기반의 다양한 방법을 학습하는 것을 목표로 합니다.",
+   "overview": "본 강의의 전반부에는 강의를 중심으로 진행하며, 후반부에는 강의, 소그룹 활동 및 실습을 통해 실생활에 학습한 내용을 적용해보고자 합니다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "정신건강에의 초대"
+    },
+    {
+     "week": 3,
+     "topic": "자기개념과 정신건강: 지금은 '나'를 찾을 시간"
+    },
+    {
+     "week": 4,
+     "topic": "성격과 정신건강: 나의 성격은 건강한가"
+    },
+    {
+     "week": 5,
+     "topic": "성격의 덕성과 강점: 인간에게는 누구나 저마다의 빛깔이 있다 (1)"
+    },
+    {
+     "week": 6,
+     "topic": "성격의 덕성과 강점: 인간에게는 누구나 저마다의 빛깔이 있다 (2)"
+    },
+    {
+     "week": 7,
+     "topic": "스트레스에 대한 이해: 스트레스가 없어야 행복한가요?"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "스트레스 대처"
+    },
+    {
+     "week": 10,
+     "topic": "스트레스 대처 방법: 정서중심 대처법 (1)"
+    },
+    {
+     "week": 11,
+     "topic": "스트레스 대처 방법: 정서중심 대처법 (2)"
+    },
+    {
+     "week": 12,
+     "topic": "스트레스 대처 방법: 성격 강점 기반 대처법 (1)"
+    },
+    {
+     "week": 13,
+     "topic": "스트레스 대처 방법: 성격 강점 기반 대처법 (2)"
+    },
+    {
+     "week": 14,
+     "topic": "스트레스 대처 방법: 성격 강점 기반 대처법 (3)"
+    },
+    {
+     "week": 15,
+     "topic": "보강 수업 (필요시)"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학009.pdf"
+  },
+  "010": {
+   "professor": "노해림",
+   "evaluation": "중간고사 30%, 과제 10%, 기말 포트폴리오 50%, 출석 10% (심리학 실험 참가 시 최대 5점 추가 점수 획득 가능)",
+   "textbook": "주교재: 한국심리학회, 『(더 알고 싶은) 심리학』-학지사(2018). 부교재: 데이비드 G. 마이어스, 네이선 드월, 『(마이어스의)심리학개론』-시그마프레스(2022). 참고자료: 최승원, 『그건 심리학적으로 맞지 않습니다만』-책사람집(2024); 엠마 헵번, 『감정의 이해』-포레스트북스(2024)",
+   "goals": "본 교과목은 인간 마음의 작용에 대한 대중화된 믿음과 과학적 사실을 구분하고, 이를 비판적으로 분석하는 능력을 함양하고자 한다. 인간관계, 진로, 스트레스 관리 등 다양한 삶의 영역에 효과적으로 대처할 수 있는 심리학적 지식을 학습하여, 학생들이 더 나은 삶을 영위할 수 있도록 돕는 것을 목표로 한다.",
+   "overview": "학생들은 일상생활에서 흔히 만나는 대중화된 심리적 지식들을 살펴보고, 과학적 연구를 통해 축적된 최신 증거를 바탕으로 이러한 지식들의 타당성을 검토해본다. 수업에서 배운 내용을 실제 생활에 적용하여 자신 및 타인의 심리적 특성을 이해해보고, 이를 포트폴리오로 제작한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 오리엔테이션 - 표절 및 시험 부정행위에 대한 예방교육"
+    },
+    {
+     "week": 2,
+     "topic": "\"의심할수록 명확해지는 것\" - 대중화된 심리 지식의 비판적 검토"
+    },
+    {
+     "week": 3,
+     "topic": "\"MBTI 유형이 어떻게 되세요?\" - 성격 검사의 유용성과 한계점"
+    },
+    {
+     "week": 4,
+     "topic": "\"나를 소개합니다!\" - 강점과 가치에 대한 이론"
+    },
+    {
+     "week": 5,
+     "topic": "\"나의 눈, 너의 눈\" - 세상을 이해하는 방식과 경험의 관련성"
+    },
+    {
+     "week": 6,
+     "topic": "\"그 중에 너를 만나\" - 애착에 대한 이론"
+    },
+    {
+     "week": 7,
+     "topic": "\"생각의 지혜\" - 일상에서 쉽게 범하는 인지 오류"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "\"마음 챙기기\" - 스트레스와 건강의 관련성"
+    },
+    {
+     "week": 10,
+     "topic": "\"인사이드 아웃\" - 정서 및 정서 표현에 대한 대중화된 지식 검토"
+    },
+    {
+     "week": 11,
+     "topic": "\"감정의 바다에서 노 젓기\" - 정서 조절에 대한 이론"
+    },
+    {
+     "week": 12,
+     "topic": "\"저는 ADHD 인가요?\" - 정신장애에 대한 오해와 편견 검토"
+    },
+    {
+     "week": 13,
+     "topic": "\"이대로 괜찮습니다\" - 우울감, 불안감, 좌절감"
+    },
+    {
+     "week": 14,
+     "topic": "\"보통 사람 되기\" - 행복에 대한 대중화된 지식 검토"
+    },
+    {
+     "week": 15,
+     "topic": "(보강기간) 기말 포트폴리오 제출"
+    },
+    {
+     "week": 16,
+     "topic": "종강"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/생활속의심리학010.pdf"
+  }
+ },
+ "서양미술과사회": {
+  "001": {
+   "professor": "레기나 보데",
+   "evaluation": "Presence/Attendance: 20%, Presentation: 20%, Homework/Art projects: 30%, Final Exam: 30%",
+   "textbook": "(부교재1)Sketchbook A4, Mixed media paper pad, size A3, pencils: 2B, 4B, 6B; watercolor pencils, oil pastels, notebook and other materials to be determined during class.",
+   "goals": "This class provides a basic introduction to the history of European art from Antiquity to Post Modernism and Contemporary developments. How are social values, norms and historical context reflected in Western visual arts? Students will deepen their understanding of Western culture, society, history and their manifestations in paintings, drawings, sculptures and installations.",
+   "overview": "This course will focus on selected topics in Western art history and how visual art responds to society and historic events. Periods from Ancient Egypt, Greek and Roman Antiquity, Medieval times and Renaissance, Baroque, Romanticism, Impressionism, Expressionism, 20th Century Modernism, Post Modernism until Contemporary developments will be covered.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "Introduction, early beginnings"
+    },
+    {
+     "week": 2,
+     "topic": "Egypt, Greek"
+    },
+    {
+     "week": 3,
+     "topic": "Greek, Roman"
+    },
+    {
+     "week": 4,
+     "topic": "Medieval, Early Renaissance"
+    },
+    {
+     "week": 5,
+     "topic": "Italian Renaissance"
+    },
+    {
+     "week": 6,
+     "topic": "Northern Renaissance (Italy, France vs. Northern Europe)"
+    },
+    {
+     "week": 7,
+     "topic": "Baroque, Rococo"
+    },
+    {
+     "week": 8,
+     "topic": "Romanticism"
+    },
+    {
+     "week": 9,
+     "topic": "Late 19th century/ Impressionism"
+    },
+    {
+     "week": 10,
+     "topic": "Expressionism, early 20th century"
+    },
+    {
+     "week": 11,
+     "topic": "Modernism, Contemporary"
+    },
+    {
+     "week": 12,
+     "topic": "Contemporary"
+    },
+    {
+     "week": 13,
+     "topic": "Contemporary Western Art"
+    },
+    {
+     "week": 14,
+     "topic": "Projects"
+    },
+    {
+     "week": 15,
+     "topic": "Make up"
+    },
+    {
+     "week": 16,
+     "topic": "Final Exam"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/서양미술과사회001.pdf"
+  }
+ },
+ "서양의성과풍속의역사": {
+  "001": {
+   "professor": "서영건",
+   "evaluation": "기말시험 60%, 과제 20%, 출석 20%",
+   "textbook": "(주교재)프린트물, 논문 등. (부교재1) 다수의 논문/단행본 참고자료 (김경현 「고대 로마의 동성애」; 케빈 제닝스 역사속의 성적소수자; 에두아르트 푹스 풍속의 역사 1-4; 오토 키퍼 로마의 성풍속사 1,2 등)",
+   "goals": "① 지금까지 역사에서 중심주제로 다루지 못한 주제들을 선정하여 역사에 대한 좀 더 넓고 생생한 접근을 시도한다. ② 각 시대의 다양한 성과 풍속의 역사를 살펴봄으로써 역사의 상대성과 다양성을 이해한다. ③ 현재 성에 대한 우리의 인식을 되짚어 보고 앞으로 나아갈 방향에 대해 고민한다.",
+   "overview": "사소하거나 주변적인 역사는 그 자체만으로도 역사의 깊이를 더할 수 있지만 기존의 역사를 뒤집어 볼 수 있는 시각을 제공한다. 따라서 서양 사회와 역사를 새롭게 바라볼 수 있을 뿐만 아니라 서양인들의 삶을 좀 더 가까이 느낄 수 있는 다양한 주제를 살펴볼 것이다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 개관"
+    },
+    {
+     "week": 2,
+     "topic": "고대사 속의 동성애"
+    },
+    {
+     "week": 3,
+     "topic": "마르탱 게르의 귀향 1"
+    },
+    {
+     "week": 4,
+     "topic": "마르탱 게르의 귀향 2"
+    },
+    {
+     "week": 5,
+     "topic": "순례와 여행"
+    },
+    {
+     "week": 6,
+     "topic": "기독교와 이슬람 속의 성"
+    },
+    {
+     "week": 7,
+     "topic": "바이외 태피스트리 속 중세의 전쟁 문화"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "기독교 문화에 투영된 유대, 무슬림 여성의 섹슈얼리티"
+    },
+    {
+     "week": 10,
+     "topic": "정복과 식민화, 섹슈얼리티"
+    },
+    {
+     "week": 11,
+     "topic": "신앙과 섹슈얼리티"
+    },
+    {
+     "week": 12,
+     "topic": "고양이대학살'과 민중 문화"
+    },
+    {
+     "week": 13,
+     "topic": "역사 속의 언어"
+    },
+    {
+     "week": 14,
+     "topic": "전쟁과 여성"
+    },
+    {
+     "week": 15,
+     "topic": "지정보강주"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/서양의성과풍속의역사001.pdf"
+  },
+  "002": {
+   "professor": "이진옥",
+   "evaluation": "중간시험 30%, 기말시험 40%, 과제물 20%, 출석 10%",
+   "textbook": "(주교재)특별한 주교재 없음. 교수가 제시하는 참고문헌을 활용할 것. (부교재1) 미셸 푸코 《성의 역사》1-3; 에두아르트 푹스 《풍속의 역사》1-4; 한스 리히트 《그리스 성 풍속사》1-2; 오토 키퍼 《로마 성 풍속사》1,2 등 다수",
+   "goals": "서양의 성과 풍속은 일반 역사에서 접하기 쉽지 않은 문화적 측면을 특히 조망해보는 수업이다. 다양한 역사 시대의 섹슈얼리티의 양상과 음식문화 여성문제까지 같이 이해함으로써 깊이 있고 열린 태도로 성과 풍속을 인식할 수 있도록 한다.",
+   "overview": "고대부터 근대까지 다양한 시대별 서양의 성과 풍속의 역사를 공부한다. 각 시대별로 신화와 동성애, 성매매와 전염병, 마녀 사냥과 성폭력 등 적절한 주제를 선정하여 소개한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 개관: 서양/성/풍속의 의미"
+    },
+    {
+     "week": 2,
+     "topic": "신화에 나타난 여성 이미지-성애"
+    },
+    {
+     "week": 3,
+     "topic": "그리스, 소년을 사랑하다"
+    },
+    {
+     "week": 4,
+     "topic": "로마의 가부장 이데올로기: 정절의 화신 루크레티아를 만들다"
+    },
+    {
+     "week": 5,
+     "topic": "매춘의 역사: 성매매는 정말로 필요악인가?"
+    },
+    {
+     "week": 6,
+     "topic": "팜 파탈: 이브와 마리아"
+    },
+    {
+     "week": 7,
+     "topic": "마녀는 악마와 계약 한다: 마녀사냥과 섹슈얼리티"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "대구는 어떻게 국민 생선이 되었나?"
+    },
+    {
+     "week": 10,
+     "topic": "'식탁 위의 세계사': 커피와 설탕 그리고 후추"
+    },
+    {
+     "week": 11,
+     "topic": "신데렐라의 탄생: 낭만적 사랑과 결혼의 신화 그리고 공주들"
+    },
+    {
+     "week": 12,
+     "topic": "잭 더 리퍼 사건의 범인은 누구인가?: 근대와 성폭력 그리고 밤의 공포"
+    },
+    {
+     "week": 13,
+     "topic": "전염병과 공포: 여성 혐오의 또 다른 방향"
+    },
+    {
+     "week": 14,
+     "topic": "피임은 정치학이다: 피임 운동과 섹슈얼리티의 자율성"
+    },
+    {
+     "week": 15,
+     "topic": "보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/서양의성과풍속의역사002.pdf"
+  },
+  "003": {
+   "professor": "성진희",
+   "evaluation": "출석, 태도 20, 중간고사 40, 기말고사 40",
+   "textbook": "(주교재)주교재는 없음, 강의 시 제시되는 자료를 활용할 것. (부교재1) 미셸 푸코 《성의 역사》1-3; 에두아르트 푹스 《풍속의 역사》1-4; 한스 리히트 《그리스 성 풍속사》1-2 등 다수",
+   "goals": "성은 시대의 발전상을 인지하는 데 매우 중요한 요소로, 우리는 성을 통해 그 시대를 움직이는 전반적인 법칙을 알 수 있다. 서양의 성과 풍속의 여러 양상을 살펴봄으로써, 서양의 역사가 가지는 다양성을 이해하고자 한다.",
+   "overview": "고대에서 근대에 이르기까지 서양의 성과 풍속의 역사를 공부한다. 시대에 따라 성과, 종교, 마녀사냥, 전염병 등의 적절한 주제를 선정하여 소개한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "수업 소개"
+    },
+    {
+     "week": 2,
+     "topic": "고대 문화 속의 사랑과 성1- 그리스 신화 속의 사랑과 성"
+    },
+    {
+     "week": 3,
+     "topic": "고대 문화 속의 사랑과 성 2 - 로마의 성과 풍속 그리고 놀이"
+    },
+    {
+     "week": 4,
+     "topic": "고대 문화 속의 동성애 - 그리스와 로마의 동성애 비교"
+    },
+    {
+     "week": 5,
+     "topic": "매춘의 역사 - 헤타이라에서 코르티잔까지"
+    },
+    {
+     "week": 6,
+     "topic": "중세의 성과 사랑1 - 그리스도교 사회에서 성과 사랑"
+    },
+    {
+     "week": 7,
+     "topic": "중세의 성과 사랑 2 - 궁정식 사랑과 기사도"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "여신의 역사 1 - 비너스에서 마리아까지"
+    },
+    {
+     "week": 10,
+     "topic": "여신의 역사 2 - 비너스에서 마리아까지"
+    },
+    {
+     "week": 11,
+     "topic": "마녀 이야기 - 악마와 계약하는 마녀들"
+    },
+    {
+     "week": 12,
+     "topic": "마녀 이야기- 마녀사냥의 어제와 오늘"
+    },
+    {
+     "week": 13,
+     "topic": "동화와 역사 - 마더 구스"
+    },
+    {
+     "week": 14,
+     "topic": "몸의 역사 - 고약한 영혼의 의복에서 욕망의 대상으로 되기까지"
+    },
+    {
+     "week": 15,
+     "topic": "지정보강주"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/서양의성과풍속의역사003.pdf"
+  }
+ },
+ "성과사랑": {
+  "001": {
+   "professor": "김인선",
+   "evaluation": "출석 5, 수업참여 20, 시험 40, 과제 35",
+   "textbook": "(주교재)강의교안(PPT) 및 도서 발췌본(스캔본)을 플라토에 제공",
+   "goals": "1. 성별은 정말 '자연적인 것'일까? 2. 내 몸을 결정할 권리는 누구에게 있을까? 3. 사랑하는 관계는 왜 언제나 평등하지 않을까? 4. 가족은 꼭 정해진 모습이어야 할까? 이 네 가지 질문을 따라 몸과 성별에 관한 규범과 지식이 역사적·사회적으로 형성되어 온 과정을 살펴보고, 재생산권, 친밀관계폭력, 가족구성권 등 '성과 사랑'을 둘러싼 현실의 쟁점을 공부한다.",
+   "overview": "이 수업은 우리가 지금까지 자연스럽고 사적인 것으로 여겨온 몸, 성별, 사랑과 친밀성을 낯설게 바라보는 시간이다. 수업 전반부에서는 성차가 이해되고 설명되어 온 역사를 살펴보고, 피임과 임신중지, 모성보호와 여성노동을 통해 여성의 몸과 재생산을 둘러싼 권리의 문제를 고민한다. 후반부에서는 친밀한 관계에서의 폭력과, 성적 동의, 가족 안의 성역할과 가족구성권을 다룬다. (이 수업은 최나현이 진행함)",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "성별을 낯설게 보기(1) 남자와 여자는 정말 '원래' 다른가?"
+    },
+    {
+     "week": 3,
+     "topic": "성별을 낯설게 보기(2) 두 개의 성별로 설명되지 않는 몸들"
+    },
+    {
+     "week": 4,
+     "topic": "성별을 낯설게 보기(3) 성별 규범에서 벗어나 살아간다는 것"
+    },
+    {
+     "week": 5,
+     "topic": "내 몸을 결정할 권리(1) 내 몸의 건강과 고통은 누가 판단할까"
+    },
+    {
+     "week": 6,
+     "topic": "내 몸을 결정할 권리(2) 임신과 출산은 누구의 선택일까"
+    },
+    {
+     "week": 7,
+     "topic": "내 몸을 결정할 권리(3) '모성보호'는 누구를 보호할까"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "사랑과 폭력을 구분하기(1) 친밀한 관계에서의 폭력: 데이트폭력"
+    },
+    {
+     "week": 10,
+     "topic": "사랑과 폭력을 구분하기(2) 친밀한 관계에서의 폭력: 가정폭력"
+    },
+    {
+     "week": 11,
+     "topic": "사랑과 폭력을 구분하기(3) '싫다'고 하지 않으면 동의한 것일까?"
+    },
+    {
+     "week": 12,
+     "topic": "가족을 다시 상상하기(1) 가족은 정말 사적인 관계일까?"
+    },
+    {
+     "week": 13,
+     "topic": "가족을 다시 상상하기(2) 돌봄은 왜 가족의 몫일까?"
+    },
+    {
+     "week": 14,
+     "topic": "가족을 다시 상상하기(3) 누가 가족이 될 수 있을까?"
+    },
+    {
+     "week": 15,
+     "topic": "보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/성과사랑001.pdf"
+  }
+ },
+ "성과사랑의철학": {
+  "001": {
+   "professor": "조창오",
+   "evaluation": "출석 20%, 중간고사 40%, 기말고사 40%",
+   "textbook": "(주교재)리하르트 다비트 프레히트 지음, 『사랑, 그 혼란스러운: 사랑을 믿는 이들을 위한 위험한 철학책』, 박규호 옮김, 21세기북스, 2009.",
+   "goals": "본 과목은 성과 사랑이라는 주제에 대한 진화심리학적, 사회학적, 철학적 이론들을 탐구하고, 이를 바탕으로 토론한다. 이를 통해 자신만의 관점을 형성하고 이를 정당화하면서 다른 한편으로 상대방의 관점을 인정하는 자세를 갖춘다.",
+   "overview": "1. 성과 사랑에 대한 여러 이론들을 학습한다. 2. 서로 다른 입장이 있음을 인정한다. 3. 자신의 입장을 정당화한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "수업 소개 및 진화심리학과 사랑 (1장)"
+    },
+    {
+     "week": 2,
+     "topic": "진화심리학과 사랑 (2장)"
+    },
+    {
+     "week": 3,
+     "topic": "진화심리학과 사랑 (3장)"
+    },
+    {
+     "week": 4,
+     "topic": "진화심리학과 사랑 (4장)"
+    },
+    {
+     "week": 5,
+     "topic": "진화심리학과 사랑 (5장)"
+    },
+    {
+     "week": 6,
+     "topic": "문화로서의 사랑 (6장)"
+    },
+    {
+     "week": 7,
+     "topic": "문화로서의 사랑 (7장)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "문화로서의 사랑 (8장)"
+    },
+    {
+     "week": 10,
+     "topic": "문화로서의 사랑 (9장)"
+    },
+    {
+     "week": 11,
+     "topic": "문화로서의 사랑 (10장)"
+    },
+    {
+     "week": 12,
+     "topic": "현대의 사랑 (11장)"
+    },
+    {
+     "week": 13,
+     "topic": "현대의 사랑 (12장)"
+    },
+    {
+     "week": 14,
+     "topic": "현대의 사랑 (13장)"
+    },
+    {
+     "week": 15,
+     "topic": "현대의 사랑 (14장)"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/성과사랑의철학001.pdf"
+  },
+  "002": {
+   "professor": "박요한",
+   "evaluation": "출석 20%, 중간고사 40%, 기말고사 40%",
+   "textbook": "[주교재] 강의 자료 또는 유인물. [부교재] 최성호 『썸타기와 어장관리에 관한 철학적 고찰』; 로버트 C. 솔로몬 『사랑을 배울 수 있다면』; 호세 A. 디에즈 & 안드레아 이아코나 『사랑의 오류에 대한 철학적 안내서』; 아론 벤지이브 『우리는 왜 이별했을까?』 외 영문 서적 다수",
+   "goals": "이 과목의 목표는 성과 사랑을 철학적으로 이해하는 것이다. 철학의 학문적 특징과 연구 범위를 개괄하고, 성과 사랑에 관한 철학의 기본적인 성격을 파악한 뒤, 성과 사랑에 관한 철학의 중심 개념과 주요 문제를 이해하고 비판적으로 고찰한다.",
+   "overview": "1. 성과 사랑에 관한 철학의 기본 성격을 파악한다. 2. 성과 사랑에 관한 철학의 중심 개념을 이해한다. 3. 성과 사랑에 관한 철학의 주요 문제를 고찰한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "수업 안내"
+    },
+    {
+     "week": 2,
+     "topic": "철학이란 무엇인가? & 철학은 어떻게 하는가?"
+    },
+    {
+     "week": 3,
+     "topic": "성과 사랑에 관한 철학 개괄"
+    },
+    {
+     "week": 4,
+     "topic": "사랑의 본성"
+    },
+    {
+     "week": 5,
+     "topic": "사랑의 유형"
+    },
+    {
+     "week": 6,
+     "topic": "사랑의 오류 1"
+    },
+    {
+     "week": 7,
+     "topic": "사랑의 오류 2"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "개념적 문제 1"
+    },
+    {
+     "week": 10,
+     "topic": "개념적 문제 2"
+    },
+    {
+     "week": 11,
+     "topic": "규범적 문제 1"
+    },
+    {
+     "week": 12,
+     "topic": "규범적 문제 2"
+    },
+    {
+     "week": 13,
+     "topic": "형이상학적 문제"
+    },
+    {
+     "week": 14,
+     "topic": "종합정리"
+    },
+    {
+     "week": 15,
+     "topic": "필요 시 보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/성과사랑의철학002.pdf"
+  },
+  "003": {
+   "professor": "김나원",
+   "evaluation": "출석 20%, 과제(수업참여) 20%, 중간고사 30%, 기말고사 30%",
+   "textbook": "참고자료 다수: 뤽 페리 『사랑에 관하여』; 플라톤 『향연』; Irving Singer 『Nature of Love』; 아리스토텔레스 『니코마코스 윤리학』; 에바 일루즈 『낭만적 유토피아 소비하기』; 시몬느 드 보부아르 『제2의 성』 등 15종",
+   "goals": "사랑의 기원과 개념, 낭만적 사랑, 성적 욕망, 젠더와 섹슈얼리티, 페미니즘, 성적 문제들을 철학적 방식으로 탐구한다. 오늘날 사랑과 성의 구체적 장면들을 철학적·사회적·문화적 맥락 속에서 분석하며 현대에서의 사랑과 성의 근본적인 의미를 고찰한다.",
+   "overview": "철학적 탐구의 특징과 방법을 이해하고, 사랑과 성의 문제에 대한 다양한 철학자들의 논의를 살펴본다. 에로스, 필리아, 아가페, 낭만적 사랑 등 사랑의 개념과 성적 욕망, 젠더, 섹슈얼리티, 에로티즘, 페미니즘, 성적 정체성, 성과 권력의 문제를 철학적·사회문화적 관점에서 학습한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 안내 / 철학적 탐구"
+    },
+    {
+     "week": 2,
+     "topic": "사랑의 기원: 진화론적 관점"
+    },
+    {
+     "week": 3,
+     "topic": "사랑의 개념 1: 에로스"
+    },
+    {
+     "week": 4,
+     "topic": "사랑의 개념 2: 필리아, 아가페"
+    },
+    {
+     "week": 5,
+     "topic": "낭만적 사랑 1: 낭만적 사랑 개념의 역사"
+    },
+    {
+     "week": 6,
+     "topic": "낭만적 사랑 2: 현대 사회와 낭만적 사랑"
+    },
+    {
+     "week": 7,
+     "topic": "오늘날 우리의 사랑 문제"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "성적 욕망"
+    },
+    {
+     "week": 10,
+     "topic": "sex, gender, sexuality"
+    },
+    {
+     "week": 11,
+     "topic": "에로티즘"
+    },
+    {
+     "week": 12,
+     "topic": "페미니즘"
+    },
+    {
+     "week": 13,
+     "topic": "성적인 것의 문제 1: 성적 지향, 정체성"
+    },
+    {
+     "week": 14,
+     "topic": "성적인 것의 문제 2: 폭력과 권력"
+    },
+    {
+     "week": 15,
+     "topic": "보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/성과사랑의철학003.pdf"
+  }
+ },
+ "스토리텔링민법": {
+  "068": {
+   "professor": "김현수",
+   "evaluation": "출석 20%, 기말고사(OX 또는 객관식) 80%",
+   "textbook": "(주교재)교수의 강의안(PPT) 자료. (부교재1)강의주제 이해도 제고를 위하여 구체적 사례, 사진, 도해, 영상 등을 활용",
+   "goals": "현대 사회구성원으로서 급속한 사회발전에 따라 발생하는 다양한 법률문제에 대한 이해와 사고능력을 함양한다. 재산관계와 가족관계의 기초가 되는 민법상 주요 개념을 통합적·맥락적으로 말할 수 있다.",
+   "overview": "인문학적 스토리텔링 기법을 활용하여 국가와 개인의 경제활동과 가족활동의 기초가 되는 민사 법률관계를 학습. 실제 및 가상의 사례를 적극 활용하여 현대 사회에서의 거래, 소유, 이용 및 법적 구제에 관한 기본 개념 및 법리 학습.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "현대사회와 민사분야의 법률문제, 민법 개관 및 법적 구분"
+    },
+    {
+     "week": 2,
+     "topic": "재산의 거래와 계약 - 계약의 성립, 의사표시와 법률행위"
+    },
+    {
+     "week": 3,
+     "topic": "재산거래에서 계약 성립의 문제점 - 미성년자의 거래, 성년후견제도"
+    },
+    {
+     "week": 4,
+     "topic": "재산거래에서 계약 내용의 문제점 - 사기에 의한 계약"
+    },
+    {
+     "week": 5,
+     "topic": "소유권의 양도 - 부동산 거래와 부동산 등기"
+    },
+    {
+     "week": 6,
+     "topic": "물권과 점유권"
+    },
+    {
+     "week": 7,
+     "topic": "부동산 소유권과 소유권의 특수문제 - 구분소유권, 집합건물의 관리 및 재건축"
+    },
+    {
+     "week": 8,
+     "topic": "타인 부동산의 이용 - 용익물권 개관, 지상권, 지역권, 전세권"
+    },
+    {
+     "week": 9,
+     "topic": "부동산 임대차 계약과 임차인의 보호 - 주택임대차보호법과 상가임대차보호법"
+    },
+    {
+     "week": 10,
+     "topic": "채권의 담보와 물권(1) - 담보물권 개관, 유치권"
+    },
+    {
+     "week": 11,
+     "topic": "채권의 담보와 물권(2) - 저당권, 비전형담보"
+    },
+    {
+     "week": 12,
+     "topic": "강제집행과 경매 - 채무불이행과 강제이행, 부동산 경매"
+    },
+    {
+     "week": 13,
+     "topic": "손해의 배상"
+    },
+    {
+     "week": 14,
+     "topic": "재산의 상속"
+    },
+    {
+     "week": 15,
+     "topic": "기말고사 준비"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/스토리텔링민법068.pdf"
+  }
+ },
+ "아르바이트대학생을위한교양노동법": {
+  "068": {
+   "professor": "오대영",
+   "evaluation": "출석 30%, 중간시험 30%, 기말시험 40%",
+   "textbook": "주교재: 한국노동법학회 외, 『교양 노동법』-문우사(2026). 그 외에 필요시 별도 자료를 배부함",
+   "goals": "아르바이트 생활을 하면서 만나게 되는 노동법적인 분쟁에 어떻게 대처할지에 대한 기본적 지식을 배양함을 목표로 한다.",
+   "overview": "아르바이트 속에서 접하게 되는 노동법적 문제를 해결할 수 있는 능력을 갖추고 나아가 한 사람의 직업인으로서 살아가는 데에 법의 역할이 무엇인지 고민한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "노동법이란 무엇인가: 일을 한다는 것의 법적 의미"
+    },
+    {
+     "week": 2,
+     "topic": "일을 시켰으면 돈을 주셔야죠: 임금"
+    },
+    {
+     "week": 3,
+     "topic": "내가 밤새 일하겠다는데 왜 법이 간섭하나: 근로시간"
+    },
+    {
+     "week": 4,
+     "topic": "열심히 일한 당신 떠나라: 휴식 및 휴가"
+    },
+    {
+     "week": 5,
+     "topic": "직장 내 갑질 어떻게 할까: 근로환경"
+    },
+    {
+     "week": 6,
+     "topic": "열심히 일했는데 해고될 수 있나요: 해고, 구조조정, 인사, 징계"
+    },
+    {
+     "week": 7,
+     "topic": "열심히 일했는데 해고될 수 있나요 (계속)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "퇴직하면 어떤 보호를 받나요: 퇴직과 근로자의 권리"
+    },
+    {
+     "week": 10,
+     "topic": "비정규직 근로자도 보호 받을 수 있나요: 비정규직 근로자"
+    },
+    {
+     "week": 11,
+     "topic": "뭉쳐야 산다: 노동조합"
+    },
+    {
+     "week": 12,
+     "topic": "우리 지금 만나 당장 만나: 단체교섭과 단체협약"
+    },
+    {
+     "week": 13,
+     "topic": "노동조합은 어떻게 원하는 것을 획득할까요: 파업과 직장폐쇄"
+    },
+    {
+     "week": 14,
+     "topic": "권리구제"
+    },
+    {
+     "week": 15,
+     "topic": "권리구제"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/아르바이트대학생을위한교양노동법068.pdf"
+  },
+  "069": {
+   "professor": "김수민",
+   "evaluation": "출석 10%, 중간고사 10%, 기말고사 80%",
+   "textbook": "(부교재1)노동법학회, 교양노동법, 문우사, 2022. (부교재2)하갑래, 근로기준법, 중앙경제사, 2024",
+   "goals": "본 강좌는 대학생으로서 아르바이트를 하는 경우가 빈번한 상황에서, 아르바이트대학생이 반드시 알아야 할 비정규직 관련 노동법 지식을 인식함으로써, 자신의 노동법적 권리를 간과하지 않고 주장할 수 있도록 하는 실용능력을 기르는데 그 목적이 있다.",
+   "overview": "본 강의는 아르바이트 대학생의 근로계약서 체결, 기간제 근로계약관계에서의 노동법적 권리와 의무, 단시간 근로관계에서의 노동법적 권리와 의무 등 비정규직 관련 노동법을 교양차원에서 선별하여 강의함으로써 교양으로서 노동법적 지식을 함양하도록 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "아르바이트는 노동법의 적용대상인가? - 근로계약서 작성 방식과 요령"
+    },
+    {
+     "week": 2,
+     "topic": "아르바이트생의 임금결정구조와 최저임금제도"
+    },
+    {
+     "week": 3,
+     "topic": "아르바이트생의 기간제 근로(1): 기간제 근로계약의 구조와 법적 규제의 목적"
+    },
+    {
+     "week": 4,
+     "topic": "아르바이트생의 기간제 근로(2): 기간제 근로의 반복갱신에 따른 갱신기대권"
+    },
+    {
+     "week": 5,
+     "topic": "아르바이트생의 근로시간과 휴게(1): 휴게시간의 설정과 범위"
+    },
+    {
+     "week": 6,
+     "topic": "아르바이트생의 근로시간과 휴게(2): 연장/휴일 근로에 따른 권리 바로 알기"
+    },
+    {
+     "week": 7,
+     "topic": "아르바이트생의 근로시간과 휴게(3): 단시간 근로자로서 아르바이트생의 권리"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "아르바이트생의 산업재해(1): 산업재해란 무엇인가? - 직업병과 사고재해"
+    },
+    {
+     "week": 10,
+     "topic": "아르바이트생의 산업재해(2): 산업재해의 인정 기준으로서 업무기인성과 업무수행성"
+    },
+    {
+     "week": 11,
+     "topic": "아르바이트생의 산업재해(3): 산업재해를 입었을 때 보상방식과 내용"
+    },
+    {
+     "week": 12,
+     "topic": "아르바이트생과 노동조합(1): 노동3권으로서 노동조합 조직할 권리"
+    },
+    {
+     "week": 13,
+     "topic": "아르바이트생과 노동조합(2): 노동조합 조합원으로서의 지위와 부당노동행위"
+    },
+    {
+     "week": 14,
+     "topic": "아르바이트와 임금(1): 임금지급의 4대 원칙에 대한 학습"
+    },
+    {
+     "week": 15,
+     "topic": "아르바이트와 임금(2): 임금체불로부터 구제받기"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/아르바이트대학생을위한교양노동법069.pdf"
+  }
+ },
+ "언어, 세상의 지문": {
+  "001": {
+   "professor": "김종수",
+   "evaluation": "과제 30%, 기말고사 70% (온라인 강의 이수증을 지참한 자만 응시 가능)",
+   "textbook": "(주교재)- (K-MOOC 온라인 강의 중심). (부교재1) 곽윤경 외 인간관계와 의사소통(2017); 기 도이처 그곳은 소, 와인, 바다가 모두 빨갛다(2011); 김진우 언어―이론과 그 응용(2007); 미셸 푸코 말과 사물(2012); Adrian Holliday 문화간 의사소통 이해하기(2014); Nancy Bonvillain 문화와 의사소통의 사회언어학(2002)",
+   "goals": "인간은 혼자 살아가지 못하고 사회라는 집단을 이루며 살아가는데, 그 집단을 하나의 공동체로 묶어주는 매개체가 바로 언어라 할 수 있다. 본 강의에서는 언어와 사회, 문화, 그리고 세상에 대한 다양한 문제를 짚어본다.",
+   "overview": "언어는 정적인 상태로 머물러 있는 것이 아니라 동적인 것으로 끊임없이 변화를 겪는 역사적인 산물이라 할 수 있다. 사회의 모습은 고스란히 언어에 녹아 있다. 특정 사회에서 쓰이는 언어에는 그 언어를 사용하는 사람들의 심리와 철학, 문화가 담겨 있으므로 해당 사회의 참모습을 알려면 그 사회에서 쓰이는 언어를 살펴보아야 한다. K-MOOC 온라인 강의로 진행되며 오프라인 기말고사를 실시한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "언어의 기원"
+    },
+    {
+     "week": 2,
+     "topic": "기호와 지시대상"
+    },
+    {
+     "week": 3,
+     "topic": "개념과 범주"
+    },
+    {
+     "week": 4,
+     "topic": "비유적인 언어, 은유와 환유"
+    },
+    {
+     "week": 5,
+     "topic": "대화의 원리, 공손성과 간접화법"
+    },
+    {
+     "week": 6,
+     "topic": "무언의 언어, 몸짓언어와 침묵언어"
+    },
+    {
+     "week": 7,
+     "topic": "금기와 완곡어법"
+    },
+    {
+     "week": 8,
+     "topic": "온라인 중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "왼쪽/오른쪽, 왼손/오른손"
+    },
+    {
+     "week": 10,
+     "topic": "언어와 성"
+    },
+    {
+     "week": 11,
+     "topic": "정치적 공정성"
+    },
+    {
+     "week": 12,
+     "topic": "타이포그래피와 텍스트 디자인"
+    },
+    {
+     "week": 13,
+     "topic": "광고언어"
+    },
+    {
+     "week": 14,
+     "topic": "올해의 말"
+    },
+    {
+     "week": 15,
+     "topic": "온라인 기말고사"
+    },
+    {
+     "week": 16,
+     "topic": "오프라인 기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어, 세상의 지문001.pdf"
+  }
+ },
+ "언어사회와문화": {
+  "001": {
+   "professor": "권경근",
+   "evaluation": "중간고사 35%, 기말고사 40%, 수업참여도 25%",
+   "textbook": "주교재: 권경근·박선자·최규수, 『언어와 사회, 그리고 문화』-박이정(2016 개정판). 부교재: 김진우(2004) 언어-이론과 그 응용; 경북대학교출판부(2003) 한국의 언어문화",
+   "goals": "(1) 언어의 본질과 기능을 설명하고, 언어사회와 문화와는 어떤 관계가 있는지를 이해시킨다. (2) 언어와 문화와의 관계에 대한 기본 개념 및 이론들을 살펴본다. (3) 특히 한국 언어사회의 다양한 표현의 문화적 연관성을 살펴본다.",
+   "overview": "의사소통 수단으로서의 언어적인 표현과 비언어적인 표현에 대한 이해를 한다. 이러한 의사소통 표현들은 언어사회에 따라 다양하게 나타난다는 점을 이해시키고, 이러한 표현들의 문화적 연관성과 관련된 개념 및 이론에 대한 설명을 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교재 소개와 강의 계획/평가 방법, 설명, 언어의 기능"
+    },
+    {
+     "week": 2,
+     "topic": "언어와 문화"
+    },
+    {
+     "week": 3,
+     "topic": "언어적 표현과 비언적 표현"
+    },
+    {
+     "week": 4,
+     "topic": "언어의 변이"
+    },
+    {
+     "week": 5,
+     "topic": "언어와 문자"
+    },
+    {
+     "week": 6,
+     "topic": "한국어의 뿌리"
+    },
+    {
+     "week": 7,
+     "topic": "한국어의 말소리의 특징"
+    },
+    {
+     "week": 8,
+     "topic": "요약 정리 및 중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "한국어의 문장 구조의 특징"
+    },
+    {
+     "week": 10,
+     "topic": "한국어의 의미적 특징"
+    },
+    {
+     "week": 11,
+     "topic": "매스미디어와 언어"
+    },
+    {
+     "week": 12,
+     "topic": "외래문화와 언어"
+    },
+    {
+     "week": 13,
+     "topic": "한국어와 한국문화"
+    },
+    {
+     "week": 14,
+     "topic": "대중문화와 한국어"
+    },
+    {
+     "week": 15,
+     "topic": "총정리"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화001.pdf"
+  },
+  "002": {
+   "professor": "김태우",
+   "evaluation": "중간고사 30%, 기말고사 30%, 조별 프로젝트 30%, 출석 및 참여 10%",
+   "textbook": "(주교재)유인물",
+   "goals": "(1) 언어의 특성과 기능에 대해 이해한다. (2) 언어의 다양성에 대해 생각한다. (3) 사회, 문화적 맥락 속에서 언어의 특수성을 이해한다. (4) 언어와 사고의 관계에 대해 생각한다.",
+   "overview": "언어는 인간 인지의 산물인 동시에 사회 문화적인 결과물이다. 이 수업에서는 언어가 가진 다양한 측면에 대해서 살펴본다. 의사소통 수단으로서 언어적인 표현과 비언어적인 표현에 대해 살펴보고, 사회, 문화적 맥락 속에서 언어의 특수성을 이해한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 개요, 언어의 특성"
+    },
+    {
+     "week": 2,
+     "topic": "언어의 본질과 기능"
+    },
+    {
+     "week": 3,
+     "topic": "비언어적 표현"
+    },
+    {
+     "week": 4,
+     "topic": "말소리"
+    },
+    {
+     "week": 5,
+     "topic": "언어 유형론"
+    },
+    {
+     "week": 6,
+     "topic": "언어의 의미"
+    },
+    {
+     "week": 7,
+     "topic": "동아시아의 문자"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "언어와 문화"
+    },
+    {
+     "week": 10,
+     "topic": "언어와 사고"
+    },
+    {
+     "week": 11,
+     "topic": "언어와 사회"
+    },
+    {
+     "week": 12,
+     "topic": "언어와 시간"
+    },
+    {
+     "week": 13,
+     "topic": "조별 프로젝트 발표"
+    },
+    {
+     "week": 14,
+     "topic": "조별 프로젝트 발표"
+    },
+    {
+     "week": 15,
+     "topic": "보강(기말고사로 대체될 수 있음)"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화002.pdf"
+  },
+  "003": {
+   "professor": "김석진",
+   "evaluation": "중간고사 35%, 기말고사 40%, 수업참여도 25%",
+   "textbook": "(주교재)<언어와 사회, 그리고 문화>, 박이정(2016 개정판). (부교재1)김진우(2004), 언어-이론과 그 응용; 경북대학교출판부(2003), 한국의 언어문화",
+   "goals": "(1) 언어의 본질과 기능을 설명하고, 언어사회와 문화와는 어떤 관계가 있는지를 이해시킨다. (2) 언어와 문화와의 관계에 대한 기본 개념 및 이론들을 살펴본다. (3) 특히 한국 언어사회의 다양한 표현의 문화적 연관성을 살펴본다.",
+   "overview": "의사소통 수단으로서의 언어적인 표현과 비언어적인 표현에 대한 이해를 한다. 이러한 의사소통 표현들은 언어사회에 따라 다양하게 나타난다는 점을 이해시키고, 이러한 표현들의 문화적 연관성과 관련된 개념 및 이론에 대한 설명을 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교재 소개와 강의 계획/평가 방법, 설명, 언어의 기능"
+    },
+    {
+     "week": 2,
+     "topic": "언어와 문화"
+    },
+    {
+     "week": 3,
+     "topic": "언어적 표현과 비언적 표현"
+    },
+    {
+     "week": 4,
+     "topic": "언어의 변이"
+    },
+    {
+     "week": 5,
+     "topic": "언어와 문자"
+    },
+    {
+     "week": 6,
+     "topic": "한국어의 뿌리"
+    },
+    {
+     "week": 7,
+     "topic": "한국어의 말소리의 특징"
+    },
+    {
+     "week": 8,
+     "topic": "요약 정리 및 중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "한국어의 문장 구조의 특징"
+    },
+    {
+     "week": 10,
+     "topic": "한국어의 의미적 특징"
+    },
+    {
+     "week": 11,
+     "topic": "매스미디어와 언어"
+    },
+    {
+     "week": 12,
+     "topic": "외래문화와 언어"
+    },
+    {
+     "week": 13,
+     "topic": "한국어와 한국문화"
+    },
+    {
+     "week": 14,
+     "topic": "대중문화와 한국어"
+    },
+    {
+     "week": 15,
+     "topic": "총정리 및 기말고사"
+    },
+    {
+     "week": 16
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화003.pdf"
+  },
+  "004": {
+   "professor": "이옥희",
+   "evaluation": "출석 15%, 중간시험 30%, 기말시험 40%, 과제 및 발표 15%",
+   "textbook": "(주교재)<언어와 사회, 그리고 문화>, 박이정(2016 개정판)",
+   "goals": "언어의 본질과 기능을 설명하고, 언어사회와 문화와는 어떤 관계가 있는지를 이해할 수 있다. 언어와 문화와의 관계에 대한 기본 개념 및 이론들을 이해할 수 있다. 특히 한국 언어사회의 다양한 표현의 문화적 연관성을 이해할 수 있다.",
+   "overview": "의사소통 수단으로서의 언어적인 표현과 비언어적인 표현에 대한 이해를 한다. 이러한 의사소통 표현들은 언어사회에 따라 다양하게 나타난다는 점을 이해시키고, 이러한 표현들의 문화적 연관성과 관련된 개념 및 이론에 대한 설명을 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교재 소개와 강의 계획/평가 방법, 설명, 언어의 기능"
+    },
+    {
+     "week": 2,
+     "topic": "언어와 문화 (언어의 정의와 기능을 구조주의와 생성문법 관점에서 이해)"
+    },
+    {
+     "week": 3,
+     "topic": "언어적 표현과 비언어적 표현"
+    },
+    {
+     "week": 4,
+     "topic": "언어의 변이 (사회방언)"
+    },
+    {
+     "week": 5,
+     "topic": "언어와 문자 (고대 한국의 표기 체계, 훈민정음의 제자원리)"
+    },
+    {
+     "week": 6,
+     "topic": "한국어의 뿌리 (한국어의 계통)"
+    },
+    {
+     "week": 7,
+     "topic": "한국어의 말소리의 특징"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "한국어의 문장 구조의 특징"
+    },
+    {
+     "week": 10,
+     "topic": "한국어의 의미적 특징"
+    },
+    {
+     "week": 11,
+     "topic": "매스미디어와 언어"
+    },
+    {
+     "week": 12,
+     "topic": "외래문화와 언어"
+    },
+    {
+     "week": 13,
+     "topic": "한국어와 한국문화"
+    },
+    {
+     "week": 14,
+     "topic": "대중문화와 한국어"
+    },
+    {
+     "week": 15,
+     "topic": "보충 강의"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화004.pdf"
+  },
+  "005": {
+   "professor": "김지현",
+   "evaluation": "출석 20%, 기말 시험 50%, 과제 25%, 개인 발표 5%",
+   "textbook": "(주교재)<언어와 사회, 그리고 문화>, 박이정(2016 개정판). (부교재1)김진우(2004), 언어-이론과 그 응용; 경북대학교출판부(2003), 한국의 언어문화",
+   "goals": "(1) 언어의 본질과 기능을 설명하고, 언어사회와 문화와는 어떤 관계가 있는지를 이해시킨다. (2) 언어와 문화와의 관계에 대한 기본 개념 및 이론들을 살펴본다. (3) 특히 한국 언어사회의 다양한 표현의 문화적 연관성을 살펴본다.",
+   "overview": "의사소통 수단으로서의 언어적인 표현과 비언어적인 표현에 대한 이해를 한다. 이러한 의사소통 표현들은 언어사회에 따라 다양하게 나타난다는 점을 이해시키고, 이러한 표현들의 문화적 연관성과 관련된 개념 및 이론에 대한 설명을 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교재 소개와 강의 계획 및 평가방법 설명 / 언어와 사회"
+    },
+    {
+     "week": 2,
+     "topic": "언어적 표현과 비언어적 표현"
+    },
+    {
+     "week": 3,
+     "topic": "언어의 변이"
+    },
+    {
+     "week": 4,
+     "topic": "언어와 문자"
+    },
+    {
+     "week": 5,
+     "topic": "한국어의 뿌리"
+    },
+    {
+     "week": 6,
+     "topic": "한국어 말소리의 특징"
+    },
+    {
+     "week": 7,
+     "topic": "중간 시험"
+    },
+    {
+     "week": 8,
+     "topic": "한국어 문장 구조의 특징"
+    },
+    {
+     "week": 9,
+     "topic": "한국어의 의미적 특징"
+    },
+    {
+     "week": 10,
+     "topic": "언어와 문화"
+    },
+    {
+     "week": 11,
+     "topic": "대중매체와 언어"
+    },
+    {
+     "week": 12,
+     "topic": "한국 문화와 한국어"
+    },
+    {
+     "week": 13,
+     "topic": "외래문화와 언어"
+    },
+    {
+     "week": 14,
+     "topic": "대중문화와 한국어"
+    },
+    {
+     "week": 15,
+     "topic": "보강(필요한 경우)"
+    },
+    {
+     "week": 16,
+     "topic": "기말 시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화005.pdf"
+  },
+  "006": {
+   "professor": "손평효",
+   "evaluation": "중간고사 30%, 기말고사 40%, 수업참여도 25%",
+   "textbook": "(주교재)<언어와 사회, 그리고 문화>, 박이정(2016 개정판). (부교재1)김진우(2004), 언어-이론과 그 응용; 경북대학교출판부(2003), 한국의 언어문화",
+   "goals": "(1) 언어의 본질과 기능을 설명하고, 언어사회와 문화와는 어떤 관계가 있는지를 이해시킨다. (2) 언어와 문화와의 관계에 대한 기본 개념 및 이론들을 살펴본다. (3) 특히 한국 언어사회의 다양한 표현의 문화적 연관성을 살펴본다.",
+   "overview": "의사소통 수단으로서의 언어적인 표현과 비언어적인 표현에 대한 이해를 한다. 이러한 의사소통 표현들은 언어사회에 따라 다양하게 나타난다는 점을 이해시키고, 이러한 표현들의 문화적 연관성과 관련된 개념 및 이론에 대한 설명을 한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교재 소개와 강의 계획/평가 방법, 설명, 언어의 기능"
+    },
+    {
+     "week": 2,
+     "topic": "언어와 문화"
+    },
+    {
+     "week": 3,
+     "topic": "언어적 표현과 비언적 표현"
+    },
+    {
+     "week": 4,
+     "topic": "언어의 변이"
+    },
+    {
+     "week": 5,
+     "topic": "언어와 문자"
+    },
+    {
+     "week": 6,
+     "topic": "한국어의 뿌리"
+    },
+    {
+     "week": 7,
+     "topic": "한국어의 말소리의 특징"
+    },
+    {
+     "week": 8,
+     "topic": "요약 정리 및 중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "한국어의 문장 구조의 특징"
+    },
+    {
+     "week": 10,
+     "topic": "한국어의 의미적 특징"
+    },
+    {
+     "week": 11,
+     "topic": "매스미디어와 언어"
+    },
+    {
+     "week": 12,
+     "topic": "외래문화와 언어"
+    },
+    {
+     "week": 13,
+     "topic": "한국어와 한국문화"
+    },
+    {
+     "week": 14,
+     "topic": "대중문화와 한국어"
+    },
+    {
+     "week": 15,
+     "topic": "총정리"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/언어사회와문화006.pdf"
+  }
+ },
+ "엔터테인먼트 산업을 통해 보는 패션": {
+  "001": {
+   "professor": "백영미",
+   "evaluation": "출석 20%, 과제발표 20%, 중간과제 30%, 기말과제 30%",
+   "textbook": "(주교재)김영선, 한수연, 패션과 영상문화, 2017, 교문사. (부교재1)김유선, 영화의상디자인, 2017, 커뮤니케이션북스. (부교재2)진경옥, 패션, 영화를 디자인하다, 2023, 산지니. (부교재3)심상민, 엔터테인먼트 산업론, 2021, 커뮤니케이션북스",
+   "goals": "본 수업은 비전공자 학생들이 교양으로써 패션과 문화를 이해할 수 있는 수업이 되도록 한다. 엔터테인먼트 산업(영화, 드라마, 음악 등)을 이해하고 엔터테인먼트 산업에서의 패션의 중요성과 패션 트랜드에 끼친 영향 등을 알아봄으로써 학생들이 앞으로의 빠르게 변화하는 패션 트랜드를 파악하는데 도움이 되고자 한다.",
+   "overview": "먼저 엔터테인먼트 산업과 패션에 대한 기본적인 지식을 강의한다. 영화 산업에서의 패션, 드라마 산업에서의 패션, 대중음악에서의 패션을 통해 패션 트랜드를 알아보고 각 미디어 엔터테인먼트 산업에서의 패션의 중요성을 알아본다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의개요 및 소개"
+    },
+    {
+     "week": 2,
+     "topic": "패션과 의상에 대한 이해"
+    },
+    {
+     "week": 3,
+     "topic": "영화산업과 패션 산업의 이해"
+    },
+    {
+     "week": 4,
+     "topic": "영화산업에서의 패션의 중요성과 패션 트랜드 알기1 ('악마는 프라다를 입는다' 감상)"
+    },
+    {
+     "week": 5,
+     "topic": "영화산업에서의 패션의 중요성과 패션 트랜드 알기2 <사회적 배경에 따른 패션변화>"
+    },
+    {
+     "week": 6,
+     "topic": "영화산업에서의 패션의 중요성과 패션 트랜드 알기3 <한국영화에서의 패션>"
+    },
+    {
+     "week": 7,
+     "topic": "드라마산업과 패션에 대한 이해"
+    },
+    {
+     "week": 8,
+     "topic": "중간과제 제출 및 발표"
+    },
+    {
+     "week": 9,
+     "topic": "드라마 산업에서의 패션의 중요성과 패션 트랜드 알기1 <드라마 산업을 통한 패션유행>"
+    },
+    {
+     "week": 10,
+     "topic": "드라마 산업에서의 패션의 중요성과 패션 트랜드 알기2 <미국드라마를 통해 보는 패션>"
+    },
+    {
+     "week": 11,
+     "topic": "드라마 산업에서의 패션의 중요성과 패션 트랜드 알기3 <일본드라마를 통해보는 패션>"
+    },
+    {
+     "week": 12,
+     "topic": "대중음악과 패션에 대한 이해"
+    },
+    {
+     "week": 13,
+     "topic": "대중음악에서의 패션의 중요성과 패션 트랜드 알기1 <힙합 패션>"
+    },
+    {
+     "week": 14,
+     "topic": "대중음악에서의 패션의 중요성과 패션 트랜드 알기2 <아이돌 패션>"
+    },
+    {
+     "week": 15,
+     "topic": "기말과제 제출 및 발표"
+    },
+    {
+     "week": 16,
+     "topic": "기말과제 제출 및 발표"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/엔터테인먼트 산업을 통해 보는 패션001.pdf"
+  }
+ },
+ "예술영화와미적체험": {
+  "101": {
+   "professor": "문관규",
+   "evaluation": "발표와 토론을 통한 평가 80%, 출석 20%",
+   "textbook": "(주교재)문학산, <거장의 나무>, 작가출판사, 2021; 강성한 외 <관객없는 예술영화>, 부산대 출판부, 2017. (부교재1) 하스미 시게히코, <감독 오즈 야스지로>, 한나래, 2001; 임정택·심양섭, <영화를 어떻게 읽을 것인가>, 연세대출판부, 2006",
+   "goals": "예술영화는 형식적 실험과 미학적 전위를 실천한 작품을 대상으로 감상한다. 세계영화사에서 주목할 만한 작품을 대상으로 영화적 미장 아빔 양상과 예술 영화가 함축하는 영화 미학과 세계를 탐구한다. 영화 감상과 예술 영화에 대한 사유와 감상의 안목을 기른다.",
+   "overview": "한 학기 동안 총 10편 이상의 작품을 선정하여 감상과 작품 분석을 진행한다. 작품 분석은 상호 토론과 장면 분석 그리고 작가의 연출 세계에 대한 강의를 진행한다. 부산 국제영화제 기간에서 현장에서 직접 영화 감상의 기회를 갖는다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "예술영화의 개념과 영화 감상법"
+    },
+    {
+     "week": 2,
+     "topic": "오즈 야스지로의 <만춘> 감상과 분석"
+    },
+    {
+     "week": 3,
+     "topic": "장 뤽 고다르의 <미치광이 삐에로> 감상과 분석"
+    },
+    {
+     "week": 4,
+     "topic": "김보라의 <벌새>(2018) 감상과 분석"
+    },
+    {
+     "week": 5,
+     "topic": "하마구치 류스케의 <드라이브 마이 카> 감상과 분석"
+    },
+    {
+     "week": 6,
+     "topic": "장률의 <군산, 거위를 노래하다> 감상과 분석"
+    },
+    {
+     "week": 7,
+     "topic": "지아장커의 <스틸라이프> 감상과 분석"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "안드레이 타르코프스키의 <희생> 감상과 분석"
+    },
+    {
+     "week": 10,
+     "topic": "박찬욱의 <헤어질 결심> 감상과 분석"
+    },
+    {
+     "week": 11,
+     "topic": "홍상수의 <누구의 딸도 아닌 해원> 감상과 분석"
+    },
+    {
+     "week": 12,
+     "topic": "이창동의 <시> 감상과 분석"
+    },
+    {
+     "week": 13,
+     "topic": "부뉴엘의 <안달루시아의 개>와 <자유의 환영> 감상과 분석"
+    },
+    {
+     "week": 14,
+     "topic": "봉준호의 <기생충> 감상과 분석"
+    },
+    {
+     "week": 15,
+     "topic": "특별 상영"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/예술영화와미적체험101.pdf"
+  },
+  "102": {
+   "professor": "강지원",
+   "evaluation": "출석 및 참여도 15%, 과제(1) 20%, 과제(2) 25%, 시험 40%",
+   "textbook": "(주교재)강의자 키노트 및 핸드아웃",
+   "goals": "1. '영화 보기'라는 체험을 통해 영화 예술에 대한 자기 시각을 기를 수 있다. 2. 예술의 조건을 살펴보며 예술로서 영화의 개념을 이해할 수 있다. 영화의 진화 과정 및 양상을 살펴보면서 어떻게 사회·문화적 이슈와 결합하여 패러다임을 형성했는지 생각해 볼 수 있다.",
+   "overview": "본 강의는 부정적 감정을 유발할 수 있는 영화를 소재로 삼아 관객이 어떻게 불쾌해지는지, 이 부정적 감정은 어떻게 구분할 수 있는지 등을 분석하는 데 목적이 있다. 개인적 불쾌함이 특정한 시대와 사회의 정상성, 규범과는 어떤 관계를 맺고 있는지 검토하여 논쟁적 영화 텍스트를 감상하는 과정에서 불쾌한 영화가 제기하는 미학적, 윤리적, 정치적 문제를 비평할 기회를 확보하고자 한다. (폭행 및 살인, (성)폭력 묘사 등이 담긴 영화를 다룰 수 있음을 고지)",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션: 불쾌한 영화를 본다는 것"
+    },
+    {
+     "week": 2,
+     "topic": "예술이 불쾌할 수 있는가?"
+    },
+    {
+     "week": 3,
+     "topic": "'영화 보기'를 생각하기: 불쾌한 관객의 탄생"
+    },
+    {
+     "week": 4,
+     "topic": "추석 연휴"
+    },
+    {
+     "week": 5,
+     "topic": "보고 싶지 않은 신체"
+    },
+    {
+     "week": 6,
+     "topic": "부산국제영화제 주간"
+    },
+    {
+     "week": 7,
+     "topic": "수치심과 당혹감"
+    },
+    {
+     "week": 8,
+     "topic": "권태와 짜증"
+    },
+    {
+     "week": 9,
+     "topic": "불안한 징조"
+    },
+    {
+     "week": 10,
+     "topic": "관음과 공모"
+    },
+    {
+     "week": 11,
+     "topic": "도덕적 불편함"
+    },
+    {
+     "week": 12,
+     "topic": "불쾌함의 사회적 규범"
+    },
+    {
+     "week": 13,
+     "topic": "재현의 불쾌함"
+    },
+    {
+     "week": 14,
+     "topic": "불쾌한 영화의 정치성"
+    },
+    {
+     "week": 15,
+     "topic": "불쾌함 이후에 남은 것"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/예술영화와미적체험102.pdf"
+  },
+  "103": {
+   "professor": "구혜원",
+   "evaluation": "출석 20%, BIFF 참관 및 과제 10%, 중간고사 35%, 기말고사 35%",
+   "textbook": "PPT",
+   "goals": "예술영화는 상업적 성과보다 미학적 실험과 예술적 표현을 중시하며, 주류 할리우드 영화와 구별되는 서사 및 형식적 특징을 보여준다. 학생들은 예술영화의 낯설고 복합적인 표현을 다양한 관점에서 해석하는 능력을 기르고, 예술영화의 영화사적·문화적·예술적 가치를 비판적으로 고찰할 수 있다.",
+   "overview": "본 강의는 세계영화사에서 중요한 위치를 차지하는 작가 감독들의 작품을 분석하여, 예술영화가 기존 영화의 관습을 변형하거나 해체하는 방식과 각 감독의 고유한 작가성이 어떠한 미학적 특성으로 구현되는지를 살펴본다. 매주 강의 시간에 영화 텍스트를 스크리닝 후, 텍스트에 대한 해설을 중심으로 강의를 진행한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "오슨 웰스: 시점, 기억, 그리고 진실의 재구성"
+    },
+    {
+     "week": 3,
+     "topic": "앨프리드 히치콕: 욕망과 시선의 미학"
+    },
+    {
+     "week": 4,
+     "topic": "추석"
+    },
+    {
+     "week": 5,
+     "topic": "장 뤽 고다르: 영화와 현실 사이"
+    },
+    {
+     "week": 6,
+     "topic": "부산국제영화제 참관"
+    },
+    {
+     "week": 7,
+     "topic": "미하엘 하네케: 욕망의 끝에서 마주하는 것"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "셀린 시아마: 보는 자와 보여지는 자"
+    },
+    {
+     "week": 10,
+     "topic": "구로사와 기요시: 불안의 시대, 가족이라는 풍경"
+    },
+    {
+     "week": 11,
+     "topic": "고레에다 히로카즈: 가족이 된다는 것"
+    },
+    {
+     "week": 12,
+     "topic": "허우샤오셴: 일상의 리듬"
+    },
+    {
+     "week": 13,
+     "topic": "왕가위: 기억과 욕망의 시학"
+    },
+    {
+     "week": 14,
+     "topic": "홍상수: 우연과 반복"
+    },
+    {
+     "week": 15,
+     "topic": "이창동: 상실과 구원의 풍경"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/예술영화와미적체험103.pdf"
+  }
+ },
+ "일본문화의이해": {
+  "001": {
+   "professor": "김소영",
+   "evaluation": "중간고사 30%, 기말고사 30%, 발표/과제 20%, 출석 20%",
+   "textbook": "(주교재) 정형, 사진 통계와 함께 읽는 일본, 일본인, 일본문화[전면 개정판](3rd Edition), 다락원. (참고교재) 이경수, 사진으로 보고 가장 쉽게 읽는 일본문화[개정판], 시사일본어사.",
+   "goals": "일본의 정치, 경제, 지리, 종교, 전통예술부터 현대 대중문화에 이르기까지 사회·문화 전반을 폭넓게 학습한다. 한국문화와의 비교문화적 관점 속에서 일본 사회와 일본인의 내면을 객관적으로 고찰하고, 이문화에 대한 비평적 안목과 글로벌 역량을 함양한다.",
+   "overview": "기초 문자 및 언어문화로 히라가나를 가볍게 익히고, 정치, 경제, 종교, 의식주, 전통 및 현대 문화 등 주제별 탐구를 통해 일본 사회의 특징을 다각도로 이해한다. 한국문화와의 비교를 통해 일본 문화를 객관적으로 고찰하며, 학기 후반부 주제별 발표/토론을 진행한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "수업개요"
+    },
+    {
+     "week": 2,
+     "topic": "일본의 풍토와 자연관"
+    },
+    {
+     "week": 3,
+     "topic": "한국과 일본 (1) 역사적 문화적 교류"
+    },
+    {
+     "week": 4,
+     "topic": "한국과 일본 (2)"
+    },
+    {
+     "week": 5,
+     "topic": "일본의 역사 (1) 고대~중세"
+    },
+    {
+     "week": 6,
+     "topic": "일본의 역사 (2) 중세~근세"
+    },
+    {
+     "week": 7,
+     "topic": "일본의 역사 (3) 근대~현대"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "천황과 일본인"
+    },
+    {
+     "week": 10,
+     "topic": "일본인의 종교의식"
+    },
+    {
+     "week": 11,
+     "topic": "일본의 정치와 경제"
+    },
+    {
+     "week": 12,
+     "topic": "일본의 식도락문화"
+    },
+    {
+     "week": 13,
+     "topic": "일본의 성문화"
+    },
+    {
+     "week": 14,
+     "topic": "일본의 대중문화"
+    },
+    {
+     "week": 15,
+     "topic": "기말고사"
+    },
+    {
+     "week": 16
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/일본문화의이해001.pdf"
+  }
+ },
+ "정의란무엇인가": {
+  "001": {
+   "professor": "이상봉",
+   "evaluation": "출석 10%, 발표 및 수업참여도 10%, 중간시험 40%, 기말시험 40%",
+   "textbook": "(주교재)담당교수 자체 교안: PLMS에 각 주별 강의록 탑재. (부교재1)마이클 샌델, <정의란 무엇인가>, 김영사, 2010; 고바야시 마사야, <정의사회의 조건>, 황금물고기, 2011; 존 롤스, <정의론>, 이학사, 2003; 스테판 뮬홀·애덤 스위프트, <자유주의와 공동체주의>, 한울, 2001; 마이클 샌델, <민주주의의 불만>, 동녘, 2012",
+   "goals": "이 과목은 '정의'와 '공공성'을 키워드로 삼아 현대사회를 살아가는 교양인이라면 반드시 갖추어야 할 '비판적 사유능력'과 '공감능력'을 함양하기 위한 것이다. '소수자우대정책', '부유세', '동성혼 합법화' 등 선택을 요구하는 문제들에 대해 종합적·근본적으로 생각해보고 공감하는 것이 필요하다.",
+   "overview": "1. 일상의 사례를 통해 민주주의의 가치와 이념에 대해 생각해 봄으로써, '좋은 삶' 그리고 '정의로운 사회'와 민주주의와의 관련성에 대해 알아본다. 2. '좋은 것'과 '옳은 것'의 관계를 생각해보고, 정의를 이해하는 3가지 방식(행복, 자유, 미덕)에 주목한 정의론에 대해 살펴본다. 3. 다양한 논쟁적 사례들을 통해 '무엇이 정의인가?'에 대해 생각해본다. 4. '정의'와 '공동선'의 관계에 대해 생각해 본다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "교과목 소개 및 수업진행방식 등 안내"
+    },
+    {
+     "week": 2,
+     "topic": "삶의 방식과 민주주의의 가치(인간존중, 자유, 평등), 분배적 정의와 정치"
+    },
+    {
+     "week": 3,
+     "topic": "원초적 인식과 정치적 가치"
+    },
+    {
+     "week": 4,
+     "topic": "공정성과 공동선"
+    },
+    {
+     "week": 5,
+     "topic": "정의를 이해하는 3가지 방식-Ⅰ: 밴담의 정의론-행복, 칸트의 정의론-자유"
+    },
+    {
+     "week": 6,
+     "topic": "정의를 이해하는 3가지 방식-Ⅱ: 아리스토텔레스의 정의론-미덕"
+    },
+    {
+     "week": 7,
+     "topic": "자유지상주의"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "시장과 도덕"
+    },
+    {
+     "week": 10,
+     "topic": "롤스와 샌델: 정의에 관한 논쟁"
+    },
+    {
+     "week": 11,
+     "topic": "정의와 공동체(연대와 소속의 미덕)"
+    },
+    {
+     "week": 12,
+     "topic": "분배냐? 인정이냐?(분배의 정치와 인정의 정치)"
+    },
+    {
+     "week": 13,
+     "topic": "공동성과 공공성(국가적 공공성과 대안적 공동성)"
+    },
+    {
+     "week": 14,
+     "topic": "한국사회의 불평등구조(중앙-지방 불평등)"
+    },
+    {
+     "week": 15,
+     "topic": "보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/정의란무엇인가001.pdf"
+  }
+ },
+ "젠더,섹슈얼리티그리고인권": {
+  "001": {
+   "professor": "김인선",
+   "evaluation": "중간고사 40, 기말고사 40, 출석 및 참여 20",
+   "textbook": "강의안을 중심으로 하고 참고문헌과 시청각 자료를 활용한다. 참고자료: 래윈 코넬·리베카 피어스 『젠더』-현실문화(2021); 로즈마리 퍼트넘 통 외 『페미니즘: 교차하는 관점들』-학이시습(2019); 정희진 『다시 페미니즘의 도전』-교양인(2023) 등",
+   "goals": "젠더, 섹슈얼리티와 인권은 불화, 공존, 생존을 넘나드는 우리 삶의 이름들이기도 하다. 이 수업에서는 세 가지 개념의 역사와 이론을 배우고 검토하며, 성별화된 사회를 비판적으로 검토하고 다른 삶의 방식들을 함께 상상하고 나누는 것을 목표로 한다.",
+   "overview": "이 수업은 전반부에 강의 중심의 수업을 진행하며, 젠더, 섹슈얼리티, 인권 세 가지 개념의 역사적, 이론적 맥락을 배우고 검토한다. 후반부 수업에서는 일상에서부터 제도의 문제까지 현재 우리의 삶을 구성하는 요소로서 세 가지 개념을 심화해서 살펴본다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "삶, 실패와 배반의 역사들"
+    },
+    {
+     "week": 2,
+     "topic": "인권을 둘러싼 장면들: 인권의 짧은 역사와 기나긴 승리"
+    },
+    {
+     "week": 3,
+     "topic": "젠더 개념을 둘러싼 장면들(1): 젠더가 뭐길래"
+    },
+    {
+     "week": 4,
+     "topic": "젠더 개념을 둘러싼 장면들(2)"
+    },
+    {
+     "week": 5,
+     "topic": "섹슈얼리티 개념을 둘러싼 장면들(1): 섹슈얼리티가 뭐길래"
+    },
+    {
+     "week": 6,
+     "topic": "섹슈얼리티 개념을 둘러싼 장면들(2)"
+    },
+    {
+     "week": 7,
+     "topic": "쟁점들 종합 및 정리"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "영화 감상"
+    },
+    {
+     "week": 10,
+     "topic": "다른 목소리(1): 페미니즘의 왼쪽 날개들"
+    },
+    {
+     "week": 11,
+     "topic": "다른 목소리(2) 남성성에 대하여"
+    },
+    {
+     "week": 12,
+     "topic": "다른 목소리(3) 탈식민주의와 페미니즘"
+    },
+    {
+     "week": 13,
+     "topic": "다른 목소리(4) 주제 발표"
+    },
+    {
+     "week": 14,
+     "topic": "다른 목소리(5) \"서로의 눈동자를 바라보며\""
+    },
+    {
+     "week": 15,
+     "topic": "보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/젠더,섹슈얼리티그리고인권001.pdf"
+  }
+ },
+ "주민참여와지방자치": {
+  "068": {
+   "professor": "정승윤",
+   "evaluation": "객관식과 사례형 시험(50%), 보고서 작성와 발표(30%), 수업태도와 출석(20%)",
+   "textbook": "주교재: 김남철, 『행정법 강론』-박영사(2025). 부교재: 전훈·이진수, 『지방자치법』-박영사(2023). 참고자료: 허영 『한국헌법론』-박영사(2025); 신우철 『비교헌법사론』-法文社(2013); 허영 『헌법의 이해』-박영사(2025). 기타 자료는 유인물로 대체",
+   "goals": "지방자치는 주민이 스스로 지역의 주인이 되어 그 지역의 발전을 이끌어가는 제도이며, 주민참여는 이러한 지방자치의 이상을 실현하기 위한 구체적인 실천 방안이다. 현재 대한민국에서 실시되는 지방자치 제도의 내용과 문제점을 법학적 관점과 정치적 관점에서 공부하는 것이 중요하다.",
+   "overview": "현재 실시되고 있는 대한민국 지방자치 제도를 중심으로 지방자치의 개념, 헌법적 보장, 지방자치단체의 종류, 주민의 권리(주민투표권, 조례 제정·개정 청구권, 주민감사청구권, 주민소송권, 주민소환권), 지방의회, 조례, 지방자치단체의 장, 사무, 지방자치단체 상호간의 관계, 지방자치단체에 대한 통제 등을 다룬다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "지방자치의 개념: 국가와 주 및 지방자치, 지방자치의 기능"
+    },
+    {
+     "week": 2,
+     "topic": "지방자치의 헌법적 보장: 객관적 제도 보장과 지방자치의 한계"
+    },
+    {
+     "week": 3,
+     "topic": "지방자치단체의 종류: 광역지방자치단체와 기초지방자치단체 및 특별지방자치단체, 구역과 명칭"
+    },
+    {
+     "week": 4,
+     "topic": "주민 1: 주민의 일반적 권리와 의무, 선거권과 피선거권, 주민투표권"
+    },
+    {
+     "week": 5,
+     "topic": "주민 2: 조례 제정·개정 청구권"
+    },
+    {
+     "week": 6,
+     "topic": "주민 3: 주민감사청구권, 주민소송권"
+    },
+    {
+     "week": 7,
+     "topic": "주민 4: 주민소환권"
+    },
+    {
+     "week": 8,
+     "topic": "중간평가"
+    },
+    {
+     "week": 9,
+     "topic": "지방의회: 지방의회의원의 권리와 의무, 지방의회의 권한"
+    },
+    {
+     "week": 10,
+     "topic": "조례 1: 자치조례와 위임조례, 조례 제정권의 한계"
+    },
+    {
+     "week": 11,
+     "topic": "조례 2: 조례의 하자와 통제"
+    },
+    {
+     "week": 12,
+     "topic": "지방자치단체의 장: 광역자치단체장와 기초자치단체장 및 교육감, 자치단체장의 권한"
+    },
+    {
+     "week": 13,
+     "topic": "사무: 자치사무와 위임사무 및 배분 기준"
+    },
+    {
+     "week": 14,
+     "topic": "지방자치단체 상호 간의 관계: 협력과 분쟁, 자치 재정의 문제"
+    },
+    {
+     "week": 15,
+     "topic": "지방자치단체에 대한 통제: 입법적 통제, 사법적 통제, 행정적 통제"
+    },
+    {
+     "week": 16,
+     "topic": "기말평가"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/주민참여와지방자치068.pdf"
+  }
+ },
+ "창작과엔터테인먼트에관한법률지식": {
+  "068": {
+   "professor": "강명수",
+   "evaluation": "출석 10%, 과제물 20%, 중간고사 30%, 기말고사 40%",
+   "textbook": "(주교재) 사례로 보는 창작과 엔터테인먼트법 이야기, 박영사, 2026. (부교재1)박성호 문화산업법(2010); 오승종 저작권법(2016); 손경한 방송저작권(2016); 계승균 저작권과소유권(2015); 계승균 외 로스쿨지적재산권(2016); 이규호 외 엔터테인먼트법의 최신쟁점(2011)",
+   "goals": "본 과목은 기본적으로 예비창작자를 위한 교양과목이다. 예비창작자가 기본적으로 인식하고 있어야 할 법률지식 중에서 창작활동과 관련된 내용을 중심으로 교육하여 창작활동과 관련하여 창작자가 향유할 수 있는 구체적 권리내용에 관한 지식을 구비하도록 하는 것이 본 강의의 목표이다.",
+   "overview": "강의방식은 기본적으로 사례해결방식으로 강의를 진행한다. 우리 사회에서 일어난 구체적 사건 내지 사례를 수업의 자료로 활용하여 구체적 내용을 가진 사건의 전개 과정과 여기에 나타난 이론과 해결책을 통하여 알기 쉽게 교육적인 내용을 전달하는 방식으로 진행한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "법에 대한 이해 - 법이란 무엇인가?"
+    },
+    {
+     "week": 2,
+     "topic": "엔터테인먼트의 기초 - 저작권법의 이해"
+    },
+    {
+     "week": 3,
+     "topic": "엔터테인먼트 사례 1 - 몽유병환자가 그린 그림과 저작권, 솔섬사진사건, 2009로스트메모리즈 사건"
+    },
+    {
+     "week": 4,
+     "topic": "엔터테인먼트 사례 2 - 연예인 광고 관련 분쟁, 연예인 모방 관련 분쟁"
+    },
+    {
+     "week": 5,
+     "topic": "전속계약 사례 - 표준전속계약서, 전속계약 관련 분쟁 사례"
+    },
+    {
+     "week": 6,
+     "topic": "퍼블리시티권 - 퍼블리시티권 관련 사례 연구"
+    },
+    {
+     "week": 7,
+     "topic": "업무상저작물 - 신문사 기자가 찍은 사진은 누구에게 저작권이 있는가?"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "창작의 자유와 표현의 한계 - 예술과 외설, 선정성"
+    },
+    {
+     "week": 10,
+     "topic": "불법복제, 표절, 패러디 - 표절의 의의, 패러디의 보호"
+    },
+    {
+     "week": 11,
+     "topic": "가수, 방송사업자, 영화산업자의 권리 - 저작인접권"
+    },
+    {
+     "week": 12,
+     "topic": "저작권의 제한 - 백화점, 스타벅스에서 음악을 감상하는 것은 가능한가?"
+    },
+    {
+     "week": 13,
+     "topic": "방송 프로그램 포맷의 보호 - 예능 프로그램 표방 사건"
+    },
+    {
+     "week": 14,
+     "topic": "드라마 프로그램의 보호 - 대장금, 주몽 사건"
+    },
+    {
+     "week": 15,
+     "topic": "책과 영화 제목의 보호와 한계"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/창작과엔터테인먼트에관한법률지식068.pdf"
+  }
+ },
+ "판결로배우는리걸마인드": {
+  "068": {
+   "professor": "장승희",
+   "evaluation": "출석(10%), 조별 발표(20%), 중간고사(35%), 기말고사(35%)",
+   "textbook": "주별 강의계획에 부합하는 판결 및 자료를 해당 주차 별로 미리 게시",
+   "goals": "판례를 통해 다양한 사안을 다루어 법률 지식을 습득하고, 나아가 판례의 기저에 충돌하는 가치들에 대해 생각하여 리걸 마인드를 길러 향후 마주할 개인적·공동체적 문제들에 대한 해결 능력을 기름.",
+   "overview": "각 주차의 첫 시간은 판례와 판례에 관련된 법 지식을 습득하고, 두 번째 시간은 첫 시간에 배운 판례의 기저에 충돌하는 가치들에 대해 생각해보고 조별 토론을 한 결과물을 발표한다. 중간고사 및 기말고사는 법률 및 판결 내용에 대한 지식 측정으로 이루어짐.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "오리엔테이션"
+    },
+    {
+     "week": 2,
+     "topic": "생활 속의 법: 업체 이용 후기 사건"
+    },
+    {
+     "week": 3,
+     "topic": "생활 속의 법: 층간소음 및 일조권 분쟁 사건"
+    },
+    {
+     "week": 4,
+     "topic": "생활 속의 법: 버스기사 800원 해고 사건"
+    },
+    {
+     "week": 5,
+     "topic": "생명과 안전: 가습기 살균제 사건"
+    },
+    {
+     "week": 6,
+     "topic": "생명과 안전: 담배 소송"
+    },
+    {
+     "week": 7,
+     "topic": "생명과 안전: 존엄사 사건(김할머니 사건)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "기술과 경제: 리니지 게임 아이템 소유권 분쟁"
+    },
+    {
+     "week": 10,
+     "topic": "기술과 경제: 초상권과 퍼블리시티권"
+    },
+    {
+     "week": 11,
+     "topic": "기술과 경제: 타다(Tada) 무죄 판결"
+    },
+    {
+     "week": 12,
+     "topic": "기술과 경제: 비트코인 몰수 사건"
+    },
+    {
+     "week": 13,
+     "topic": "권리의 확장: 도롱뇽 소송"
+    },
+    {
+     "week": 14,
+     "topic": "권리의 확장: 제돌이 판결"
+    },
+    {
+     "week": 15,
+     "topic": "권리의 확장: 인공지능(AI) 발명자 사건"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/판결로배우는리걸마인드068.pdf"
+  }
+ },
+ "한국전통사회와여성": {
+  "001": {
+   "professor": "송정란",
+   "evaluation": "중간고사 30%, 기말고사 30%, 과제 30%, 출석 10%",
+   "textbook": "(주교재)강의안(PLATO). 참고자료: 권혁희 『조선에서 온 사진엽서』(2005); 전경옥 외 『한국 근현대 여성사 1-3』-모티브북(2011); 이경하 『조선여성문학사』(2023) 등 다수",
+   "goals": "이 강의는 고대부터 근현대에 이르기까지 한국 사회에서 여성의 지위와 역할, 생활 경험이 어떻게 형성되고 변화해 왔는지를 역사적으로 고찰한다. 가부장제를 가족 내부의 질서나 개별적인 성차별 관행에 한정하지 않고, 정치·경제·제도·문화·지식체계 전반에서 성별 차이와 위계가 형성되고 유지되어 온 역사적 구조로 파악한다.",
+   "overview": "이 강의는 한국 고대부터 근현대에 이르기까지 여성의 삶과 사회적 지위, 문화적 역할이 변화해 온 과정을 살펴본다. 각 시대의 특징을 잘 보여 주는 인물과 제도, 사건을 주요 주제로 선정하고, 사료와 문학작품, 회화, 사진, 영상 등 다양한 자료를 활용하여 여성의 역사적 경험을 입체적으로 이해한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "수업 목표 및 개요, 여성사·젠더사란 무엇인가"
+    },
+    {
+     "week": 2,
+     "topic": "'단군' 신화를 '웅녀' 신화로 읽어보기-고대 신화와 여성"
+    },
+    {
+     "week": 3,
+     "topic": "고대의 혼인풍속"
+    },
+    {
+     "week": 4,
+     "topic": "정치하는 신라의 여성들"
+    },
+    {
+     "week": 5,
+     "topic": "어느 고려 부인의 일생"
+    },
+    {
+     "week": 6,
+     "topic": "조선시대 비혼과 혼인"
+    },
+    {
+     "week": 7,
+     "topic": "소송을 통해 본 조선시대 상속과 가족"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "숙희와 숙길의 공부-조선의 교육과 여성지식인"
+    },
+    {
+     "week": 10,
+     "topic": "신여성과 현모양처, 직업부인"
+    },
+    {
+     "week": 11,
+     "topic": "식민지 시기의 여성 독립운동"
+    },
+    {
+     "week": 12,
+     "topic": "엽서를 통해 본 조선과 여성의 이미지"
+    },
+    {
+     "week": 13,
+     "topic": "전쟁과 여성의 경험-'위안부'와 전쟁미망인"
+    },
+    {
+     "week": 14,
+     "topic": "근대와 젠더-예쁜 여자 만들기, 씩씩한 남자 만들기"
+    },
+    {
+     "week": 15,
+     "topic": "보강기간"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/한국전통사회와여성001.pdf"
+  }
+ },
+ "행복한 데이트, 가족, 부모되기": {
+  "097": {
+   "professor": "공유경",
+   "evaluation": "출석(10%), 중간고사(35%), 기말고사(35%), 과제(20%)",
+   "textbook": "주교재: 전선옥, 『(행복한 가족을 위한)예비부모교육』-창지사(2019)",
+   "goals": "본 교과목은 학생들이 현대 사회에서 나타나는 친밀한 관계, 가족, 부모됨의 다양한 모습을 이해하고, 연애와 결혼, 부모역할과 자녀양육에 대한 지식과 기술을 습득하는 데 목적이 있다. 건강한 의사소통과 책임 있는 관계 형성의 중요성을 배우고, 행복하고 건강한 가족생활을 설계할 수 있는 기초 역량을 함양하고자 한다.",
+   "overview": "본 교과목은 연애와 결혼에 이르는 친밀한 관계의 형성 과정, 부부관계를 중심으로 한 가족체계의 이해, 부모됨의 의미와 부모교육, 자녀양육의 가치와 실제 등을 폭넓게 다룸으로써 학생들이 친밀한 관계와 가족, 부모역할에 대해 이해할 수 있도록 돕는다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 소개 / 결혼과 가족"
+    },
+    {
+     "week": 2,
+     "topic": "여성과 남성의 이해"
+    },
+    {
+     "week": 3,
+     "topic": "만남과 사랑"
+    },
+    {
+     "week": 4,
+     "topic": "결혼과 부부"
+    },
+    {
+     "week": 5,
+     "topic": "건강한 가족의 의사소통"
+    },
+    {
+     "week": 6,
+     "topic": "예비부모교육"
+    },
+    {
+     "week": 7,
+     "topic": "자녀와 더불어 성장하는 부모되기"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "발달의 원리"
+    },
+    {
+     "week": 10,
+     "topic": "임신과 출산/태아기 발달과 부모역할"
+    },
+    {
+     "week": 11,
+     "topic": "영아기 발달과 부모역할"
+    },
+    {
+     "week": 12,
+     "topic": "유아기 발달과 부모역할"
+    },
+    {
+     "week": 13,
+     "topic": "아동기 및 청소년기 발달과 부모역할"
+    },
+    {
+     "week": 14,
+     "topic": "아동학대와 아동의 권리"
+    },
+    {
+     "week": 15,
+     "topic": "보강실시"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/행복한 데이트, 가족, 부모되기097.pdf"
+  }
+ },
+ "현대생활과헌법재판": {
+  "068": {
+   "professor": "정한신",
+   "evaluation": "출석 10%, 과제 10%, 중간고사 40%, 기말고사 40%",
+   "textbook": "주교재: 담당교수 제작 교재(Powerpoint 요약강의안). 부교재: 허영 『헌법소송법론』-박영사(2023); 헌법재판소(편) 『헌법재판실무제요』-헌법재판소(2023); 성낙인 『憲法學』-法文社(2026)",
+   "goals": "현대생활과 헌법재판 교과목의 목표는 헌법재판제도와 헌법재판소에 대한 기본적 지식을 습득하고, 헌법재판의 일반심판절차 및 특별심판절차 등을 살펴봄으로써 헌법재판과 헌법소송제도에 대하여 체계적으로 이해하며, 현대생활의 다양한 헌법적 문제를 해결하는 헌법적 사고와 문제 해결 능력을 함양하는 것이다.",
+   "overview": "주된 내용은 1) 헌법재판 총론 2) 우리나라 헌법재판제도의 역사와 발전과정 3) 헌법재판과 일반재판의 관계 4) 헌법재판소의 구성과 조직 및 권한 5) 헌법재판의 일반심판절차 6) 헌법재판의 종류별 특별심판절차(위헌법률심판, 헌법소원심판, 탄핵심판, 정당해산심판, 권한쟁의심판)로 구성된다. Case(판례와 사례) 중심의 입체적인 수업으로 진행된다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "헌법재판 총론(헌법재판의 헌법철학적 기초, 연혁적·비교법적 고찰, 헌법재판과 일반재판의 관계)"
+    },
+    {
+     "week": 2,
+     "topic": "헌법재판 총론(분류와 종류, 담당기관), 우리나라 헌법재판제도의 역사와 발전과정"
+    },
+    {
+     "week": 3,
+     "topic": "헌법재판소와 헌법재판(헌법상 위상, 조직, 관장사항과 일반심판절차 1)"
+    },
+    {
+     "week": 4,
+     "topic": "헌법재판소와 헌법재판(관장사항과 일반심판절차 2)"
+    },
+    {
+     "week": 5,
+     "topic": "헌법재판의 종류별 특별심판절차(위헌법률심판 1)"
+    },
+    {
+     "week": 6,
+     "topic": "헌법재판의 종류별 특별심판절차(위헌법률심판 2)"
+    },
+    {
+     "week": 7,
+     "topic": "헌법재판의 종류별 특별심판절차(헌법소원심판1)"
+    },
+    {
+     "week": 8,
+     "topic": "중간고사"
+    },
+    {
+     "week": 9,
+     "topic": "헌법재판의 종류별 특별심판절차(헌법소원심판2)"
+    },
+    {
+     "week": 10,
+     "topic": "헌법재판의 종류별 특별심판절차(헌법소원심판3)"
+    },
+    {
+     "week": 11,
+     "topic": "헌법재판의 종류별 특별심판절차(헌법소원심판4)"
+    },
+    {
+     "week": 12,
+     "topic": "헌법재판의 종류별 특별심판절차(권한쟁의심판)"
+    },
+    {
+     "week": 13,
+     "topic": "헌법재판의 종류별 특별심판절차(탄핵심판 1)"
+    },
+    {
+     "week": 14,
+     "topic": "헌법재판의 종류별 특별심판절차(탄핵심판 2)"
+    },
+    {
+     "week": 15,
+     "topic": "헌법재판의 종류별 특별심판절차(정당해산심판)"
+    },
+    {
+     "week": 16,
+     "topic": "기말고사"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/현대생활과헌법재판068.pdf"
+  }
+ },
+ "현대정치의탐구": {
+  "001": {
+   "professor": "서재권",
+   "evaluation": "출석 10%, 중간고사 45%, 기말고사 45%",
+   "textbook": "(주교재)필립스 쉬블리, 김계동 외 옮김, 정치학개론: 권력과 선택, 명인출판사, 2019",
+   "goals": "본 강좌는 정치학이 연구의 대상으로 다루는 정치영역을 쉽게 이해하고 접근할 수 있도록 구성되었다. 학생들은 \"정치란 무엇인지\", 그리고 정치현상을 파악하고 분석하는 방법을 이해하고 습득하며, 현재 발생하고 있는 현상들과 이슈들에 적절히 대응해 나갈 수 있는 능력을 함양할 수 있을 것이다.",
+   "overview": "'정치'를 둘러싼 다양한 개념과 방법론적인 문제에 대해 개괄적으로 살펴본다. 정치의 주요 개념들, 정부, 제도, 정책, 정치이데올로기, 민주주의, 국가 등에 대한 이해를 통하여 현대정치의 중요한 구성요소들을 이해한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "강의 소개"
+    },
+    {
+     "week": 2,
+     "topic": "정치, 무대의 설정"
+    },
+    {
+     "week": 3,
+     "topic": "근대국가"
+    },
+    {
+     "week": 4,
+     "topic": "국가에 관한 이론"
+    },
+    {
+     "week": 5,
+     "topic": "국가의 정책"
+    },
+    {
+     "week": 6,
+     "topic": "공정성과 효율성"
+    },
+    {
+     "week": 7,
+     "topic": "중간시험 전 보강"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "민주주의와 권위주의"
+    },
+    {
+     "week": 10,
+     "topic": "선거와 선거제도"
+    },
+    {
+     "week": 11,
+     "topic": "정당"
+    },
+    {
+     "week": 12,
+     "topic": "구조화된 갈등"
+    },
+    {
+     "week": 13,
+     "topic": "국가정책결정제도(의원내각제)"
+    },
+    {
+     "week": 14,
+     "topic": "국가정책결정제도(대통령중심제)"
+    },
+    {
+     "week": 15,
+     "topic": "기말시험 전 보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/현대정치의탐구001.pdf"
+  }
+ },
+ "형법입문": {
+  "068": {
+   "professor": "강지현",
+   "evaluation": "선택형·서술형 혼합 - 중간시험 40%, 기말시험 50%, 출석 10% (상대평가)",
+   "textbook": "강의안 제공, 형법전 지참(국가법령정보센터-'형법' 다운로드-출력). 오영근/노수환, 형법입문, 2025; 홍영기, 형법-총론과 각론, 2판; 그 외 각종 형법입문, 형법총론, 형법각론 교과서 참고",
+   "goals": "본 교과목은 형법의 기본원리와 범죄 및 형벌에 관한 기초적인 법이론을 이해하고, 이를 통하여 법학 일반에 대한 이해를 제고하는 것을 목표로 한다. 범죄가 성립하는 구조와 형벌제도의 기능을 이해하고, 주요 판례와 사례를 분석하는 능력을 기르도록 한다.",
+   "overview": "본 교과목은 형법 전반에 대한 기초적인 이해를 목표로 하여 형법총론과 형법각론의 주요 내용을 균형 있게 다룬다. 범죄의 성립요건, 위법성, 책임, 미수범, 공범 등 형법의 기본체계를 이해하는 것이 중요하므로 형법총론을 중심으로 강의를 진행하고, 형법각론에서는 생명·신체, 재산, 자유 등에 관한 주요 범죄를 중심으로 핵심적인 내용을 학습한다.",
+   "curriculum": [
+    {
+     "week": 1,
+     "topic": "형법의 의의와 기능, 죄형법정주의"
+    },
+    {
+     "week": 2,
+     "topic": "범죄론의 기본구조, 범죄의 성립요건과 범죄체계(구성요건·위법성·책임)"
+    },
+    {
+     "week": 3,
+     "topic": "구성요건론(행위, 결과, 인과관계, 객관적 귀속)"
+    },
+    {
+     "week": 4,
+     "topic": "고의범과 과실범, 착오(사실의 착오, 법률의 착오)"
+    },
+    {
+     "week": 5,
+     "topic": "위법성론(정당방위, 긴급피난, 자구행위, 피해자의 승낙, 정당행위)"
+    },
+    {
+     "week": 6,
+     "topic": "책임론(책임능력, 기대가능성, 위법성의 인식, 강요된 행위)"
+    },
+    {
+     "week": 7,
+     "topic": "미수(미수일반, 중지미수, 장애미수)"
+    },
+    {
+     "week": 8,
+     "topic": "중간시험"
+    },
+    {
+     "week": 9,
+     "topic": "공범론(공동정범, 교사범, 방조범)"
+    },
+    {
+     "week": 10,
+     "topic": "형벌론(형벌의 종류, 보안처분, 집행유예, 선고유예), 죄수론"
+    },
+    {
+     "week": 11,
+     "topic": "생명·신체에 관한 죄(살인죄, 상해죄, 폭행죄)"
+    },
+    {
+     "week": 12,
+     "topic": "자유와 명예에 관한 죄(협박죄, 강요죄, 체포·감금죄, 명예훼손죄)"
+    },
+    {
+     "week": 13,
+     "topic": "재산에 관한 죄(절도죄, 강도죄, 사기죄, 횡령죄, 배임죄)"
+    },
+    {
+     "week": 14,
+     "topic": "사회적 법익에 관한 죄(방화죄, 공무집행방해죄, 문서죄) 및 최근 범죄(디지털성범죄, 마약범죄 등)"
+    },
+    {
+     "week": 15,
+     "topic": "필요시 보강"
+    },
+    {
+     "week": 16,
+     "topic": "기말시험"
+    }
+   ],
+   "pdf": "assets/syllabus/sahoe/형법입문068.pdf"
   }
  }
 };
