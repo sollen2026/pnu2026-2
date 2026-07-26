@@ -25,16 +25,6 @@
 </div>
 
 <main class="app-shell">
-  <div class="panel ask-panel">
-    <h2 class="ask-title">🔎 무엇이든 물어보세요</h2>
-    <p class="ask-sub">학칙·수강지도 지침·성적 평가·건물 위치 등, 이 사이트에 정리된 규정 안에서 관련 답변을 찾아드려요. (자유 대화형 AI가 아닌 규정 키워드 검색입니다)</p>
-    <div class="ask-box">
-      <input id="askInput" type="text" placeholder="예: 대학영어 면제, 일반선택 학점, 성적 평가, 이동시간 …">
-      <button class="btn primary" id="askBtn">질문하기</button>
-    </div>
-    <div id="askResult" class="ask-result" style="display:none;"></div>
-  </div>
-
   <div class="panel random-panel">
     <button class="random-panel-toggle" id="randomToggle">
       <span>🎲 랜덤 시간표 생성</span>
@@ -48,6 +38,14 @@
         <span style="font-size:11.5px;color:var(--text-dim);">(고정 5학점 포함 · 5~24 사이)</span>
       </div>
       <div class="random-cat-groups" id="randomCatGroups"></div>
+      <div class="filter-check-row" style="margin-bottom:10px;">
+        <label class="filter-check"><input type="checkbox" id="randomNo9am"> 9시 수업 제외</label>
+        <label class="filter-check"><input type="checkbox" id="randomNoFriday"> 금요일 공강</label>
+      </div>
+      <div class="random-building-exclude">
+        <label for="randomExcludeBuildings">제외할 건물 (Ctrl/Cmd+클릭으로 여러 개 선택)</label>
+        <select id="randomExcludeBuildings" multiple size="4"></select>
+      </div>
       <button class="btn primary full-width" id="randomGenerateBtn">🎲 랜덤 시간표 생성하기</button>
     </div>
   </div>
@@ -67,6 +65,16 @@
       <div class="filter-check-row">
         <label class="filter-check"><input type="checkbox" id="filterRemote"> 🖥️ 원격/MOOC 강의만</label>
         <label class="filter-check"><input type="checkbox" id="filterPassFail"> S/U(P·F) 평가만</label>
+        <label class="filter-check"><input type="checkbox" id="filterAllCategories"> 전체 카테고리에서 검색</label>
+      </div>
+
+      <div class="tabs" id="dayFilterRow">
+        <button class="tab active" data-day="all">전체 요일</button>
+        <button class="tab" data-day="0">월</button>
+        <button class="tab" data-day="1">화</button>
+        <button class="tab" data-day="2">수</button>
+        <button class="tab" data-day="3">목</button>
+        <button class="tab" data-day="4">금</button>
       </div>
 
       <div class="tabs" id="tabs"></div>
@@ -124,28 +132,20 @@
       </div>
 
       <div class="info-tab-panel active" id="panel-eligibility">
-        <p class="panel-intro">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 2026학년도 2학기 <b>1차 수강신청</b>에서 실제로 신청 가능한 효원핵심교양 분반 범위입니다.</p>
+        <div class="sugang-period-box">
+          <div class="sugang-period-row"><b>1차 수강신청</b> 2026. 8. 10.(월) 08:00 ~ 8. 12.(수) 17:00</div>
+          <div class="sugang-period-row"><b>2차 수강신청</b> 2026. 8. 18.(화) 10:00 ~ 8. 19.(수) 17:00</div>
+        </div>
+        <p class="panel-intro">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 고전읽기와토론·대학영어·인공지능과디지털사고 3개 과목의 1차·2차 수강신청 가능 분반입니다.</p>
         <div class="table-scroll">
           <table class="info-table2">
-            <tr><th>과목명</th><th>이 학생 2학기 신청 가능 여부</th><th>1차 신청 가능 분반</th><th>비고</th></tr>
-            <tr><td>열린사고와표현</td><td>❌ 신청 대상 아님</td><td>-</td><td>사범대학은 <b>1학기</b>에 개설되는 과목이라 2학기에는 신청 대상 학과에 포함되지 않음</td></tr>
-            <tr><td>고전읽기와토론</td><td>✅ 가능</td><td>001~074분반</td><td>사범대학 신입생(2026학번) 대상 분반. 정원 마감 시 2차 기간에 미달 분반(전 대학 공통) 신청 가능</td></tr>
-            <tr><td>대학영어</td><td>✅ 가능 (수준별)</td><td>초급 001~011 / 중급 101~138 / 고급 201~227 (부산캠퍼스)</td><td>본인의 수능영어 등급 또는 진단평가 결과에 해당하는 수준의 분반만 신청 가능 — <a href="english-diagnostic.html">자가진단 페이지</a>에서 확인</td></tr>
-            <tr><td>인공지능과디지털사고</td><td>✅ 가능</td><td>001~023분반 (인문/사회 트랙)</td><td>일반사회교육과 포함 인문대학·사회과학대학·사범대학 일부 학과 대상 분반</td></tr>
-            <tr><td>기초컴퓨터프로그래밍</td><td>❌ 신청 불가</td><td>-</td><td>2025학년도 이전(포함) 입학생 중 미이수자·재이수자 대상 한시 운영 과목. 2026학번 신입생은 인공지능과디지털사고로 이수</td></tr>
+            <tr><th>과목명</th><th>1차 신청 가능 분반</th><th>2차 신청 가능 분반</th><th>비고</th></tr>
+            <tr><td>고전읽기와토론</td><td>001~074분반<br>(사범대학 등 신입생 대상)</td><td>001~080분반<br>(전 대학, 미달 분반)</td><td>정원 마감 시 2차 기간에 전 대학 대상 미달 분반 신청 가능</td></tr>
+            <tr><td>대학영어</td><td>초급 001~011 / 중급 101~138 / 고급 201~227<br>(부산캠퍼스, 본인 수준 분반만)</td><td>여석 있는 분반에 한해 전 대학<br>(수준 구분은 1차와 동일)</td><td>본인 수준(초급/중급/고급)은 <a href="english-diagnostic.html">자가진단 페이지</a>에서 확인</td></tr>
+            <tr><td>인공지능과디지털사고</td><td>001~023분반<br>(인문/사회 트랙, 일반사회교육과 포함 대상 학과)</td><td>001~023분반<br>(인문/사회 트랙, 대상 학과 확대)</td><td>자연/공학·예술 트랙(030~059, 070~073 등)은 이 학생 대상 분반이 아님</td></tr>
           </table>
         </div>
-        <div class="cite">출처: 「2026학년도 2학기 교양교과목 수강지도 지침」(부산대학교 교양교육원, 2026.7.) Ⅲ. 효원핵심교양 교과목 수강지도, 6~12쪽 「가. 단과대학별 및 학기별 개설교과목」·「나. 교과목별 개설현황 및 수강 제한사항」 표 기준. 실제 개설 여부·정원은 학기 중 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
-
-        <h3 class="panel-subhead">효원균형교양 · 효원창의교양 (교양선택) 8개 소영역</h3>
-        <p class="panel-note">2026 교육과정은 효원균형교양 6개 소영역(사상과 역사·사회와 문화·문학과 예술·과학과 기술·세계와 소통·효원브릿지) 중 5개 이상, 효원창의교양 3개 소영역(융합과 창의·건강과 레포츠·인성과 사회봉사) 중 2개 이상을 각각 1과목 이상 이수해야 합니다.</p>
-        <table class="info-table2">
-          <tr><th>과목명</th><th>이 학생 신청 가능 여부</th><th>비고</th></tr>
-          <tr><td>사상과 역사 / 사회와 문화 / 문학과 예술 / 과학과 기술 / 세계와 소통</td><td>✅ 가능 (분반별 상이)</td><td>본인 소속학과(일반사회교육과)가 개설한 분반은 신청 불가 — 이 시간표에서는 해당 분반을 제외했습니다</td></tr>
-          <tr><td>융합과 창의 / 건강과 레포츠 / 인성과 사회봉사</td><td>✅ 가능 (분반별 상이)</td><td>동일하게 본인 소속학과 개설 분반 제외</td></tr>
-          <tr><td>효원브릿지</td><td>△ 학과별 상이</td><td>기초교양 지정 학과만 필수, 일반사회교육과는 기초교양 미지정 — 이 시간표에는 포함하지 않음</td></tr>
-        </table>
-        <div class="cite">출처: 「2026학년도 2학기 교양교과목 수강지도 지침」Ⅳ. 효원균형교양 및 효원창의교양 교과목 수강지도, 17~19쪽 「1. 교육과정별 수강 및 영역 연계사항」·「2-나. 소속학과 개설 효원균형교양 및 효원창의교양 인정범위」. 위 8개 영역 시간표는 개설 학과·분반 정보를 그대로 반영했으며, 본인 소속학과(일반사회교육과) 개설 분반 1건만 규정에 따라 제외했습니다. 세부 학과별 교양이수모형은 학과사무실 또는 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 확인하세요.</div>
+        <div class="cite">출처: 「2026학년도 2학기 교양교과목 수강지도 지침」(부산대학교 교양교육원, 2026.7.) Ⅱ. 개요 4. 수강신청 기간, Ⅲ. 효원핵심교양 교과목 수강지도 6~12쪽 「나. 교과목별 개설현황 및 수강 제한사항」 표 기준. 실제 개설 여부·정원·일정은 학기 중 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
       </div>
 
       <div class="info-tab-panel" id="panel-grading">
@@ -184,66 +184,105 @@
       <div class="info-tab-panel" id="panel-pdf">
         <p class="panel-intro"><b>경제학</b>·<b>대학생활설계와비전</b>(고정 과목)과 시간이 겹치지 않아 실제로 담을 수 있는 분반만 과목별로 정리한 PDF입니다. 분반·교수·요일/시간·강의실·정원을 표로 담았습니다.</p>
         <div class="pdf-chip-row">
-          <a class="pdf-chip" href="assets/docs/sections/고전읽기와토론.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">고전읽기와토론<small>57개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/인공지능과디지털사고.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">인공지능과디지털사고<small>16개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/대학영어.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">대학영어<small>수준별 58개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/교육학개론.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">교육학개론(교직)<small>4개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/교육철학및교육사.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">교육철학및교육사(교직)<small>4개 분반</small></span>
-          </a>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/고전읽기와토론.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">고전읽기와토론<small>57개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/고전읽기와토론.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/인공지능과디지털사고.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">인공지능과디지털사고<small>16개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/인공지능과디지털사고.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/대학영어.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">대학영어<small>수준별 58개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/대학영어.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/교육학개론.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">교육학개론(교직)<small>4개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/교육학개론.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/교육철학및교육사.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">교육철학및교육사(교직)<small>4개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/교육철학및교육사.pdf" download title="다운로드">⬇</a>
+          </span>
         </div>
-        <p class="panel-note" style="margin-top:14px;"><b>효원균형교양·효원창의교양(교양선택) 8개 영역</b> — 위와 동일한 기준(고정 과목 시간 겹침·본인 소속학과 개설·부산캠퍼스 외 캠퍼스·유학생 대상 분반 제외)으로 정리했습니다. 원격(비실시간)/MOOC 강의는 강의실란에 🖥 표시로 구분됩니다.</p>
+        <p class="panel-note" style="margin-top:14px;"><b>효원균형교양·효원창의교양(교양선택) 8개 영역</b> — 위와 동일한 기준(고정 과목 시간 겹침·본인 소속학과 개설·부산캠퍼스 외 캠퍼스·유학생 대상 분반 제외)으로 정리했습니다. 원격(비실시간)/MOOC 강의 여부는 표에 별도 표시됩니다.</p>
         <div class="pdf-chip-row">
-          <a class="pdf-chip" href="assets/docs/sections/사상과역사.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">사상과 역사<small>32개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/사회와문화.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">사회와 문화<small>49개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/세계와소통.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">세계와 소통<small>67개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/문학과예술.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">문학과 예술<small>31개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/과학과기술.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">과학과 기술<small>28개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/융합과창의.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">융합과 창의<small>33개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/건강과레포츠.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">건강과 레포츠<small>16개 분반</small></span>
-          </a>
-          <a class="pdf-chip" href="assets/docs/sections/인성과사회봉사.pdf" download>
-            <span class="pdf-chip-icon">📄</span>
-            <span class="pdf-chip-label">인성과 사회봉사<small>11개 분반</small></span>
-          </a>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/사상과역사.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">사상과 역사<small>32개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/사상과역사.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/사회와문화.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">사회와 문화<small>49개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/사회와문화.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/세계와소통.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">세계와 소통<small>67개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/세계와소통.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/문학과예술.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">문학과 예술<small>31개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/문학과예술.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/과학과기술.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">과학과 기술<small>28개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/과학과기술.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/융합과창의.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">융합과 창의<small>33개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/융합과창의.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/건강과레포츠.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">건강과 레포츠<small>16개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/건강과레포츠.pdf" download title="다운로드">⬇</a>
+          </span>
+          <span class="pdf-chip-pair">
+            <a class="pdf-chip" href="assets/docs/sections/인성과사회봉사.pdf" target="_blank" rel="noopener">
+              <span class="pdf-chip-icon">📄</span>
+              <span class="pdf-chip-label">인성과 사회봉사<small>11개 분반</small></span>
+            </a>
+            <a class="pdf-chip-dl" href="assets/docs/sections/인성과사회봉사.pdf" download title="다운로드">⬇</a>
+          </span>
         </div>
         <div class="cite">2026학년도 2학기 개설 시간표 및 「2026학년도 2학기 교양교과목 수강지도 지침」 기준으로 생성. 실제 개설 여부·신청 가능 여부는 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
 
         <h3 class="panel-subhead">수강신청 참고사항</h3>
-        <p class="panel-note">부산대학교에서 제공하는 수강신청 관련 참고 자료입니다. 아래에서 바로 보거나 다운로드할 수 있습니다.</p>
+        <p class="panel-note">직접 만든 수강신청 관련 참고 자료입니다. 아래에서 바로 보거나 다운로드할 수 있습니다.</p>
         <div class="pdf-chip-row">
           <a class="pdf-chip" href="assets/docs/수강신청 참고사항.pdf" target="_blank" rel="noopener">
             <span class="pdf-chip-icon">📖</span>
