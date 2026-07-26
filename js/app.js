@@ -10,15 +10,24 @@ function parseSchedule(raw) {
   const parts = raw.split(",").map(s => s.trim());
   for (const part of parts) {
     if (part.includes("사이버수업") || part.includes("사이버 수업")) { hasCyber = true; continue; }
-    const m = part.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})\((\d+)\)\s+(.+)$/);
-    if (!m) continue;
-    const [, dayCh, hh, mm, dur, loc] = m;
-    const start = parseInt(hh) * 60 + parseInt(mm);
-    const duration = parseInt(dur);
+    let dayCh, start, end, loc;
+    const mDur = part.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})\((\d+)\)\s+(.+)$/);
+    const mRange = part.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})\s+(.+)$/);
+    if (mDur) {
+      dayCh = mDur[1];
+      start = parseInt(mDur[2]) * 60 + parseInt(mDur[3]);
+      end = start + parseInt(mDur[4]);
+      loc = mDur[5];
+    } else if (mRange) {
+      dayCh = mRange[1];
+      start = parseInt(mRange[2]) * 60 + parseInt(mRange[3]);
+      end = parseInt(mRange[4]) * 60 + parseInt(mRange[5]);
+      loc = mRange[6];
+    } else continue;
     const dashIdx = loc.indexOf("-");
     let building = loc, room = "";
     if (dashIdx > -1) { building = loc.slice(0, dashIdx); room = loc.slice(dashIdx + 1); }
-    slots.push({ day: DAY_INDEX[dayCh], dayLabel: dayCh, start, end: start + duration, building, room });
+    slots.push({ day: DAY_INDEX[dayCh], dayLabel: dayCh, start, end, building, room });
   }
   return { slots, hasCyber };
 }
@@ -35,8 +44,19 @@ const CATEGORY_META = {
   english: { label: "대학영어", color: "#0aa384", credit: 2, code: "ZE1000113", grading: "quasi" },
   gyogaeron: { label: "교육학개론(교직)", color: "#e08a2c", credit: 2, code: "XA4000026", grading: "quasi" },
   gyocholsa: { label: "교육철학및교육사(교직)", color: "#c2536b", credit: 2, code: "XA4000024", grading: "quasi" },
+  sasang: { label: "사상과 역사", color: "#a0522d", credit: null, code: null, grading: null, group: "효원균형교양" },
+  sahoe: { label: "사회와 문화", color: "#1f8a70", credit: null, code: null, grading: null, group: "효원균형교양" },
+  segye: { label: "세계와 소통", color: "#2f6fed", credit: null, code: null, grading: null, group: "효원균형교양" },
+  munhak: { label: "문학과 예술", color: "#b23a6d", credit: null, code: null, grading: null, group: "효원균형교양" },
+  gwahak: { label: "과학과 기술", color: "#3aa0c9", credit: null, code: null, grading: null, group: "효원균형교양" },
+  yunghap: { label: "융합과 창의", color: "#8c5bf0", credit: null, code: null, grading: null, group: "효원창의교양" },
+  geongang: { label: "건강과 레포츠", color: "#e0a02c", credit: null, code: null, grading: null, group: "효원창의교양" },
+  inseong: { label: "인성과 사회봉사", color: "#6b8f3c", credit: null, code: null, grading: null, group: "효원창의교양" },
   fixed: { label: "고정과목", color: "#5a6472", credit: null, code: null, grading: null }
 };
+
+// 효원균형교양/효원창의교양 8개 소영역: 과목마다 학점·과목코드·정원이 달라 RAW 데이터의 개별 값을 사용
+const BALANCE_CATEGORIES = ["sasang", "sahoe", "segye", "munhak", "gwahak", "yunghap", "geongang", "inseong"];
 
 // 부산대학교 교육과정 편성 및 운영 규정 제30조(상대평가 등) 기준
 const GRADING_RULES = {
@@ -61,13 +81,20 @@ const GRADING_RULES = {
     rule: "A+~F 등급 없이 S(이수)/U(미이수)로만 평가하며 평점평균(GPA)에 반영되지 않음",
     article: "「부산대학교 교육과정 편성 및 운영 규정」 제17조(직업능력개발과정)",
     computeMax: () => []
+  },
+  quasiSmall: {
+    label: "준상대평가",
+    rule: "A+~A0 등급 합계 50% 이하 (하한 규정 없음)",
+    article: "「부산대학교 교육과정 편성 및 운영 규정」 제30조제2항제2호 — 수강인원 20명 미만인 이론과목",
+    computeMax: (cap) => (cap ? [{ label: "A+~A0", max: Math.floor(cap * 0.5) }] : [])
   }
 };
 
 function buildCourse(category, name, section, professor, scheduleRaw, capacity, extra) {
   const parsed = parseSchedule(scheduleRaw);
+  const nameSlug = name.replace(/[^가-힣a-zA-Z0-9]/g, "");
   return Object.assign({
-    id: `${category}-${section}`,
+    id: `${category}-${nameSlug}-${section}`,
     category, name, section,
     professor: professor || "미정",
     credit: CATEGORY_META[category].credit,
@@ -116,6 +143,36 @@ RAW_GYOCHOLSA.forEach(([section, prof, sched, cap]) => {
   ALL_COURSES.push(buildCourse("gyocholsa", "교육철학및교육사", section, prof, sched, cap, {
     pdf: `assets/syllabus/gyocholsa/교철사${section}.pdf`
   }));
+});
+
+// 효원균형교양/효원창의교양 8개 소영역 (RAW_SASANG, RAW_SAHOE, RAW_SEGYE, RAW_MUNHAK, RAW_GWAHAK, RAW_YUNGHAP, RAW_GEONGANG, RAW_INSEONG — data-balance.js)
+const BALANCE_RAW_MAP = {
+  sasang: typeof RAW_SASANG !== "undefined" ? RAW_SASANG : [],
+  sahoe: typeof RAW_SAHOE !== "undefined" ? RAW_SAHOE : [],
+  segye: typeof RAW_SEGYE !== "undefined" ? RAW_SEGYE : [],
+  munhak: typeof RAW_MUNHAK !== "undefined" ? RAW_MUNHAK : [],
+  gwahak: typeof RAW_GWAHAK !== "undefined" ? RAW_GWAHAK : [],
+  yunghap: typeof RAW_YUNGHAP !== "undefined" ? RAW_YUNGHAP : [],
+  geongang: typeof RAW_GEONGANG !== "undefined" ? RAW_GEONGANG : [],
+  inseong: typeof RAW_INSEONG !== "undefined" ? RAW_INSEONG : []
+};
+BALANCE_CATEGORIES.forEach(cat => {
+  BALANCE_RAW_MAP[cat].forEach(item => {
+    const grading = item.capacity && item.capacity < 20 ? "quasiSmall" : "relative";
+    const syllabus = (typeof SYLLABUS_BALANCE !== "undefined" && SYLLABUS_BALANCE[item.name] && SYLLABUS_BALANCE[item.name][item.section]) || null;
+    ALL_COURSES.push(buildCourse(cat, item.name, item.section, item.professor, item.scheduleRaw, item.capacity, {
+      code: item.code || null,
+      credit: item.credit || null,
+      grading,
+      offerDept: item.offerDept || null,
+      evaluation: syllabus ? syllabus.evaluation : null,
+      textbook: syllabus ? syllabus.textbook : null,
+      goals: syllabus ? syllabus.goals : null,
+      overview: syllabus ? syllabus.overview : null,
+      curriculum: syllabus ? syllabus.curriculum : null,
+      pdf: (syllabus && syllabus.pdf) || null
+    }));
+  });
 });
 
 // 경제학/대학생활설계와비전(고정 과목)과 시간이 겹치는 분반은 애초에 신청 불가능하므로 목록에서 제외
@@ -310,10 +367,20 @@ let englishLevelFilter = "all";
 function renderTabs() {
   const tabsEl = document.getElementById("tabs");
   tabsEl.innerHTML = "";
+  let lastGroup = undefined;
   Object.keys(CATEGORY_META).filter(k => k !== "fixed").forEach(key => {
+    const meta = CATEGORY_META[key];
+    const group = meta.group || "효원핵심교양·교직";
+    if (group !== lastGroup) {
+      const label = document.createElement("span");
+      label.className = "tab-group-label";
+      label.textContent = group;
+      tabsEl.appendChild(label);
+      lastGroup = group;
+    }
     const btn = document.createElement("button");
     btn.className = "tab" + (activeTab === key ? " active" : "");
-    btn.innerHTML = `<span class="tab-dot" style="background:${CATEGORY_META[key].color}"></span>${CATEGORY_META[key].label}`;
+    btn.innerHTML = `<span class="tab-dot" style="background:${meta.color}"></span>${meta.label}`;
     btn.onclick = () => { activeTab = key; renderTabs(); renderCourseList(); };
     tabsEl.appendChild(btn);
   });
@@ -325,7 +392,7 @@ function renderCourseList() {
   let items = ALL_COURSES.filter(c => c.category === activeTab);
   if (searchTerm) {
     const t = searchTerm.toLowerCase();
-    items = items.filter(c => c.professor.toLowerCase().includes(t) || c.section.includes(t) || c.scheduleRaw.toLowerCase().includes(t));
+    items = items.filter(c => c.name.toLowerCase().includes(t) || c.professor.toLowerCase().includes(t) || c.section.includes(t) || c.scheduleRaw.toLowerCase().includes(t));
   }
   if (activeTab === "english") {
     listEl.insertAdjacentHTML("beforeend", `<div class="fixed-note">대학영어는 수준별 분반입니다. 자신에게 맞는 수준(초급/중급/고급)을 모르면 상단의 <a href="english-diagnostic.html">대학영어 분반 자가진단</a> 페이지를 먼저 확인하세요.</div>`);
