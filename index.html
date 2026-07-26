@@ -25,6 +25,33 @@
 </div>
 
 <main class="app-shell">
+  <div class="panel ask-panel">
+    <h2 class="ask-title">🔎 무엇이든 물어보세요</h2>
+    <p class="ask-sub">학칙·수강지도 지침·성적 평가·건물 위치 등, 이 사이트에 정리된 규정 안에서 관련 답변을 찾아드려요. (자유 대화형 AI가 아닌 규정 키워드 검색입니다)</p>
+    <div class="ask-box">
+      <input id="askInput" type="text" placeholder="예: 대학영어 면제, 일반선택 학점, 성적 평가, 이동시간 …">
+      <button class="btn primary" id="askBtn">질문하기</button>
+    </div>
+    <div id="askResult" class="ask-result" style="display:none;"></div>
+  </div>
+
+  <div class="panel random-panel">
+    <button class="random-panel-toggle" id="randomToggle">
+      <span>🎲 랜덤 시간표 생성</span>
+      <span class="arrow" id="randomToggleArrow">▾</span>
+    </button>
+    <div class="random-panel-body" id="randomPanelBody" style="display:none;">
+      <p class="panel-note">목표 학점과 담고 싶은 영역을 고른 뒤 생성하면, 고정 과목(경제학·대학생활설계와비전)과 시간이 겹치지 않고 이동시간도 무리 없는 조합으로 시간표를 만들어줘요. 효원균형·창의교양은 한 영역당 최대 3학점까지만 담기며, <b>융합과 창의</b> 영역은 생성 대상에서 제외됩니다.</p>
+      <div class="random-credit-row">
+        <label for="randomCredits">목표 학점</label>
+        <input type="number" id="randomCredits" value="21" min="5" max="24" step="1">
+        <span style="font-size:11.5px;color:var(--text-dim);">(고정 5학점 포함 · 5~24 사이)</span>
+      </div>
+      <div class="random-cat-groups" id="randomCatGroups"></div>
+      <button class="btn primary full-width" id="randomGenerateBtn">🎲 랜덤 시간표 생성하기</button>
+    </div>
+  </div>
+
   <div class="layout">
     <div class="panel sidebar">
       <div class="fixed-chip-row">
@@ -45,6 +72,7 @@
       <div class="tabs" id="tabs"></div>
       <div class="course-list" id="courseList"></div>
       <div class="credit-summary" id="creditSummary"></div>
+      <button class="btn small primary full-width" id="viewTimetableBtn">📅 내 시간표 보기</button>
       <button class="btn small ghost full-width" id="resetBtn">고정 과목 외 초기화</button>
     </div>
 
@@ -68,10 +96,6 @@
           <div class="tt-col" id="col-3"></div>
           <div class="tt-col" id="col-4"></div>
         </div>
-      </div>
-      <div class="mobile-agenda" id="mobileAgenda">
-        <div class="day-tabs" id="dayTabs"></div>
-        <div class="agenda-list" id="agendaList"></div>
       </div>
       <div class="legend" id="legend">
         <span><i style="background:#5a6472"></i>고정과목</span>
@@ -252,6 +276,21 @@
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal" id="modalBody"></div>
 </div>
+
+<div class="modal-backdrop" id="randomResultBackdrop">
+  <div class="modal random-result-modal" id="randomResultBody"></div>
+</div>
+
+<div class="modal-backdrop" id="timetableViewBackdrop">
+  <div class="modal" id="timetableViewBody">
+    <span class="modal-close-x" id="timetableViewCloseX">&times;</span>
+    <h3>📅 내 시간표</h3>
+    <div id="timetableViewCredit" class="modal-sub"></div>
+    <div class="day-tabs" id="dayTabs"></div>
+    <div class="agenda-list" id="agendaList"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script src="js/buildings.js"></script>

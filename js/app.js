@@ -367,6 +367,176 @@ function removeCourse(id) {
   renderAll();
 }
 
+// ===== 무엇이든 물어보세요 (규정/지침 키워드 검색 — 자유 대화형 AI 아님) =====
+const FAQ_KB = [
+  { keywords: ["대학영어", "수준", "초급", "중급", "고급", "레벨", "진단"], answer: "대학영어는 초급/중급/고급 수준별 분반으로 나뉘며, 수능영어 등급 또는 영어 기초학력 진단평가 결과로 수준이 정해집니다. 정확한 자가진단은 상단의 '🧭 대학영어 자가진단' 페이지에서 확인하세요." },
+  { keywords: ["대학영어", "면제"], answer: "영어 공인성적(TOEIC 820 등) 소지자 또는 영어권 출신 외국인 유학생은 대학영어 이수가 면제될 수 있습니다. 면제로 부족해진 교양 학점은 효원균형교양·효원창의교양(1~3학점)으로 채워야 하며, 3학점 과목을 들으면 초과 1학점은 일반선택 학점으로 인정됩니다." },
+  { keywords: ["효원균형교양", "효원창의교양", "본인", "소속학과", "개설", "수강신청", "불가"], answer: "본인 소속학과(일반사회교육과)가 개설한 효원균형교양·효원창의교양 분반은 수강신청할 수 없습니다. 이 시간표에서는 해당 분반을 이미 제외했습니다. (「2026학년도 2학기 교양교과목 수강지도 지침」Ⅳ장 2절 나)" },
+  { keywords: ["성적", "평가", "상대평가", "준상대평가", "등급"], answer: "학부 교과목은 상대평가(A+~B0 70% 이하, 그 중 A+~A0 40% 이하, C+ 이하 30% 이상)가 원칙입니다. 수강인원 20명 미만 이론과목, 교직과목, 대학영어 등은 준상대평가(A+~A0 50% 이하)가 적용됩니다. 효원균형·창의교양은 분반 정원이 20명 미만이면 준상대평가, 그 이상이면 상대평가입니다. 자세한 내용은 '📐 성적 평가 기준' 탭을 확인하세요." },
+  { keywords: ["일반선택", "학점", "인정", "초과"], answer: "① 학적변동으로 효원핵심교양을 초과 이수한 학점, ② 세계와 소통(영어 관련)·융합과 창의·인성과 사회봉사 과목 초과분(최대 3학점), ③ 세계와 소통의 제2외국어 초과분, ④ 대학영어 면제로 추가 수강한 초과 1학점이 일반선택 학점으로 인정됩니다. 졸업사정 전 학과사무실에 '교과구분 정정신청서'를 제출해야 합니다." },
+  { keywords: ["교직", "교육학개론", "교육철학", "교직과목"], answer: "이 시간표에는 교직과목 중 교육학개론과 교육철학및교육사만 포함되어 있습니다. (다른 교직과목은 이 사이트의 다루는 범위에서 제외됨)" },
+  { keywords: ["이동시간", "도보", "이동", "거리", "쉬는시간"], answer: "연속된 두 수업 사이 이동시간은 건물번호 ZONE 기준 추정치로 표시됩니다(초록: 여유, 주황: 빠듯함, 빨강: 이동시간 부족 위험). 시간표의 이동시간 표시를 클릭하면 네이버 지도로 확인할 수 있습니다." },
+  { keywords: ["pdf", "다운로드", "분반", "정리"], answer: "'📥 분반 PDF' 탭에서 과목/영역별로 신청 가능한 분반을 요일·시간순으로 정리한 PDF를 받을 수 있습니다. 고정 과목과 시간이 겹치는 분반, 본인 소속학과 개설 분반, 부산캠퍼스 외 분반, 유학생 대상 분반은 이미 제외되어 있습니다." },
+  { keywords: ["원격", "비대면", "온라인", "mooc", "사이버"], answer: "원격(비실시간)·MOOC 강의는 사이드바 카드와 시간표에 🖥️ 배지로 표시됩니다. 사이드바의 '🖥️ 원격/MOOC 강의만' 체크박스로 따로 모아볼 수도 있습니다." },
+  { keywords: ["s/u", "su", "패스", "pass", "fail", "이수", "미이수"], answer: "대학생활설계와비전은 S(이수)/U(미이수)로만 평가되는 S/U(직업능력개발과정) 과목입니다. 사이드바의 'S/U 평가만' 체크박스로 S/U 평가 과목만 모아볼 수 있습니다." },
+  { keywords: ["랜덤", "자동", "생성", "시간표 짜기"], answer: "'🎲 랜덤 시간표 생성' 패널에서 목표 학점과 포함할 영역을 고르고 생성하면, 고정 과목과 겹치지 않고 이동시간도 무리 없는 시간표를 자동으로 만들어줍니다. 효원균형·창의교양은 한 영역당 최대 3학점까지만 담기고, 융합과 창의는 제외됩니다." },
+  { keywords: ["경제학", "비전", "고정", "필수"], answer: "경제학과 대학생활설계와비전은 일반사회교육과 1학년 전공기초 고정 과목으로, 시간표에서 삭제할 수 없습니다." },
+  { keywords: ["건물", "위치", "약도", "지도"], answer: "팝업(상세보기) 안의 건물명을 클릭하면 캠퍼스 약도에서 해당 건물 위치와 실제 사진을 확인할 수 있습니다. 메인 화면(카드/그리드)의 건물명은 클릭할 수 없습니다." },
+  { keywords: ["학칙", "교육과정", "편성", "운영", "규정"], answer: "이 사이트의 성적 평가·학점 인정 관련 설명은 「부산대학교 교육과정 편성 및 운영 규정」을 근거로 합니다. 푸터에서 학칙 PDF 전문을 다운로드할 수 있습니다." },
+  { keywords: ["수강신청", "기간", "1차", "2차"], answer: "2026학년도 2학기 1차 수강신청은 2026.8.10.(월) 08:00~8.12.(수) 17:00, 2차 수강신청은 2026.8.18.(화) 10:00~8.19.(수) 17:00입니다. 최신 일정은 부산대 학생지원시스템에서 다시 확인하세요." }
+];
+function answerQuestion(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) return null;
+  let best = null, bestScore = 0;
+  FAQ_KB.forEach(item => {
+    let score = 0;
+    item.keywords.forEach(k => { if (q.includes(k.toLowerCase())) score++; });
+    if (score > bestScore) { bestScore = score; best = item; }
+  });
+  return best;
+}
+
+// ===== 랜덤 시간표 생성 =====
+// 융합과 창의는 요청에 따라 랜덤 생성 대상에서 항상 제외
+const RANDOM_SELECTABLE_CATEGORIES = Object.keys(CATEGORY_META).filter(k => k !== "fixed" && k !== "yunghap");
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function slotsConflictOrUnsafe(course, chosenCourses) {
+  for (const other of chosenCourses) {
+    for (const s1 of course.slots) {
+      for (const s2 of other.slots) {
+        if (s1.day !== s2.day) continue;
+        if (s1.start < s2.end && s2.start < s1.end) return true; // 시간 겹침
+        let gap, curSlot, nextSlot;
+        if (s1.end <= s2.start) { gap = s2.start - s1.end; curSlot = s1; nextSlot = s2; }
+        else { gap = s1.start - s2.end; curSlot = s2; nextSlot = s1; }
+        if (gap > 60) continue; // 1시간 넘게 여유 있으면 이동거리 상관없음
+        const walk = estimateWalkMinutes(curSlot.building, nextSlot.building, curSlot.room, nextSlot.room);
+        if (walkLevel(gap, walk) === "danger") return true; // 말도 안 되게 먼 이동
+      }
+    }
+  }
+  return false;
+}
+
+// targetCredits: 목표 학점(고정 과목 5학점 포함), selectedCategories: 포함할 과목/영역 category key 배열
+function generateRandomTimetable(targetCredits, selectedCategories) {
+  const FIXED_CREDIT_TOTAL = FIXED_COURSES_RAW.reduce((s, f) => s + (f.credit || 0), 0);
+  const pool = ALL_COURSES.filter(c => !c.fixed && selectedCategories.includes(c.category));
+  let best = null, bestDiff = Infinity;
+  for (let attempt = 0; attempt < 400; attempt++) {
+    const shuffled = shuffleArray(pool);
+    const chosen = [];
+    const areaCredits = {};
+    let total = FIXED_CREDIT_TOTAL;
+    for (const c of shuffled) {
+      const credit = c.credit || 0;
+      if (total + credit > targetCredits) continue;
+      if (BALANCE_CATEGORIES.includes(c.category)) {
+        const cur = areaCredits[c.category] || 0;
+        if (cur + credit > 3) continue; // 균형/창의교양 한 영역당 3학점 초과 금지
+      }
+      if (slotsConflictOrUnsafe(c, chosen)) continue;
+      chosen.push(c);
+      total += credit;
+      if (BALANCE_CATEGORIES.includes(c.category)) areaCredits[c.category] = (areaCredits[c.category] || 0) + credit;
+    }
+    const diff = Math.abs(targetCredits - total);
+    if (diff < bestDiff) { bestDiff = diff; best = { chosen, total }; if (diff === 0) break; }
+  }
+  return best;
+}
+
+function renderRandomCatGroups() {
+  const el = document.getElementById("randomCatGroups");
+  if (!el) return;
+  el.innerHTML = "";
+  let lastGroup;
+  RANDOM_SELECTABLE_CATEGORIES.forEach(key => {
+    const meta = CATEGORY_META[key];
+    const group = meta.group || "효원핵심교양·교직";
+    if (group !== lastGroup) {
+      const label = document.createElement("div");
+      label.className = "tab-group-label";
+      label.style.marginTop = lastGroup ? "8px" : "0";
+      label.textContent = group;
+      el.appendChild(label);
+      lastGroup = group;
+    }
+    const wrap = document.createElement("label");
+    wrap.className = "filter-check random-cat-check";
+    wrap.innerHTML = `<input type="checkbox" value="${key}" checked><span class="tab-dot" style="background:${meta.color}"></span>${meta.label}`;
+    el.appendChild(wrap);
+  });
+}
+
+function renderRandomResultModal(result) {
+  const body = document.getElementById("randomResultBody");
+  const targetInput = document.getElementById("randomCredits");
+  const target = targetInput ? parseInt(targetInput.value) : null;
+  if (!result || !result.chosen.length && result.total === 0) {
+    body.innerHTML = `<span class="modal-close-x" id="randomResultCloseX">&times;</span><h3>🎲 랜덤 시간표 생성 결과</h3><p style="color:var(--text-dim)">조건에 맞는 시간표를 만들지 못했습니다. 목표 학점을 낮추거나 포함 영역을 늘려서 다시 시도해보세요.</p><div class="modal-actions"><button class="btn" id="randomResultCloseBtn">닫기</button></div>`;
+  } else {
+    const byDay = [[], [], [], [], []];
+    const all = [...FIXED_COURSES_RAW.map(f => ({ ...f, slots: parseSchedule(f.schedule).slots, fixed: true })), ...result.chosen];
+    all.forEach(c => c.slots.forEach(s => { if (s.day >= 0 && s.day <= 4) byDay[s.day].push({ c, s }); }));
+    byDay.forEach(d => d.sort((a, b) => a.s.start - b.s.start));
+    const gridHtml = DAY_LABEL.map((label, i) => {
+      if (!byDay[i].length) return "";
+      return `<div class="random-day-block"><b>${label}요일</b>${byDay[i].map(({ c, s }) => `<div class="random-day-item">${fmtTime(s.start)}~${fmtTime(s.end)} · ${c.name} ${c.section}분반${c.fixed ? " <span class=\"fixed-badge\" style=\"background:var(--accent-2);color:var(--accent);\">필수 고정</span>" : ""}</div>`).join("")}</div>`;
+    }).join("");
+    const listHtml = result.chosen.map(c => `<li>${CATEGORY_META[c.category] ? CATEGORY_META[c.category].label : c.category} — ${c.name} ${c.section}분반 (${c.credit || 0}학점, ${c.professor})</li>`).join("");
+    body.innerHTML = `
+      <span class="modal-close-x" id="randomResultCloseX">&times;</span>
+      <h3>🎲 랜덤 시간표 생성 결과</h3>
+      <div class="modal-sub">총 ${result.total}학점${target ? ` (목표 ${target}학점)` : ""} · 고정 과목 포함</div>
+      <div class="modal-section"><h4>요일별 시간표</h4><div class="random-day-grid">${gridHtml}</div></div>
+      <div class="modal-section"><h4>선택된 과목 목록</h4><ul class="random-course-list">${listHtml}</ul></div>
+      <div class="modal-actions">
+        <button class="btn primary" id="randomApplyBtn">이 시간표 적용하기</button>
+        <button class="btn" id="randomRerollBtn">다시 생성</button>
+        <button class="btn" id="randomResultCloseBtn">닫기</button>
+      </div>`;
+  }
+  document.getElementById("randomResultBackdrop").classList.add("open");
+  document.getElementById("randomResultCloseX").onclick = closeRandomResultModal;
+  document.getElementById("randomResultCloseBtn").onclick = closeRandomResultModal;
+  const applyBtn = document.getElementById("randomApplyBtn");
+  if (applyBtn) applyBtn.onclick = () => applyRandomResult(result);
+  const rerollBtn = document.getElementById("randomRerollBtn");
+  if (rerollBtn) rerollBtn.onclick = runRandomGeneration;
+}
+
+function closeRandomResultModal() {
+  document.getElementById("randomResultBackdrop").classList.remove("open");
+}
+
+function applyRandomResult(result) {
+  selectedIds = new Set(FIXED_COURSES_RAW.map(f => f.id));
+  result.chosen.forEach(c => selectedIds.add(c.id));
+  saveState();
+  renderAll();
+  closeRandomResultModal();
+  toast("랜덤 시간표를 적용했습니다");
+}
+
+function runRandomGeneration() {
+  const target = parseInt(document.getElementById("randomCredits").value) || 21;
+  const selected = Array.from(document.querySelectorAll("#randomCatGroups input[type=checkbox]:checked")).map(i => i.value);
+  if (!selected.length) { toast("포함할 영역을 하나 이상 선택하세요"); return; }
+  const result = generateRandomTimetable(target, selected);
+  renderRandomResultModal(result);
+}
+
 // ===== 렌더링: 사이드바 목록 =====
 let activeTab = "goto";
 let searchTerm = "";
@@ -701,7 +871,6 @@ function applyViewMode(mode) {
   document.documentElement.setAttribute("data-viewmode", mode);
   localStorage.setItem("pnu-viewmode", mode);
   document.querySelectorAll("#viewToggle button[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === mode));
-  if (mode === "mobile") renderMobileAgenda();
 }
 function initViewMode() {
   const saved = localStorage.getItem("pnu-viewmode");
@@ -771,16 +940,25 @@ function renderAgendaList() {
   el.querySelectorAll("[data-agenda-remove]").forEach(b => b.onclick = () => removeCourse(b.dataset.agendaRemove));
 }
 
-function renderMobileAgenda() {
+function openTimetableViewModal() {
+  const total = selectedCourses().reduce((s, c) => s + (c.credit || 0), 0);
+  document.getElementById("timetableViewCredit").textContent = `선택 과목 ${selectedCourses().length}개 · 합계 ${total}학점`;
   renderDayTabs();
   renderAgendaList();
+  document.getElementById("timetableViewBackdrop").classList.add("open");
+}
+function closeTimetableViewModal() {
+  document.getElementById("timetableViewBackdrop").classList.remove("open");
 }
 
 function renderAll() {
   renderCourseList();
   renderGrid();
   renderCreditSummary();
-  if (document.documentElement.getAttribute("data-viewmode") === "mobile") renderMobileAgenda();
+  if (document.getElementById("timetableViewBackdrop").classList.contains("open")) {
+    renderDayTabs();
+    renderAgendaList();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -835,4 +1013,36 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("resetBtn").onclick = resetSelections;
   const resetBtnTop = document.getElementById("resetBtnTop");
   if (resetBtnTop) resetBtnTop.onclick = resetSelections;
+
+  document.getElementById("viewTimetableBtn").onclick = openTimetableViewModal;
+  document.getElementById("timetableViewCloseX").onclick = closeTimetableViewModal;
+  document.getElementById("timetableViewBackdrop").addEventListener("click", (e) => {
+    if (e.target.id === "timetableViewBackdrop") closeTimetableViewModal();
+  });
+
+  renderRandomCatGroups();
+  const randomPanelBody = document.getElementById("randomPanelBody");
+  const randomToggleArrow = document.getElementById("randomToggleArrow");
+  document.getElementById("randomToggle").onclick = () => {
+    const collapsed = randomPanelBody.style.display === "none";
+    randomPanelBody.style.display = collapsed ? "" : "none";
+    randomToggleArrow.textContent = collapsed ? "▴" : "▾";
+  };
+  document.getElementById("randomGenerateBtn").onclick = runRandomGeneration;
+  document.getElementById("randomResultBackdrop").addEventListener("click", (e) => {
+    if (e.target.id === "randomResultBackdrop") closeRandomResultModal();
+  });
+
+  function runAsk() {
+    const q = document.getElementById("askInput").value;
+    const resEl = document.getElementById("askResult");
+    const match = answerQuestion(q);
+    if (!q.trim()) { resEl.style.display = "none"; return; }
+    resEl.style.display = "";
+    resEl.innerHTML = match
+      ? `<div class="ask-answer">${match.answer}</div>`
+      : `<div class="ask-answer ask-noanswer">이 사이트에 정리된 규정 안에서는 관련 답변을 찾지 못했습니다. 정확한 내용은 부산대 학생지원시스템 또는 교양교육원(051-510-7845)에 문의하세요.</div>`;
+  }
+  document.getElementById("askBtn").onclick = runAsk;
+  document.getElementById("askInput").addEventListener("keydown", (e) => { if (e.key === "Enter") runAsk(); });
 });

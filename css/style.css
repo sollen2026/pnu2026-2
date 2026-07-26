@@ -147,6 +147,49 @@ a { color: var(--accent); }
   padding: 20px 24px 8px;
 }
 
+/* 무엇이든 물어보세요 */
+.ask-panel { padding: 18px 20px; margin-bottom: 16px; }
+.ask-title { font-size: 15px; margin: 0 0 4px; }
+.ask-sub { font-size: 11.5px; color: var(--text-dim); margin: 0 0 12px; line-height: 1.6; }
+.ask-box { display: flex; gap: 8px; }
+.ask-box input {
+  flex: 1; padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--panel-2); color: var(--text);
+  font-size: 13px; font-family: inherit;
+}
+.ask-result { margin-top: 12px; }
+.ask-answer {
+  font-size: 13px; line-height: 1.7; padding: 12px 14px;
+  background: var(--accent-2); border: 1px solid var(--accent);
+  border-radius: 8px; color: var(--text);
+}
+.ask-answer.ask-noanswer { background: var(--panel-2); border-color: var(--border); color: var(--text-dim); }
+
+/* 랜덤 시간표 생성 */
+.random-panel { margin-bottom: 16px; overflow: hidden; }
+.random-panel-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; background: none; border: none; cursor: pointer;
+  font-size: 14.5px; font-weight: 700; color: var(--text); font-family: inherit;
+}
+.random-panel-body { padding: 0 20px 20px; }
+.random-credit-row { display: flex; align-items: center; gap: 8px; margin: 12px 0; font-size: 13px; }
+.random-credit-row input {
+  width: 70px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--panel-2); color: var(--text); font-size: 13px; font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.random-cat-groups { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.random-cat-check { border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px 6px 10px; background: var(--panel-2); }
+
+/* 랜덤 결과 모달 */
+.random-result-modal { max-width: 640px; }
+.random-day-grid { display: flex; flex-direction: column; gap: 10px; }
+.random-day-block { font-size: 12.5px; }
+.random-day-block b { display: block; margin-bottom: 4px; color: var(--accent); }
+.random-day-item { padding: 4px 0 4px 10px; border-left: 2px solid var(--border); line-height: 1.6; }
+.random-course-list { margin: 0; padding-left: 18px; font-size: 12.5px; line-height: 1.9; }
+
 .layout {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -478,10 +521,10 @@ a { color: var(--accent); }
 .badge-k { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .03em; }
 .badge-v { font-size: 13px; font-weight: 700; color: var(--text); }
 
-/* ===== 모바일/데스크톱 뷰 전환 ===== */
-.mobile-agenda { display: none; padding: 16px 18px 4px; }
-html[data-viewmode="mobile"] #desktopGridWrap { display: none; }
-html[data-viewmode="mobile"] .mobile-agenda { display: block; }
+/* ===== 모바일/데스크톱 뷰 전환 =====
+   모바일에서는 항상 보이는 시간표 화면이 오히려 헷갈려서, 시간표 자체는 생략하고
+   "내 시간표 보기" 버튼을 눌렀을 때만 별도 모달(팝업)로 확인하도록 함. */
+html[data-viewmode="mobile"] .timetable-panel { display: none; }
 html[data-viewmode="mobile"] .layout { grid-template-columns: 1fr; }
 html[data-viewmode="mobile"] .app-shell { padding: 14px 14px 4px; }
 html[data-viewmode="mobile"] .topbar h1 { font-size: 13.5px; }
