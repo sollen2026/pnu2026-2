@@ -399,16 +399,15 @@ function slotsConflictOrUnsafe(course, chosenCourses) {
 }
 
 // targetCredits: 목표 학점(고정 과목 5학점 포함), selectedCategories: 포함할 과목/영역 category key 배열
-// options: { no9am, noFriday, excludeBuildings: string[] }
+// options: { no9am, noFriday, exclude600, exclude700 }
 function generateRandomTimetable(targetCredits, selectedCategories, options) {
   const opts = options || {};
   const FIXED_CREDIT_TOTAL = FIXED_COURSES_RAW.reduce((s, f) => s + (f.credit || 0), 0);
   let pool = ALL_COURSES.filter(c => !c.fixed && selectedCategories.includes(c.category));
   if (opts.no9am) pool = pool.filter(c => !c.slots.some(s => s.start < 10 * 60));
   if (opts.noFriday) pool = pool.filter(c => !c.slots.some(s => s.day === 4));
-  if (opts.excludeBuildings && opts.excludeBuildings.length) {
-    pool = pool.filter(c => !c.slots.some(s => opts.excludeBuildings.includes(s.building)));
-  }
+  if (opts.exclude600) pool = pool.filter(c => !c.slots.some(s => s.building.startsWith("6")));
+  if (opts.exclude700) pool = pool.filter(c => !c.slots.some(s => s.building.startsWith("7")));
   let best = null, bestDiff = Infinity;
   for (let attempt = 0; attempt < 400; attempt++) {
     const shuffled = shuffleArray(pool);
@@ -506,15 +505,6 @@ function applyRandomResult(result) {
   toast("랜덤 시간표를 적용했습니다");
 }
 
-function renderRandomBuildingOptions() {
-  const sel = document.getElementById("randomExcludeBuildings");
-  if (!sel) return;
-  const codes = new Set();
-  ALL_COURSES.forEach(c => c.slots.forEach(s => { if (s.building) codes.add(s.building); }));
-  const sorted = [...codes].sort((a, b) => buildingName(a).localeCompare(buildingName(b), "ko"));
-  sel.innerHTML = sorted.map(code => `<option value="${code}">${buildingName(code)}(${code})</option>`).join("");
-}
-
 function runRandomGeneration() {
   const target = parseInt(document.getElementById("randomCredits").value) || 21;
   const selected = Array.from(document.querySelectorAll("#randomCatGroups input[type=checkbox]:checked")).map(i => i.value);
@@ -522,24 +512,29 @@ function runRandomGeneration() {
   const options = {
     no9am: document.getElementById("randomNo9am").checked,
     noFriday: document.getElementById("randomNoFriday").checked,
-    excludeBuildings: Array.from(document.getElementById("randomExcludeBuildings").selectedOptions).map(o => o.value)
+    exclude600: document.getElementById("randomExclude600").checked,
+    exclude700: document.getElementById("randomExclude700").checked
   };
   const result = generateRandomTimetable(target, selected, options);
   renderRandomResultModal(result);
 }
 
 // ===== 렌더링: 사이드바 목록 =====
-let activeTab = "goto";
+let activeTab = "all";
 let searchTerm = "";
 let englishLevelFilter = "all";
 let filterRemoteOnly = false;
 let filterPassFailOnly = false;
-let filterAllCategories = false;
 let dayFilter = "all";
 
 function renderTabs() {
   const tabsEl = document.getElementById("tabs");
   tabsEl.innerHTML = "";
+  const allBtn = document.createElement("button");
+  allBtn.className = "tab" + (activeTab === "all" ? " active" : "");
+  allBtn.textContent = "전체";
+  allBtn.onclick = () => { activeTab = "all"; renderTabs(); renderCourseList(); };
+  tabsEl.appendChild(allBtn);
   let lastGroup = undefined;
   Object.keys(CATEGORY_META).filter(k => k !== "fixed").forEach(key => {
     const meta = CATEGORY_META[key];
@@ -562,7 +557,7 @@ function renderTabs() {
 function renderCourseList() {
   const listEl = document.getElementById("courseList");
   listEl.innerHTML = "";
-  let items = filterAllCategories ? ALL_COURSES.filter(c => !c.fixed) : ALL_COURSES.filter(c => c.category === activeTab);
+  let items = activeTab === "all" ? ALL_COURSES.filter(c => !c.fixed) : ALL_COURSES.filter(c => c.category === activeTab);
   if (searchTerm) {
     const t = searchTerm.toLowerCase();
     items = items.filter(c => c.name.toLowerCase().includes(t) || c.professor.toLowerCase().includes(t) || c.section.includes(t) || c.scheduleRaw.toLowerCase().includes(t));
@@ -570,7 +565,7 @@ function renderCourseList() {
   if (filterRemoteOnly) items = items.filter(c => c.remote);
   if (filterPassFailOnly) items = items.filter(c => c.grading === "su");
   if (dayFilter !== "all") items = items.filter(c => c.slots.some(s => s.day === parseInt(dayFilter)));
-  if (!filterAllCategories && activeTab === "english") {
+  if (activeTab === "english") {
     listEl.insertAdjacentHTML("beforeend", `<div class="fixed-note">대학영어는 수준별 분반입니다. 자신에게 맞는 수준(초급/중급/고급)을 모르면 상단의 <a href="english-diagnostic.html">대학영어 분반 자가진단</a> 페이지를 먼저 확인하세요.</div>`);
     const levelRow = document.createElement("div");
     levelRow.className = "tabs";
@@ -592,7 +587,7 @@ function renderCourseList() {
     const buildingLabel = c.slots.map(s => `${DAY_LABEL[s.day] || s.dayLabel} ${fmtTime(s.start)}-${fmtTime(s.end)} ${buildingText(s.building, s.room, `${buildingName(s.building)}(${s.building})-${s.room}`)}`).join(" / ");
     div.innerHTML = `
       <div class="name">${c.name} <span style="color:var(--text-dim);font-weight:400;">${c.section}분반</span>${remoteBadgeHtml(c)}</div>
-      <div class="meta">${filterAllCategories ? `${CATEGORY_META[c.category].label} · ` : ""}${c.professor}${c.hasCyber ? " · 토 사이버수업 병행" : ""}<br>${buildingLabel || "시간 미정"}</div>
+      <div class="meta">${activeTab === "all" ? `${CATEGORY_META[c.category].label} · ` : ""}${c.professor}${c.hasCyber ? " · 토 사이버수업 병행" : ""}<br>${buildingLabel || "시간 미정"}</div>
       <div class="row">
         <span style="font-size:11.5px;color:var(--text-dim);">${c.credit}학점${c.capacity ? ` · 정원 ${c.capacity}명` : ""}</span>
         <div style="display:flex; gap:6px;">
@@ -981,10 +976,6 @@ document.addEventListener("DOMContentLoaded", () => {
     filterPassFailOnly = e.target.checked;
     renderCourseList();
   });
-  document.getElementById("filterAllCategories").addEventListener("change", (e) => {
-    filterAllCategories = e.target.checked;
-    renderCourseList();
-  });
   document.querySelectorAll("#dayFilterRow button[data-day]").forEach(b => {
     b.onclick = () => {
       dayFilter = b.dataset.day;
@@ -1026,7 +1017,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   renderRandomCatGroups();
-  renderRandomBuildingOptions();
   const randomPanelBody = document.getElementById("randomPanelBody");
   const randomToggleArrow = document.getElementById("randomToggleArrow");
   document.getElementById("randomToggle").onclick = () => {

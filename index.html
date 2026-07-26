@@ -38,13 +38,11 @@
         <span style="font-size:11.5px;color:var(--text-dim);">(고정 5학점 포함 · 5~24 사이)</span>
       </div>
       <div class="random-cat-groups" id="randomCatGroups"></div>
-      <div class="filter-check-row" style="margin-bottom:10px;">
+      <div class="filter-check-row" style="margin-bottom:14px;">
         <label class="filter-check"><input type="checkbox" id="randomNo9am"> 9시 수업 제외</label>
         <label class="filter-check"><input type="checkbox" id="randomNoFriday"> 금요일 공강</label>
-      </div>
-      <div class="random-building-exclude">
-        <label for="randomExcludeBuildings">제외할 건물 (Ctrl/Cmd+클릭으로 여러 개 선택)</label>
-        <select id="randomExcludeBuildings" multiple size="4"></select>
+        <label class="filter-check"><input type="checkbox" id="randomExclude600"> 600번대 건물 제외</label>
+        <label class="filter-check"><input type="checkbox" id="randomExclude700"> 700번대 건물 제외</label>
       </div>
       <button class="btn primary full-width" id="randomGenerateBtn">🎲 랜덤 시간표 생성하기</button>
     </div>
@@ -65,7 +63,6 @@
       <div class="filter-check-row">
         <label class="filter-check"><input type="checkbox" id="filterRemote"> 🖥️ 원격/MOOC 강의만</label>
         <label class="filter-check"><input type="checkbox" id="filterPassFail"> S/U(P·F) 평가만</label>
-        <label class="filter-check"><input type="checkbox" id="filterAllCategories"> 전체 카테고리에서 검색</label>
       </div>
 
       <div class="tabs" id="dayFilterRow">
