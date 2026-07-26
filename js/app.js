@@ -371,6 +371,8 @@ function removeCourse(id) {
 let activeTab = "goto";
 let searchTerm = "";
 let englishLevelFilter = "all";
+let filterRemoteOnly = false;
+let filterPassFailOnly = false;
 
 function renderTabs() {
   const tabsEl = document.getElementById("tabs");
@@ -402,6 +404,8 @@ function renderCourseList() {
     const t = searchTerm.toLowerCase();
     items = items.filter(c => c.name.toLowerCase().includes(t) || c.professor.toLowerCase().includes(t) || c.section.includes(t) || c.scheduleRaw.toLowerCase().includes(t));
   }
+  if (filterRemoteOnly) items = items.filter(c => c.remote);
+  if (filterPassFailOnly) items = items.filter(c => c.grading === "su");
   if (activeTab === "english") {
     listEl.insertAdjacentHTML("beforeend", `<div class="fixed-note">대학영어는 수준별 분반입니다. 자신에게 맞는 수준(초급/중급/고급)을 모르면 상단의 <a href="english-diagnostic.html">대학영어 분반 자가진단</a> 페이지를 먼저 확인하세요.</div>`);
     const levelRow = document.createElement("div");
@@ -535,6 +539,12 @@ const PROFESSOR_ADVISORIES = {
       "https://channelpnu.pusan.ac.kr/news/articleView.html?idxno=2084",
       "https://channelpnu.pusan.ac.kr/news/articleView.html?idxno=1452",
       "https://news.bbsi.co.kr/news/articleView.html?idxno=535932"
+    ]
+  },
+  "정승윤": {
+    text: "공개 보도에 따르면, 이 교수(부산대학교 법학전문대학원)는 2022년 제20대 대통령선거 당시 후보 캠프의 사법개혁 공약 관련 자료에 여성(여경) 비하성 표현으로 지적된 '오또케'라는 문구를 사용한 사실이 논란이 되어 선거대책본부에서 해촉된 바 있습니다. 이후 국민권익위원회 부위원장 등을 지냈습니다. 2022년 보도이며, 동명이인일 가능성을 배제할 수 없으니 정확한 사실관계는 아래 원문과 학교 공식 채널을 통해 직접 확인하시기 바랍니다.",
+    sources: [
+      "https://www.hani.co.kr/arti/society/society_general/1269024.html"
     ]
   }
 };
@@ -789,6 +799,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("searchInput").addEventListener("input", (e) => {
     searchTerm = e.target.value.trim();
+    renderCourseList();
+  });
+  document.getElementById("filterRemote").addEventListener("change", (e) => {
+    filterRemoteOnly = e.target.checked;
+    renderCourseList();
+  });
+  document.getElementById("filterPassFail").addEventListener("change", (e) => {
+    filterPassFailOnly = e.target.checked;
     renderCourseList();
   });
   document.querySelectorAll(".theme-toggle button[data-theme]").forEach(b => {

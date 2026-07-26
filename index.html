@@ -37,6 +37,11 @@
         <input id="searchInput" type="text" placeholder="교수명 · 분반 · 요일로 검색">
       </div>
 
+      <div class="filter-check-row">
+        <label class="filter-check"><input type="checkbox" id="filterRemote"> 🖥️ 원격/MOOC 강의만</label>
+        <label class="filter-check"><input type="checkbox" id="filterPassFail"> S/U(P·F) 평가만</label>
+      </div>
+
       <div class="tabs" id="tabs"></div>
       <div class="course-list" id="courseList"></div>
       <div class="credit-summary" id="creditSummary"></div>
@@ -132,6 +137,15 @@
         </div>
         <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제30조(상대평가 등) 제2항제1호·제2호, 제17조(직업능력개발과정) — 대학생활설계와비전은 학생처 취업전략과 개설 과목으로 제17조가 정한 직업능력개발과정에 해당합니다. 각 분반 팝업의 "성적 평가 등급 배분"에서 분반별 정원을 기준으로 계산된 등급별 최대(최소) 인원도 확인할 수 있습니다.</div>
 
+        <h3 class="panel-subhead">효원균형교양 · 효원창의교양(교양선택) 성적 평가</h3>
+        <p class="panel-note">위 효원핵심교양·교직 과목과 달리, 효원균형교양·효원창의교양 8개 소영역 과목은 개별 분반의 <b>수강인원</b>에 따라 평가 방식이 갈립니다.</p>
+        <table class="info-table2">
+          <tr><th>분반 수강인원</th><th>평가 방식</th><th>등급 비율</th></tr>
+          <tr><td>20명 미만</td><td>준상대평가</td><td>A+~A0 합계 50% 이하 (하한 없음)</td></tr>
+          <tr><td>20명 이상</td><td>상대평가 (원칙)</td><td>A+~B0 70% 이하(그 중 A+~A0는 40% 이하), C+ 이하 30% 이상</td></tr>
+        </table>
+        <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제30조(상대평가 등) 제2항 — 학부 교육과정 교과목은 상대평가가 원칙이나, 수강인원 20명 미만인 이론과목 등은 준상대평가 대상입니다. 각 분반 팝업에도 정원 기준 판정 결과가 동일하게 표시됩니다.</div>
+
         <h3 class="panel-subhead">교양과목 초과 이수분의 일반선택 학점 인정</h3>
         <p class="panel-note">아래에 해당하면 교양 이수학점을 초과해 들은 학점을 <b>일반선택 학점</b>으로 인정받을 수 있습니다. (졸업사정 전 소속 학과사무실에 성적증명서와 "교과구분 정정신청서"를 제출해야 인정됩니다.)</p>
         <ul class="panel-list">
@@ -208,7 +222,7 @@
         <p class="panel-note">부산대학교에서 제공하는 수강신청 관련 참고 자료입니다. 아래에서 바로 보거나 다운로드할 수 있습니다.</p>
         <div class="pdf-chip-row">
           <a class="pdf-chip" href="assets/docs/수강신청 참고사항.pdf" target="_blank" rel="noopener">
-            <span class="pdf-chip-icon">👁️</span>
+            <span class="pdf-chip-icon">📖</span>
             <span class="pdf-chip-label">수강신청 참고사항<small>새 탭에서 보기</small></span>
           </a>
           <a class="pdf-chip" href="assets/docs/수강신청 참고사항.pdf" download>
