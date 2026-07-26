@@ -1,0 +1,196 @@
+<title>대학영어 분반 자가진단 — 2026-2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .wrap { max-width: 640px; margin: 0 auto; padding: 26px 18px 60px; }
+  .card { padding: 22px; margin-bottom: 16px; }
+  .q { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .opts { display: flex; flex-direction: column; gap: 8px; }
+  .opt {
+    border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px;
+    background: var(--panel-2); cursor: pointer; font-size: 13.5px; color: var(--text);
+    text-align: left;
+  }
+  .opt:hover { border-color: var(--accent); }
+  select, input[type=number] {
+    padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); font-size: 13.5px; width: 100%;
+  }
+  .result-badge {
+    display: inline-block; padding: 10px 18px; border-radius: 20px; font-size: 20px; font-weight: 800;
+    color: #fff; margin: 6px 0 14px;
+  }
+  .step { display: none; }
+  .step.active { display: block; }
+  .back-link { font-size: 13px; }
+  .info-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+  .info-table th, .info-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+  .info-table th { background: var(--panel-2); }
+  .note-box { font-size: 12.5px; color: var(--text-dim); background: var(--accent-2); border-radius: 8px; padding: 10px 12px; margin-top: 10px; line-height: 1.6; }
+  .cite { font-size: 11px; color: var(--text-dim); margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border); line-height: 1.6; }
+  .cite b { color: var(--text); }
+  .source-list { font-size: 12.5px; line-height: 1.9; padding-left: 18px; margin: 6px 0 0; }
+  .source-list a { word-break: break-all; }
+</style>
+
+<div class="topbar">
+  <h1>🧭 대학영어 분반 자가진단 <span class="sub">2026학년도 2학기</span></h1>
+  <a class="btn back-link" href="index.html">← 시간표로 돌아가기</a>
+</div>
+
+<div class="wrap">
+  <div class="panel card">
+    <p style="font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:0;">
+      2026학년도 신입생은 <b>입학 당시 수능영어 등급</b> 또는 <b>영어 기초학력 진단평가 결과</b>로 대학영어 수준(초급/중급/고급)이 정해집니다.
+      아래 질문에 답하면 신청해야 할 분반 범위를 알려드립니다.
+    </p>
+    <div class="cite">
+      <b>출처</b>: 「2026학년도 2학기 교양교과목 수강지도 지침」(부산대학교 교양교육원, 2026.7. 발행) Ⅵ. 대학영어 이수 세부사항, 26~32쪽
+    </div>
+  </div>
+
+  <div class="panel card step active" id="step1">
+    <div class="q">Q1. 입학 당시(수능 성적표 등급란) 영어 등급이 있나요?</div>
+    <div class="opts">
+      <button class="opt" data-go="step2">네, 등급이 있습니다</button>
+      <button class="opt" data-go="step3">아니요, 무등급(등급 없음)입니다</button>
+    </div>
+    <div class="cite">출처: 지침 26쪽 「Ⅵ-1-가. 수준별 분반(초급/중급/고급) 구분 기준」 — 2026학년도 신·편입생은 입학 당시 소지한 수능영어 등급이 기준입니다.</div>
+  </div>
+
+  <div class="panel card step" id="step2">
+    <div class="q">Q2. 수능영어 등급을 선택하세요</div>
+    <select id="gradeSelect">
+      <option value="1">1등급</option>
+      <option value="2">2등급</option>
+      <option value="3">3등급</option>
+      <option value="4">4등급</option>
+      <option value="5">5등급</option>
+      <option value="6">6등급</option>
+      <option value="7">7등급</option>
+      <option value="8">8등급</option>
+      <option value="9">9등급</option>
+    </select>
+    <div style="margin-top:14px; display:flex; gap:8px;">
+      <button class="btn" data-go="step1">이전</button>
+      <button class="btn primary" id="gradeSubmit">결과 보기</button>
+    </div>
+    <div class="cite">출처: 지침 26쪽 표 「이수내용 - 대상자(2026학년도 신/편입생)」 — 1~2등급: 고급 수준 / 3~4등급: 중급 수준 / 5~9등급: 초급 수준</div>
+  </div>
+
+  <div class="panel card step" id="step3">
+    <div class="q">Q3. 영어 기초학력 진단평가에 응시했거나 응시할 계획인가요? (무등급자는 희망자에 한해 응시, 미응시 시 자동으로 초급 수준)</div>
+    <div class="opts">
+      <button class="opt" data-go="step4">응시했습니다 / 점수를 압니다</button>
+      <button class="opt" id="noExamBtn">응시하지 않았습니다(또는 응시하지 않을 예정)</button>
+      <button class="opt" data-go="step1">이전으로</button>
+    </div>
+    <div class="cite">출처: 지침 29쪽 「Ⅵ-1-나. 영어 기초학력 진단평가 - 응시대상」 — 수능영어 무등급자 중 희망자에 한하며, 진단평가 미응시자는 "대학영어(초급 수준)"으로 자동 배정됩니다.</div>
+  </div>
+
+  <div class="panel card step" id="step4">
+    <div class="q">Q4. 진단평가 점수를 입력하세요 (40점 만점, LC 15 + RC 25)</div>
+    <input type="number" id="scoreInput" min="0" max="40" placeholder="0~40 사이 점수 입력">
+    <div style="margin-top:14px; display:flex; gap:8px;">
+      <button class="btn" data-go="step3">이전</button>
+      <button class="btn primary" id="scoreSubmit">결과 보기</button>
+    </div>
+    <div class="cite">출처: 지침 29쪽 「진단평가 결과에 따른 이수내용(분반) 기준」 — 15점 이하: 초급 / 16~29점: 중급 / 30점 이상: 고급 (문항구성 LC 15문항+RC 25문항, 제한시간 30분)</div>
+  </div>
+
+  <div class="panel card step" id="stepResult">
+    <div class="q">진단 결과</div>
+    <div id="resultBadge" class="result-badge"></div>
+    <div id="resultDesc" style="font-size:13.5px; line-height:1.7;"></div>
+    <div style="margin-top:16px; display:flex; gap:8px;">
+      <a class="btn primary" id="goTimetableBtn" href="index.html">해당 분반 목록 보러 가기</a>
+      <button class="btn" data-go="step1">처음부터 다시</button>
+    </div>
+    <div class="cite">
+      본 진단 결과는 위 출처 자료를 근거로 한 자체 계산 결과이며, 학교의 공식 배정 결과와 다를 수 있습니다.
+      본인의 정확한 등급/진단평가 결과는 <b>학생지원시스템 → 수업 → 기초학력진단평가 → 영어 기초학력 진단평가</b> 메뉴에서 반드시 재확인하세요.
+    </div>
+  </div>
+
+  <div class="panel card">
+    <h2 style="font-size:14px;margin-top:0;">참고: 대학영어 이수 면제 (공인 영어성적 소지자)</h2>
+    <table class="info-table">
+      <tr><th>TOEIC</th><th>TOEIC SPEAKING</th><th>New TEPS</th><th>TOEFL(iBT)</th><th>TOEFL(iTP)</th><th>OPIc</th><th>IELTS</th><th>G-TELP</th></tr>
+      <tr><td>820</td><td>IH(140~150)</td><td>319~321</td><td>94</td><td>587</td><td>IM</td><td>7.0</td><td>79(Lv.2)</td></tr>
+    </table>
+    <div class="note-box">
+      위 기준 이상의 유효한 공인 성적표를 제출 기간(매 학기 5월말/11월말 예정, 2026학년도 2학기는 2026.11.25.~11.27. 성학관(422) 308호)에 제출하면 대학영어 이수가 면제됩니다.
+      단, 대학영어 수강 이력(수강취소 포함, 수강정정기간 내 취소 제외)이 있으면 면제 신청이 불가합니다.
+      면제로 부족해진 2학점은 효원균형교양 또는 효원창의교양 과목으로 채워야 합니다.
+    </div>
+    <div class="cite">출처: 지침 30쪽 「2. 대학영어 이수 면제 - 나. 영어 공인성적 소지자」</div>
+  </div>
+
+  <div class="panel card">
+    <h2 style="font-size:14px;margin-top:0;">정보 출처 및 최신 정보 확인 경로</h2>
+    <ol class="source-list">
+      <li>「2026학년도 2학기 교양교과목 수강지도 지침」 부산대학교 교양교육원, 2026년 7월 발행 — Ⅵ. 대학영어 이수 세부사항 (26~32쪽)
+        <ul style="margin:4px 0 0 16px; padding:0;">
+          <li>1. 수준별 분반 수업 및 가. 구분 기준 — 26쪽</li>
+          <li>나. 영어 기초학력 진단평가(응시대상/일정/문항구성/결과기준) — 29쪽</li>
+          <li>2. 대학영어 이수 면제(공인성적/외국인 유학생 기준) — 30~32쪽</li>
+        </ul>
+        <a class="btn small" href="assets/docs/2026학년도 2학기 교양교과목 수강지도 지침.pdf" download style="margin-top:8px;display:inline-block;">📄 지침 원문 PDF 다운로드</a>
+      </li>
+    </ol>
+    <div style="margin-top:14px;">
+      <p style="font-size:12.5px;color:var(--text-dim);margin-bottom:8px;">본인의 정확한 수능영어 등급·진단평가 결과·수강신청은 부산대 학생지원시스템에서 로그인 후 확인하세요.</p>
+      <a class="btn primary" href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">🔐 부산대 학생지원시스템 바로가기 (onestop.pusan.ac.kr/login)</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const RESULT_META = {
+    초급: { color: "#c2536b", range: "분반 001~011 (부산캠퍼스)", desc: "기초 문법·어휘부터 다지는 수준입니다. 회화보다 독해·문법 기초를 보강하는 커리큘럼으로 진행됩니다." },
+    중급: { color: "#e08a2c", range: "분반 101~138 (부산캠퍼스)", desc: "실용적인 영어 의사소통 능력 배양에 중점을 둔 표준 분반입니다. 대부분의 신입생이 속하는 구간입니다." },
+    고급: { color: "#0aa384", range: "분반 201~227 (부산캠퍼스)", desc: "심화 독해·작문·토론 중심으로 진행되는 상위 수준 분반입니다." }
+  };
+
+  function showStep(id) {
+    document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+  document.querySelectorAll("[data-go]").forEach(b => {
+    b.addEventListener("click", () => showStep(b.dataset.go));
+  });
+
+  function showResult(level) {
+    const meta = RESULT_META[level];
+    document.getElementById("resultBadge").textContent = `대학영어 (${level} 수준)`;
+    document.getElementById("resultBadge").style.background = meta.color;
+    document.getElementById("resultDesc").innerHTML = `<b>${meta.range}</b><br>${meta.desc}`;
+    document.getElementById("goTimetableBtn").href = `index.html?englishLevel=${encodeURIComponent(level)}`;
+    showStep("stepResult");
+  }
+
+  document.getElementById("gradeSubmit").addEventListener("click", () => {
+    const g = parseInt(document.getElementById("gradeSelect").value);
+    if (g <= 2) showResult("고급");
+    else if (g <= 4) showResult("중급");
+    else showResult("초급");
+  });
+
+  document.getElementById("noExamBtn").addEventListener("click", () => showResult("초급"));
+
+  document.getElementById("scoreSubmit").addEventListener("click", () => {
+    const s = parseInt(document.getElementById("scoreInput").value);
+    if (isNaN(s)) { alert("점수를 입력해주세요."); return; }
+    if (s >= 30) showResult("고급");
+    else if (s >= 16) showResult("중급");
+    else showResult("초급");
+  });
+
+  // 다크모드 동기화
+  (function () {
+    const saved = localStorage.getItem("pnu-theme");
+    const mode = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", mode);
+  })();
+</script>
