@@ -4,157 +4,164 @@
 <link rel="stylesheet" href="css/style.css">
 
 <div class="topbar">
-  <div><h1>📚 2026학년도 2학기 시간표 짜기<span class="sub">사범대학 일반사회교육과 1학년</span></h1></div>
+  <div class="topbar-brand">
+    <span class="brand-mark">📚</span>
+    <div class="brand-text">
+      <h1>2026-2 시간표 짜기</h1>
+      <span class="sub">사범대학 일반사회교육과 1학년</span>
+    </div>
+  </div>
   <div class="topbar-actions">
-    <a class="btn" href="english-diagnostic.html">대학영어 분반 자가진단</a>
+    <a class="btn primary pill" href="english-diagnostic.html">🧭 대학영어 자가진단</a>
     <div class="theme-toggle" id="viewToggle">
-      <button data-view="desktop">💻 데스크톱</button>
-      <button data-view="mobile">📱 모바일</button>
+      <button data-view="desktop" title="데스크톱 화면">💻</button>
+      <button data-view="mobile" title="모바일 화면">📱</button>
     </div>
     <div class="theme-toggle">
-      <button data-theme="light">☀️ 라이트</button>
-      <button data-theme="dark">🌙 다크</button>
+      <button data-theme="light" title="라이트 모드">☀️</button>
+      <button data-theme="dark" title="다크 모드">🌙</button>
     </div>
   </div>
 </div>
 
-<div style="padding:16px 22px 0;">
-  <div class="panel info-panel" id="eligibilityPanel">
-    <div class="info-panel-head">
-      <h2>📋 효원핵심교양(구 교양필수) 1차 수강신청 가능 분반 안내</h2>
-      <button class="btn eligibility-toggle-btn" id="eligibilityToggle"><span id="eligibilityArrow">▾</span> 펼치기/접기</button>
-    </div>
-    <div class="info-body" id="eligibilityBody">
-      <p style="margin-top:0;">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 2026학년도 2학기 <b>1차 수강신청</b>에서 실제로 신청 가능한 효원핵심교양 분반 범위입니다.</p>
-      <table class="info-table2">
-        <tr><th>과목명</th><th>이 학생 2학기 신청 가능 여부</th><th>1차 신청 가능 분반</th><th>비고</th></tr>
-        <tr><td>열린사고와표현</td><td>❌ 신청 대상 아님</td><td>-</td><td>사범대학은 <b>1학기</b>에 개설되는 과목이라 2학기에는 신청 대상 학과에 포함되지 않음</td></tr>
-        <tr><td>고전읽기와토론</td><td>✅ 가능</td><td>001~074분반</td><td>사범대학 신입생(2026학번) 대상 분반. 정원 마감 시 2차 기간에 미달 분반(전 대학 공통) 신청 가능</td></tr>
-        <tr><td>대학영어</td><td>✅ 가능 (수준별)</td><td>초급 001~011 / 중급 101~138 / 고급 201~227 (부산캠퍼스)</td><td>본인의 수능영어 등급 또는 진단평가 결과에 해당하는 수준의 분반만 신청 가능 — <a href="english-diagnostic.html">자가진단 페이지</a>에서 확인</td></tr>
-        <tr><td>인공지능과디지털사고</td><td>✅ 가능</td><td>001~023분반 (인문/사회 트랙)</td><td>일반사회교육과 포함 인문대학·사회과학대학·사범대학 일부 학과 대상 분반</td></tr>
-        <tr><td>기초컴퓨터프로그래밍</td><td>❌ 신청 불가</td><td>-</td><td>2025학년도 이전(포함) 입학생 중 미이수자·재이수자 대상 한시 운영 과목. 2026학번 신입생은 인공지능과디지털사고로 이수</td></tr>
-      </table>
-      <div class="cite">출처: 「2026학년도 2학기 교양교과목 수강지도 지침」(부산대학교 교양교육원, 2026.7.) Ⅲ. 효원핵심교양 교과목 수강지도, 6~12쪽 「가. 단과대학별 및 학기별 개설교과목」·「나. 교과목별 개설현황 및 수강 제한사항」 표 기준. 실제 개설 여부·정원은 학기 중 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
-    </div>
-  </div>
-
-  <div class="panel info-panel" id="pdfBannerPanel">
-    <div class="info-panel-head">
-      <h2>📥 과목별 신청 가능 분반 정리 PDF</h2>
-    </div>
-    <div class="info-body">
-      <p style="margin-top:0;"><b>경제학</b>·<b>대학생활설계와비전</b>(고정 과목)과 시간이 겹치지 않아 실제로 담을 수 있는 분반만 과목별로 정리한 PDF입니다. 분반·교수·요일/시간·강의실·정원을 표로 담았습니다.</p>
-      <div class="pdf-banner-grid">
-        <a class="pdf-banner-item" href="assets/docs/sections/고전읽기와토론.pdf" download>
-          <span class="pdf-banner-icon">📄</span>
-          <span><b>고전읽기와토론</b><br><span class="pdf-banner-sub">57개 분반</span></span>
-        </a>
-        <a class="pdf-banner-item" href="assets/docs/sections/인공지능과디지털사고.pdf" download>
-          <span class="pdf-banner-icon">📄</span>
-          <span><b>인공지능과디지털사고</b><br><span class="pdf-banner-sub">16개 분반</span></span>
-        </a>
-        <a class="pdf-banner-item" href="assets/docs/sections/대학영어.pdf" download>
-          <span class="pdf-banner-icon">📄</span>
-          <span><b>대학영어</b><br><span class="pdf-banner-sub">수준별 58개 분반</span></span>
-        </a>
-        <a class="pdf-banner-item" href="assets/docs/sections/교육학개론.pdf" download>
-          <span class="pdf-banner-icon">📄</span>
-          <span><b>교육학개론</b>(교직)<br><span class="pdf-banner-sub">4개 분반</span></span>
-        </a>
-        <a class="pdf-banner-item" href="assets/docs/sections/교육철학및교육사.pdf" download>
-          <span class="pdf-banner-icon">📄</span>
-          <span><b>교육철학및교육사</b>(교직)<br><span class="pdf-banner-sub">4개 분반</span></span>
-        </a>
+<main class="app-shell">
+  <div class="layout">
+    <div class="panel sidebar">
+      <div class="fixed-chip-row">
+        <span class="fixed-chip">🔒 필수 고정 · 경제학</span>
+        <span class="fixed-chip">🔒 필수 고정 · 대학생활설계와비전</span>
       </div>
-      <div class="cite">2026학년도 2학기 개설 시간표 및 「2026학년도 2학기 교양교과목 수강지도 지침」 기준으로 생성. 실제 개설 여부·신청 가능 여부는 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
-    </div>
-  </div>
 
-  <div class="panel info-panel" id="gradingPanel">
-    <div class="info-panel-head">
-      <h2>📐 과목별 성적 평가 기준 및 일반선택 학점 인정 안내</h2>
-      <button class="btn eligibility-toggle-btn" id="gradingToggle"><span id="gradingArrow">▾</span> 펼치기/접기</button>
-    </div>
-    <div class="info-body" id="gradingBody">
-      <p style="margin-top:0;"><b>「부산대학교 교육과정 편성 및 운영 규정」</b>(학칙 제9조·제62조에 근거해 제정된 학칙 하위 규정) 제30조를 기준으로 이 시간표에 담을 수 있는 과목들의 성적 평가 방식을 정리했습니다.</p>
-      <table class="info-table2">
-        <tr><th>과목</th><th>평가 방식</th><th>등급 비율</th></tr>
-        <tr><td>고전읽기와토론 / 대학영어 / 인공지능과디지털사고</td><td>준상대평가</td><td>A+~A0 합계 50% 이하 (하한 없음)</td></tr>
-        <tr><td>교육학개론 / 교육철학및교육사 (교직과목)</td><td>준상대평가</td><td>A+~A0 합계 50% 이하 (하한 없음)</td></tr>
-        <tr><td>경제학 (전공기초)</td><td>상대평가</td><td>A+~B0 70% 이하(그 중 A+~A0는 40% 이하), C+ 이하 30% 이상</td></tr>
-        <tr><td>대학생활설계와비전</td><td>S/U 평가 (직업능력개발과정)</td><td>A+~F 등급 없이 S(이수)/U(미이수)로만 평가, 평점평균(GPA) 미반영</td></tr>
-      </table>
-      <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제30조(상대평가 등) 제2항제1호·제2호, 제17조(직업능력개발과정) — 대학생활설계와비전은 학생처 취업전략과 개설 과목으로 제17조가 정한 직업능력개발과정에 해당합니다. 각 분반 팝업의 "성적 평가 등급 배분"에서 분반별 정원을 기준으로 계산된 등급별 최대(최소) 인원도 확인할 수 있습니다.</div>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="text" placeholder="교수명 · 분반 · 요일로 검색">
+      </div>
 
-      <h3 style="font-size:13px;margin:16px 0 6px;">교양과목 초과 이수분의 일반선택 학점 인정</h3>
-      <p style="font-size:12.5px;line-height:1.7;">아래에 해당하면 교양 이수학점을 초과해 들은 학점을 <b>일반선택 학점</b>으로 인정받을 수 있습니다. (졸업사정 전 소속 학과사무실에 성적증명서와 "교과구분 정정신청서"를 제출해야 인정됩니다.)</p>
-      <ul style="font-size:12.5px;line-height:1.8;margin:0 0 8px;padding-left:20px;">
-        <li>학적변동(전과·재입학 등)에 따라 효원핵심교양 교과목을 초과 이수한 학점</li>
-        <li>효원균형교양 '세계와 소통' 소영역의 영어 관련 과목, 효원창의교양 '융합과 창의'·'인성과 사회봉사' 소영역 과목으로 이수한 학점 (최대 3학점)</li>
-        <li>효원균형교양 '세계와 소통' 소영역에서 제2외국어(한문 포함, 영어 제외)를 초과 이수한 학점</li>
-        <li>대학영어 이수 면제로 인해 추가로 수강한 효원균형교양·효원창의교양 교과목 중 초과된 1학점</li>
-      </ul>
-      <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제11조(이수) 제8항, 제16조(일반선택학점 인정 기준). 신청 절차 등 최신 세부사항은 소속 학과사무실 또는 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템</a>에서 확인하세요.</div>
+      <div class="tabs" id="tabs"></div>
+      <div class="course-list" id="courseList"></div>
+      <div class="credit-summary" id="creditSummary"></div>
+      <button class="btn small ghost full-width" id="resetBtn">고정 과목 외 초기화</button>
     </div>
-  </div>
-</div>
 
-<div class="layout">
-  <div class="panel sidebar">
-    <div class="fixed-note">
-      <b>경제학</b>과 <b>대학생활설계와비전</b>은 일반사회교육과 1학년 전공기초 고정 과목으로, 삭제할 수 없습니다. 시간표에 항상 표시됩니다.
-    </div>
-    <h2>과목 검색</h2>
-    <div class="search-row">
-      <input id="searchInput" type="text" placeholder="교수명 / 분반 / 요일 검색">
-    </div>
-    <div class="tabs" id="tabs"></div>
-    <div class="course-list" id="courseList"></div>
-    <div class="credit-summary" id="creditSummary"></div>
-    <div style="margin-top:10px;">
-      <button class="btn small" id="resetBtn">고정 과목 외 초기화</button>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="timetable-toolbar">
-      <div id="creditSummaryTop" class="credit-summary-top"></div>
-      <button class="btn small" id="resetBtnTop">🔄 시간표 초기화</button>
-    </div>
-    <div class="timetable-wrap" id="desktopGridWrap">
-      <div class="timetable">
-        <div class="tt-head" style="background:none;border:none;"></div>
-        <div class="tt-head">월</div>
-        <div class="tt-head">화</div>
-        <div class="tt-head">수</div>
-        <div class="tt-head">목</div>
-        <div class="tt-head">금</div>
-        <div id="timeAxis"></div>
-        <div class="tt-col" id="col-0"></div>
-        <div class="tt-col" id="col-1"></div>
-        <div class="tt-col" id="col-2"></div>
-        <div class="tt-col" id="col-3"></div>
-        <div class="tt-col" id="col-4"></div>
+    <div class="panel timetable-panel">
+      <div class="timetable-toolbar">
+        <div id="creditSummaryTop" class="credit-summary-top"></div>
+        <button class="btn small" id="resetBtnTop">🔄 시간표 초기화</button>
+      </div>
+      <div class="timetable-wrap" id="desktopGridWrap">
+        <div class="timetable">
+          <div class="tt-head" style="background:none;border:none;"></div>
+          <div class="tt-head">월</div>
+          <div class="tt-head">화</div>
+          <div class="tt-head">수</div>
+          <div class="tt-head">목</div>
+          <div class="tt-head">금</div>
+          <div id="timeAxis"></div>
+          <div class="tt-col" id="col-0"></div>
+          <div class="tt-col" id="col-1"></div>
+          <div class="tt-col" id="col-2"></div>
+          <div class="tt-col" id="col-3"></div>
+          <div class="tt-col" id="col-4"></div>
+        </div>
+      </div>
+      <div class="mobile-agenda" id="mobileAgenda">
+        <div class="day-tabs" id="dayTabs"></div>
+        <div class="agenda-list" id="agendaList"></div>
+      </div>
+      <div class="legend" id="legend">
+        <span><i style="background:#5a6472"></i>고정과목</span>
+        <span><i style="background:#3b6bf6"></i>고전읽기와토론</span>
+        <span><i style="background:#8c5bf0"></i>인공지능과디지털사고</span>
+        <span><i style="background:#0aa384"></i>대학영어</span>
+        <span><i style="background:#e08a2c"></i>교육학개론</span>
+        <span><i style="background:#c2536b"></i>교육철학및교육사</span>
+      </div>
+      <div class="walk-note" title="건물번호 구역 및 건물명을 근거로 한 참고용 추정치이며, 실제 이동시간과 다를 수 있으니 여유 있게 이동하세요.">
+        🚶 이동시간 안내 <span class="walk-dot walk-dot-ok"></span>여유 <span class="walk-dot walk-dot-warn"></span>빠듯함 <span class="walk-dot walk-dot-danger"></span>위험 — 시간표의 이동시간 표시에 마우스를 올리면 상세 정보가 보여요.
       </div>
     </div>
-    <div class="mobile-agenda" id="mobileAgenda">
-      <div class="day-tabs" id="dayTabs"></div>
-      <div class="agenda-list" id="agendaList"></div>
-    </div>
-    <div class="legend" id="legend">
-      <span><i style="background:#5a6472"></i>고정과목</span>
-      <span><i style="background:#3b6bf6"></i>고전읽기와토론</span>
-      <span><i style="background:#8c5bf0"></i>인공지능과디지털사고</span>
-      <span><i style="background:#0aa384"></i>대학영어</span>
-      <span><i style="background:#e08a2c"></i>교육학개론</span>
-      <span><i style="background:#c2536b"></i>교육철학및교육사</span>
-    </div>
-    <div class="walk-note">
-      🚶 연속된 두 수업 사이에는 건물 간 예상 도보 이동시간이 표시됩니다 (초록: 여유, 주황: 빠듯함, 빨강: 이동시간 부족 위험).
-      건물번호 구역 및 건물명을 근거로 한 참고용 추정치이며, 실제 이동시간과 다를 수 있으니 여유 있게 이동하세요.
-    </div>
   </div>
-</div>
+
+  <section class="info-section" id="infoSection">
+    <button class="info-section-toggle" id="infoSectionToggle">
+      <span>📎 수강 안내 · 성적 평가 기준 · 분반 PDF 더 보기</span>
+      <span class="arrow" id="infoSectionArrow">▾</span>
+    </button>
+    <div class="info-section-body" id="infoSectionBody">
+      <div class="info-tabs-bar" role="tablist">
+        <button class="info-tab active" data-tab="eligibility">📋 1차 신청 가능 분반</button>
+        <button class="info-tab" data-tab="grading">📐 성적 평가 기준</button>
+        <button class="info-tab" data-tab="pdf">📥 분반 PDF</button>
+      </div>
+
+      <div class="info-tab-panel active" id="panel-eligibility">
+        <p class="panel-intro">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 2026학년도 2학기 <b>1차 수강신청</b>에서 실제로 신청 가능한 효원핵심교양 분반 범위입니다.</p>
+        <div class="table-scroll">
+          <table class="info-table2">
+            <tr><th>과목명</th><th>이 학생 2학기 신청 가능 여부</th><th>1차 신청 가능 분반</th><th>비고</th></tr>
+            <tr><td>열린사고와표현</td><td>❌ 신청 대상 아님</td><td>-</td><td>사범대학은 <b>1학기</b>에 개설되는 과목이라 2학기에는 신청 대상 학과에 포함되지 않음</td></tr>
+            <tr><td>고전읽기와토론</td><td>✅ 가능</td><td>001~074분반</td><td>사범대학 신입생(2026학번) 대상 분반. 정원 마감 시 2차 기간에 미달 분반(전 대학 공통) 신청 가능</td></tr>
+            <tr><td>대학영어</td><td>✅ 가능 (수준별)</td><td>초급 001~011 / 중급 101~138 / 고급 201~227 (부산캠퍼스)</td><td>본인의 수능영어 등급 또는 진단평가 결과에 해당하는 수준의 분반만 신청 가능 — <a href="english-diagnostic.html">자가진단 페이지</a>에서 확인</td></tr>
+            <tr><td>인공지능과디지털사고</td><td>✅ 가능</td><td>001~023분반 (인문/사회 트랙)</td><td>일반사회교육과 포함 인문대학·사회과학대학·사범대학 일부 학과 대상 분반</td></tr>
+            <tr><td>기초컴퓨터프로그래밍</td><td>❌ 신청 불가</td><td>-</td><td>2025학년도 이전(포함) 입학생 중 미이수자·재이수자 대상 한시 운영 과목. 2026학번 신입생은 인공지능과디지털사고로 이수</td></tr>
+          </table>
+        </div>
+        <div class="cite">출처: 「2026학년도 2학기 교양교과목 수강지도 지침」(부산대학교 교양교육원, 2026.7.) Ⅲ. 효원핵심교양 교과목 수강지도, 6~12쪽 「가. 단과대학별 및 학기별 개설교과목」·「나. 교과목별 개설현황 및 수강 제한사항」 표 기준. 실제 개설 여부·정원은 학기 중 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
+      </div>
+
+      <div class="info-tab-panel" id="panel-grading">
+        <p class="panel-intro"><b>「부산대학교 교육과정 편성 및 운영 규정」</b>(학칙 제9조·제62조에 근거해 제정된 학칙 하위 규정) 제30조를 기준으로 이 시간표에 담을 수 있는 과목들의 성적 평가 방식을 정리했습니다.</p>
+        <div class="table-scroll">
+          <table class="info-table2">
+            <tr><th>과목</th><th>평가 방식</th><th>등급 비율</th></tr>
+            <tr><td>고전읽기와토론 / 대학영어 / 인공지능과디지털사고</td><td>준상대평가</td><td>A+~A0 합계 50% 이하 (하한 없음)</td></tr>
+            <tr><td>교육학개론 / 교육철학및교육사 (교직과목)</td><td>준상대평가</td><td>A+~A0 합계 50% 이하 (하한 없음)</td></tr>
+            <tr><td>경제학 (전공기초)</td><td>상대평가</td><td>A+~B0 70% 이하(그 중 A+~A0는 40% 이하), C+ 이하 30% 이상</td></tr>
+            <tr><td>대학생활설계와비전</td><td>S/U 평가 (직업능력개발과정)</td><td>A+~F 등급 없이 S(이수)/U(미이수)로만 평가, 평점평균(GPA) 미반영</td></tr>
+          </table>
+        </div>
+        <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제30조(상대평가 등) 제2항제1호·제2호, 제17조(직업능력개발과정) — 대학생활설계와비전은 학생처 취업전략과 개설 과목으로 제17조가 정한 직업능력개발과정에 해당합니다. 각 분반 팝업의 "성적 평가 등급 배분"에서 분반별 정원을 기준으로 계산된 등급별 최대(최소) 인원도 확인할 수 있습니다.</div>
+
+        <h3 class="panel-subhead">교양과목 초과 이수분의 일반선택 학점 인정</h3>
+        <p class="panel-note">아래에 해당하면 교양 이수학점을 초과해 들은 학점을 <b>일반선택 학점</b>으로 인정받을 수 있습니다. (졸업사정 전 소속 학과사무실에 성적증명서와 "교과구분 정정신청서"를 제출해야 인정됩니다.)</p>
+        <ul class="panel-list">
+          <li>학적변동(전과·재입학 등)에 따라 효원핵심교양 교과목을 초과 이수한 학점</li>
+          <li>효원균형교양 '세계와 소통' 소영역의 영어 관련 과목, 효원창의교양 '융합과 창의'·'인성과 사회봉사' 소영역 과목으로 이수한 학점 (최대 3학점)</li>
+          <li>효원균형교양 '세계와 소통' 소영역에서 제2외국어(한문 포함, 영어 제외)를 초과 이수한 학점</li>
+          <li>대학영어 이수 면제로 인해 추가로 수강한 효원균형교양·효원창의교양 교과목 중 초과된 1학점</li>
+        </ul>
+        <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제11조(이수) 제8항, 제16조(일반선택학점 인정 기준). 신청 절차 등 최신 세부사항은 소속 학과사무실 또는 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템</a>에서 확인하세요.</div>
+      </div>
+
+      <div class="info-tab-panel" id="panel-pdf">
+        <p class="panel-intro"><b>경제학</b>·<b>대학생활설계와비전</b>(고정 과목)과 시간이 겹치지 않아 실제로 담을 수 있는 분반만 과목별로 정리한 PDF입니다. 분반·교수·요일/시간·강의실·정원을 표로 담았습니다.</p>
+        <div class="pdf-chip-row">
+          <a class="pdf-chip" href="assets/docs/sections/고전읽기와토론.pdf" download>
+            <span class="pdf-chip-icon">📄</span>
+            <span class="pdf-chip-label">고전읽기와토론<small>57개 분반</small></span>
+          </a>
+          <a class="pdf-chip" href="assets/docs/sections/인공지능과디지털사고.pdf" download>
+            <span class="pdf-chip-icon">📄</span>
+            <span class="pdf-chip-label">인공지능과디지털사고<small>16개 분반</small></span>
+          </a>
+          <a class="pdf-chip" href="assets/docs/sections/대학영어.pdf" download>
+            <span class="pdf-chip-icon">📄</span>
+            <span class="pdf-chip-label">대학영어<small>수준별 58개 분반</small></span>
+          </a>
+          <a class="pdf-chip" href="assets/docs/sections/교육학개론.pdf" download>
+            <span class="pdf-chip-icon">📄</span>
+            <span class="pdf-chip-label">교육학개론(교직)<small>4개 분반</small></span>
+          </a>
+          <a class="pdf-chip" href="assets/docs/sections/교육철학및교육사.pdf" download>
+            <span class="pdf-chip-icon">📄</span>
+            <span class="pdf-chip-label">교육철학및교육사(교직)<small>4개 분반</small></span>
+          </a>
+        </div>
+        <div class="cite">2026학년도 2학기 개설 시간표 및 「2026학년도 2학기 교양교과목 수강지도 지침」 기준으로 생성. 실제 개설 여부·신청 가능 여부는 변경될 수 있으니 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템(onestop.pusan.ac.kr/login)</a>에서 최종 확인하세요.</div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer class="pagefoot">
   <div>2026학년도 2학기 교양교과목 수강지도 지침, 부산대 학칙 및 개설 시간표 기준으로 제작한 비공식 도우미 페이지입니다.</div>

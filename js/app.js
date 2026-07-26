@@ -313,7 +313,7 @@ function renderTabs() {
   Object.keys(CATEGORY_META).filter(k => k !== "fixed").forEach(key => {
     const btn = document.createElement("button");
     btn.className = "tab" + (activeTab === key ? " active" : "");
-    btn.textContent = CATEGORY_META[key].label;
+    btn.innerHTML = `<span class="tab-dot" style="background:${CATEGORY_META[key].color}"></span>${CATEGORY_META[key].label}`;
     btn.onclick = () => { activeTab = key; renderTabs(); renderCourseList(); };
     tabsEl.appendChild(btn);
   });
@@ -385,7 +385,7 @@ function renderGrid() {
       block.style.height = `${Math.max(height, 30)}px`;
       block.style.background = CATEGORY_META[course.category].color;
       block.dataset.id = course.id;
-      block.innerHTML = `<b>${course.name}</b><span class="tt-block-time">${fmtTime(slot.start)}~${fmtTime(slot.end)}</span><span>${course.section}분반 · ${course.professor}</span><div class="loc">${buildingText(slot.building, slot.room)}</div>${course.fixed ? "" : `<span class="remove-x" data-remove="${course.id}">✕</span>`}`;
+      block.innerHTML = `<b>${course.name}${course.fixed ? `<span class="fixed-badge">필수 고정</span>` : ""}</b><span class="tt-block-time">${fmtTime(slot.start)}~${fmtTime(slot.end)}</span><span>${course.section}분반 · ${course.professor}</span><div class="loc">${buildingText(slot.building, slot.room)}</div>${course.fixed ? "" : `<span class="remove-x" data-remove="${course.id}">✕</span>`}`;
       block.onclick = (e) => {
         if (e.target.dataset.remove) { e.stopPropagation(); removeCourse(e.target.dataset.remove); return; }
         openModal(course.id);
@@ -641,7 +641,7 @@ function renderAgendaList() {
     card.className = "agenda-card" + (course.fixed ? " locked" : "");
     card.innerHTML = `
       <div class="agenda-time">${fmtTime(slot.start)} ~ ${fmtTime(slot.end)}</div>
-      <div class="agenda-name">${course.name} <span style="font-weight:400;color:var(--text-dim);">${course.section}분반</span></div>
+      <div class="agenda-name">${course.name}${course.fixed ? `<span class="fixed-badge" style="background:var(--accent-2);color:var(--accent);">필수 고정</span>` : ""} <span style="font-weight:400;color:var(--text-dim);">${course.section}분반</span></div>
       <div class="agenda-meta">${course.professor} · ${buildingText(slot.building, slot.room)}${course.hasCyber ? " · 토 사이버수업 병행" : ""}</div>
       <div class="agenda-actions">
         <button class="btn small" data-agenda-detail="${course.id}">상세보기</button>
@@ -692,20 +692,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("modalBackdrop").addEventListener("click", (e) => {
     if (e.target.id === "modalBackdrop") closeModal();
   });
-  document.getElementById("eligibilityToggle").onclick = () => {
-    const body = document.getElementById("eligibilityBody");
-    const arrow = document.getElementById("eligibilityArrow");
-    const collapsed = body.style.display === "none";
-    body.style.display = collapsed ? "" : "none";
-    arrow.textContent = collapsed ? "▾" : "▸";
+  const infoSection = document.getElementById("infoSection");
+  const infoSectionArrow = document.getElementById("infoSectionArrow");
+  document.getElementById("infoSectionToggle").onclick = () => {
+    infoSection.classList.toggle("open");
+    infoSectionArrow.textContent = infoSection.classList.contains("open") ? "▴" : "▾";
   };
-  document.getElementById("gradingToggle").onclick = () => {
-    const body = document.getElementById("gradingBody");
-    const arrow = document.getElementById("gradingArrow");
-    const collapsed = body.style.display === "none";
-    body.style.display = collapsed ? "" : "none";
-    arrow.textContent = collapsed ? "▾" : "▸";
-  };
+  document.querySelectorAll(".info-tab").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".info-tab").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".info-tab-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(`panel-${btn.dataset.tab}`).classList.add("active");
+    };
+  });
   document.getElementById("resetBtn").onclick = resetSelections;
   const resetBtnTop = document.getElementById("resetBtnTop");
   if (resetBtnTop) resetBtnTop.onclick = resetSelections;
