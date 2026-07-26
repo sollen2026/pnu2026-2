@@ -32,6 +32,10 @@ function parseSchedule(raw) {
   return { slots, hasCyber };
 }
 
+function remoteBadgeHtml(course) {
+  return course.remote ? `<span class="remote-badge">🖥️ ${course.remote}</span>` : "";
+}
+
 function fmtTime(min) {
   const h = Math.floor(min / 60), m = min % 60;
   return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`;
@@ -165,6 +169,7 @@ BALANCE_CATEGORIES.forEach(cat => {
       credit: item.credit || null,
       grading,
       offerDept: item.offerDept || null,
+      remote: item.remote || null,
       evaluation: syllabus ? syllabus.evaluation : null,
       textbook: syllabus ? syllabus.textbook : null,
       goals: syllabus ? syllabus.goals : null,
@@ -247,9 +252,12 @@ function hasConflict(course) {
 // 같은 시간대(요일+시간 겹침)에 개설된 동일 과목의 다른 분반 — 수강신청 실패(정원마감 등) 시 대안 참고용
 function findAlternatives(course) {
   if (course.fixed) return [];
+  const isBalance = BALANCE_CATEGORIES.includes(course.category);
   return ALL_COURSES.filter(c => {
     if (c.id === course.id || c.fixed) return false;
-    if (c.category !== course.category) return false;
+    if (isBalance) {
+      if (!BALANCE_CATEGORIES.includes(c.category)) return false;
+    } else if (c.category !== course.category) return false;
     if (course.category === "english" && c.level !== course.level) return false;
     return course.slots.some(s1 => c.slots.some(s2 => s1.day === s2.day && s1.start < s2.end && s2.start < s1.end));
   });
@@ -415,7 +423,7 @@ function renderCourseList() {
     div.className = "course-card";
     const buildingLabel = c.slots.map(s => `${DAY_LABEL[s.day] || s.dayLabel} ${fmtTime(s.start)}-${fmtTime(s.end)} ${buildingText(s.building, s.room, `${buildingName(s.building)}(${s.building})-${s.room}`)}`).join(" / ");
     div.innerHTML = `
-      <div class="name">${c.name} <span style="color:var(--text-dim);font-weight:400;">${c.section}분반</span></div>
+      <div class="name">${c.name} <span style="color:var(--text-dim);font-weight:400;">${c.section}분반</span>${remoteBadgeHtml(c)}</div>
       <div class="meta">${c.professor}${c.hasCyber ? " · 토 사이버수업 병행" : ""}<br>${buildingLabel || "시간 미정"}</div>
       <div class="row">
         <span style="font-size:11.5px;color:var(--text-dim);">${c.credit}학점${c.capacity ? ` · 정원 ${c.capacity}명` : ""}</span>
@@ -452,7 +460,7 @@ function renderGrid() {
       block.style.height = `${Math.max(height, 30)}px`;
       block.style.background = CATEGORY_META[course.category].color;
       block.dataset.id = course.id;
-      block.innerHTML = `<b>${course.name}${course.fixed ? `<span class="fixed-badge">필수 고정</span>` : ""}</b><span class="tt-block-time">${fmtTime(slot.start)}~${fmtTime(slot.end)}</span><span>${course.section}분반 · ${course.professor}</span><div class="loc">${buildingText(slot.building, slot.room)}</div>${course.fixed ? "" : `<span class="remove-x" data-remove="${course.id}">✕</span>`}`;
+      block.innerHTML = `<b>${course.name}${course.fixed ? `<span class="fixed-badge">필수 고정</span>` : ""}${course.remote ? `<span class="fixed-badge">🖥️ ${course.remote}</span>` : ""}</b><span class="tt-block-time">${fmtTime(slot.start)}~${fmtTime(slot.end)}</span><span>${course.section}분반 · ${course.professor}</span><div class="loc">${buildingText(slot.building, slot.room)}</div>${course.fixed ? "" : `<span class="remove-x" data-remove="${course.id}">✕</span>`}`;
       block.onclick = (e) => {
         if (e.target.dataset.remove) { e.stopPropagation(); removeCourse(e.target.dataset.remove); return; }
         openModal(course.id);
@@ -552,12 +560,33 @@ function openModal(id) {
     ? `<table class="week-table">${c.curriculum.map(w => `<tr><td>${w.week}주</td><td>${w.topic}</td></tr>`).join("")}</table>`
     : `<p style="color:var(--text-dim)">등록된 커리큘럼 정보가 없습니다.</p>`;
   const alts = findAlternatives(c);
-  const altsHtml = alts.length
-    ? `<div class="alt-chip-list">${alts.map(a => {
-        const loc = a.slots.map(s => `${DAY_LABEL[s.day] || s.dayLabel} ${fmtTime(s.start)}~${fmtTime(s.end)} ${buildingName(s.building)} ${s.room}호`).join(", ");
-        return `<button class="alt-chip" data-goto="${a.id}"><b>${a.section}분반</b> · ${a.professor}<span>${loc}</span></button>`;
-      }).join("")}</div>`
-    : `<p style="color:var(--text-dim)">같은 시간대에 개설된 다른 분반이 없습니다.</p>`;
+  const isBalanceCourse = BALANCE_CATEGORIES.includes(c.category);
+  function altChipHtml(a) {
+    const loc = a.slots.map(s => `${DAY_LABEL[s.day] || s.dayLabel} ${fmtTime(s.start)}~${fmtTime(s.end)} ${buildingName(s.building)} ${s.room}호`).join(", ");
+    const label = isBalanceCourse ? `${a.name} ${a.section}분반` : `${a.section}분반`;
+    return `<button class="alt-chip" data-goto="${a.id}"><b>${label}</b> · ${a.professor}<span>${loc}</span></button>`;
+  }
+  let altsHtml;
+  if (!alts.length) {
+    altsHtml = `<p style="color:var(--text-dim)">같은 시간대에 개설된 다른 분반이 없습니다.</p>`;
+  } else if (isBalanceCourse) {
+    const groups = {};
+    alts.forEach(a => { (groups[a.category] = groups[a.category] || []).push(a); });
+    const groupsHtml = Object.keys(groups)
+      .sort((a, b) => BALANCE_CATEGORIES.indexOf(a) - BALANCE_CATEGORIES.indexOf(b))
+      .map(catKey => {
+        const meta = CATEGORY_META[catKey];
+        return `<div class="alt-group">
+          <div class="alt-group-head">${meta.group} - ${meta.label}</div>
+          <div class="alt-chip-list">${groups[catKey].map(altChipHtml).join("")}</div>
+        </div>`;
+      }).join("");
+    altsHtml = `
+      <button class="alt-toggle" id="altToggle"><span id="altToggleArrow">▸</span> 대체 가능 분반 ${alts.length}건 (효원균형·창의교양 전체 영역)</button>
+      <div class="alt-groups" id="altGroups" style="display:none;">${groupsHtml}</div>`;
+  } else {
+    altsHtml = `<div class="alt-chip-list">${alts.map(altChipHtml).join("")}</div>`;
+  }
 
   const badges = [
     { k: "분반", v: `${c.section}분반` },
@@ -567,6 +596,8 @@ function openModal(id) {
     { k: "과목코드", v: c.code || "정보 없음" }
   ];
   if (c.dept) badges.push({ k: "개설학과", v: c.dept });
+  if (c.offerDept) badges.push({ k: "개설학과", v: c.offerDept });
+  if (c.remote) badges.push({ k: "수업 방식", v: `🖥️ ${c.remote}` });
   const badgeHtml = `<div class="badge-row">${badges.map(b => `<div class="badge"><span class="badge-k">${b.k}</span><span class="badge-v">${b.v}</span></div>`).join("")}</div>`;
 
   const gr = c.grading ? GRADING_RULES[c.grading] : null;
@@ -598,6 +629,16 @@ function openModal(id) {
   document.getElementById("modalCloseX").onclick = closeModal;
   document.getElementById("modalCloseBtn").onclick = closeModal;
   document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => openModal(b.dataset.goto));
+  const altToggle = document.getElementById("altToggle");
+  if (altToggle) {
+    altToggle.onclick = () => {
+      const groupsEl = document.getElementById("altGroups");
+      const arrow = document.getElementById("altToggleArrow");
+      const collapsed = groupsEl.style.display === "none";
+      groupsEl.style.display = collapsed ? "" : "none";
+      arrow.textContent = collapsed ? "▾" : "▸";
+    };
+  }
 }
 
 // ===== 이동 경로 지도 모달 (네이버 지도) =====
@@ -708,7 +749,7 @@ function renderAgendaList() {
     card.className = "agenda-card" + (course.fixed ? " locked" : "");
     card.innerHTML = `
       <div class="agenda-time">${fmtTime(slot.start)} ~ ${fmtTime(slot.end)}</div>
-      <div class="agenda-name">${course.name}${course.fixed ? `<span class="fixed-badge" style="background:var(--accent-2);color:var(--accent);">필수 고정</span>` : ""} <span style="font-weight:400;color:var(--text-dim);">${course.section}분반</span></div>
+      <div class="agenda-name">${course.name}${course.fixed ? `<span class="fixed-badge" style="background:var(--accent-2);color:var(--accent);">필수 고정</span>` : ""}${remoteBadgeHtml(course)} <span style="font-weight:400;color:var(--text-dim);">${course.section}분반</span></div>
       <div class="agenda-meta">${course.professor} · ${buildingText(slot.building, slot.room)}${course.hasCyber ? " · 토 사이버수업 병행" : ""}</div>
       <div class="agenda-actions">
         <button class="btn small" data-agenda-detail="${course.id}">상세보기</button>

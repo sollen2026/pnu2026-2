@@ -1,6 +1,7 @@
 // 효원균형교양 및 효원창의교양 8개 소영역 시간표 데이터
 // 출처: 2026학년도 2학기 개설 시간표 (사범대학 일반사회교육과 2026학번 기준)
-// 필터링: 「2026학년도 2학기 교양교과목 수강지도 지침」 Ⅳ장 2절 나 — 학생 소속학과(일반사회교육과) 개설 교과목은 수강신청 불가하므로 제외
+// 필터링: 「2026학년도 2학기 교양교과목 수강지도 지침」 Ⅳ장 2절 나 — 학생 소속학과(일반사회교육과) 개설 교과목 제외
+//        + 부산캠퍼스 개설 분반만 포함(밀양·양산캠퍼스 분반 제외) + 유학생 대상 분반 제외
 
 const RAW_SASANG = [
  {
@@ -11,7 +12,8 @@ const RAW_SASANG = [
   "capacity": 200,
   "code": "ZF1100729",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "한국의역사와역사인식",
@@ -21,7 +23,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100265",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국의역사와역사인식",
@@ -31,7 +34,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100265",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국의역사와역사인식",
@@ -41,7 +45,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100265",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "중국의역사와문화",
@@ -51,7 +56,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100271",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "중국의역사와문화",
@@ -61,17 +67,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100271",
   "credit": 3,
-  "offerDept": "사학과"
- },
- {
-  "name": "중국의역사와문화",
-  "section": "200",
-  "professor": "민경준",
-  "scheduleRaw": "화 15:00(75) 밀양M03-3455,, 목 15:00(75) 밀양M03-3455",
-  "capacity": 60,
-  "code": "ZF1100271",
-  "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "문화로보는서양의역사",
@@ -81,7 +78,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100275",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "문화로보는서양의역사",
@@ -91,7 +89,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100275",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "문화로보는서양의역사",
@@ -101,7 +100,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100275",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국근현대사의흐름",
@@ -111,7 +111,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100281",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국근현대사의흐름",
@@ -121,7 +122,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100281",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국근현대사의흐름",
@@ -131,17 +133,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100281",
   "credit": 3,
-  "offerDept": "사학과"
- },
- {
-  "name": "한국근현대사의흐름",
-  "section": "200",
-  "professor": "이창섭",
-  "scheduleRaw": "월 13:30(75) 밀양M02-2330,, 수 13:30(75) 밀양M02-2330",
-  "capacity": 50,
-  "code": "ZF1100281",
-  "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "일본의역사와문화",
@@ -151,7 +144,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100294",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "일본의역사와문화",
@@ -161,7 +155,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1100294",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "동북아시아문화교류의역사",
@@ -171,7 +166,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100794",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "20세기지구사",
@@ -181,7 +177,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1101272",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "20세기지구사",
@@ -191,7 +188,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1101272",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "20세기지구사",
@@ -201,7 +199,8 @@ const RAW_SASANG = [
   "capacity": 60,
   "code": "ZF1101272",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "유라시아문화사",
@@ -211,7 +210,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200535",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "서양철학의이해",
@@ -221,17 +221,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100298",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "서양철학의이해",
-  "section": "200",
-  "professor": "정진우",
-  "scheduleRaw": "월 14:00-17:00 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1100298",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "생태적사유와생명철학",
@@ -241,17 +232,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100777",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "생태적사유와생명철학",
-  "section": "200",
-  "professor": "김창준",
-  "scheduleRaw": "화 14:00-17:00 밀양M02-2212",
-  "capacity": 30,
-  "code": "ZF1100777",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "문명으로근대가로지르기",
@@ -261,7 +243,8 @@ const RAW_SASANG = [
   "capacity": 50,
   "code": "ZF1200289",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "교양으로서의고고학",
@@ -271,7 +254,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100313",
   "credit": 3,
-  "offerDept": "고고학과"
+  "offerDept": "고고학과",
+  "remote": null
  },
  {
   "name": "교양으로서의고고학",
@@ -281,7 +265,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100313",
   "credit": 3,
-  "offerDept": "고고학과"
+  "offerDept": "고고학과",
+  "remote": null
  },
  {
   "name": "고고학과 발굴",
@@ -291,7 +276,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200447",
   "credit": 3,
-  "offerDept": "고고학과"
+  "offerDept": "고고학과",
+  "remote": null
  },
  {
   "name": "삶과교육",
@@ -301,7 +287,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1100807",
   "credit": 3,
-  "offerDept": "교육학과"
+  "offerDept": "교육학과",
+  "remote": null
  },
  {
   "name": "역사소비시대의공공역사하기",
@@ -311,7 +298,8 @@ const RAW_SASANG = [
   "capacity": 0,
   "code": "ZF1101115",
   "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "역사소비시대의공공역사하기",
@@ -321,7 +309,8 @@ const RAW_SASANG = [
   "capacity": 0,
   "code": "ZF1101115",
   "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "전쟁과세계사",
@@ -331,7 +320,8 @@ const RAW_SASANG = [
   "capacity": 0,
   "code": "ZF1200596",
   "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "전쟁과세계사",
@@ -341,7 +331,8 @@ const RAW_SASANG = [
   "capacity": 0,
   "code": "ZF1200596",
   "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "동양윤리와삶의지혜",
@@ -351,7 +342,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1101132",
   "credit": 3,
-  "offerDept": "윤리교육과"
+  "offerDept": "윤리교육과",
+  "remote": null
  },
  {
   "name": "동양윤리와삶의지혜",
@@ -361,7 +353,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1101132",
   "credit": 3,
-  "offerDept": "윤리교육과"
+  "offerDept": "윤리교육과",
+  "remote": null
  },
  {
   "name": "미디어와미래사회의응용윤리",
@@ -371,7 +364,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200767",
   "credit": 3,
-  "offerDept": "윤리교육과"
+  "offerDept": "윤리교육과",
+  "remote": null
  },
  {
   "name": "미디어와미래사회의응용윤리",
@@ -381,7 +375,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200767",
   "credit": 3,
-  "offerDept": "윤리교육과"
+  "offerDept": "윤리교육과",
+  "remote": null
  },
  {
   "name": "금지로읽는한국사",
@@ -391,7 +386,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1101228",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "경관사진으로이해하는역사",
@@ -401,7 +397,8 @@ const RAW_SASANG = [
   "capacity": 20,
   "code": "ZF1101229",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영화로이해하는인문학키워드",
@@ -411,27 +408,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200567",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "유학생을위한한국의역사와문화",
-  "section": "100",
-  "professor": "이은상",
-  "scheduleRaw": "월 10:30(75) 201-6208,, 수 10:30(75) 201-6208",
-  "capacity": 30,
-  "code": "ZF1200570",
-  "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "유학생을위한한국의역사와문화",
-  "section": "101",
-  "professor": "양흥숙",
-  "scheduleRaw": "월 13:30(75) 105-3504,, 수 13:30(75) 105-3504",
-  "capacity": 30,
-  "code": "ZF1200570",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "근현대 중국의 지식인들-인간을 묻다",
@@ -441,7 +419,8 @@ const RAW_SASANG = [
   "capacity": 120,
   "code": "ZF1200716",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "한일관계의역사와문화",
@@ -451,7 +430,8 @@ const RAW_SASANG = [
   "capacity": 35,
   "code": "ZF1100383",
   "credit": 3,
-  "offerDept": "한국민족문화연구소"
+  "offerDept": "한국민족문화연구소",
+  "remote": null
  },
  {
   "name": "전쟁과 평화의 이해",
@@ -461,7 +441,8 @@ const RAW_SASANG = [
   "capacity": 30,
   "code": "ZF1200549",
   "credit": 3,
-  "offerDept": "통일한국연구원"
+  "offerDept": "통일한국연구원",
+  "remote": null
  }
 ];
 
@@ -474,7 +455,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1100445",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "금융·증권보험분쟁과피해자구제",
@@ -484,7 +466,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1100647",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "형법입문",
@@ -494,7 +477,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1200223",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "창작과엔터테인먼트에관한법률지식",
@@ -504,7 +488,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1200254",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "아르바이트대학생을위한교양노동법",
@@ -514,7 +499,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1200398",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "아르바이트대학생을위한교양노동법",
@@ -524,7 +510,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1200398",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "국제법입문",
@@ -534,7 +521,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1200401",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "스토리텔링민법",
@@ -544,7 +532,8 @@ const RAW_SAHOE = [
   "capacity": 170,
   "code": "ZF1200516",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "공정사회로가는계약법",
@@ -554,7 +543,8 @@ const RAW_SAHOE = [
   "capacity": 180,
   "code": "ZF1200734",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "주민참여와지방자치",
@@ -564,7 +554,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1200738",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "판결로배우는리걸마인드",
@@ -574,7 +565,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF9800407",
   "credit": 3,
-  "offerDept": "법학과"
+  "offerDept": "법학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -584,7 +576,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -594,7 +587,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -604,7 +598,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -614,7 +609,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -624,7 +620,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "언어사회와문화",
@@ -634,17 +631,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100699",
   "credit": 3,
-  "offerDept": "국어국문학과"
- },
- {
-  "name": "언어사회와문화",
-  "section": "200",
-  "professor": "손평효",
-  "scheduleRaw": "금 10:00-13:00 밀양M03-3548",
-  "capacity": 0,
-  "code": "ZF1100699",
-  "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "일본문화의이해",
@@ -654,7 +642,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1100337",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "언어, 세상의 지문",
@@ -664,7 +653,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1200339",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "서양의성과풍속의역사",
@@ -674,7 +664,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1100397",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "서양의성과풍속의역사",
@@ -684,7 +675,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1100397",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "서양의성과풍속의역사",
@@ -694,17 +686,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1100397",
   "credit": 3,
-  "offerDept": "사학과"
- },
- {
-  "name": "서양의성과풍속의역사",
-  "section": "200",
-  "professor": "성진희",
-  "scheduleRaw": "금 10:00-13:00 밀양M03-3455",
-  "capacity": 50,
-  "code": "ZF1100397",
-  "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국전통사회와여성",
@@ -714,7 +697,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1100427",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "성과사랑의철학",
@@ -724,7 +708,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1100431",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "성과사랑의철학",
@@ -734,7 +719,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1100431",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "성과사랑의철학",
@@ -744,17 +730,8 @@ const RAW_SAHOE = [
   "capacity": 35,
   "code": "ZF1100431",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "성과사랑의철학",
-  "section": "200",
-  "professor": "양창아",
-  "scheduleRaw": "수 14:00-17:00 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1100431",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "현대정치의탐구",
@@ -764,7 +741,8 @@ const RAW_SAHOE = [
   "capacity": 100,
   "code": "ZF1100433",
   "credit": 3,
-  "offerDept": "정치외교학과"
+  "offerDept": "정치외교학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "다양성과 위기의 시대",
@@ -774,7 +752,8 @@ const RAW_SAHOE = [
   "capacity": 90,
   "code": "ZF1101143",
   "credit": 3,
-  "offerDept": "정치외교학과"
+  "offerDept": "정치외교학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "다양성과 위기의 시대",
@@ -784,7 +763,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1101143",
   "credit": 3,
-  "offerDept": "정치외교학과"
+  "offerDept": "정치외교학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "생활속의심리학",
@@ -794,7 +774,8 @@ const RAW_SAHOE = [
   "capacity": 150,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "생활속의심리학",
@@ -804,7 +785,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -814,7 +796,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -824,7 +807,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -834,7 +818,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -844,7 +829,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -854,7 +840,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -864,7 +851,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -874,7 +862,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "생활속의심리학",
@@ -884,7 +873,8 @@ const RAW_SAHOE = [
   "capacity": 60,
   "code": "ZF1101117",
   "credit": 3,
-  "offerDept": "심리학과"
+  "offerDept": "심리학과",
+  "remote": null
  },
  {
   "name": "대학생을 위한 정보자료의 활용",
@@ -894,7 +884,8 @@ const RAW_SAHOE = [
   "capacity": 50,
   "code": "ZF1200646",
   "credit": 3,
-  "offerDept": "문헌정보학과"
+  "offerDept": "문헌정보학과",
+  "remote": null
  },
  {
   "name": "글로벌 사회의 디지털 시민 의식",
@@ -904,7 +895,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1200715",
   "credit": 3,
-  "offerDept": "문헌정보학과"
+  "offerDept": "문헌정보학과",
+  "remote": null
  },
  {
   "name": "미래공학기술과 지식재산",
@@ -914,7 +906,8 @@ const RAW_SAHOE = [
   "capacity": 50,
   "code": "ZF6002445",
   "credit": 3,
-  "offerDept": "지식재산융합전공"
+  "offerDept": "지식재산융합전공",
+  "remote": null
  },
  {
   "name": "문화다양성과상호문화역량",
@@ -924,7 +917,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1101271",
   "credit": 3,
-  "offerDept": "교육학과"
+  "offerDept": "교육학과",
+  "remote": null
  },
  {
   "name": "예술영화와미적체험",
@@ -934,7 +928,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100771",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "예술영화와미적체험",
@@ -944,7 +939,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100771",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "예술영화와미적체험",
@@ -954,17 +950,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100771",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
- },
- {
-  "name": "예술영화와미적체험",
-  "section": "200",
-  "professor": "김경민",
-  "scheduleRaw": "화 10:00-13:00 밀양M02-2212",
-  "capacity": 0,
-  "code": "ZF1100771",
-  "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "MZ세대를위한조직생활",
@@ -974,7 +961,8 @@ const RAW_SAHOE = [
   "capacity": 50,
   "code": "ZF1101142",
   "credit": 3,
-  "offerDept": "경영학과"
+  "offerDept": "경영학과",
+  "remote": null
  },
  {
   "name": "행복한 데이트, 가족, 부모되기",
@@ -984,7 +972,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1101223",
   "credit": 3,
-  "offerDept": "아동가족학과"
+  "offerDept": "아동가족학과",
+  "remote": null
  },
  {
   "name": "생활과경제",
@@ -994,7 +983,8 @@ const RAW_SAHOE = [
   "capacity": 46,
   "code": "ZF1100112",
   "credit": 3,
-  "offerDept": "경제학부"
+  "offerDept": "경제학부",
+  "remote": null
  },
  {
   "name": "마음을움직이는경제학",
@@ -1004,7 +994,8 @@ const RAW_SAHOE = [
   "capacity": 120,
   "code": "ZF1200117",
   "credit": 3,
-  "offerDept": "경제학부"
+  "offerDept": "경제학부",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "한국문화의이해",
@@ -1014,7 +1005,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1200169",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "서양미술과사회",
@@ -1024,7 +1016,8 @@ const RAW_SAHOE = [
   "capacity": 20,
   "code": "ZF1200407",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "기술과ESG경영",
@@ -1034,7 +1027,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1101075",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  },
  {
   "name": "기술과ESG경영",
@@ -1044,7 +1038,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1101075",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  },
  {
   "name": "기술과ESG경영",
@@ -1054,7 +1049,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1101075",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  },
  {
   "name": "기술과ESG경영",
@@ -1064,7 +1060,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1101075",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  },
  {
   "name": "성과사랑",
@@ -1074,7 +1071,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1100885",
   "credit": 3,
-  "offerDept": "여성연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  },
  {
   "name": "미국을뒤흔든세기의판결",
@@ -1084,7 +1082,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1101274",
   "credit": 3,
-  "offerDept": "여성연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  },
  {
   "name": "젠더,섹슈얼리티그리고인권",
@@ -1094,27 +1093,8 @@ const RAW_SAHOE = [
   "capacity": 0,
   "code": "ZF1200384",
   "credit": 3,
-  "offerDept": "여성연구소"
- },
- {
-  "name": "젠더,섹슈얼리티그리고인권",
-  "section": "200",
-  "professor": "김인선 외 2명",
-  "scheduleRaw": "수 14:00-17:00 밀양M01-1110",
-  "capacity": 0,
-  "code": "ZF1200384",
-  "credit": 3,
-  "offerDept": "여성연구소"
- },
- {
-  "name": "역사와함께읽는고사성어",
-  "section": "200",
-  "professor": "신상필",
-  "scheduleRaw": "화 13:30(75) 밀양M02-2314,, 목 13:30(75) 밀양M02-2314",
-  "capacity": 30,
-  "code": "ZF1200377",
-  "credit": 3,
-  "offerDept": "점필재연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  },
  {
   "name": "정의란무엇인가",
@@ -1124,7 +1104,8 @@ const RAW_SAHOE = [
   "capacity": 30,
   "code": "ZF1200547",
   "credit": 3,
-  "offerDept": "통일한국연구원"
+  "offerDept": "통일한국연구원",
+  "remote": null
  },
  {
   "name": "엔터테인먼트 산업을 통해 보는 패션",
@@ -1134,7 +1115,8 @@ const RAW_SAHOE = [
   "capacity": 40,
   "code": "ZF1101120",
   "credit": 3,
-  "offerDept": "문화유산보존연구소"
+  "offerDept": "문화유산보존연구소",
+  "remote": null
  }
 ];
 
@@ -1147,7 +1129,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1157,7 +1140,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1167,7 +1151,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1177,7 +1162,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1187,7 +1173,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1197,7 +1184,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어1",
@@ -1207,17 +1195,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100989",
   "credit": 3,
-  "offerDept": "중어중문학과"
- },
- {
-  "name": "글로벌중국어1",
-  "section": "200",
-  "professor": "안승웅",
-  "scheduleRaw": "금 10:00-13:00 밀양M03-3453",
-  "capacity": 30,
-  "code": "ZF1100989",
-  "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "글로벌중국어2",
@@ -1227,7 +1206,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100990",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1237,7 +1217,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1247,7 +1228,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1257,7 +1239,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1267,7 +1250,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1277,7 +1261,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1287,7 +1272,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1297,7 +1283,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1307,7 +1294,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1317,7 +1305,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(I)",
@@ -1327,7 +1316,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100236",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(II)",
@@ -1337,7 +1327,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100240",
   "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "일어(II)",
@@ -1347,17 +1338,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100240",
   "credit": 3,
-  "offerDept": "일어일문학과"
- },
- {
-  "name": "일어(II)",
-  "section": "200",
-  "professor": "",
-  "scheduleRaw": "금 10:00-13:00 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1100240",
-  "credit": 3,
-  "offerDept": "일어일문학과"
+  "offerDept": "일어일문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1367,7 +1349,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1377,7 +1360,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1387,7 +1371,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1397,7 +1382,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1407,7 +1393,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1417,7 +1404,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1427,7 +1415,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1437,7 +1426,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1447,7 +1437,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1457,7 +1448,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1467,7 +1459,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1477,7 +1470,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1487,7 +1481,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1497,7 +1492,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(I)",
@@ -1507,7 +1503,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100817",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "프랑스어(II)",
@@ -1517,7 +1514,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1100818",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1527,7 +1525,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1537,7 +1536,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1547,7 +1547,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1557,7 +1558,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1567,7 +1569,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1577,7 +1580,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(I)",
@@ -1587,7 +1591,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100536",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "독일어(II)",
@@ -1597,7 +1602,8 @@ const RAW_SEGYE = [
   "capacity": 0,
   "code": "ZF1100537",
   "credit": 3,
-  "offerDept": "독어독문학과"
+  "offerDept": "독어독문학과",
+  "remote": null
  },
  {
   "name": "처음러시아어",
@@ -1607,7 +1613,8 @@ const RAW_SEGYE = [
   "capacity": 25,
   "code": "ZF1101180",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": null
  },
  {
   "name": "처음러시아어",
@@ -1617,7 +1624,8 @@ const RAW_SEGYE = [
   "capacity": 25,
   "code": "ZF1101180",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": null
  },
  {
   "name": "처음러시아어",
@@ -1627,7 +1635,8 @@ const RAW_SEGYE = [
   "capacity": 25,
   "code": "ZF1101180",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": null
  },
  {
   "name": "처음러시아어",
@@ -1637,7 +1646,8 @@ const RAW_SEGYE = [
   "capacity": 25,
   "code": "ZF1101180",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": null
  },
  {
   "name": "처음러시아어",
@@ -1647,7 +1657,8 @@ const RAW_SEGYE = [
   "capacity": 25,
   "code": "ZF1101180",
   "credit": 3,
-  "offerDept": "노어노문학과"
+  "offerDept": "노어노문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1657,7 +1668,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1667,7 +1679,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1677,7 +1690,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1687,7 +1701,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1697,7 +1712,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1707,7 +1723,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1717,7 +1734,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1727,7 +1745,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1737,7 +1756,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1747,7 +1767,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1757,7 +1778,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(I)",
@@ -1767,17 +1789,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100251",
   "credit": 3,
-  "offerDept": "한문학과"
- },
- {
-  "name": "한문(I)",
-  "section": "200",
-  "professor": "신일권",
-  "scheduleRaw": "목 10:00-13:00 밀양M02-2212",
-  "capacity": 35,
-  "code": "ZF1100251",
-  "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(II)",
@@ -1787,7 +1800,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100252",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(II)",
@@ -1797,7 +1811,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100252",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(II)",
@@ -1807,7 +1822,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100252",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "한문(II)",
@@ -1817,7 +1833,8 @@ const RAW_SEGYE = [
   "capacity": 35,
   "code": "ZF1100252",
   "credit": 3,
-  "offerDept": "한문학과"
+  "offerDept": "한문학과",
+  "remote": null
  },
  {
   "name": "베트남어",
@@ -1827,7 +1844,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100870",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "기업영어",
@@ -1837,7 +1855,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100898",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "기업영어",
@@ -1847,7 +1866,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100898",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "고급영문독해",
@@ -1857,7 +1877,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100902",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "고급영문독해",
@@ -1867,7 +1888,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100902",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "고급영문독해",
@@ -1877,7 +1899,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100902",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "고급영문독해",
@@ -1887,7 +1910,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100902",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어글쓰기",
@@ -1897,7 +1921,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100904",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어글쓰기",
@@ -1907,7 +1932,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100904",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어글쓰기",
@@ -1917,7 +1943,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100904",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어글쓰기",
@@ -1927,17 +1954,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1100904",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "영어글쓰기",
-  "section": "200",
-  "professor": "강형진",
-  "scheduleRaw": "화 10:00-13:00 밀양M03-3243",
-  "capacity": 30,
-  "code": "ZF1100904",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "이태리어",
@@ -1947,7 +1965,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200067",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "인도네시아어",
@@ -1957,7 +1976,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1200209",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어구문연습",
@@ -1967,7 +1987,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200283",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어구문연습",
@@ -1977,7 +1998,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200283",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어구문연습",
@@ -1987,7 +2009,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200283",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어구문연습",
@@ -1997,7 +2020,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200283",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어표현연습(I)",
@@ -2007,7 +2031,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200284",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어표현연습(I)",
@@ -2017,7 +2042,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200284",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어표현연습(I)",
@@ -2027,7 +2053,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200284",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어표현연습(I)",
@@ -2037,7 +2064,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200284",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어표현연습(I)",
@@ -2047,17 +2075,8 @@ const RAW_SEGYE = [
   "capacity": 30,
   "code": "ZF1200284",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "유학생을위한교양한국어",
-  "section": "100",
-  "professor": "차윤정",
-  "scheduleRaw": "월 10:30(75) 105-3504,, 수 10:30(75) 105-3504",
-  "capacity": 25,
-  "code": "ZF1200529",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "영어로 읽는 서구문화",
@@ -2067,7 +2086,8 @@ const RAW_SEGYE = [
   "capacity": 40,
   "code": "ZF1200690",
   "credit": 3,
-  "offerDept": "인문학연구소"
+  "offerDept": "인문학연구소",
+  "remote": null
  }
 ];
 
@@ -2080,7 +2100,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100316",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "문학과영상예술",
@@ -2090,17 +2111,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100316",
   "credit": 3,
-  "offerDept": "국어국문학과"
- },
- {
-  "name": "문학과영상예술",
-  "section": "200",
-  "professor": "류영욱",
-  "scheduleRaw": "월 13:30-16:30 밀양M03-3349",
-  "capacity": 0,
-  "code": "ZF1100316",
-  "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "민속문학과전통문화",
@@ -2110,7 +2122,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100317",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "민속문학과전통문화",
@@ -2120,7 +2133,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100317",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "민속문학과전통문화",
@@ -2130,7 +2144,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100317",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "민속문학과전통문화",
@@ -2140,7 +2155,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100317",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "영화로보는현대중국",
@@ -2150,7 +2166,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101035",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "영어와문화읽기",
@@ -2160,7 +2177,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200536",
   "credit": 3,
-  "offerDept": "영어영문학과"
+  "offerDept": "영어영문학과",
+  "remote": null
  },
  {
   "name": "프랑스 문학과 K 문화 콘텐츠",
@@ -2170,7 +2188,8 @@ const RAW_MUNHAK = [
   "capacity": 40,
   "code": "ZF1101113",
   "credit": 3,
-  "offerDept": "불어불문학과"
+  "offerDept": "불어불문학과",
+  "remote": null
  },
  {
   "name": "영상예술과철학",
@@ -2180,7 +2199,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1100347",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "영상예술과철학",
@@ -2190,7 +2210,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1100347",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "영상예술과철학",
@@ -2200,17 +2221,8 @@ const RAW_MUNHAK = [
   "capacity": 35,
   "code": "ZF1100347",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "영상예술과철학",
-  "section": "200",
-  "professor": "정재훈",
-  "scheduleRaw": "화 14:00-17:00 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1100347",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "건축의 이해",
@@ -2220,7 +2232,8 @@ const RAW_MUNHAK = [
   "capacity": 40,
   "code": "ZF1100922",
   "credit": 3,
-  "offerDept": "건축학과"
+  "offerDept": "건축학과",
+  "remote": null
  },
  {
   "name": "우리 시대의 지구인문학",
@@ -2230,7 +2243,8 @@ const RAW_MUNHAK = [
   "capacity": 50,
   "code": "ZF1101182",
   "credit": 3,
-  "offerDept": "국어교육과"
+  "offerDept": "국어교육과",
+  "remote": null
  },
  {
   "name": "문학과 예술로 읽는 서양사회사",
@@ -2240,7 +2254,8 @@ const RAW_MUNHAK = [
   "capacity": 50,
   "code": "ZF1200524",
   "credit": 3,
-  "offerDept": "국어교육과"
+  "offerDept": "국어교육과",
+  "remote": null
  },
  {
   "name": "웹문화 읽기",
@@ -2250,7 +2265,8 @@ const RAW_MUNHAK = [
   "capacity": 50,
   "code": "ZF1200745",
   "credit": 3,
-  "offerDept": "국어교육과"
+  "offerDept": "국어교육과",
+  "remote": null
  },
  {
   "name": "세상에 스며든 클래식",
@@ -2260,7 +2276,8 @@ const RAW_MUNHAK = [
   "capacity": 40,
   "code": "ZF1101269",
   "credit": 3,
-  "offerDept": "음악학과"
+  "offerDept": "음악학과",
+  "remote": null
  },
  {
   "name": "미술을보는눈",
@@ -2270,17 +2287,8 @@ const RAW_MUNHAK = [
   "capacity": 35,
   "code": "ZF1100512",
   "credit": 3,
-  "offerDept": "미술학과"
- },
- {
-  "name": "미술을보는눈",
-  "section": "102",
-  "professor": "정희진",
-  "scheduleRaw": "목 10:00-13:00 밀양M02-2111",
-  "capacity": 35,
-  "code": "ZF1100512",
-  "credit": 3,
-  "offerDept": "미술학과"
+  "offerDept": "미술학과",
+  "remote": null
  },
  {
   "name": "섬유패션소품디자인",
@@ -2290,7 +2298,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1100982",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "섬유패션소품디자인",
@@ -2300,7 +2309,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1100982",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "주얼리코디네이터",
@@ -2310,7 +2320,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101219",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "장신구의역사",
@@ -2320,7 +2331,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200085",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "장신구의역사",
@@ -2330,7 +2342,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200085",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "창의 개발 스타트업 : 디자인적 사고와 브랜드 개발",
@@ -2340,7 +2353,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200430",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "한국의 미와 예술",
@@ -2350,7 +2364,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200674",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "한국음악과영화",
@@ -2360,7 +2375,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1100824",
   "credit": 3,
-  "offerDept": "한국음악학과"
+  "offerDept": "한국음악학과",
+  "remote": null
  },
  {
   "name": "무용 작품 감상",
@@ -2370,7 +2386,8 @@ const RAW_MUNHAK = [
   "capacity": 40,
   "code": "ZF1101137",
   "credit": 3,
-  "offerDept": "무용학과"
+  "offerDept": "무용학과",
+  "remote": null
  },
  {
   "name": "영화와대중문화의쟁점",
@@ -2380,7 +2397,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100887",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "영화와대중문화의쟁점",
@@ -2390,7 +2408,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100887",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "영화와대중문화의쟁점",
@@ -2400,17 +2419,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1100887",
   "credit": 3,
-  "offerDept": "예술문화영상학과"
- },
- {
-  "name": "영화와대중문화의쟁점",
-  "section": "200",
-  "professor": "",
-  "scheduleRaw": "수 10:00-13:00 밀양M02-2212",
-  "capacity": 0,
-  "code": "ZF1100887",
-  "credit": 3,
-  "offerDept": "예술문화영상학과"
+  "offerDept": "예술문화영상학과",
+  "remote": null
  },
  {
   "name": "동서양신화와문화콘텐츠",
@@ -2420,7 +2430,8 @@ const RAW_MUNHAK = [
   "capacity": 45,
   "code": "ZF1101230",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "예술로만나는이탈리아",
@@ -2430,7 +2441,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101231",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "삶과죽음의문화사",
@@ -2440,7 +2452,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101232",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "만화와애니메이션으로읽는일본문학과예술",
@@ -2450,7 +2463,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101233",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "전쟁서사로읽는공감인문학",
@@ -2460,7 +2474,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101234",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "한자로읽는동아시아문화",
@@ -2470,7 +2485,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1101235",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "한국의신화와전통예술개관",
@@ -2480,7 +2496,8 @@ const RAW_MUNHAK = [
   "capacity": 30,
   "code": "ZF1200164",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "현대예술로만나는지역",
@@ -2490,7 +2507,8 @@ const RAW_MUNHAK = [
   "capacity": 40,
   "code": "ZF1100865",
   "credit": 3,
-  "offerDept": "한국민족문화연구소"
+  "offerDept": "한국민족문화연구소",
+  "remote": null
  },
  {
   "name": "예술작품으로 보는 (여)성의 역사",
@@ -2500,17 +2518,8 @@ const RAW_MUNHAK = [
   "capacity": 0,
   "code": "ZF1101037",
   "credit": 3,
-  "offerDept": "여성연구소"
- },
- {
-  "name": "옛사람들의사랑과전쟁",
-  "section": "200",
-  "professor": "신상필",
-  "scheduleRaw": "화 15:00(75) 밀양M02-2314,, 목 15:00(75) 밀양M02-2314",
-  "capacity": 30,
-  "code": "ZF1200378",
-  "credit": 3,
-  "offerDept": "점필재연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  },
  {
   "name": "영화와BIFF",
@@ -2520,17 +2529,8 @@ const RAW_MUNHAK = [
   "capacity": 210,
   "code": "ZF1100932",
   "credit": 3,
-  "offerDept": "영화연구소"
- },
- {
-  "name": "영화와BIFF",
-  "section": "201",
-  "professor": "김충국 외 1명",
-  "scheduleRaw": "수 13:00-16:00 밀양M02-2212",
-  "capacity": 40,
-  "code": "ZF1100932",
-  "credit": 3,
-  "offerDept": "영화연구소"
+  "offerDept": "영화연구소",
+  "remote": null
  }
 ];
 
@@ -2543,7 +2543,8 @@ const RAW_GWAHAK = [
   "capacity": 60,
   "code": "ZF1100405",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국의전통과학과기술",
@@ -2553,7 +2554,8 @@ const RAW_GWAHAK = [
   "capacity": 60,
   "code": "ZF1100405",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "한국의전통과학과기술",
@@ -2563,7 +2565,8 @@ const RAW_GWAHAK = [
   "capacity": 60,
   "code": "ZF1100405",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2573,7 +2576,8 @@ const RAW_GWAHAK = [
   "capacity": 60,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2583,7 +2587,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2593,7 +2598,8 @@ const RAW_GWAHAK = [
   "capacity": 32,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2603,7 +2609,8 @@ const RAW_GWAHAK = [
   "capacity": 32,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2613,7 +2620,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2623,7 +2631,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "수학(II)",
@@ -2633,7 +2642,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "MA1500644",
   "credit": 3,
-  "offerDept": "수학과"
+  "offerDept": "수학과",
+  "remote": null
  },
  {
   "name": "환경과방사능",
@@ -2643,7 +2653,8 @@ const RAW_GWAHAK = [
   "capacity": 60,
   "code": "ZF1100478",
   "credit": 3,
-  "offerDept": "물리학과"
+  "offerDept": "물리학과",
+  "remote": null
  },
  {
   "name": "빅뱅 우주 속의 우리",
@@ -2653,7 +2664,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1200598",
   "credit": 3,
-  "offerDept": "물리학과"
+  "offerDept": "물리학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "R을활용한통계학개론",
@@ -2663,7 +2675,8 @@ const RAW_GWAHAK = [
   "capacity": 100,
   "code": "ZF1200325",
   "credit": 3,
-  "offerDept": "통계학과"
+  "offerDept": "통계학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "현대생활과화학",
@@ -2673,7 +2686,8 @@ const RAW_GWAHAK = [
   "capacity": 35,
   "code": "ZF1100272",
   "credit": 3,
-  "offerDept": "화학과"
+  "offerDept": "화학과",
+  "remote": null
  },
  {
   "name": "생명과학과 미래세상",
@@ -2683,7 +2697,8 @@ const RAW_GWAHAK = [
   "capacity": 40,
   "code": "ZF1100753",
   "credit": 3,
-  "offerDept": "분자생물학과"
+  "offerDept": "분자생물학과",
+  "remote": null
  },
  {
   "name": "생명과학과 미래세상",
@@ -2693,7 +2708,8 @@ const RAW_GWAHAK = [
   "capacity": 30,
   "code": "ZF1100753",
   "credit": 3,
-  "offerDept": "분자생물학과"
+  "offerDept": "분자생물학과",
+  "remote": null
  },
  {
   "name": "생명의프린키피아",
@@ -2703,7 +2719,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1200071",
   "credit": 3,
-  "offerDept": "생명과학과"
+  "offerDept": "생명과학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "뇌와질환",
@@ -2713,7 +2730,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "ZF1200237",
   "credit": 3,
-  "offerDept": "생명과학과"
+  "offerDept": "생명과학과",
+  "remote": null
  },
  {
   "name": "지구와자원",
@@ -2723,7 +2741,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1100693",
   "credit": 3,
-  "offerDept": "지질환경과학과"
+  "offerDept": "지질환경과학과",
+  "remote": null
  },
  {
   "name": "지구와자원",
@@ -2733,7 +2752,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1100693",
   "credit": 3,
-  "offerDept": "지질환경과학과"
+  "offerDept": "지질환경과학과",
+  "remote": null
  },
  {
   "name": "인간과자연재해",
@@ -2743,7 +2763,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1200274",
   "credit": 3,
-  "offerDept": "지질환경과학과"
+  "offerDept": "지질환경과학과",
+  "remote": null
  },
  {
   "name": "인간과자연재해",
@@ -2753,7 +2774,8 @@ const RAW_GWAHAK = [
   "capacity": 70,
   "code": "ZF1200274",
   "credit": 3,
-  "offerDept": "지질환경과학과"
+  "offerDept": "지질환경과학과",
+  "remote": null
  },
  {
   "name": "생활과기상",
@@ -2763,7 +2785,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "ZF1100525",
   "credit": 3,
-  "offerDept": "대기환경과학과"
+  "offerDept": "대기환경과학과",
+  "remote": null
  },
  {
   "name": "이론물리학의 최전선",
@@ -2773,7 +2796,8 @@ const RAW_GWAHAK = [
   "capacity": 80,
   "code": "ZF1101041",
   "credit": 3,
-  "offerDept": "물리교육과"
+  "offerDept": "물리교육과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "역동하는 지구",
@@ -2783,7 +2807,8 @@ const RAW_GWAHAK = [
   "capacity": 40,
   "code": "ZF1101268",
   "credit": 3,
-  "offerDept": "지구과학교육과"
+  "offerDept": "지구과학교육과",
+  "remote": null
  },
  {
   "name": "역동하는 지구",
@@ -2793,7 +2818,8 @@ const RAW_GWAHAK = [
   "capacity": 40,
   "code": "ZF1101268",
   "credit": 3,
-  "offerDept": "지구과학교육과"
+  "offerDept": "지구과학교육과",
+  "remote": null
  },
  {
   "name": "약이야기",
@@ -2803,7 +2829,8 @@ const RAW_GWAHAK = [
   "capacity": 35,
   "code": "ZF1100486",
   "credit": 3,
-  "offerDept": "약학부"
+  "offerDept": "약학부",
+  "remote": null
  },
  {
   "name": "에너지와기후변화",
@@ -2813,7 +2840,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "ZF1200696",
   "credit": 3,
-  "offerDept": "EES융합전공"
+  "offerDept": "EES융합전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "에너지환경기술",
@@ -2823,7 +2851,8 @@ const RAW_GWAHAK = [
   "capacity": 50,
   "code": "ZF1200770",
   "credit": 3,
-  "offerDept": "EES융합전공"
+  "offerDept": "EES융합전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "배터리속소재이야기",
@@ -2833,7 +2862,8 @@ const RAW_GWAHAK = [
   "capacity": 100,
   "code": "ZF1101057",
   "credit": 3,
-  "offerDept": "이차전지융합전공"
+  "offerDept": "이차전지융합전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "이차전지와인공지능",
@@ -2843,17 +2873,8 @@ const RAW_GWAHAK = [
   "capacity": 100,
   "code": "ZF1101058",
   "credit": 3,
-  "offerDept": "이차전지융합전공"
- },
- {
-  "name": "성의과학",
-  "section": "200",
-  "professor": "박현철",
-  "scheduleRaw": "월 13:30(75) 밀양M03-3455,, 수 13:30(75) 밀양M03-3455",
-  "capacity": 30,
-  "code": "ZF1100189",
-  "credit": 3,
-  "offerDept": "생명환경화학과"
+  "offerDept": "이차전지융합전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "멀티미디어의이해와활용",
@@ -2863,7 +2884,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1100738",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "IT환경에서의개인정보보호",
@@ -2873,7 +2895,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1100740",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "디지털리터러시의 이해와 활용",
@@ -2883,17 +2906,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1101167",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "디지털리터러시의 이해와 활용",
-  "section": "201",
-  "professor": "김미숙",
-  "scheduleRaw": "화 14:00-17:00 밀양M03-3204",
-  "capacity": 38,
-  "code": "ZF1101167",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "AI기반컴퓨터시뮬레이션",
@@ -2903,7 +2917,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1101217",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "AI기반컴퓨터시뮬레이션",
@@ -2913,7 +2928,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1101217",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "AI기반컴퓨터프로그래밍입문",
@@ -2923,7 +2939,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1101218",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "데이터분석과AI의이해",
@@ -2933,7 +2950,8 @@ const RAW_GWAHAK = [
   "capacity": 38,
   "code": "ZF1101220",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "AI미디어리터러시이해와비판적성찰",
@@ -2943,7 +2961,8 @@ const RAW_GWAHAK = [
   "capacity": 30,
   "code": "ZF1101237",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "실생활과수학적모델링",
@@ -2953,7 +2972,8 @@ const RAW_GWAHAK = [
   "capacity": 30,
   "code": "ZF1101238",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "공학윤리",
@@ -2963,7 +2983,8 @@ const RAW_GWAHAK = [
   "capacity": 40,
   "code": "ZF1100539",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  },
  {
   "name": "공학윤리",
@@ -2973,21 +2994,12 @@ const RAW_GWAHAK = [
   "capacity": 40,
   "code": "ZF1100539",
   "credit": 3,
-  "offerDept": "교육인증원"
+  "offerDept": "교육인증원",
+  "remote": null
  }
 ];
 
 const RAW_YUNGHAP = [
- {
-  "name": "사상체질로 보는 인간의 감정과 몸",
-  "section": "001",
-  "professor": "신상원",
-  "scheduleRaw": "화 18:00-21:00 양산Y03-608",
-  "capacity": 0,
-  "code": "ZF1200742",
-  "credit": 3,
-  "offerDept": "한의학과"
- },
  {
   "name": "문학과영화로부산읽기",
   "section": "001",
@@ -2996,7 +3008,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200746",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "문학과영화로부산읽기",
@@ -3006,7 +3019,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200746",
   "credit": 3,
-  "offerDept": "국어국문학과"
+  "offerDept": "국어국문학과",
+  "remote": null
  },
  {
   "name": "음식으로만나는중국",
@@ -3016,7 +3030,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200641",
   "credit": 3,
-  "offerDept": "중어중문학과"
+  "offerDept": "중어중문학과",
+  "remote": null
  },
  {
   "name": "미국문학과글로벌문화",
@@ -3026,7 +3041,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1101004",
   "credit": 3,
-  "offerDept": "영어영문학과"
+  "offerDept": "영어영문학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "중국문명과예술의흐름",
@@ -3036,7 +3052,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1100800",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "AI시대의기술과그의미",
@@ -3046,7 +3063,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1101043",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "AI시대의기술과그의미",
@@ -3056,7 +3074,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1101043",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "AI시대의기술과그의미",
@@ -3066,17 +3085,8 @@ const RAW_YUNGHAP = [
   "capacity": 35,
   "code": "ZF1101043",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "AI시대의기술과그의미",
-  "section": "200",
-  "professor": "이선필",
-  "scheduleRaw": "수 15:00-18:00 밀양M02-2314",
-  "capacity": 30,
-  "code": "ZF1101043",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "스토리텔링으로만나는불교사상",
@@ -3086,7 +3096,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200671",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "스토리텔링으로만나는불교사상",
@@ -3096,17 +3107,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200671",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "스토리텔링으로만나는불교사상",
-  "section": "200",
-  "professor": "김준호",
-  "scheduleRaw": "화 10:30-13:30 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1200671",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "음식의과학",
@@ -3116,7 +3118,8 @@ const RAW_YUNGHAP = [
   "capacity": 50,
   "code": "ZF1200195",
   "credit": 3,
-  "offerDept": "생명과학과"
+  "offerDept": "생명과학과",
+  "remote": null
  },
  {
   "name": "위험사회와미래직업",
@@ -3126,7 +3129,8 @@ const RAW_YUNGHAP = [
   "capacity": 20,
   "code": "ZF1200091",
   "credit": 3,
-  "offerDept": "교육학과"
+  "offerDept": "교육학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "영재교육과창의성계발",
@@ -3136,7 +3140,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200292",
   "credit": 3,
-  "offerDept": "교육학과"
+  "offerDept": "교육학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "몸,나를찾는치유여행",
@@ -3146,7 +3151,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200741",
   "credit": 3,
-  "offerDept": "특수교육과"
+  "offerDept": "특수교육과",
+  "remote": null
  },
  {
   "name": "영화로읽는세계사와시대정신",
@@ -3156,7 +3162,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200638",
   "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "영화로읽는세계사와시대정신",
@@ -3166,17 +3173,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200638",
   "credit": 3,
-  "offerDept": "역사교육과"
- },
- {
-  "name": "영화로읽는세계사와시대정신",
-  "section": "003",
-  "professor": "원동필",
-  "scheduleRaw": "금 13:00-16:00 밀양M02-2111",
-  "capacity": 0,
-  "code": "ZF1200638",
-  "credit": 3,
-  "offerDept": "역사교육과"
+  "offerDept": "역사교육과",
+  "remote": null
  },
  {
   "name": "AI와 인간: 거울 속의 기계가 던지는 윤리적 질문들",
@@ -3186,7 +3184,8 @@ const RAW_YUNGHAP = [
   "capacity": 20,
   "code": "ZF1101248",
   "credit": 3,
-  "offerDept": "윤리교육과"
+  "offerDept": "윤리교육과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "감염병과사회의변화",
@@ -3196,7 +3195,8 @@ const RAW_YUNGHAP = [
   "capacity": 0,
   "code": "ZF1200591",
   "credit": 3,
-  "offerDept": "의학과"
+  "offerDept": "의학과",
+  "remote": null
  },
  {
   "name": "현대문화와도자예술",
@@ -3206,7 +3206,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200144",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "현대문화와도자예술",
@@ -3216,7 +3217,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200144",
   "credit": 3,
-  "offerDept": "조형학과"
+  "offerDept": "조형학과",
+  "remote": null
  },
  {
   "name": "수학과물리의감성적이해",
@@ -3226,7 +3228,8 @@ const RAW_YUNGHAP = [
   "capacity": 100,
   "code": "ZF1200717",
   "credit": 3,
-  "offerDept": "광메카트로닉스공학전공"
+  "offerDept": "광메카트로닉스공학전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "수학과물리의감성적이해",
@@ -3236,7 +3239,8 @@ const RAW_YUNGHAP = [
   "capacity": 40,
   "code": "ZF1200717",
   "credit": 3,
-  "offerDept": "광메카트로닉스공학전공"
+  "offerDept": "광메카트로닉스공학전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "인류문명과에너지원의변천사",
@@ -3246,7 +3250,8 @@ const RAW_YUNGHAP = [
   "capacity": 100,
   "code": "ZF1101056",
   "credit": 3,
-  "offerDept": "이차전지융합전공"
+  "offerDept": "이차전지융합전공",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "해양수산정책바로알기",
@@ -3256,7 +3261,8 @@ const RAW_YUNGHAP = [
   "capacity": 50,
   "code": "ZF1101165",
   "credit": 3,
-  "offerDept": "식품자원경제학과"
+  "offerDept": "식품자원경제학과",
+  "remote": null
  },
  {
   "name": "합리적인간의비합리적선택",
@@ -3266,7 +3272,8 @@ const RAW_YUNGHAP = [
   "capacity": 50,
   "code": "ZF1101040",
   "credit": 3,
-  "offerDept": "경영학과"
+  "offerDept": "경영학과",
+  "remote": null
  },
  {
   "name": "부자되기특강",
@@ -3276,7 +3283,8 @@ const RAW_YUNGHAP = [
   "capacity": 50,
   "code": "ZF1200068",
   "credit": 3,
-  "offerDept": "경영학과"
+  "offerDept": "경영학과",
+  "remote": null
  },
  {
   "name": "지속가능패션과웰빙",
@@ -3286,7 +3294,8 @@ const RAW_YUNGHAP = [
   "capacity": 32,
   "code": "ZF1101183",
   "credit": 3,
-  "offerDept": "의류학과"
+  "offerDept": "의류학과",
+  "remote": null
  },
  {
   "name": "지속가능패션과웰빙",
@@ -3296,7 +3305,8 @@ const RAW_YUNGHAP = [
   "capacity": 32,
   "code": "ZF1101183",
   "credit": 3,
-  "offerDept": "의류학과"
+  "offerDept": "의류학과",
+  "remote": null
  },
  {
   "name": "과학과디자인이함께하는환경색채",
@@ -3306,7 +3316,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1100963",
   "credit": 3,
-  "offerDept": "실내환경디자인학과"
+  "offerDept": "실내환경디자인학과",
+  "remote": null
  },
  {
   "name": "도시와환경디자인",
@@ -3316,17 +3327,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200699",
   "credit": 3,
-  "offerDept": "실내환경디자인학과"
- },
- {
-  "name": "공학자의눈으로세계를보다",
-  "section": "140",
-  "professor": "정준수",
-  "scheduleRaw": "목 15:00-18:00 양산Y17-204",
-  "capacity": 40,
-  "code": "ZF1200682",
-  "credit": 3,
-  "offerDept": "의생명융합공학부"
+  "offerDept": "실내환경디자인학과",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "기업가정신과 창의적 사고",
@@ -3336,7 +3338,8 @@ const RAW_YUNGHAP = [
   "capacity": 270,
   "code": "ZF1200265",
   "credit": 2,
-  "offerDept": "창업교육센터"
+  "offerDept": "창업교육센터",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "기업가정신과 창의적 사고",
@@ -3346,7 +3349,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1200265",
   "credit": 2,
-  "offerDept": "창업교육센터"
+  "offerDept": "창업교육센터",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "인물로보는과학기술의역사",
@@ -3356,7 +3360,8 @@ const RAW_YUNGHAP = [
   "capacity": 30,
   "code": "ZF1100997",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "예술과과학의역사적관계에대한이해",
@@ -3366,7 +3371,8 @@ const RAW_YUNGHAP = [
   "capacity": 20,
   "code": "ZF1200491",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "PNU시대와지성특강",
@@ -3376,27 +3382,8 @@ const RAW_YUNGHAP = [
   "capacity": 75,
   "code": "ZF1200649",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "PNU시대와지성특강",
-  "section": "200",
-  "professor": "하상복 외 1명",
-  "scheduleRaw": "화 15:00-18:00 밀양M03-3217",
-  "capacity": 55,
-  "code": "ZF1200649",
-  "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "PNU시대와지성특강",
-  "section": "300",
-  "professor": "하상복 외 1명",
-  "scheduleRaw": "화 15:00-18:00 양산Y15-411",
-  "capacity": 50,
-  "code": "ZF1200649",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "SF와 포스트휴먼",
@@ -3406,7 +3393,8 @@ const RAW_YUNGHAP = [
   "capacity": 40,
   "code": "ZF1200464",
   "credit": 3,
-  "offerDept": "인문학연구소"
+  "offerDept": "인문학연구소",
+  "remote": null
  },
  {
   "name": "기후변화의이해",
@@ -3416,7 +3404,8 @@ const RAW_YUNGHAP = [
   "capacity": 60,
   "code": "ZF1200165",
   "credit": 3,
-  "offerDept": "기후과학연구소"
+  "offerDept": "기후과학연구소",
+  "remote": "원격(비실시간)"
  },
  {
   "name": "아시아공동체특강",
@@ -3426,7 +3415,8 @@ const RAW_YUNGHAP = [
   "capacity": 40,
   "code": "ZF1200520",
   "credit": 3,
-  "offerDept": "통일한국연구원"
+  "offerDept": "통일한국연구원",
+  "remote": null
  }
 ];
 
@@ -3439,7 +3429,8 @@ const RAW_GEONGANG = [
   "capacity": 30,
   "code": "ZF1100801",
   "credit": 3,
-  "offerDept": "사학과"
+  "offerDept": "사학과",
+  "remote": null
  },
  {
   "name": "생활습관병과운동",
@@ -3449,7 +3440,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200089",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "생활습관병과운동",
@@ -3459,7 +3451,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200089",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "생활습관병과운동",
@@ -3469,17 +3462,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200089",
   "credit": 3,
-  "offerDept": "체육교육과"
- },
- {
-  "name": "생활습관병과운동",
-  "section": "200",
-  "professor": "고수한",
-  "scheduleRaw": "화 10:30(75) 밀양M02-2314,, 목 10:30(75) 밀양M02-2314",
-  "capacity": 0,
-  "code": "ZF1200089",
-  "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3489,7 +3473,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3499,7 +3484,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3509,7 +3495,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3519,7 +3506,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3529,7 +3517,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대사회와스포츠",
@@ -3539,17 +3528,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200467",
   "credit": 3,
-  "offerDept": "체육교육과"
- },
- {
-  "name": "현대사회와스포츠",
-  "section": "200",
-  "professor": "윤거일",
-  "scheduleRaw": "월 12:00(75) 밀양M03-3454,, 수 12:00(75) 밀양M03-3454",
-  "capacity": 0,
-  "code": "ZF1200467",
-  "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대생활과레크레이션",
@@ -3559,7 +3539,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200468",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대생활과레크레이션",
@@ -3569,7 +3550,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200468",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대생활과레크레이션",
@@ -3579,7 +3561,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200468",
   "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "현대생활과레크레이션",
@@ -3589,27 +3572,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200468",
   "credit": 3,
-  "offerDept": "체육교육과"
- },
- {
-  "name": "현대생활과레크레이션",
-  "section": "200",
-  "professor": "강민서",
-  "scheduleRaw": "월 13:30(75) 밀양M02-2314,, 수 13:30(75) 밀양M02-2314",
-  "capacity": 0,
-  "code": "ZF1200468",
-  "credit": 3,
-  "offerDept": "체육교육과"
- },
- {
-  "name": "현대생활과레크레이션",
-  "section": "300",
-  "professor": "강민서",
-  "scheduleRaw": "목 14:00-17:00 양산Y15-311",
-  "capacity": 0,
-  "code": "ZF1200468",
-  "credit": 3,
-  "offerDept": "체육교육과"
+  "offerDept": "체육교육과",
+  "remote": null
  },
  {
   "name": "주택과실내디자인",
@@ -3619,7 +3583,8 @@ const RAW_GEONGANG = [
   "capacity": 30,
   "code": "ZF1200332",
   "credit": 3,
-  "offerDept": "실내환경디자인학과"
+  "offerDept": "실내환경디자인학과",
+  "remote": null
  },
  {
   "name": "현대인의체력관리",
@@ -3629,7 +3594,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200444",
   "credit": 3,
-  "offerDept": "스포츠과학과"
+  "offerDept": "스포츠과학과",
+  "remote": null
  },
  {
   "name": "현대인의체력관리",
@@ -3639,7 +3605,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200444",
   "credit": 3,
-  "offerDept": "스포츠과학과"
+  "offerDept": "스포츠과학과",
+  "remote": null
  },
  {
   "name": "현대인의체력관리",
@@ -3649,7 +3616,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200444",
   "credit": 3,
-  "offerDept": "스포츠과학과"
+  "offerDept": "스포츠과학과",
+  "remote": null
  },
  {
   "name": "현대인의체력관리",
@@ -3659,7 +3627,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200444",
   "credit": 3,
-  "offerDept": "스포츠과학과"
+  "offerDept": "스포츠과학과",
+  "remote": null
  },
  {
   "name": "현대인의체력관리",
@@ -3669,7 +3638,8 @@ const RAW_GEONGANG = [
   "capacity": 0,
   "code": "ZF1200444",
   "credit": 3,
-  "offerDept": "스포츠과학과"
+  "offerDept": "스포츠과학과",
+  "remote": null
  },
  {
   "name": "스포츠와도시인문학",
@@ -3679,7 +3649,8 @@ const RAW_GEONGANG = [
   "capacity": 30,
   "code": "ZF1101239",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  }
 ];
 
@@ -3692,7 +3663,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1100407",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "욕망과철학",
@@ -3702,7 +3674,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1100407",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "욕망과철학",
@@ -3712,17 +3685,8 @@ const RAW_INSEONG = [
   "capacity": 35,
   "code": "ZF1100407",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "욕망과철학",
-  "section": "200",
-  "professor": "박수범",
-  "scheduleRaw": "목 14:00-17:00 밀양M02-2111",
-  "capacity": 30,
-  "code": "ZF1100407",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "AI시대 도가사상의지혜",
@@ -3732,7 +3696,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1101225",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "AI시대 도가사상의지혜",
@@ -3742,7 +3707,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1101225",
   "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "AI시대 도가사상의지혜",
@@ -3752,17 +3718,8 @@ const RAW_INSEONG = [
   "capacity": 35,
   "code": "ZF1101225",
   "credit": 3,
-  "offerDept": "철학과"
- },
- {
-  "name": "AI시대 도가사상의지혜",
-  "section": "200",
-  "professor": "구미숙",
-  "scheduleRaw": "목 14:00-17:00 밀양M02-2212",
-  "capacity": 30,
-  "code": "ZF1101225",
-  "credit": 3,
-  "offerDept": "철학과"
+  "offerDept": "철학과",
+  "remote": null
  },
  {
   "name": "다양성의 가치와 포용적 사회",
@@ -3772,17 +3729,8 @@ const RAW_INSEONG = [
   "capacity": 20,
   "code": "ZF1101007",
   "credit": 3,
-  "offerDept": "교양교육원"
- },
- {
-  "name": "다양성의 가치와 포용적 사회",
-  "section": "200",
-  "professor": "주현희 외 1명",
-  "scheduleRaw": "수 14:00-17:00 밀양M03-3242",
-  "capacity": 20,
-  "code": "ZF1101007",
-  "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "마음돌봄리부트",
@@ -3792,7 +3740,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1101240",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "방황하는청춘을위한희망의철학",
@@ -3802,7 +3751,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1101241",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "미래세대와돌봄사회",
@@ -3812,7 +3762,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1101242",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "효원사회봉사",
@@ -3822,7 +3773,8 @@ const RAW_INSEONG = [
   "capacity": 200,
   "code": "ZF1101246",
   "credit": 2,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "현대사회에서반려동물기르기와동물권",
@@ -3832,7 +3784,8 @@ const RAW_INSEONG = [
   "capacity": 30,
   "code": "ZF1200650",
   "credit": 3,
-  "offerDept": "교양교육원"
+  "offerDept": "교양교육원",
+  "remote": null
  },
  {
   "name": "국제학생을위한인문학산책",
@@ -3842,7 +3795,8 @@ const RAW_INSEONG = [
   "capacity": 0,
   "code": "ZF1101273",
   "credit": 3,
-  "offerDept": "여성연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  },
  {
   "name": "호모에로스,연애의정치학",
@@ -3852,6 +3806,7 @@ const RAW_INSEONG = [
   "capacity": 0,
   "code": "ZF1101275",
   "credit": 3,
-  "offerDept": "여성연구소"
+  "offerDept": "여성연구소",
+  "remote": null
  }
 ];
