@@ -86,22 +86,7 @@
         <div id="creditSummaryTop" class="credit-summary-top"></div>
         <button class="btn small" id="resetBtnTop">🔄 시간표 초기화</button>
       </div>
-      <div class="timetable-wrap" id="desktopGridWrap">
-        <div class="timetable">
-          <div class="tt-head" style="background:none;border:none;"></div>
-          <div class="tt-head">월</div>
-          <div class="tt-head">화</div>
-          <div class="tt-head">수</div>
-          <div class="tt-head">목</div>
-          <div class="tt-head">금</div>
-          <div id="timeAxis"></div>
-          <div class="tt-col" id="col-0"></div>
-          <div class="tt-col" id="col-1"></div>
-          <div class="tt-col" id="col-2"></div>
-          <div class="tt-col" id="col-3"></div>
-          <div class="tt-col" id="col-4"></div>
-        </div>
-      </div>
+      <div class="timetable-wrap" id="desktopGridWrap"></div>
       <div class="legend" id="legend">
         <span><i style="background:#5a6472"></i>고정과목</span>
         <span><i style="background:#3b6bf6"></i>고전읽기와토론</span>
@@ -318,12 +303,12 @@
 </div>
 
 <div class="modal-backdrop" id="timetableViewBackdrop">
-  <div class="modal" id="timetableViewBody">
+  <div class="modal timetable-view-modal" id="timetableViewBody">
     <span class="modal-close-x" id="timetableViewCloseX">&times;</span>
     <h3>📅 내 시간표</h3>
     <div id="timetableViewCredit" class="modal-sub"></div>
-    <div class="day-tabs" id="dayTabs"></div>
-    <div class="agenda-list" id="agendaList"></div>
+    <div class="timetable-wrap" id="timetableViewGridWrap"></div>
+    <div class="legend" id="timetableViewLegend"></div>
   </div>
 </div>
 

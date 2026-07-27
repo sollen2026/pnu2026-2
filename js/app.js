@@ -532,7 +532,7 @@ function renderTabs() {
   tabsEl.innerHTML = "";
   const allBtn = document.createElement("button");
   allBtn.className = "tab" + (activeTab === "all" ? " active" : "");
-  allBtn.textContent = "전체";
+  allBtn.textContent = "전체 과목";
   allBtn.onclick = () => { activeTab = "all"; renderTabs(); renderCourseList(); };
   tabsEl.appendChild(allBtn);
   let lastGroup = undefined;
@@ -607,13 +607,38 @@ const GRID_END = 19 * 60;  // 19:00
 const PX_PER_MIN = 1.1;
 
 function renderGrid() {
-  const cols = document.querySelectorAll(".tt-col");
-  cols.forEach(c => c.innerHTML = "");
+  buildGridInto(document.getElementById("desktopGridWrap"), selectedCourses());
+}
+
+// 시간표 그리드를 임의의 컨테이너에 그리는 범용 렌더러 (데스크톱 그리드와 "내 시간표 보기" 모달에서 공용)
+function buildGridInto(wrapEl, courses) {
+  wrapEl.innerHTML = `
+    <div class="timetable">
+      <div class="tt-head" style="background:none;border:none;"></div>
+      <div class="tt-head">월</div><div class="tt-head">화</div><div class="tt-head">수</div><div class="tt-head">목</div><div class="tt-head">금</div>
+      <div class="tt-time-axis"></div>
+      <div class="tt-col" data-day="0"></div>
+      <div class="tt-col" data-day="1"></div>
+      <div class="tt-col" data-day="2"></div>
+      <div class="tt-col" data-day="3"></div>
+      <div class="tt-col" data-day="4"></div>
+    </div>`;
+  const axis = wrapEl.querySelector(".tt-time-axis");
+  for (let t = GRID_START; t <= GRID_END; t += 60) {
+    const div = document.createElement("div");
+    div.className = "tt-time";
+    div.style.height = `${60 * PX_PER_MIN}px`;
+    div.textContent = fmtTime(t);
+    axis.appendChild(div);
+  }
+  const cols = wrapEl.querySelectorAll(".tt-col");
+  cols.forEach(col => { col.style.height = `${(GRID_END - GRID_START) * PX_PER_MIN}px`; });
+
   const byDay = [[], [], [], [], []];
-  selectedCourses().forEach(course => {
+  courses.forEach(course => {
     course.slots.forEach(slot => {
-      if (slot.day < 0 || slot.day > 4) return; // 월-금만 표시
-      const col = document.getElementById(`col-${slot.day}`);
+      if (slot.day < 0 || slot.day > 4) return;
+      const col = wrapEl.querySelector(`.tt-col[data-day="${slot.day}"]`);
       if (!col) return;
       const top = (slot.start - GRID_START) * PX_PER_MIN;
       const height = (slot.end - slot.start) * PX_PER_MIN;
@@ -633,15 +658,14 @@ function renderGrid() {
     });
   });
 
-  // 도보 이동시간 커넥터: 같은 요일에 연속으로 배치된 수업 사이 표시
   byDay.forEach((entries, day) => {
-    const col = document.getElementById(`col-${day}`);
+    const col = wrapEl.querySelector(`.tt-col[data-day="${day}"]`);
     if (!col) return;
     entries.sort((a, b) => a.slot.start - b.slot.start);
     for (let i = 0; i < entries.length - 1; i++) {
       const cur = entries[i], next = entries[i + 1];
       const gap = next.slot.start - cur.slot.end;
-      if (gap <= 0 || gap > 60) continue; // 겹침이거나 1시간 넘게 여유있으면 표시 생략
+      if (gap <= 0 || gap > 60) continue;
       const walk = estimateWalkMinutes(cur.slot.building, next.slot.building, cur.slot.room, next.slot.room);
       const level = walkLevel(gap, walk);
       const conn = document.createElement("div");
@@ -653,24 +677,9 @@ function renderGrid() {
         : `🚶 도보 약 ${walk}분 · 쉬는시간 ${gap}분`;
       conn.title = label + " (클릭하면 지도 보기)";
       conn.textContent = gap * PX_PER_MIN >= 16 ? `🚶~${walk}분 (쉬는시간 ${gap}분)` : `🚶${walk}분`;
-      conn.onclick = () => openMapModal(cur.slot.building, cur.slot.room, next.slot.building, next.slot.room, walk);
+      conn.onclick = () => openMapModal(cur.slot.building, cur.slot.room, next.slot.building, next.slot.room, walk, gap);
       col.appendChild(conn);
     }
-  });
-}
-
-function renderTimeAxis() {
-  const axis = document.getElementById("timeAxis");
-  axis.innerHTML = "";
-  for (let t = GRID_START; t <= GRID_END; t += 60) {
-    const div = document.createElement("div");
-    div.className = "tt-time";
-    div.style.height = `${60 * PX_PER_MIN}px`;
-    div.textContent = fmtTime(t);
-    axis.appendChild(div);
-  }
-  document.querySelectorAll(".tt-col").forEach(col => {
-    col.style.height = `${(GRID_END - GRID_START) * PX_PER_MIN}px`;
   });
 }
 
@@ -811,29 +820,28 @@ function openModal(id) {
 }
 
 // ===== 이동 경로 지도 모달 (네이버 지도) =====
-function openMapModal(buildingA, roomA, buildingB, roomB, walkMin) {
+function openMapModal(buildingA, roomA, buildingB, roomB, walkMin, gapMin) {
   const nameA = buildingName(buildingA), nameB = buildingName(buildingB);
   const qA = encodeURIComponent(`부산대학교 ${nameA}`);
   const qB = encodeURIComponent(`부산대학교 ${nameB}`);
-  const naverDirUrl = `https://map.naver.com/p/directions/${qA}/${qB}/-/walk`;
   const naverSearchA = `https://map.naver.com/p/search/${qA}`;
   const naverSearchB = `https://map.naver.com/p/search/${qB}`;
+  const feasible = gapMin == null || gapMin >= walkMin;
+  const statusHtml = feasible
+    ? `<div>도보 약 <b>${walkMin}분</b> 소요${gapMin != null ? ` · 쉬는 시간 ${gapMin}분` : ""}</div>`
+    : `<div style="color:var(--danger);font-weight:700;">⚠ 이동 불가! 쉬는 시간 ${gapMin}분 / 도보 필요 시간 ${walkMin}분</div>`;
   document.getElementById("modalBody").innerHTML = `
     <span class="modal-close-x" id="modalCloseX">&times;</span>
     <h3>🚶 이동 경로</h3>
     <div class="modal-sub">${nameA}(${buildingA}) ${roomA}호 → ${nameB}(${buildingB}) ${roomB}호</div>
     <div class="modal-section">
       <h4>도보 이동시간 (참고용 추정치)</h4>
-      <div>약 <b>${walkMin}분</b> — 부산대 약도의 ZONE 구분을 근거로 한 추정치이며, 네이버 지도의 실측 도보시간이 아닙니다.</div>
+      ${statusHtml}
     </div>
-    <div class="modal-actions" style="flex-direction:column; align-items:stretch; gap:8px;">
-      <a class="btn primary" href="${naverDirUrl}" target="_blank" rel="noopener">🗺️ 네이버 지도에서 도보 길찾기 열기</a>
-      <div style="display:flex; gap:8px;">
-        <a class="btn" style="flex:1;" href="${naverSearchA}" target="_blank" rel="noopener">${nameA} 위치 보기</a>
-        <a class="btn" style="flex:1;" href="${naverSearchB}" target="_blank" rel="noopener">${nameB} 위치 보기</a>
-      </div>
+    <div class="modal-actions" style="display:flex; gap:8px;">
+      <a class="btn" style="flex:1;" href="${naverSearchA}" target="_blank" rel="noopener">${nameA} 위치 열기</a>
+      <a class="btn" style="flex:1;" href="${naverSearchB}" target="_blank" rel="noopener">${nameB} 위치 열기</a>
     </div>
-    <div class="note-box" style="margin-top:10px;">네이버 지도 링크는 건물명 검색을 기반으로 하며, 실제 실내 경로·출입구 위치와는 다를 수 있습니다. 정확한 도보 소요시간은 네이버 지도 길찾기 결과를 확인하세요.</div>
     <div class="modal-actions">
       <button class="btn" id="modalCloseBtn">닫기</button>
     </div>`;
@@ -867,73 +875,15 @@ function initViewMode() {
   applyViewMode(mode);
 }
 
-let activeDay = 0; // 월=0 ... 금=4
-function renderDayTabs() {
-  const el = document.getElementById("dayTabs");
-  if (!el) return;
-  el.innerHTML = "";
-  const counts = [0, 0, 0, 0, 0];
-  selectedCourses().forEach(c => c.slots.forEach(s => { if (s.day >= 0 && s.day <= 4) counts[s.day]++; }));
-  DAY_LABEL.forEach((label, i) => {
-    const btn = document.createElement("button");
-    btn.className = activeDay === i ? "active" : "";
-    btn.innerHTML = `${label}<span class="cnt">${counts[i]}개</span>`;
-    btn.onclick = () => { activeDay = i; renderDayTabs(); renderAgendaList(); };
-    el.appendChild(btn);
-  });
-}
-
-function renderAgendaList() {
-  const el = document.getElementById("agendaList");
-  if (!el) return;
-  el.innerHTML = "";
-  const entries = [];
-  selectedCourses().forEach(course => {
-    course.slots.forEach(slot => {
-      if (slot.day === activeDay) entries.push({ course, slot });
-    });
-  });
-  entries.sort((a, b) => a.slot.start - b.slot.start);
-  if (entries.length === 0) {
-    el.innerHTML = `<div class="agenda-empty">${DAY_LABEL[activeDay]}요일에는 담은 수업이 없습니다.</div>`;
-    return;
-  }
-  entries.forEach((entry, i) => {
-    if (i > 0) {
-      const prev = entries[i - 1].slot;
-      const cur = entry.slot;
-      const gap = cur.start - prev.end;
-      if (gap > 0 && gap <= 60) {
-        const walk = estimateWalkMinutes(prev.building, cur.building, prev.room, cur.room);
-        const level = walkLevel(gap, walk);
-        const conn = document.createElement("div");
-        conn.className = `agenda-connector ${level === "ok" ? "" : level}`;
-        conn.innerHTML = `<span class="dot"></span> 🚶 도보 약 ${walk}분 · 쉬는시간 ${gap}분${level === "danger" ? " (이동시간 부족 위험)" : level === "warn" ? " (빠듯함)" : ""}`;
-        el.appendChild(conn);
-      }
-    }
-    const { course, slot } = entry;
-    const card = document.createElement("div");
-    card.className = "agenda-card" + (course.fixed ? " locked" : "");
-    card.innerHTML = `
-      <div class="agenda-time">${fmtTime(slot.start)} ~ ${fmtTime(slot.end)}</div>
-      <div class="agenda-name">${course.name}${course.fixed ? `<span class="fixed-badge" style="background:var(--accent-2);color:var(--accent);">필수 고정</span>` : ""}${remoteBadgeHtml(course)} <span style="font-weight:400;color:var(--text-dim);">${course.section}분반</span></div>
-      <div class="agenda-meta">${course.professor} · ${buildingText(slot.building, slot.room)}${course.hasCyber ? " · 토 사이버수업 병행" : ""}</div>
-      <div class="agenda-actions">
-        <button class="btn small" data-agenda-detail="${course.id}">상세보기</button>
-        ${course.fixed ? "" : `<button class="btn small" data-agenda-remove="${course.id}">삭제</button>`}
-      </div>`;
-    el.appendChild(card);
-  });
-  el.querySelectorAll("[data-agenda-detail]").forEach(b => b.onclick = () => openModal(b.dataset.agendaDetail));
-  el.querySelectorAll("[data-agenda-remove]").forEach(b => b.onclick = () => removeCourse(b.dataset.agendaRemove));
-}
-
 function openTimetableViewModal() {
-  const total = selectedCourses().reduce((s, c) => s + (c.credit || 0), 0);
-  document.getElementById("timetableViewCredit").textContent = `선택 과목 ${selectedCourses().length}개 · 합계 ${total}학점`;
-  renderDayTabs();
-  renderAgendaList();
+  const courses = selectedCourses();
+  const total = courses.reduce((s, c) => s + (c.credit || 0), 0);
+  document.getElementById("timetableViewCredit").textContent = `선택 과목 ${courses.length}개 · 합계 ${total}학점`;
+  buildGridInto(document.getElementById("timetableViewGridWrap"), courses);
+  const cats = [...new Set(courses.map(c => c.category))];
+  document.getElementById("timetableViewLegend").innerHTML = cats.map(cat =>
+    `<span><i style="background:${CATEGORY_META[cat].color}"></i>${CATEGORY_META[cat].label}</span>`
+  ).join("");
   document.getElementById("timetableViewBackdrop").classList.add("open");
 }
 function closeTimetableViewModal() {
@@ -945,8 +895,7 @@ function renderAll() {
   renderGrid();
   renderCreditSummary();
   if (document.getElementById("timetableViewBackdrop").classList.contains("open")) {
-    renderDayTabs();
-    renderAgendaList();
+    openTimetableViewModal();
   }
 }
 
@@ -961,7 +910,6 @@ document.addEventListener("DOMContentLoaded", () => {
     englishLevelFilter = lv;
   }
   renderTabs();
-  renderTimeAxis();
   renderAll();
 
   document.getElementById("searchInput").addEventListener("input", (e) => {
