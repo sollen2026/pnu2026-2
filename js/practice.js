@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 카테고리 셀렉트 채우기
   ["hopeSearchCat", "sugangSearchCat"].forEach(id => {
     const sel = document.getElementById(id);
-    sel.innerHTML = `<option value="all">전체 영역</option>` + Object.keys(CATEGORY_META).map(k => `<option value="${k}">${CATEGORY_META[k].label}</option>`).join("");
+    sel.innerHTML = `<option value="all">전체 영역</option>` + Object.keys(CATEGORY_META).filter(k => k !== "fixed").map(k => `<option value="${k}">${CATEGORY_META[k].label}</option>`).join("");
   });
 
   // 상단 메뉴 탭
