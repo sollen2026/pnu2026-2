@@ -399,11 +399,16 @@ function slotsConflictOrUnsafe(course, chosenCourses) {
 }
 
 // targetCredits: 목표 학점(고정 과목 5학점 포함), selectedCategories: 포함할 과목/영역 category key 배열
-// options: { no9am, noFriday, exclude600, exclude700 }
+// options: { no9am, noFriday, exclude600, exclude700, keepExisting: 이미 선택된(고정 아님) 과목 배열 }
 function generateRandomTimetable(targetCredits, selectedCategories, options) {
   const opts = options || {};
+  const keepExisting = opts.keepExisting || [];
+  const keepIds = new Set(keepExisting.map(c => c.id));
   const FIXED_CREDIT_TOTAL = FIXED_COURSES_RAW.reduce((s, f) => s + (f.credit || 0), 0);
-  let pool = ALL_COURSES.filter(c => !c.fixed && selectedCategories.includes(c.category));
+  const KEEP_CREDIT_TOTAL = keepExisting.reduce((s, c) => s + (c.credit || 0), 0);
+  const keepAreaCredits = {};
+  keepExisting.forEach(c => { if (BALANCE_CATEGORIES.includes(c.category)) keepAreaCredits[c.category] = (keepAreaCredits[c.category] || 0) + (c.credit || 0); });
+  let pool = ALL_COURSES.filter(c => !c.fixed && !keepIds.has(c.id) && selectedCategories.includes(c.category));
   if (opts.no9am) pool = pool.filter(c => !c.slots.some(s => s.start < 10 * 60));
   if (opts.noFriday) pool = pool.filter(c => !c.slots.some(s => s.day === 4));
   if (opts.exclude600) pool = pool.filter(c => !c.slots.some(s => s.building.startsWith("6")));
@@ -411,9 +416,9 @@ function generateRandomTimetable(targetCredits, selectedCategories, options) {
   let best = null, bestDiff = Infinity;
   for (let attempt = 0; attempt < 400; attempt++) {
     const shuffled = shuffleArray(pool);
-    const chosen = [];
-    const areaCredits = {};
-    let total = FIXED_CREDIT_TOTAL;
+    const chosen = [...keepExisting];
+    const areaCredits = { ...keepAreaCredits };
+    let total = FIXED_CREDIT_TOTAL + KEEP_CREDIT_TOTAL;
     for (const c of shuffled) {
       const credit = c.credit || 0;
       if (total + credit > targetCredits) continue;
@@ -509,11 +514,13 @@ function runRandomGeneration() {
   const target = parseInt(document.getElementById("randomCredits").value) || 21;
   const selected = Array.from(document.querySelectorAll("#randomCatGroups input[type=checkbox]:checked")).map(i => i.value);
   if (!selected.length) { toast("포함할 영역을 하나 이상 선택하세요"); return; }
+  const keepBox = document.getElementById("randomKeepExisting");
   const options = {
     no9am: document.getElementById("randomNo9am").checked,
     noFriday: document.getElementById("randomNoFriday").checked,
     exclude600: document.getElementById("randomExclude600").checked,
-    exclude700: document.getElementById("randomExclude700").checked
+    exclude700: document.getElementById("randomExclude700").checked,
+    keepExisting: (keepBox && keepBox.checked) ? selectedCourses().filter(c => !c.fixed) : []
   };
   const result = generateRandomTimetable(target, selected, options);
   renderRandomResultModal(result);
