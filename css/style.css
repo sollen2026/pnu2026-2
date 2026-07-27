@@ -163,6 +163,9 @@ a { color: var(--accent); }
 }
 .random-cat-groups { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .random-cat-check { border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px 6px 10px; background: var(--panel-2); }
+.random-english-level-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 14px; font-size: 13px; }
+.random-english-level-row label { color: var(--text-dim); white-space: nowrap; }
+.random-english-level-row .tabs { margin: 0; }
 
 /* 랜덤 결과 모달 */
 .random-result-modal { max-width: 640px; }

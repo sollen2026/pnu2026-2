@@ -299,7 +299,7 @@ function buildingText(code, room, labelOverride) {
   return labelOverride || `${buildingName(code)} ${room || ""}`.trim();
 }
 
-const BUILDINGS_WITH_MAP_CROP = new Set(["102","105","201","206","210","306","311","314","401","416","417","422","514","516","701"]);
+const BUILDINGS_WITH_MAP_CROP = new Set(["102","105","106","201","206","210","303","306","308","311","313","314","401","405","408","414","416","417","418","422","501","503","506","508","514","516","601","602","603","606","607","608","609","701","703","705","707","708"]);
 
 function openBuildingModal(code) {
   const name = buildingName(code);
@@ -399,37 +399,44 @@ function slotsConflictOrUnsafe(course, chosenCourses) {
 }
 
 // targetCredits: 목표 학점(고정 과목 5학점 포함), selectedCategories: 포함할 과목/영역 category key 배열
-// options: { no9am, noFriday, exclude600, exclude700, keepExisting: 이미 선택된(고정 아님) 과목 배열 }
+// options: { no9am, noFriday, exclude600, exclude700, englishLevel, keepExisting: 이미 선택된(고정 아님) 과목 배열 }
+const REMOTE_CREDIT_LIMIT = 6; // 학사과정 학기당 원격수업 교과목 신청 가능 학점(수강신청 안내 기준)
 function generateRandomTimetable(targetCredits, selectedCategories, options) {
   const opts = options || {};
   const keepExisting = opts.keepExisting || [];
   const keepIds = new Set(keepExisting.map(c => c.id));
   const FIXED_CREDIT_TOTAL = FIXED_COURSES_RAW.reduce((s, f) => s + (f.credit || 0), 0);
   const KEEP_CREDIT_TOTAL = keepExisting.reduce((s, c) => s + (c.credit || 0), 0);
-  const keepAreaCredits = {};
-  keepExisting.forEach(c => { if (BALANCE_CATEGORIES.includes(c.category)) keepAreaCredits[c.category] = (keepAreaCredits[c.category] || 0) + (c.credit || 0); });
+  const keepCategoriesUsed = new Set(keepExisting.filter(c => BALANCE_CATEGORIES.includes(c.category)).map(c => c.category));
+  const keepHasEnglish = keepExisting.some(c => c.category === "english");
+  const keepRemoteCredit = keepExisting.reduce((s, c) => s + (c.remote ? (c.credit || 0) : 0), 0);
   let pool = ALL_COURSES.filter(c => !c.fixed && !keepIds.has(c.id) && selectedCategories.includes(c.category));
   if (opts.no9am) pool = pool.filter(c => !c.slots.some(s => s.start < 10 * 60));
   if (opts.noFriday) pool = pool.filter(c => !c.slots.some(s => s.day === 4));
   if (opts.exclude600) pool = pool.filter(c => !c.slots.some(s => s.building.startsWith("6")));
   if (opts.exclude700) pool = pool.filter(c => !c.slots.some(s => s.building.startsWith("7")));
+  if (opts.englishLevel) pool = pool.filter(c => c.category !== "english" || c.level === opts.englishLevel);
   let best = null, bestDiff = Infinity;
   for (let attempt = 0; attempt < 400; attempt++) {
     const shuffled = shuffleArray(pool);
     const chosen = [...keepExisting];
-    const areaCredits = { ...keepAreaCredits };
+    const categoriesUsed = new Set(keepCategoriesUsed);
+    let hasEnglish = keepHasEnglish;
+    let remoteCredit = keepRemoteCredit;
     let total = FIXED_CREDIT_TOTAL + KEEP_CREDIT_TOTAL;
     for (const c of shuffled) {
       const credit = c.credit || 0;
       if (total + credit > targetCredits) continue;
-      if (BALANCE_CATEGORIES.includes(c.category)) {
-        const cur = areaCredits[c.category] || 0;
-        if (cur + credit > 3) continue; // 균형/창의교양 한 영역당 3학점 초과 금지
-      }
+      if (chosen.some(x => x.name === c.name)) continue; // 같은 과목(다른 분반) 중복 금지
+      if (c.category === "english" && hasEnglish) continue; // 대학영어는 레벨 상관없이 최종적으로 1개만
+      if (BALANCE_CATEGORIES.includes(c.category) && categoriesUsed.has(c.category)) continue; // 균형/창의교양 한 영역당 1과목만
+      if (c.remote && remoteCredit + credit > REMOTE_CREDIT_LIMIT) continue; // 원격수업 학점 상한
       if (slotsConflictOrUnsafe(c, chosen)) continue;
       chosen.push(c);
       total += credit;
-      if (BALANCE_CATEGORIES.includes(c.category)) areaCredits[c.category] = (areaCredits[c.category] || 0) + credit;
+      if (c.category === "english") hasEnglish = true;
+      if (BALANCE_CATEGORIES.includes(c.category)) categoriesUsed.add(c.category);
+      if (c.remote) remoteCredit += credit;
     }
     const diff = Math.abs(targetCredits - total);
     if (diff < bestDiff) { bestDiff = diff; best = { chosen, total }; if (diff === 0) break; }
@@ -437,8 +444,8 @@ function generateRandomTimetable(targetCredits, selectedCategories, options) {
   return best;
 }
 
-function renderRandomCatGroups() {
-  const el = document.getElementById("randomCatGroups");
+function renderRandomCatGroups(containerId) {
+  const el = document.getElementById(containerId || "randomCatGroups");
   if (!el) return;
   el.innerHTML = "";
   let lastGroup;
@@ -460,9 +467,27 @@ function renderRandomCatGroups() {
   });
 }
 
-function renderRandomResultModal(result) {
+function renderEnglishLevelRow(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = "";
+  el.dataset.level = "all";
+  ["all", "초급", "중급", "고급"].forEach(lv => {
+    const b = document.createElement("button");
+    b.className = "tab" + (lv === "all" ? " active" : "");
+    b.textContent = lv === "all" ? "상관없음" : lv;
+    b.onclick = () => {
+      el.dataset.level = lv;
+      el.querySelectorAll("button").forEach(x => x.classList.toggle("active", x === b));
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderRandomResultModal(result, prefix, keepExisting) {
+  prefix = prefix || "random";
   const body = document.getElementById("randomResultBody");
-  const targetInput = document.getElementById("randomCredits");
+  const targetInput = document.getElementById(prefix + "Credits");
   const target = targetInput ? parseInt(targetInput.value) : null;
   if (!result || !result.chosen.length && result.total === 0) {
     body.innerHTML = `<span class="modal-close-x" id="randomResultCloseX">&times;</span><h3>🎲 랜덤 시간표 생성 결과</h3><p style="color:var(--text-dim)">조건에 맞는 시간표를 만들지 못했습니다. 목표 학점을 낮추거나 포함 영역을 늘려서 다시 시도해보세요.</p><div class="modal-actions"><button class="btn" id="randomResultCloseBtn">닫기</button></div>`;
@@ -494,7 +519,7 @@ function renderRandomResultModal(result) {
   const applyBtn = document.getElementById("randomApplyBtn");
   if (applyBtn) applyBtn.onclick = () => applyRandomResult(result);
   const rerollBtn = document.getElementById("randomRerollBtn");
-  if (rerollBtn) rerollBtn.onclick = runRandomGeneration;
+  if (rerollBtn) rerollBtn.onclick = () => runRandomGeneration(prefix, keepExisting);
 }
 
 function closeRandomResultModal() {
@@ -510,20 +535,23 @@ function applyRandomResult(result) {
   toast("랜덤 시간표를 적용했습니다");
 }
 
-function runRandomGeneration() {
-  const target = parseInt(document.getElementById("randomCredits").value) || 21;
-  const selected = Array.from(document.querySelectorAll("#randomCatGroups input[type=checkbox]:checked")).map(i => i.value);
+function runRandomGeneration(prefix, keepExisting) {
+  prefix = prefix || "random";
+  const target = parseInt(document.getElementById(prefix + "Credits").value) || 21;
+  const selected = Array.from(document.querySelectorAll(`#${prefix}CatGroups input[type=checkbox]:checked`)).map(i => i.value);
   if (!selected.length) { toast("포함할 영역을 하나 이상 선택하세요"); return; }
-  const keepBox = document.getElementById("randomKeepExisting");
+  const levelEl = document.getElementById(prefix + "EnglishLevel");
+  const englishLevel = levelEl && levelEl.dataset.level !== "all" ? levelEl.dataset.level : null;
   const options = {
-    no9am: document.getElementById("randomNo9am").checked,
-    noFriday: document.getElementById("randomNoFriday").checked,
-    exclude600: document.getElementById("randomExclude600").checked,
-    exclude700: document.getElementById("randomExclude700").checked,
-    keepExisting: (keepBox && keepBox.checked) ? selectedCourses().filter(c => !c.fixed) : []
+    no9am: document.getElementById(prefix + "No9am").checked,
+    noFriday: document.getElementById(prefix + "NoFriday").checked,
+    exclude600: document.getElementById(prefix + "Exclude600").checked,
+    exclude700: document.getElementById(prefix + "Exclude700").checked,
+    englishLevel,
+    keepExisting: keepExisting ? selectedCourses().filter(c => !c.fixed) : []
   };
   const result = generateRandomTimetable(target, selected, options);
-  renderRandomResultModal(result);
+  renderRandomResultModal(result, prefix, keepExisting);
 }
 
 // ===== 렌더링: 사이드바 목록 =====
@@ -533,6 +561,7 @@ let englishLevelFilter = "all";
 let filterRemoteOnly = false;
 let filterPassFailOnly = false;
 let dayFilter = "all";
+let creditFilter = "all";
 
 function renderTabs() {
   const tabsEl = document.getElementById("tabs");
@@ -572,6 +601,7 @@ function renderCourseList() {
   if (filterRemoteOnly) items = items.filter(c => c.remote);
   if (filterPassFailOnly) items = items.filter(c => c.grading === "su");
   if (dayFilter !== "all") items = items.filter(c => c.slots.some(s => s.day === parseInt(dayFilter)));
+  if (creditFilter !== "all") items = items.filter(c => c.credit === parseInt(creditFilter));
   if (activeTab === "english") {
     listEl.insertAdjacentHTML("beforeend", `<div class="fixed-note">대학영어는 수준별 분반입니다. 자신에게 맞는 수준(초급/중급/고급)을 모르면 상단의 <a href="english-diagnostic.html">대학영어 분반 자가진단</a> 페이지를 먼저 확인하세요.</div>`);
     const levelRow = document.createElement("div");
@@ -794,9 +824,12 @@ function openModal(id) {
       <div class="cite">출처: ${gr.article}</div>
     </div>` : "";
 
+  const areaLabel = !c.fixed ? `${CATEGORY_META[c.category].group || "효원핵심교양·교직"} – ${CATEGORY_META[c.category].label}` : null;
+
   document.getElementById("modalBody").innerHTML = `
     <span class="modal-close-x" id="modalCloseX">&times;</span>
     <h3>${c.name}</h3>
+    ${areaLabel ? `<div class="modal-sub">${areaLabel}</div>` : ""}
     ${professorAdvisoryHtml(c.professor)}
     ${badgeHtml}
     ${!c.fixed ? `<div class="modal-section"><h4>이 시간대 대체 가능 분반 <span style="font-weight:400;text-transform:none;letter-spacing:0;">(수강신청 실패 시 참고)</span></h4>${altsHtml}</div>` : ""}
@@ -938,6 +971,13 @@ document.addEventListener("DOMContentLoaded", () => {
       renderCourseList();
     };
   });
+  document.querySelectorAll("#creditFilterRow button[data-credit]").forEach(b => {
+    b.onclick = () => {
+      creditFilter = b.dataset.credit;
+      document.querySelectorAll("#creditFilterRow button[data-credit]").forEach(x => x.classList.toggle("active", x === b));
+      renderCourseList();
+    };
+  });
   document.querySelectorAll(".theme-toggle button[data-theme]").forEach(b => {
     b.onclick = () => applyTheme(b.dataset.theme);
   });
@@ -971,7 +1011,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.id === "timetableViewBackdrop") closeTimetableViewModal();
   });
 
-  renderRandomCatGroups();
+  renderRandomCatGroups("randomCatGroups");
+  renderEnglishLevelRow("randomEnglishLevel");
   const randomPanelBody = document.getElementById("randomPanelBody");
   const randomToggleArrow = document.getElementById("randomToggleArrow");
   document.getElementById("randomToggle").onclick = () => {
@@ -979,8 +1020,24 @@ document.addEventListener("DOMContentLoaded", () => {
     randomPanelBody.style.display = collapsed ? "" : "none";
     randomToggleArrow.textContent = collapsed ? "▴" : "▾";
   };
-  document.getElementById("randomGenerateBtn").onclick = runRandomGeneration;
+  document.getElementById("randomGenerateBtn").onclick = () => runRandomGeneration("random", false);
   document.getElementById("randomResultBackdrop").addEventListener("click", (e) => {
     if (e.target.id === "randomResultBackdrop") closeRandomResultModal();
   });
+
+  renderRandomCatGroups("randomFillCatGroups");
+  renderEnglishLevelRow("randomFillEnglishLevel");
+  const openRandomFillModal = () => document.getElementById("randomFillBackdrop").classList.add("open");
+  const closeRandomFillModal = () => document.getElementById("randomFillBackdrop").classList.remove("open");
+  document.getElementById("randomFillBtn").onclick = openRandomFillModal;
+  const randomFillBtnMobile = document.getElementById("randomFillBtnMobile");
+  if (randomFillBtnMobile) randomFillBtnMobile.onclick = openRandomFillModal;
+  document.getElementById("randomFillCloseX").onclick = closeRandomFillModal;
+  document.getElementById("randomFillBackdrop").addEventListener("click", (e) => {
+    if (e.target.id === "randomFillBackdrop") closeRandomFillModal();
+  });
+  document.getElementById("randomFillGenerateBtn").onclick = () => {
+    closeRandomFillModal();
+    runRandomGeneration("randomFill", true);
+  };
 });

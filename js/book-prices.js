@@ -1,5 +1,4 @@
-// 교보문고(kyobobook.co.kr) 판매가/상품링크 조회 결과 — 배경 조사 에이전트가 검색한 결과입니다.
-// 저자/출판사 정보로 판본을 특정해 매칭했으며, found:false 인 항목은 절판/품절/비매품 등으로 확인된 경우입니다.
+// 교보문고(kyobobook.co.kr) 도서 링크/가격 조회 결과
 const BOOK_PRICES = {
  "(미래교사를 위한)교육학개론": {
   "matchedTitle": "미래교사를 위한 교육학개론",
@@ -2143,6 +2142,878 @@ const BOOK_PRICES = {
   "publisher": "법문사",
   "price": 61000,
   "url": "https://product.kyobobook.co.kr/detail/S000219337569",
+  "found": true
+ },
+ "도널드 리치의 일본미학": {
+  "matchedTitle": "도널드 리치의 일본 미학",
+  "author": "도널드 리치 (박경환·윤영수 외 옮김)",
+  "publisher": "글항아리",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000061550285",
+  "found": true
+ },
+ "고지키": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "니혼쇼키": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "만요슈": {
+  "matchedTitle": "만요슈",
+  "author": "구정호 지음",
+  "publisher": "살림",
+  "price": 8900,
+  "url": "https://product.kyobobook.co.kr/detail/S000000720296",
+  "found": true
+ },
+ "고킨와카슈": {
+  "matchedTitle": "고킨와카슈(하)",
+  "author": "기노 쓰라유키 (구정호 옮김)",
+  "publisher": "소명출판",
+  "price": 29000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000819667",
+  "found": true
+ },
+ "신고킨와카슈": {
+  "matchedTitle": "신코킨와카슈(하)",
+  "author": "구정호 옮김",
+  "publisher": "삼화",
+  "price": 36000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001765093",
+  "found": true
+ },
+ "겐지모노가타리": {
+  "matchedTitle": "겐지 모노가타리",
+  "author": "무라사키 시키부 (김종덕 옮김)",
+  "publisher": "지식을만드는지식",
+  "price": 24800,
+  "url": "https://product.kyobobook.co.kr/detail/S000001676466",
+  "found": true
+ },
+ "마쿠라노소시": {
+  "matchedTitle": "마쿠라노소시",
+  "author": "세이쇼나곤 (정순분 옮김)",
+  "publisher": "지식을만드는지식",
+  "price": 14800,
+  "url": "https://product.kyobobook.co.kr/detail/S000001675739",
+  "found": true
+ },
+ "호조키": {
+  "matchedTitle": "호조키(方丈記)",
+  "author": "가모노 조메이 (박복원 옮김)",
+  "publisher": "유페이퍼",
+  "price": 7500,
+  "url": "https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000012506836",
+  "found": true
+ },
+ "문학과 예술로 읽는 서양사회사": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "영화는 역사다": {
+  "matchedTitle": "영화는 역사다",
+  "author": "강성률",
+  "publisher": "살림터",
+  "price": 13000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001549274",
+  "found": true
+ },
+ "김태권의 십자군 이야기": {
+  "matchedTitle": "김태권의 십자군 이야기 1: 군중십자군과 은자 피에르",
+  "author": "김태권",
+  "publisher": "비아북",
+  "price": 12500,
+  "url": "https://product.kyobobook.co.kr/detail/S000001531418",
+  "found": true
+ },
+ "서양문화사": {
+  "matchedTitle": "서양문화사",
+  "author": "나종일·민석홍 외",
+  "publisher": "서울대학교출판부",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000718522",
+  "found": true
+ },
+ "서양사강좌": {
+  "matchedTitle": "서양사 강좌",
+  "author": "박윤덕 외",
+  "publisher": "아카넷",
+  "price": 33000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000848391",
+  "found": true
+ },
+ "서양 문화사 깊이 읽기": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "세계화 시대의 서양 현대사": {
+  "matchedTitle": "세계화 시대의 서양 현대사",
+  "author": "배영수 외 (송충기·류한수·박상철·김진희·황보영조 등)",
+  "publisher": "아카넷",
+  "price": 26000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000847939",
+  "found": true
+ },
+ "영화로 읽는 젠더와 가족": {
+  "matchedTitle": "영화로 읽는 젠더와 가족",
+  "author": "신영화 외",
+  "publisher": "학지사",
+  "price": 14000,
+  "url": "https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000006392557",
+  "found": true
+ },
+ "영화로 역사 읽기 : 유럽편": {
+  "matchedTitle": "영화로 역사 읽기: 유럽편",
+  "author": "연동원",
+  "publisher": "학지사",
+  "price": 18000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001643235",
+  "found": true
+ },
+ "이윤기의 그리스 로마 신화": {
+  "matchedTitle": "이윤기의 그리스 로마 신화 1~5권 세트(개정판)",
+  "author": "이윤기",
+  "publisher": "웅진지식하우스",
+  "price": 85000,
+  "url": "https://product.kyobobook.co.kr/detail/S000214964595",
+  "found": true
+ },
+ "스토리 세계사": {
+  "matchedTitle": "스토리 세계사 1",
+  "author": "임영태",
+  "publisher": "21세기북스",
+  "price": 15000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000709439",
+  "found": true
+ },
+ "대항해 시대": {
+  "matchedTitle": "대항해 시대",
+  "author": "주경철",
+  "publisher": "서울대학교출판부",
+  "price": 23000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000718818",
+  "found": true
+ },
+ "문화로 읽는 세계사": {
+  "matchedTitle": "문화로 읽는 세계사",
+  "author": "주경철",
+  "publisher": "사계절",
+  "price": 21000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000870041",
+  "found": true
+ },
+ "주경철의 유럽인 이야기": {
+  "matchedTitle": "주경철의 유럽인 이야기 세트",
+  "author": "주경철",
+  "publisher": "휴머니스트",
+  "price": 54000,
+  "url": "https://product.kyobobook.co.kr/detail/S000060310174",
+  "found": true
+ },
+ "미학 오디세이": {
+  "matchedTitle": "진중권의 미학 오디세이(20주년 기념판) 1+2+3번 세트",
+  "author": "진중권",
+  "publisher": "휴머니스트",
+  "price": 53000,
+  "url": "https://product.kyobobook.co.kr/detail/S000213920041",
+  "found": true
+ },
+ "미술작품을 곁들인 에피소드 서양문화사": {
+  "matchedTitle": "미술작품을 곁들인 에피소드 서양문화사",
+  "author": "차기태",
+  "publisher": "필맥",
+  "price": 30000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001621765",
+  "found": true
+ },
+ "인물로 보는 서양 고대사": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "클릭, 서양미술사 : 동굴벽화에서 개념미술까지": {
+  "matchedTitle": "클릭, 서양미술사",
+  "author": "캐롤 스트릭랜드 (김호경 옮김)",
+  "publisher": "예경",
+  "price": 28000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001085962",
+  "found": true
+ },
+ "게이트웨이 미술사": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "클릭, 한국미술사 : 빗살무늬토기에서 모더니즘까지": {
+  "matchedTitle": "클릭, 한국미술사",
+  "author": "강민기·이숙희·장기훈·신용철 외",
+  "publisher": "예경",
+  "price": 32000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001085986",
+  "found": true
+ },
+ "동양화의 이해": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "테마 현대미술 노트": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "죽어가는 자의 고독": {
+  "matchedTitle": "죽어가는 자의 고독",
+  "author": "노르베르트 엘리아스 (김수정 옮김)",
+  "publisher": "문학동네",
+  "price": 16000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000778509",
+  "found": true
+ },
+ "죽음의 역사": {
+  "matchedTitle": "죽음의 역사",
+  "author": "필리프 아리에스 (이종민 옮김)",
+  "publisher": "동문선",
+  "price": 22000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001242933",
+  "found": true
+ },
+ "죽음이란 무엇인가": {
+  "matchedTitle": "죽음이란 무엇인가(10주년기념판)",
+  "author": "셸리 케이건 (박세연 옮김)",
+  "publisher": "웅진지식하우스",
+  "price": 22000,
+  "url": "https://product.kyobobook.co.kr/detail/S000201055872",
+  "found": true
+ },
+ "인생수업": {
+  "matchedTitle": "인생 수업",
+  "author": "엘리자베스 퀴블러 로스·데이비드 케슬러 (류시화 옮김)",
+  "publisher": "이레",
+  "price": 18000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000841989",
+  "found": true
+ },
+ "상실수업": {
+  "matchedTitle": "상실수업",
+  "author": "엘리자베스 퀴블러 로스·데이비드 케슬러 (김소향 옮김)",
+  "publisher": "인빅투스",
+  "price": 13800,
+  "url": "https://product.kyobobook.co.kr/detail/S000001959469",
+  "found": true
+ },
+ "세상에 스며든 클래식 : 인문학으로 읽는 클래식 음악 이야기": {
+  "matchedTitle": "세상에 스며든 클래식",
+  "author": "이주용",
+  "publisher": "저녁달",
+  "price": 22800,
+  "url": "https://product.kyobobook.co.kr/detail/S000219128498",
+  "found": true
+ },
+ "사유 속의 영화": {
+  "matchedTitle": "사유 속의 영화",
+  "author": "이윤영 엮고 옮김",
+  "publisher": "문학과지성사",
+  "price": 26000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000569720",
+  "found": true
+ },
+ "청춘의 고전": {
+  "matchedTitle": "청춘의 고전",
+  "author": "김성우 외",
+  "publisher": "알렙",
+  "price": 11000,
+  "url": "https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000003239360",
+  "found": true
+ },
+ "반가워요, 베리만 감독님": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "생각의 창, 키노아이": {
+  "matchedTitle": "생각의 창 키노아이: 영화속의 철학 II",
+  "author": "박병철",
+  "publisher": "서광사",
+  "price": 15000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000546939",
+  "found": true
+ },
+ "들뢰즈": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "영화관 옆 철학카페": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "밝은 방": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "쉬르필로소피아": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "영화의 이해": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "기술복제시대의 예술작품/사진의 작은 역사 외": {
+  "matchedTitle": "기술복제시대의 예술작품/사진의 작은 역사 외",
+  "author": "발터 벤야민 (최성만 옮김)",
+  "publisher": "길",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001384391",
+  "found": true
+ },
+ "칼리가리에서 히틀러로": {
+  "matchedTitle": "칼리가리에서 히틀러로",
+  "author": "S. 크라카우어 (장희권 옮김)",
+  "publisher": "새물결",
+  "price": 53000,
+  "url": "https://product.kyobobook.co.kr/detail/S000200884351",
+  "found": true
+ },
+ "계몽의 변증법": {
+  "matchedTitle": "계몽의 변증법",
+  "author": "테오도르 아도르노·M. 호르크하이머 (김유동 옮김)",
+  "publisher": "문학과지성사",
+  "price": 20000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000568834",
+  "found": true
+ },
+ "구텐베르크 은하계": {
+  "matchedTitle": "구텐베르크 은하계",
+  "author": "마셜 매클루언 (임상원 옮김)",
+  "publisher": "커뮤니케이션북스",
+  "price": 27000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001328598",
+  "found": true
+ },
+ "미디어의 이해": {
+  "matchedTitle": "미디어의 이해(인간의 확장)",
+  "author": "마셜 매클루언 (김상호 옮김)",
+  "publisher": "커뮤니케이션북스",
+  "price": 41500,
+  "url": "https://product.kyobobook.co.kr/detail/S000000996910",
+  "found": true
+ },
+ "축음기, 영화, 타자기": {
+  "matchedTitle": "축음기, 영화, 타자기",
+  "author": "프리드리히 키틀러 (유현주·김남시 옮김)",
+  "publisher": "문학과지성사",
+  "price": 35000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000570431",
+  "found": true
+ },
+ "기록시스템 1800/1900": {
+  "matchedTitle": "기록시스템 1800·1900",
+  "author": "프리드리히 키틀러 (윤원화 옮김)",
+  "publisher": "문학동네",
+  "price": 43000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000779475",
+  "found": true
+ },
+ "우주의 끝에서 철학하기 : SF영화로 보는 철학의 모든 것": {
+  "matchedTitle": "우주의 끝에서 철학하기",
+  "author": "마크 롤랜즈 (신상규·석기용 옮김)",
+  "publisher": "책세상",
+  "price": 18000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001069772",
+  "found": true
+ },
+ "Anglo-American Culture": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "A Short History of England": {
+  "matchedTitle": "A Short History of England",
+  "author": "Simon Jenkins",
+  "publisher": "Profile Books Ltd",
+  "price": 32540,
+  "url": "https://product.kyobobook.co.kr/detail/S000035201704",
+  "found": true
+ },
+ "지구환경과학": {
+  "matchedTitle": "지구환경과학",
+  "author": "AGI, NAGT, Travis Hudson (역: 최정찬 외)",
+  "publisher": "시그마프레스",
+  "price": 35000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001624803",
+  "found": true
+ },
+ "대기과학": {
+  "matchedTitle": "대기과학",
+  "author": "Frederick K. Lutgens, Edward J. Tarbuck (역: 안중배 외)",
+  "publisher": "시그마프레스",
+  "price": 39000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001059387",
+  "found": true
+ },
+ "살아 있는 지구의 역사": {
+  "matchedTitle": "살아 있는 지구의 역사",
+  "author": "리처드 포티 (역: 이한음)",
+  "publisher": "까치",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001128540",
+  "found": true
+ },
+ "인공지능은 나의 읽기-쓰기를 어떻게 바꿀까: 지금 준비해야 할 문해력의 미래": {
+  "matchedTitle": "인공지능은 나의 읽기-쓰기를 어떻게 바꿀까",
+  "author": "김성우",
+  "publisher": "유유",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000213920524",
+  "found": true
+ },
+ "AI의 세상에서 인간을 찾다": {
+  "matchedTitle": "AI의 세상에서 인간을 찾다",
+  "author": "노승욱, 손화철, 이국운, 황형주, 허윤정 (포스텍 융합문명연구원 기획)",
+  "publisher": "소명출판",
+  "price": 16000,
+  "url": "https://product.kyobobook.co.kr/detail/S000213610807",
+  "found": true
+ },
+ "AI 미디어 생태학": {
+  "matchedTitle": "AI 미디어 생태학",
+  "author": "이광석",
+  "publisher": "안그라픽스",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000217920924",
+  "found": true
+ },
+ "공학윤리": {
+  "matchedTitle": "PBL을 위한 공학윤리",
+  "author": "배원병, 김종식, 윤순현, 임오강 외",
+  "publisher": "북스힐",
+  "price": 23000,
+  "url": "https://product.kyobobook.co.kr/detail/S000200887338",
+  "found": true
+ },
+ "인문학으로 스포츠하라": {
+  "matchedTitle": "인문학으로 스포츠하라",
+  "author": "최의창",
+  "publisher": "드레북스",
+  "price": 20000,
+  "url": "https://product.kyobobook.co.kr/detail/S000215704190",
+  "found": true
+ },
+ "스포츠 문화도시 구현을 위한 도시마케팅": {
+  "matchedTitle": "스포츠 문화도시 구현을 위한 도시마케팅",
+  "author": "김명수, 김성희, 김재훈, 이승환, 민병남 외",
+  "publisher": "나루",
+  "price": 16000,
+  "url": "https://product.kyobobook.co.kr/detail/S000061586161",
+  "found": true
+ },
+ "도시인문학 : 도시에서 읽는 인간의 이야기": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "부산의 문화재": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "시민을 위한 부산의 역사": {
+  "matchedTitle": "시민을 위한 부산의 역사",
+  "author": "부경역사연구소",
+  "publisher": "선인",
+  "price": 12000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000895850",
+  "found": true
+ },
+ "부산의 문화와 복천동 고분군": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "시민을 위한 부산인물사": {
+  "matchedTitle": "시민을 위한 부산인물사",
+  "author": "부경역사연구소",
+  "publisher": "선인",
+  "price": 14000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001417662",
+  "found": true
+ },
+ "부산의 역사와 자연": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "부산 7000년, 그 영욕의 발자취": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "부산의 역사와 문화(도록)": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "부산 역사의 현장을 찾아서": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "부산의 역사": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "스포츠와 사회": {
+  "matchedTitle": "스포츠와 사회",
+  "author": "이정래 외",
+  "publisher": "레인보우북스",
+  "price": 20000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000961524",
+  "found": true
+ },
+ "스포츠심리학의 정석": {
+  "matchedTitle": "스포츠심리학의 정석",
+  "author": "김병준",
+  "publisher": "레인보우북스",
+  "price": 20000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000961545",
+  "found": true
+ },
+ "스포츠사회학 : 네 번째 이야기": {
+  "matchedTitle": "스포츠 사회학 (4판)",
+  "author": "남상우",
+  "publisher": "궁미디어",
+  "price": 22000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001833208",
+  "found": true
+ },
+ "(개념 중심) 스포츠사회학": {
+  "matchedTitle": "개념 중심 스포츠사회학",
+  "author": "이혁기 외",
+  "publisher": "레인보우북스",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000212670852",
+  "found": true
+ },
+ "스포츠사회학": {
+  "matchedTitle": "스포츠사회학",
+  "author": "한국스포츠사회학회",
+  "publisher": "레인보우북스",
+  "price": 28000,
+  "url": "https://product.kyobobook.co.kr/detail/S000061584070",
+  "found": true
+ },
+ "다이제스트 스포츠사회학": {
+  "matchedTitle": "다이제스트 스포츠사회학",
+  "author": "김우성",
+  "publisher": "레인보우북스",
+  "price": 25000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000961537",
+  "found": true
+ },
+ "강신주의 장자 수업 1: 밀쳐진 삶을 위한 찬가": {
+  "matchedTitle": "강신주의 장자 수업 1",
+  "author": "강신주",
+  "publisher": "EBS BOOKS",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000209756677",
+  "found": true
+ },
+ "강신주의 장자 수업 2: 밀쳐진 삶을 위한 찬가": {
+  "matchedTitle": "강신주의 장자 수업 2",
+  "author": "강신주",
+  "publisher": "EBS BOOKS",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000209756680",
+  "found": true
+ },
+ "장자: 낙천적 허무주의자의 길": {
+  "matchedTitle": "장자: 낙천적 허무주의자의 길 (3판)",
+  "author": "장주 (역: 김갑수)",
+  "publisher": "글항아리",
+  "price": 30000,
+  "url": "https://product.kyobobook.co.kr/detail/S000219206147",
+  "found": true
+ },
+ "도가사상의 지혜": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "장자": {
+  "matchedTitle": "장자",
+  "author": "오강남 (풀이)",
+  "publisher": "현암사",
+  "price": 15000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000574143",
+  "found": true
+ },
+ "열자": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "장자, 도를 말하다": {
+  "matchedTitle": "장자 도를 말하다",
+  "author": "오쇼 (역: 류시화)",
+  "publisher": "청아출판사",
+  "price": 15000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000616687",
+  "found": true
+ },
+ "삶의 춤, 침묵의 춤-노자 도덕경 강론": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "중국철학사": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "동양철학에세이": {
+  "matchedTitle": "동양철학에세이 1",
+  "author": "김교빈, 이현구",
+  "publisher": "동녘",
+  "price": 16000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001129577",
+  "found": true
+ },
+ "인지와 인공지능: 챗GPT부터 스마트 담론까지": {
+  "matchedTitle": "인지와 인공지능: 챗GPT부터 스마트 담론까지",
+  "author": "정희원, 이혜정 엮음; 캐서린 헤일스 외",
+  "publisher": "갈무리",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000217295226",
+  "found": true
+ },
+ "사뿐사뿐, 노자가 걸어왔다": {
+  "matchedTitle": "사뿐사뿐, 노자가 걸어왔다",
+  "author": "이주호",
+  "publisher": "브릭스",
+  "price": 16800,
+  "url": "https://product.kyobobook.co.kr/detail/S000219182246",
+  "found": true
+ },
+ "인공지능 시대와 철학의 쓸모: 인공지능은 철학의 종말을 꿈꾸는가?": {
+  "matchedTitle": "인공지능 시대와 철학의 쓸모",
+  "author": "이기상",
+  "publisher": "옥당북스",
+  "price": 21000,
+  "url": "https://product.kyobobook.co.kr/detail/S000219080754",
+  "found": true
+ },
+ "기타 참고자료": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "세대": {
+  "matchedTitle": "세대(인문잡지 한편 1)",
+  "author": "박동수 외 (민음사 편집부)",
+  "publisher": "민음사",
+  "price": 10000,
+  "url": "http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9788937490927",
+  "found": true
+ },
+ "헤이트-왜 혐오의 역사는 반복될까": {
+  "matchedTitle": "헤이트: 왜 혐오의 역사는 반복될까",
+  "author": "최인철 외",
+  "publisher": "마로니에북스",
+  "price": 18000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000929955",
+  "found": true
+ },
+ "타자의 추방": {
+  "matchedTitle": "타자의 추방",
+  "author": "한병철 (역: 이재영)",
+  "publisher": "문학과지성사",
+  "price": 12000,
+  "url": "https://product.kyobobook.co.kr/detail/S000000570257",
+  "found": true
+ },
+ "듣기의 윤리": {
+  "matchedTitle": "듣기의 윤리",
+  "author": "김애령",
+  "publisher": "봄날의박씨",
+  "price": 18000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001939186",
+  "found": true
+ },
+ "소셜딜레마": {
+  "matchedTitle": null,
+  "author": null,
+  "publisher": null,
+  "price": null,
+  "url": null,
+  "found": false
+ },
+ "인디아더존스": {
+  "matchedTitle": "인디아더존스: 우리는 왜 차이를 차별하는가",
+  "author": "염운옥 외",
+  "publisher": "사람과나무사이",
+  "price": 19500,
+  "url": "https://product.kyobobook.co.kr/detail/S000211512417",
+  "found": true
+ },
+ "돌봄과 인권: 돌봄으로 새로 쓴 인권의 문법": {
+  "matchedTitle": "돌봄과 인권: 돌봄으로 새로 쓴 인권의 문법",
+  "author": "김영옥, 류은숙",
+  "publisher": "코난북스",
+  "price": 17000,
+  "url": "https://product.kyobobook.co.kr/detail/S000200369741",
+  "found": true
+ },
+ "나와 지구 돌봄 혁명: 기후, 인구, 디지털 격차 위기에 맞서는 새로운 돌봄": {
+  "matchedTitle": "나와 지구 돌봄 혁명",
+  "author": "김만권",
+  "publisher": "너머학교",
+  "price": 17000,
+  "url": "https://product.kyobobook.co.kr/detail/S000217556305",
+  "found": true
+ },
+ "엘리트 세습": {
+  "matchedTitle": "엘리트 세습",
+  "author": "대니얼 마코비츠 (역: 서정아)",
+  "publisher": "세종서적",
+  "price": 22000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001302357",
+  "found": true
+ },
+ "불평등 트라우마": {
+  "matchedTitle": "불평등 트라우마",
+  "author": "리처드 윌킨슨, 케이트 피킷 (역: 이은경)",
+  "publisher": "생각이음",
+  "price": 19000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001977864",
+  "found": true
+ },
+ "증여론": {
+  "matchedTitle": "증여론",
+  "author": "마르셀 모스 (역: 박세진)",
+  "publisher": "파이돈",
+  "price": 23000,
+  "url": "https://product.kyobobook.co.kr/detail/S000216064785",
+  "found": true
+ },
+ "배려윤리와 도덕교육": {
+  "matchedTitle": "배려윤리와 도덕교육",
+  "author": "박병춘",
+  "publisher": "울력",
+  "price": 10000,
+  "url": "https://product.kyobobook.co.kr/detail/S000001425608",
+  "found": true
+ },
+ "길리건과 나딩스의 배려윤리": {
+  "matchedTitle": "길리건과 나딩스의 배려윤리",
+  "author": "서강식",
+  "publisher": "e퍼플",
+  "price": 18000,
+  "url": "https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000003614625",
+  "found": true
+ },
+ "행복해질 권리": {
+  "matchedTitle": "행복해질 권리",
+  "author": "지그문트 바우만 (역: 김수진)",
+  "publisher": "21세기북스",
+  "price": 19900,
+  "url": "https://product.kyobobook.co.kr/detail/S000216326115",
   "found": true
  }
 };
