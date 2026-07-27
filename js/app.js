@@ -940,6 +940,7 @@ function renderAll() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!document.getElementById("courseList")) return; // app.js가 데이터 로딩용으로만 포함된 다른 페이지(예: 모의 수강신청)에서는 메인 화면 UI 배선을 건너뜀
   loadState();
   initTheme();
   initViewMode();

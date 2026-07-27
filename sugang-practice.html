@@ -1,0 +1,277 @@
+<title>모의 수강신청 연습 — 2026-2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --navy: #043D92; --navy-dark: #033975; --gray-bg: #F4F5F9; --border: #D8DCE3;
+    --text: #1F2B39; --text-dim: #6C757D; --red: #B73E3E; --green: #1F8A56;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Malgun Gothic", "Noto Sans KR", sans-serif; background: var(--gray-bg); color: var(--text); font-size: 13.5px; }
+  a { color: var(--navy); }
+  .sim-badge {
+    position: fixed; top: 8px; right: 8px; z-index: 500; background: #fff3cd; color: #856404;
+    border: 1px solid #ffe69c; border-radius: 6px; padding: 5px 10px; font-size: 11.5px; font-weight: 700;
+  }
+  .top-header { background: var(--navy); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .top-header .brand { font-size: 16px; font-weight: 800; letter-spacing: 1px; }
+  .top-header .brand small { display: block; font-size: 10px; font-weight: 400; letter-spacing: 2px; opacity: .8; }
+  .top-header .user-info { font-size: 12px; display: flex; align-items: center; gap: 14px; }
+  .top-header .user-info a { color: #cfe0ff; text-decoration: none; }
+  .title-bar { text-align: center; padding: 18px 0 6px; font-size: 20px; font-weight: 800; color: var(--navy); }
+  .menu-tabs { display: flex; justify-content: center; gap: 0; border-bottom: 2px solid var(--navy); background: #fff; }
+  .menu-tab {
+    padding: 12px 28px; font-size: 14px; font-weight: 700; color: var(--text-dim); background: none; border: none;
+    cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .menu-tab.active { color: var(--navy); border-bottom-color: var(--navy); background: #eef2fb; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 60px; }
+  .panel-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 16px 18px; margin-bottom: 16px; }
+  .panel-card h3 { font-size: 13.5px; margin: 0 0 10px; padding-left: 10px; border-left: 4px solid var(--navy); color: var(--navy); }
+  .quick-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .quick-row label { font-size: 12.5px; color: var(--text-dim); }
+  .quick-row input { padding: 7px 9px; border: 1px solid var(--border); border-radius: 3px; font-size: 13px; width: 130px; }
+  .btn-navy, .btn-outline, .btn-red, .btn-gray {
+    padding: 7px 16px; border-radius: 3px; font-size: 12.5px; font-weight: 700; cursor: pointer; border: 1px solid transparent;
+  }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy:hover { background: var(--navy-dark); }
+  .btn-outline { background: #fff; color: var(--navy); border-color: var(--navy); }
+  .btn-red { background: #fff; color: var(--red); border-color: var(--red); }
+  .btn-gray { background: #fff; color: var(--text-dim); border-color: var(--border); }
+  .sub-tabs { display: flex; gap: 4px; margin: 14px 0 10px; border-bottom: 1px solid var(--border); }
+  .sub-tab {
+    padding: 8px 16px; font-size: 12.5px; font-weight: 700; background: var(--gray-bg); color: var(--text-dim);
+    border: 1px solid var(--border); border-bottom: none; border-radius: 4px 4px 0 0; cursor: pointer; margin-bottom: -1px;
+  }
+  .sub-tab.active { background: #fff; color: var(--navy); border-bottom: 1px solid #fff; }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.grid th { background: var(--gray-bg); border: 1px solid var(--border); padding: 8px 6px; color: var(--text); font-weight: 700; }
+  table.grid td { border: 1px solid var(--border); padding: 7px 6px; text-align: center; }
+  table.grid tr:hover td { background: #f8fafd; }
+  .cap-ok { color: var(--green); font-weight: 700; }
+  .cap-full { color: var(--red); font-weight: 700; }
+  .result-msg { margin-top: 10px; padding: 9px 12px; border-radius: 4px; font-size: 12.5px; display: none; }
+  .result-msg.ok { display: block; background: #eaf7ee; color: var(--green); border: 1px solid #bfe6cb; }
+  .result-msg.err { display: block; background: #fdecec; color: var(--red); border: 1px solid #f5c2c2; }
+  .search-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .search-filter-row select, .search-filter-row input { padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; }
+  .credit-total-bar { display: flex; justify-content: space-between; align-items: center; background: var(--gray-bg); border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; margin-bottom: 12px; font-size: 13px; }
+  .credit-total-bar b { color: var(--navy); }
+  .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 400; }
+  .modal-bg.open { display: flex; }
+  .modal-box { background: #fff; border-radius: 6px; padding: 20px; width: 92%; max-width: 480px; max-height: 82vh; overflow-y: auto; }
+  .modal-box h4 { margin: 0 0 10px; color: var(--navy); font-size: 14px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+  .notice-line { font-size: 11.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.6; }
+  .back-link-row { text-align: center; margin-top: 18px; }
+  .empty-row td { color: var(--text-dim); padding: 20px; }
+  .field-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10.5px; font-weight: 700; color: #fff; margin-right: 4px; }
+</style>
+
+<div class="sim-badge">⚠️ 모의 연습 화면입니다 — 실제 수강신청과 무관하며 데이터는 저장되지 않습니다</div>
+
+<div class="top-header">
+  <div class="brand">부 산 대 학 교<small>PUSAN NATIONAL UNIVERSITY (모의연습판)</small></div>
+  <div class="user-info">
+    <span>202600000 · 일반사회교육과 1학년 (연습용 가상 계정)</span>
+    <a href="index.html">← 시간표 도구로 돌아가기</a>
+  </div>
+</div>
+<div class="title-bar">2026학년도 2학기 수강신청 <span style="font-size:13px;color:var(--text-dim);font-weight:400;">— 모의 연습</span></div>
+
+<div class="menu-tabs">
+  <button class="menu-tab active" data-menu="hope">희망과목담기</button>
+  <button class="menu-tab" data-menu="sugang">수강신청</button>
+</div>
+
+<div class="wrap">
+
+  <!-- 희망과목담기 화면 -->
+  <div class="menu-panel active" id="menu-hope">
+    <div class="panel-card">
+      <h3>희망과목담기 신청</h3>
+      <div class="quick-row">
+        <label>교과목번호</label><input id="hopeCode" placeholder="예: ZE1000091" list="courseCodeList">
+        <label>분반</label><input id="hopeSection" placeholder="예: 001">
+        <button class="btn-navy" id="hopeQuickBtn">담기</button>
+        <span style="color:var(--text-dim);font-size:11.5px;">담은 과목은 시간표 중복과 관계없이 최대 13개까지 담을 수 있습니다.</span>
+      </div>
+      <div class="result-msg" id="hopeQuickMsg"></div>
+    </div>
+
+    <div class="sub-tabs" id="hopeSubTabs">
+      <button class="sub-tab active" data-sub="hopeSearch">교과목검색</button>
+      <button class="sub-tab" data-sub="hopeSame">동일교과목검색</button>
+      <button class="sub-tab" data-sub="hopeList">희망과목담기 내역</button>
+    </div>
+
+    <div class="sub-panel active" id="hopeSearch">
+      <div class="panel-card">
+        <div class="search-filter-row">
+          <select id="hopeSearchCat"></select>
+          <input id="hopeSearchKeyword" placeholder="과목명 · 교수명 검색">
+          <button class="btn-outline" id="hopeSearchBtn">조회</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th>신청인원(희망담기/자동신청)</th><th></th></tr></thead>
+            <tbody id="hopeSearchBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="hopeSame">
+      <div class="panel-card">
+        <div class="search-filter-row">
+          <input id="hopeSameKeyword" placeholder="과목명으로 동일교과목(전 분반) 검색">
+          <button class="btn-outline" id="hopeSameBtn">조회</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th></th></tr></thead>
+            <tbody id="hopeSameBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="hopeList">
+      <div class="panel-card">
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>순서</th><th>과목명</th><th>분반</th><th>교수</th><th>학점</th><th>삭제</th><th>제한인원</th><th>자동신청</th></tr></thead>
+            <tbody id="hopeListBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수강신청 화면 -->
+  <div class="menu-panel" id="menu-sugang" style="display:none;">
+    <div class="panel-card">
+      <h3>수강신청 신청</h3>
+      <div class="quick-row">
+        <label>교과목번호</label><input id="sugangCode" placeholder="예: ZE1000091" list="courseCodeList">
+        <label>분반</label><input id="sugangSection" placeholder="예: 001">
+        <button class="btn-navy" id="sugangQuickBtn">빠른 수강신청</button>
+        <button class="btn-outline" id="sugangWaitBtn">대기순번제 신청</button>
+      </div>
+      <div class="result-msg" id="sugangQuickMsg"></div>
+    </div>
+
+    <div class="credit-total-bar">
+      <span>신청 학점 <b id="sugangTotalCredit">0</b>학점 / 24학점 · 원격수업 <b id="sugangRemoteCredit">0</b>학점(6학점 이내)</span>
+      <span style="color:var(--text-dim);font-size:11.5px;">※ 이 화면은 연습용이며 실제 학점 이월·복학 여부는 반영되지 않습니다</span>
+    </div>
+
+    <div class="sub-tabs" id="sugangSubTabs">
+      <button class="sub-tab active" data-sub="sugangHope">희망과목담기</button>
+      <button class="sub-tab" data-sub="sugangSearch">교과목검색</button>
+      <button class="sub-tab" data-sub="sugangSame">동일교과목검색</button>
+      <button class="sub-tab" data-sub="sugangList">수강신청내역</button>
+      <button class="sub-tab" data-sub="sugangWaitlist">대기순번제 신청내역</button>
+    </div>
+
+    <div class="sub-panel active" id="sugangHope">
+      <div class="panel-card">
+        <p class="notice-line">희망과목담기 한 과목 중 신청할 과목의 "신청" 버튼을 누르면 수강신청 처리됩니다. 이미 신청 완료된 과목은 "완료"로 표시되며 클릭할 수 없습니다.</p>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th></th></tr></thead>
+            <tbody id="sugangHopeBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="sugangSearch">
+      <div class="panel-card">
+        <div class="search-filter-row">
+          <select id="sugangSearchCat"></select>
+          <input id="sugangSearchKeyword" placeholder="과목명 · 교수명 검색">
+          <button class="btn-outline" id="sugangSearchBtn">조회</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th>신청인원(정원)</th><th></th></tr></thead>
+            <tbody id="sugangSearchBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="sugangSame">
+      <div class="panel-card">
+        <div class="search-filter-row">
+          <input id="sugangSameKeyword" placeholder="과목명으로 동일교과목(전 분반) 검색">
+          <button class="btn-outline" id="sugangSameBtn">조회</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th></th></tr></thead>
+            <tbody id="sugangSameBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="sugangList">
+      <div class="panel-card">
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>시간/장소</th><th>학점</th><th>삭제</th><th>분반변경</th><th>제한인원</th></tr></thead>
+            <tbody id="sugangListBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-panel" id="sugangWaitlist">
+      <div class="panel-card">
+        <p class="notice-line">대기순번 신청은 1차 수강신청 기간에만 가능합니다. 학점 초과·시간표 중복이 있으면 교환교과목을 지정해야 신청이 완료됩니다.</p>
+        <div style="overflow-x:auto;">
+          <table class="grid">
+            <thead><tr><th>과목명</th><th>분반</th><th>교수</th><th>학점</th><th>대기순번</th><th>교환교과목</th><th>삭제</th></tr></thead>
+            <tbody id="sugangWaitlistBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-link-row"><a href="hope-waitlist-guide.html">📝 희망과목담기 · 대기순번제 안내 다시 보기</a></div>
+</div>
+
+<datalist id="courseCodeList"></datalist>
+
+<div class="modal-bg" id="exchangeModalBg">
+  <div class="modal-box">
+    <h4>교환교과목 설정</h4>
+    <p class="notice-line" id="exchangeModalNote"></p>
+    <div style="overflow-x:auto;">
+      <table class="grid">
+        <thead><tr><th>선택</th><th>과목명</th><th>분반</th><th>학점</th></tr></thead>
+        <tbody id="exchangeModalBody"></tbody>
+      </table>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-gray" id="exchangeModalCancel">취소</button>
+      <button class="btn-navy" id="exchangeModalConfirm">대기순번제 신청</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/buildings.js"></script>
+<script src="js/walk.js"></script>
+<script src="js/data-sections.js"></script>
+<script src="js/data-balance.js"></script>
+<script src="js/syllabus-data.js"></script>
+<script src="js/syllabus-balance.js"></script>
+<script src="js/book-prices.js"></script>
+<script src="js/app.js"></script>
+<script src="js/practice.js"></script>
