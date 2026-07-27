@@ -273,11 +273,6 @@ function findByCodeSection(code, section) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 교과목번호 자동완성 목록
-  const codes = new Set();
-  practiceCourses().forEach(c => { if (c.code) codes.add(c.code); });
-  document.getElementById("courseCodeList").innerHTML = [...codes].map(code => `<option value="${code}">`).join("");
-
   // 카테고리 셀렉트 채우기
   ["hopeSearchCat", "sugangSearchCat"].forEach(id => {
     const sel = document.getElementById(id);

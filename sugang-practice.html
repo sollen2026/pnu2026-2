@@ -3,84 +3,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   :root {
-    --navy: #043D92; --navy-dark: #033975; --gray-bg: #F4F5F9; --border: #D8DCE3;
-    --text: #1F2B39; --text-dim: #6C757D; --red: #B73E3E; --green: #1F8A56;
+    --navy: #043D92; --navy-dark: #033975; --gray-bg: #F5F6F8; --border: #DDDDDD;
+    --text: #555555; --text-dim: #6C757D; --title: #333333; --red: #B73E3E; --green: #1F8A56;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: "Malgun Gothic", "Noto Sans KR", sans-serif; background: var(--gray-bg); color: var(--text); font-size: 13.5px; }
+  body { margin: 0; font-family: "Malgun Gothic", noto, "Noto Sans KR", sans-serif; background: #fff; color: var(--text); font-size: 14px; }
   a { color: var(--navy); }
-  .sim-badge {
-    position: fixed; top: 8px; right: 8px; z-index: 500; background: #fff3cd; color: #856404;
-    border: 1px solid #ffe69c; border-radius: 6px; padding: 5px 10px; font-size: 11.5px; font-weight: 700;
+  .sim-banner {
+    background: #fff3cd; color: #856404; border-bottom: 1px solid #ffe69c;
+    padding: 7px 20px; font-size: 12.5px; font-weight: 700; text-align: center;
   }
-  .top-header { background: var(--navy); color: #fff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
-  .top-header .brand { font-size: 16px; font-weight: 800; letter-spacing: 1px; }
-  .top-header .brand small { display: block; font-size: 10px; font-weight: 400; letter-spacing: 2px; opacity: .8; }
-  .top-header .user-info { font-size: 12px; display: flex; align-items: center; gap: 14px; }
+  .top-header { background: var(--navy); color: #fff; padding: 15px 0; }
+  .top-header-inner { max-width: 1160px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+  .top-header img.logo { height: 28px; display: block; filter: brightness(0) invert(1); }
+  .top-header .user-info { font-size: 12.5px; display: flex; align-items: center; gap: 16px; }
   .top-header .user-info a { color: #cfe0ff; text-decoration: none; }
-  .title-bar { text-align: center; padding: 18px 0 6px; font-size: 20px; font-weight: 800; color: var(--navy); }
-  .menu-tabs { display: flex; justify-content: center; gap: 0; border-bottom: 2px solid var(--navy); background: #fff; }
+  .top-header .user-info a:hover { text-decoration: underline; }
+  .title-bar { text-align: center; padding: 26px 0 8px; font-size: 30px; font-weight: 500; color: var(--title); }
+  .title-bar span { display: block; font-size: 13px; color: var(--text-dim); font-weight: 400; margin-top: 4px; }
+  .menu-tabs { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid var(--navy); background: #fff; }
   .menu-tab {
-    padding: 12px 28px; font-size: 14px; font-weight: 700; color: var(--text-dim); background: none; border: none;
-    cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px;
+    padding: 12px 30px; font-size: 14.5px; font-weight: 500; color: var(--text-dim); background: none; border: none;
+    cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; font-family: inherit;
   }
-  .menu-tab.active { color: var(--navy); border-bottom-color: var(--navy); background: #eef2fb; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 60px; }
-  .panel-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 16px 18px; margin-bottom: 16px; }
-  .panel-card h3 { font-size: 13.5px; margin: 0 0 10px; padding-left: 10px; border-left: 4px solid var(--navy); color: var(--navy); }
+  .menu-tab.active { color: var(--navy); border-bottom-color: var(--navy); background: var(--gray-bg); }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 20px 20px 60px; }
+  .server-time-notice {
+    background: var(--gray-bg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 10px 14px; margin-bottom: 16px; font-size: 12.5px; color: var(--text); line-height: 1.7;
+  }
+  .panel-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; margin-bottom: 16px; }
+  .panel-card h3 { font-size: 15px; margin: 0 0 12px; padding-left: 10px; border-left: 4px solid var(--navy); color: var(--title); font-weight: 500; }
   .quick-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .quick-row label { font-size: 12.5px; color: var(--text-dim); }
-  .quick-row input { padding: 7px 9px; border: 1px solid var(--border); border-radius: 3px; font-size: 13px; width: 130px; }
+  .quick-row label { font-size: 13px; color: var(--text-dim); }
+  .quick-row input { padding: 7px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; width: 140px; font-family: inherit; }
   .btn-navy, .btn-outline, .btn-red, .btn-gray {
-    padding: 7px 16px; border-radius: 3px; font-size: 12.5px; font-weight: 700; cursor: pointer; border: 1px solid transparent;
+    padding: 6px 16px; border-radius: 3px; font-size: 13.5px; font-weight: 400; cursor: pointer; border: 1px solid transparent; font-family: inherit;
   }
-  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy { background: var(--navy); color: #fff; border-color: var(--navy); }
   .btn-navy:hover { background: var(--navy-dark); }
   .btn-outline { background: #fff; color: var(--navy); border-color: var(--navy); }
   .btn-red { background: #fff; color: var(--red); border-color: var(--red); }
   .btn-gray { background: #fff; color: var(--text-dim); border-color: var(--border); }
-  .sub-tabs { display: flex; gap: 4px; margin: 14px 0 10px; border-bottom: 1px solid var(--border); }
+  .btn-navy:disabled, .btn-gray:disabled { opacity: .55; cursor: default; }
+  .sub-tabs { display: flex; gap: 4px; margin: 16px 0 0; border-bottom: 1px solid var(--border); }
   .sub-tab {
-    padding: 8px 16px; font-size: 12.5px; font-weight: 700; background: var(--gray-bg); color: var(--text-dim);
-    border: 1px solid var(--border); border-bottom: none; border-radius: 4px 4px 0 0; cursor: pointer; margin-bottom: -1px;
+    padding: 9px 18px; font-size: 13px; font-weight: 500; background: var(--gray-bg); color: var(--text-dim);
+    border: 1px solid var(--border); border-bottom: none; border-radius: 4px 4px 0 0; cursor: pointer; margin-bottom: -1px; font-family: inherit;
   }
-  .sub-tab.active { background: #fff; color: var(--navy); border-bottom: 1px solid #fff; }
+  .sub-tab.active { background: #fff; color: var(--navy); border-bottom: 1px solid #fff; font-weight: 700; }
   .sub-panel { display: none; }
   .sub-panel.active { display: block; }
-  table.grid { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  table.grid th { background: var(--gray-bg); border: 1px solid var(--border); padding: 8px 6px; color: var(--text); font-weight: 700; }
-  table.grid td { border: 1px solid var(--border); padding: 7px 6px; text-align: center; }
-  table.grid tr:hover td { background: #f8fafd; }
+  .sub-panel .panel-card { border-top: none; border-radius: 0 0 4px 4px; }
+  table.grid { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.grid th { background: var(--gray-bg); border: 1px solid var(--border); padding: 10px 8px; color: #232324; font-weight: 500; }
+  table.grid td { border: 1px solid var(--border); padding: 8px; text-align: center; color: var(--text); }
+  table.grid tr:hover td { background: #fafbfd; }
   .cap-ok { color: var(--green); font-weight: 700; }
   .cap-full { color: var(--red); font-weight: 700; }
-  .result-msg { margin-top: 10px; padding: 9px 12px; border-radius: 4px; font-size: 12.5px; display: none; }
+  .result-msg { margin-top: 10px; padding: 10px 12px; border-radius: 4px; font-size: 13px; display: none; }
   .result-msg.ok { display: block; background: #eaf7ee; color: var(--green); border: 1px solid #bfe6cb; }
   .result-msg.err { display: block; background: #fdecec; color: var(--red); border: 1px solid #f5c2c2; }
-  .search-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-  .search-filter-row select, .search-filter-row input { padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; }
-  .credit-total-bar { display: flex; justify-content: space-between; align-items: center; background: var(--gray-bg); border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; margin-bottom: 12px; font-size: 13px; }
+  .search-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .search-filter-row select, .search-filter-row input { padding: 7px 9px; border: 1px solid var(--border); border-radius: 4px; font-size: 13px; font-family: inherit; }
+  .credit-total-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; background: var(--gray-bg); border: 1px solid var(--border); border-radius: 4px; padding: 11px 14px; margin-bottom: 14px; font-size: 13px; }
   .credit-total-bar b { color: var(--navy); }
   .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 400; }
   .modal-bg.open { display: flex; }
-  .modal-box { background: #fff; border-radius: 6px; padding: 20px; width: 92%; max-width: 480px; max-height: 82vh; overflow-y: auto; }
-  .modal-box h4 { margin: 0 0 10px; color: var(--navy); font-size: 14px; }
+  .modal-box { background: #fff; border-radius: 6px; padding: 22px; width: 92%; max-width: 480px; max-height: 82vh; overflow-y: auto; }
+  .modal-box h4 { margin: 0 0 10px; color: var(--title); font-size: 15px; font-weight: 500; }
   .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
-  .notice-line { font-size: 11.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.6; }
-  .back-link-row { text-align: center; margin-top: 18px; }
-  .empty-row td { color: var(--text-dim); padding: 20px; }
-  .field-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10.5px; font-weight: 700; color: #fff; margin-right: 4px; }
+  .notice-line { font-size: 12px; color: var(--text-dim); margin: 0 0 10px; line-height: 1.7; background: var(--gray-bg); border-radius: 4px; padding: 9px 12px; }
+  .notice-line b { color: var(--text); }
+  .back-link-row { text-align: center; margin-top: 20px; font-size: 13px; }
+  .empty-row td { color: var(--text-dim); padding: 22px; }
 </style>
 
-<div class="sim-badge">⚠️ 모의 연습 화면입니다 — 실제 수강신청과 무관하며 데이터는 저장되지 않습니다</div>
+<div class="sim-banner">⚠️ 모의 연습 화면입니다 — 실제 수강신청과 무관하며 입력한 데이터는 저장·제출되지 않습니다</div>
 
 <div class="top-header">
-  <div class="brand">부 산 대 학 교<small>PUSAN NATIONAL UNIVERSITY (모의연습판)</small></div>
-  <div class="user-info">
-    <span>202600000 · 일반사회교육과 1학년 (연습용 가상 계정)</span>
-    <a href="index.html">← 시간표 도구로 돌아가기</a>
+  <div class="top-header-inner">
+    <img class="logo" src="assets/images/pnu-sugang-logo.png" alt="부산대학교 수강신청시스템">
+    <div class="user-info">
+      <span>202600000 · 일반사회교육과 1학년 (연습용 가상 계정)</span>
+      <a href="index.html">← 시간표 도구로 돌아가기</a>
+    </div>
   </div>
 </div>
-<div class="title-bar">2026학년도 2학기 수강신청 <span style="font-size:13px;color:var(--text-dim);font-weight:400;">— 모의 연습</span></div>
+<div class="title-bar">2026학년도 2학기 수강신청<span>모의 연습 — 실제 수강신청 시스템 화면을 참고해 만든 훈련용 페이지입니다</span></div>
 
 <div class="menu-tabs">
   <button class="menu-tab active" data-menu="hope">희망과목담기</button>
@@ -89,18 +99,24 @@
 
 <div class="wrap">
 
+  <div class="server-time-notice">
+    🕐 <b>실제 수강신청</b>은 내 컴퓨터 시계가 아니라 <b>수강신청 서버 시간</b> 기준으로 열리고 닫힙니다. 신청 직전에는 서버시간을 꼭 확인하세요 — 예: <a href="https://time.navyism.com/?host=sugang.pusan.ac.kr" target="_blank" rel="noopener">navyism 서버시간 확인 (sugang.pusan.ac.kr 기준)</a>
+  </div>
+
   <!-- 희망과목담기 화면 -->
   <div class="menu-panel active" id="menu-hope">
     <div class="panel-card">
       <h3>희망과목담기 신청</h3>
       <div class="quick-row">
-        <label>교과목번호</label><input id="hopeCode" placeholder="예: ZE1000091" list="courseCodeList">
+        <label>교과목번호</label><input id="hopeCode" placeholder="예: ZE1000091">
         <label>분반</label><input id="hopeSection" placeholder="예: 001">
         <button class="btn-navy" id="hopeQuickBtn">담기</button>
-        <span style="color:var(--text-dim);font-size:11.5px;">담은 과목은 시간표 중복과 관계없이 최대 13개까지 담을 수 있습니다.</span>
+        <span style="color:var(--text-dim);font-size:12px;">담은 과목은 시간표 중복과 관계없이 최대 13개까지 담을 수 있습니다.</span>
       </div>
       <div class="result-msg" id="hopeQuickMsg"></div>
     </div>
+
+    <p class="notice-line">💡 <b>희망과목담기</b>는 수강신청 전 듣고 싶은 강좌를 미리 담아두는 기능입니다. 담기만 하고 별도로 <b>수강신청</b>을 하지 않으면 실제로는 신청되지 않으니, 아래 "희망과목담기 내역"에서 필요하면 <b>자동신청</b>까지 지정해두세요.</p>
 
     <div class="sub-tabs" id="hopeSubTabs">
       <button class="sub-tab active" data-sub="hopeSearch">교과목검색</button>
@@ -141,6 +157,7 @@
 
     <div class="sub-panel" id="hopeList">
       <div class="panel-card">
+        <p class="notice-line">💡 <b>자동신청</b>은 희망과목담기 한 과목을 별도 조작 없이 자동으로 수강신청 처리해주는 기능입니다. 다만 그 과목의 희망담기 인원이 제한인원을 넘으면 자동신청되지 않으니, 처리 결과를 꼭 다시 확인하세요. 이 연습 화면에서는 "자동신청" 버튼을 누르면 즉시 정원을 확인해 신청을 시도합니다.</p>
         <div style="overflow-x:auto;">
           <table class="grid">
             <thead><tr><th>순서</th><th>과목명</th><th>분반</th><th>교수</th><th>학점</th><th>삭제</th><th>제한인원</th><th>자동신청</th></tr></thead>
@@ -156,7 +173,7 @@
     <div class="panel-card">
       <h3>수강신청 신청</h3>
       <div class="quick-row">
-        <label>교과목번호</label><input id="sugangCode" placeholder="예: ZE1000091" list="courseCodeList">
+        <label>교과목번호</label><input id="sugangCode" placeholder="예: ZE1000091">
         <label>분반</label><input id="sugangSection" placeholder="예: 001">
         <button class="btn-navy" id="sugangQuickBtn">빠른 수강신청</button>
         <button class="btn-outline" id="sugangWaitBtn">대기순번제 신청</button>
@@ -168,6 +185,8 @@
       <span>신청 학점 <b id="sugangTotalCredit">0</b>학점 / 24학점 · 원격수업 <b id="sugangRemoteCredit">0</b>학점(6학점 이내)</span>
       <span style="color:var(--text-dim);font-size:11.5px;">※ 이 화면은 연습용이며 실제 학점 이월·복학 여부는 반영되지 않습니다</span>
     </div>
+
+    <p class="notice-line">💡 <b>대기순번제</b>는 정원이 이미 찬 과목을 신청할 때, 선착순으로 대기순번을 받아두었다가 다른 학생이 수강취소를 하면 자동으로 신청 처리되는 기능입니다(1차 수강신청 기간에만, 학부 2과목까지). 학점 초과나 시간표 중복이 있으면 이미 신청된 과목 중 하나를 <b>교환교과목</b>으로 지정해야 하며, 대기순번이 자동신청 처리되는 순간 교환교과목은 취소되고 그 자리를 대체합니다. 자세한 내용은 <a href="hope-waitlist-guide.html">희망과목담기·대기순번제 안내</a>를 참고하세요.</p>
 
     <div class="sub-tabs" id="sugangSubTabs">
       <button class="sub-tab active" data-sub="sugangHope">희망과목담기</button>
@@ -246,8 +265,6 @@
 
   <div class="back-link-row"><a href="hope-waitlist-guide.html">📝 희망과목담기 · 대기순번제 안내 다시 보기</a></div>
 </div>
-
-<datalist id="courseCodeList"></datalist>
 
 <div class="modal-bg" id="exchangeModalBg">
   <div class="modal-box">

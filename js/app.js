@@ -590,7 +590,24 @@ function renderTabs() {
   });
 }
 
+function renderFilterSummary() {
+  const el = document.getElementById("searchFiltersSummary");
+  if (!el) return;
+  const bits = [];
+  if (activeTab !== "all") {
+    const meta = CATEGORY_META[activeTab];
+    if (meta) bits.push(meta.group ? `${meta.group} · ${meta.label}` : meta.label);
+  }
+  if (searchTerm) bits.push(`"${searchTerm}"`);
+  if (dayFilter !== "all") bits.push(`${DAY_LABEL[parseInt(dayFilter)]}요일`);
+  if (creditFilter !== "all") bits.push(`${creditFilter}학점`);
+  if (typeof filterRemoteOnly !== "undefined" && filterRemoteOnly) bits.push("원격/MOOC 강의만");
+  if (typeof filterPassFailOnly !== "undefined" && filterPassFailOnly) bits.push("S/U(P·F) 평가만");
+  el.textContent = bits.length ? bits.join(" · ") : "전체 과목 표시 중";
+}
+
 function renderCourseList() {
+  renderFilterSummary();
   const listEl = document.getElementById("courseList");
   listEl.innerHTML = "";
   let items = activeTab === "all" ? ALL_COURSES.filter(c => !c.fixed) : ALL_COURSES.filter(c => c.category === activeTab);
@@ -957,6 +974,12 @@ document.addEventListener("DOMContentLoaded", () => {
     searchTerm = e.target.value.trim();
     renderCourseList();
   });
+  const searchFiltersPanel = document.getElementById("searchFiltersPanel");
+  const searchFiltersArrow = document.getElementById("searchFiltersArrow");
+  document.getElementById("searchFiltersToggle").onclick = () => {
+    const collapsed = searchFiltersPanel.classList.toggle("collapsed");
+    searchFiltersArrow.textContent = collapsed ? "▾" : "▴";
+  };
   document.getElementById("filterRemote").addEventListener("change", (e) => {
     filterRemoteOnly = e.target.checked;
     renderCourseList();
@@ -1012,16 +1035,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.id === "timetableViewBackdrop") closeTimetableViewModal();
   });
 
-  renderRandomCatGroups("randomCatGroups");
-  renderEnglishLevelRow("randomEnglishLevel");
-  const randomPanelBody = document.getElementById("randomPanelBody");
-  const randomToggleArrow = document.getElementById("randomToggleArrow");
-  document.getElementById("randomToggle").onclick = () => {
-    const collapsed = randomPanelBody.style.display === "none";
-    randomPanelBody.style.display = collapsed ? "" : "none";
-    randomToggleArrow.textContent = collapsed ? "▴" : "▾";
-  };
-  document.getElementById("randomGenerateBtn").onclick = () => runRandomGeneration("random", false);
   document.getElementById("randomResultBackdrop").addEventListener("click", (e) => {
     if (e.target.id === "randomResultBackdrop") closeRandomResultModal();
   });

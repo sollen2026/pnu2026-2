@@ -26,78 +26,60 @@
 </div>
 
 <main class="app-shell">
-  <div class="panel random-panel">
-    <button class="random-panel-toggle" id="randomToggle">
-      <span>🎲 랜덤 시간표 생성</span>
-      <span class="arrow" id="randomToggleArrow">▾</span>
-    </button>
-    <div class="random-panel-body" id="randomPanelBody" style="display:none;">
-      <p class="panel-note">목표 학점과 담고 싶은 영역을 고른 뒤 생성하면, 고정 과목(경제학·대학생활설계와비전)과 시간이 겹치지 않고 이동시간도 무리 없는 조합으로 시간표를 만들어줘요. 효원균형·창의교양은 한 영역당 최대 3학점까지만 담기며, <b>융합과 창의</b> 영역은 생성 대상에서 제외됩니다.</p>
-      <div class="random-credit-row">
-        <label for="randomCredits">목표 학점</label>
-        <input type="number" id="randomCredits" value="21" min="5" max="24" step="1">
-        <span style="font-size:11.5px;color:var(--text-dim);">(고정 5학점 포함 · 5~24 사이)</span>
-      </div>
-      <div class="random-cat-groups" id="randomCatGroups"></div>
-      <div class="random-english-level-row">
-        <label>대학영어 레벨 (담을 경우)</label>
-        <div class="tabs" id="randomEnglishLevel"></div>
-      </div>
-      <div class="filter-check-row" style="margin-bottom:14px;">
-        <label class="filter-check"><input type="checkbox" id="randomNo9am"> 9시 수업 제외</label>
-        <label class="filter-check"><input type="checkbox" id="randomNoFriday"> 금요일 공강</label>
-        <label class="filter-check"><input type="checkbox" id="randomExclude600"> 600번대 건물 제외</label>
-        <label class="filter-check"><input type="checkbox" id="randomExclude700"> 700번대 건물 제외</label>
-      </div>
-      <button class="btn primary full-width" id="randomGenerateBtn">🎲 랜덤 시간표 생성하기</button>
-    </div>
-  </div>
-
   <div class="layout">
     <div class="panel sidebar">
-      <div class="fixed-chip-row">
-        <span class="fixed-chip">🔒 필수 고정 · 경제학</span>
-        <span class="fixed-chip">🔒 필수 고정 · 대학생활설계와비전</span>
-      </div>
+      <div class="search-filters-panel" id="searchFiltersPanel">
+        <button class="search-filters-toggle" id="searchFiltersToggle">
+          <span>🔍 과목 검색 · 필터</span>
+          <span class="search-filters-summary" id="searchFiltersSummary"></span>
+          <span class="arrow" id="searchFiltersArrow">▴</span>
+        </button>
+        <div class="search-filters-body" id="searchFiltersBody">
+          <div class="fixed-chip-row">
+            <span class="fixed-chip">🔒 필수 고정 · 경제학</span>
+            <span class="fixed-chip">🔒 필수 고정 · 대학생활설계와비전</span>
+          </div>
 
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input id="searchInput" type="text" placeholder="교수명 · 분반 · 요일로 검색">
-      </div>
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input id="searchInput" type="text" placeholder="교수명 · 분반 · 요일로 검색">
+          </div>
 
-      <div class="filter-check-row">
-        <label class="filter-check"><input type="checkbox" id="filterRemote"> 🖥️ 원격/MOOC 강의만</label>
-        <label class="filter-check"><input type="checkbox" id="filterPassFail"> S/U(P·F) 평가만</label>
-      </div>
+          <div class="filter-check-row">
+            <label class="filter-check"><input type="checkbox" id="filterRemote"> 🖥️ 원격/MOOC 강의만</label>
+            <label class="filter-check"><input type="checkbox" id="filterPassFail"> S/U(P·F) 평가만</label>
+          </div>
 
-      <div class="tabs" id="dayFilterRow">
-        <button class="tab active" data-day="all">전체 요일</button>
-        <button class="tab" data-day="0">월</button>
-        <button class="tab" data-day="1">화</button>
-        <button class="tab" data-day="2">수</button>
-        <button class="tab" data-day="3">목</button>
-        <button class="tab" data-day="4">금</button>
-      </div>
+          <div class="tabs" id="dayFilterRow">
+            <button class="tab active" data-day="all">전체 요일</button>
+            <button class="tab" data-day="0">월</button>
+            <button class="tab" data-day="1">화</button>
+            <button class="tab" data-day="2">수</button>
+            <button class="tab" data-day="3">목</button>
+            <button class="tab" data-day="4">금</button>
+          </div>
 
-      <div class="tabs" id="creditFilterRow">
-        <button class="tab active" data-credit="all">전체 학점</button>
-        <button class="tab" data-credit="1">1학점</button>
-        <button class="tab" data-credit="2">2학점</button>
-        <button class="tab" data-credit="3">3학점</button>
-      </div>
+          <div class="tabs" id="creditFilterRow">
+            <button class="tab active" data-credit="all">전체 학점</button>
+            <button class="tab" data-credit="1">1학점</button>
+            <button class="tab" data-credit="2">2학점</button>
+            <button class="tab" data-credit="3">3학점</button>
+          </div>
 
-      <div class="tabs" id="tabs"></div>
+          <div class="tabs" id="tabs"></div>
+        </div>
+      </div>
       <div class="course-list" id="courseList"></div>
       <div class="credit-summary" id="creditSummary"></div>
       <button class="btn small primary full-width" id="viewTimetableBtn">📅 내 시간표 보기</button>
-      <button class="btn small full-width" id="randomFillBtnMobile">🎲 선택한 과목 제외하고 랜덤 시간표 돌리기</button>
+      <button class="btn small full-width" id="randomFillBtnMobile">🎲 시간표에 담은 과목 제외하고 랜덤 시간표 돌리기</button>
       <button class="btn small ghost full-width" id="resetBtn">고정 과목 외 초기화</button>
     </div>
 
     <div class="panel timetable-panel">
       <div class="timetable-toolbar">
         <div id="creditSummaryTop" class="credit-summary-top"></div>
-        <button class="btn small" id="randomFillBtn">🎲 선택한 과목 제외하고 랜덤 시간표 돌리기</button>
+        <button class="btn small" id="randomFillBtn">🎲 시간표에 담은 과목 제외하고 랜덤 시간표 돌리기</button>
         <button class="btn small" id="resetBtnTop">🔄 시간표 초기화</button>
       </div>
       <div class="timetable-wrap" id="desktopGridWrap"></div>
@@ -128,15 +110,18 @@
       </div>
 
       <div class="info-tab-panel active" id="panel-eligibility">
-        <div class="sugang-period-box">
-          <div class="sugang-period-row"><b>희망과목담기 및 자동신청 선택</b> 2026. 8. 3.(월) 10:00 ~ 8. 4.(화) 17:00</div>
-          <div class="sugang-period-row"><b>자동신청 교과목 확인·삭제</b> 2026. 8. 5.(수) 09:00 ~ 18:00</div>
-          <div class="sugang-period-row"><b>1차 수강신청</b> 2026. 8. 10.(월) 08:00 ~ 8. 12.(수) 17:00</div>
-          <div class="sugang-period-row"><b>대기순번신청 (1차만 적용)</b> 2026. 8. 10.(월) 10:00 ~ 8. 12.(수) 17:00</div>
-          <div class="sugang-period-row"><b>2차 수강신청</b> 2026. 8. 18.(화) 10:00 ~ 8. 19.(수) 17:00</div>
-          <div class="sugang-period-row"><b>1차 폐강강좌 공고 · 1차 수강정정</b> 공고 8. 27.(목) · 정정 9. 1.(화) 08:00 ~ 9. 7.(월) 17:00</div>
-          <div class="sugang-period-row"><b>2차 폐강강좌 공고 · 2차 수강정정</b> 공고 9. 14.(월) · 정정 9. 15.(화) 10:00 ~ 9. 16.(수) 17:00</div>
-          <div class="sugang-period-row"><b>수강취소(W)</b> 2026. 10. 1.(목) 09:00 ~ 10. 8.(목) 18:00</div>
+        <div class="table-scroll">
+          <table class="info-table2 sugang-period-table">
+            <tr><th>구분</th><th>시작</th><th>종료</th></tr>
+            <tr><td>희망과목담기 및 자동신청 선택</td><td>8. 3.(월) 10:00</td><td>8. 4.(화) 17:00</td></tr>
+            <tr><td>자동신청 교과목 확인·삭제</td><td>8. 5.(수) 09:00</td><td>8. 5.(수) 18:00</td></tr>
+            <tr><td><b>1차 수강신청</b></td><td>8. 10.(월) 08:00</td><td>8. 12.(수) 17:00</td></tr>
+            <tr><td>대기순번신청 (1차만 적용)</td><td>8. 10.(월) 10:00</td><td>8. 12.(수) 17:00</td></tr>
+            <tr><td><b>2차 수강신청</b></td><td>8. 18.(화) 10:00</td><td>8. 19.(수) 17:00</td></tr>
+            <tr><td>1차 폐강강좌 공고 / 1차 수강정정</td><td>공고 8. 27.(목) / 정정 9. 1.(화) 08:00</td><td>정정 9. 7.(월) 17:00</td></tr>
+            <tr><td>2차 폐강강좌 공고 / 2차 수강정정</td><td>공고 9. 14.(월) / 정정 9. 15.(화) 10:00</td><td>정정 9. 16.(수) 17:00</td></tr>
+            <tr><td>수강취소(W)</td><td>10. 1.(목) 09:00</td><td>10. 8.(목) 18:00</td></tr>
+          </table>
         </div>
         <div class="panel-note" style="margin:8px 0 0;">💡 희망과목담기는 시간표 중복과 관계없이 13개 강좌까지 담을 수 있지만, 별도로 <b>수강신청</b>을 해야 실제로 반영됩니다. 희망과목담기·대기순번제가 처음이라면 <a href="hope-waitlist-guide.html">희망과목담기 · 대기순번제 안내 페이지</a>를 먼저 확인하세요.</div>
         <p class="panel-intro">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 고전읽기와토론·대학영어·인공지능과디지털사고 3개 과목의 1차·2차 수강신청 가능 분반입니다.</p>
@@ -327,7 +312,7 @@
 <div class="modal-backdrop" id="randomFillBackdrop">
   <div class="modal" id="randomFillBody">
     <span class="modal-close-x" id="randomFillCloseX">&times;</span>
-    <h3>🎲 선택한 과목 제외하고 랜덤 시간표 돌리기</h3>
+    <h3>🎲 시간표에 담은 과목 제외하고 랜덤 시간표 돌리기</h3>
     <p class="panel-note">지금까지 담은 과목은 그대로 두고, 나머지 빈 시간표만 아래 조건에 맞춰 랜덤으로 채워요.</p>
     <div class="random-credit-row">
       <label for="randomFillCredits">목표 학점</label>
@@ -338,6 +323,7 @@
     <div class="random-english-level-row">
       <label>대학영어 레벨 (담을 경우)</label>
       <div class="tabs" id="randomFillEnglishLevel"></div>
+      <a class="btn small" href="english-diagnostic.html" target="_blank" rel="noopener">🧭 내 레벨 모르면 자가진단</a>
     </div>
     <div class="filter-check-row" style="margin-bottom:14px;">
       <label class="filter-check"><input type="checkbox" id="randomFillNo9am"> 9시 수업 제외</label>
