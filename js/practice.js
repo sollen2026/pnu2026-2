@@ -91,6 +91,14 @@ function addHope(course) {
   renderHopeList(); renderHopeSearch(); renderSugangHope();
 }
 function removeHope(id) { pState.hopeIds = pState.hopeIds.filter(x => x !== id); savePracticeState(); renderHopeList(); renderHopeSearch(); renderSugangHope(); }
+function moveHope(id, dir) {
+  const i = pState.hopeIds.indexOf(id);
+  const j = i + dir;
+  if (i < 0 || j < 0 || j >= pState.hopeIds.length) return;
+  [pState.hopeIds[i], pState.hopeIds[j]] = [pState.hopeIds[j], pState.hopeIds[i]];
+  savePracticeState();
+  renderHopeList();
+}
 
 function renderHopeList() {
   const body = document.getElementById("hopeListBody");
@@ -105,7 +113,7 @@ function renderHopeList() {
       <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
       <td><button class="pill-btn pill-apply" data-hope-limit="${id}">보기</button></td>
       <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
-      <td>▲▼</td>
+      <td><button class="pill-btn pill-apply" data-hope-move="${id}" data-dir="-1" ${i === 0 ? "disabled" : ""}>▲</button> <button class="pill-btn pill-apply" data-hope-move="${id}" data-dir="1" ${i === pState.hopeIds.length - 1 ? "disabled" : ""}>▼</button></td>
       <td><button class="pill-btn pill-apply" data-hope-auto="${id}">신청</button></td>
       <td class="wrap-cell"></td>
     </tr>`;
@@ -288,6 +296,35 @@ function openExchangeModal(course, creditOver, conflict) {
   document.getElementById("exchangeModalCancel").onclick = () => bg.classList.remove("open");
 }
 
+// 이미 신청된 대기순번 항목의 교환교과목을 나중에 설정/변경할 때 사용
+function openExchangeModalForEntry(index) {
+  const w = pState.waitlist[index];
+  const course = pGetCourse(w.id);
+  const bg = document.getElementById("exchangeModalBg");
+  const note = document.getElementById("exchangeModalNote");
+  note.textContent = `${course.name} ${course.section}분반의 교환교과목을 설정합니다. (${course.credit || 0}학점 이하인 신청 과목만 선택 가능)`;
+  const candidates = pState.appliedIds.map(pGetCourse).filter(c => c && (c.credit || 0) <= (course.credit || 0));
+  const body = document.getElementById("exchangeModalBody");
+  if (!candidates.length) {
+    body.innerHTML = `<tr class="empty-row"><td colspan="4">교환 가능한 신청 과목이 없습니다. 학점이 더 적은 과목을 먼저 신청해보세요.</td></tr>`;
+  } else {
+    body.innerHTML = candidates.map(c => `<tr>
+      <td><input type="radio" name="exchangePick" value="${c.id}" ${w.exchangeId === c.id ? "checked" : ""}></td>
+      <td>${c.name}</td><td>${c.section}분반</td><td>${c.credit || "-"}</td>
+    </tr>`).join("");
+  }
+  bg.classList.add("open");
+  document.getElementById("exchangeModalConfirm").onclick = () => {
+    const picked = document.querySelector('input[name="exchangePick"]:checked');
+    if (!picked) { alert("교환교과목을 선택하세요."); return; }
+    pState.waitlist[index].exchangeId = picked.value;
+    savePracticeState();
+    bg.classList.remove("open");
+    renderAllPracticeViews();
+  };
+  document.getElementById("exchangeModalCancel").onclick = () => bg.classList.remove("open");
+}
+
 function renderSugangWaitlist() {
   const body = document.getElementById("sugangWaitlistBody");
   if (!pState.waitlist.length) { body.innerHTML = `<tr class="empty-row"><td colspan="10">대기순번 신청 내역이 없습니다.</td></tr>`; return; }
@@ -300,7 +337,7 @@ function renderSugangWaitlist() {
       <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td><td>${c.credit || "-"}</td>
       <td><button class="pill-btn pill-apply" data-hope-limit="${c.id}">보기</button></td>
       <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
-      <td>${ex ? `<span title="${ex.name} ${ex.section}분반">설정됨</span>` : `<button class="pill-btn pill-apply">설정</button>`}</td>
+      <td><button class="pill-btn pill-apply" data-waitlist-exchange="${i}">${ex ? `${ex.name} ${ex.section}분반 (변경)` : "설정"}</button></td>
       <td>${waitlistCountFor(w.id)}</td>
     </tr>`;
   }).join("");
@@ -378,6 +415,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const t = e.target;
     if (t.dataset.hopeAdd) addHope(pGetCourse(t.dataset.hopeAdd));
     else if (t.dataset.hopeRemove) removeHope(t.dataset.hopeRemove);
+    else if (t.dataset.hopeMove) moveHope(t.dataset.hopeMove, parseInt(t.dataset.dir));
+    else if (t.dataset.waitlistExchange !== undefined) openExchangeModalForEntry(parseInt(t.dataset.waitlistExchange));
     else if (t.dataset.hopeAuto) {
       const c = pGetCourse(t.dataset.hopeAuto);
       if (c) registerCourse(c);

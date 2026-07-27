@@ -976,9 +976,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const searchFiltersPanel = document.getElementById("searchFiltersPanel");
   const searchFiltersArrow = document.getElementById("searchFiltersArrow");
+  const searchFiltersFoldText = document.getElementById("searchFiltersFoldText");
   document.getElementById("searchFiltersToggle").onclick = () => {
     const collapsed = searchFiltersPanel.classList.toggle("collapsed");
     searchFiltersArrow.textContent = collapsed ? "▾" : "▴";
+    searchFiltersFoldText.textContent = collapsed ? "펼치기" : "접기";
   };
   document.getElementById("filterRemote").addEventListener("change", (e) => {
     filterRemoteOnly = e.target.checked;
@@ -1013,9 +1015,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const infoSection = document.getElementById("infoSection");
   const infoSectionArrow = document.getElementById("infoSectionArrow");
+  const infoSectionFoldText = document.getElementById("infoSectionFoldText");
   document.getElementById("infoSectionToggle").onclick = () => {
-    infoSection.classList.toggle("open");
-    infoSectionArrow.textContent = infoSection.classList.contains("open") ? "▴" : "▾";
+    const open = infoSection.classList.toggle("open");
+    infoSectionArrow.textContent = open ? "▴" : "▾";
+    infoSectionFoldText.textContent = open ? "접기" : "펼치기";
   };
   document.querySelectorAll(".info-tab").forEach(btn => {
     btn.onclick = () => {

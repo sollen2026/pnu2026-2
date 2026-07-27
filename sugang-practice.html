@@ -14,8 +14,15 @@
 
   .sim-banner {
     background: #fff3cd; color: #856404; border-bottom: 1px solid #ffe69c;
-    padding: 6px 20px; font-size: 12px; font-weight: 700; text-align: center;
+    padding: 8px 16px; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 16px;
   }
+  .home-btn {
+    background: var(--red); color: #fff !important; text-decoration: none; font-size: 12px; font-weight: 700;
+    padding: 6px 14px; border-radius: 4px; white-space: nowrap;
+  }
+  .home-btn:hover { background: var(--red-dark); }
+  .disabled-link { opacity: .5; cursor: default !important; pointer-events: none; }
 
   /* 상단 네이비 바 — 로고 + 인라인 메뉴 + 시계/로그아웃 */
   .top-header { background: var(--navy); color: #fff; }
@@ -83,6 +90,7 @@
   .pill-apply:hover { background: #dde9fb; }
   .pill-done { background: var(--green-bg); color: var(--green); cursor: default; }
   .pill-del { background: #fdecec; color: var(--red-dark); }
+  .pill-btn:disabled { opacity: .4; cursor: default; }
 
   .sub-tabs { display: flex; gap: 3px; margin: 14px 0 0; }
   .sub-tab {
@@ -112,7 +120,10 @@
   .confirm-bar .confirm-actions { margin-left: auto; display: flex; gap: 6px; }
 
   .search-filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-  .search-filter-row select, .search-filter-row input { padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; font-family: inherit; }
+  .search-filter-row select, .search-filter-row input {
+    padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; font-family: inherit;
+    width: 180px; max-width: 100%; flex: 0 1 180px;
+  }
   .credit-total-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 4px; padding: 10px 14px; margin-bottom: 12px; font-size: 12.5px; }
   .credit-total-bar b { color: var(--navy); }
 
@@ -129,9 +140,20 @@
   @media (max-width: 820px) {
     .side-nav { display: none; }
   }
+  @media (max-width: 720px) {
+    .top-header-inner { flex-wrap: wrap; height: auto; padding: 8px 12px; gap: 8px 14px; }
+    .top-nav { order: 3; flex: 1 1 100%; flex-wrap: wrap; gap: 10px 16px; }
+    .top-header-right { flex-wrap: wrap; gap: 6px 10px; }
+    .quick-row { flex-direction: column; align-items: stretch; }
+    .quick-row input { width: 100%; }
+    table.grid { font-size: 11px; }
+  }
 </style>
 
-<div class="sim-banner">⚠️ 모의 연습 화면입니다 — 실제 수강신청과 무관하며 입력한 데이터는 저장·제출되지 않습니다</div>
+<div class="sim-banner">
+  <span>⚠️ 모의 연습 화면입니다 — 실제 수강신청과 무관하며 입력한 데이터는 저장·제출되지 않습니다</span>
+  <a class="home-btn" href="index.html">🏠 홈 화면으로 돌아가기</a>
+</div>
 
 <div class="top-header">
   <div class="top-header-inner">
@@ -139,15 +161,15 @@
     <nav class="top-nav">
       <a data-menu="hope" class="active">희망과목담기</a>
       <a data-menu="sugang">수강신청</a>
-      <a href="#" style="opacity:.5;cursor:default;" onclick="return false;">효원브릿지수강신청</a>
-      <a href="hope-waitlist-guide.html">공지사항</a>
-      <a href="#" style="opacity:.5;cursor:default;" onclick="return false;">학생기본정보</a>
-      <a href="#" style="opacity:.5;cursor:default;" onclick="return false;">게시판</a>
+      <a href="#" class="disabled-link" onclick="return false;">효원브릿지수강신청</a>
+      <a href="#" class="disabled-link" onclick="return false;">공지사항</a>
+      <a href="#" class="disabled-link" onclick="return false;">학생기본정보</a>
+      <a href="#" class="disabled-link" onclick="return false;">게시판</a>
     </nav>
     <div class="top-header-right">
       <span id="clockDisplay">2026.08.03 10:00:00</span>
       <span class="countdown" id="countdownBadge">0029:33</span>
-      <a href="index.html">로그아웃</a>
+      <a href="#" class="disabled-link" onclick="return false;">로그아웃</a>
     </div>
   </div>
 </div>
@@ -164,10 +186,10 @@
       <div class="side-nav-period-value" id="sidePeriodValue">2026-08-03(월) 10:00:00<br>~ 2026-08-04(화) 17:00:00</div>
     </div>
     <ul class="side-nav-links">
-      <li><a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">📋 수강편람</a></li>
-      <li><a href="index.html">🗓️ 시간표</a></li>
+      <li><a href="#" class="disabled-link" onclick="return false;">📋 수강편람</a></li>
+      <li><a href="#" class="disabled-link" onclick="return false;">🗓️ 시간표</a></li>
       <li><a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">🏫 학생지원시스템</a></li>
-      <li><a href="hope-waitlist-guide.html">🎓 졸업예정정보</a></li>
+      <li><a href="#" class="disabled-link" onclick="return false;">🎓 졸업예정정보</a></li>
     </ul>
   </aside>
 
