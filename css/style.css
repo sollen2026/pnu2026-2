@@ -563,6 +563,8 @@ html[data-viewmode="mobile"] .info-tab { flex: 1 1 auto; text-align: center; }
   display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
 }
 .modal-backdrop.open { display: flex; }
+/* 과목 상세 모달은 시간표 보기·랜덤 결과 모달 위에서 열릴 수 있으므로 항상 최상단에 표시 */
+#modalBackdrop { z-index: 120; }
 .modal {
   background: var(--panel);
   border-radius: 14px;
