@@ -191,14 +191,16 @@ a { color: var(--accent); }
 /* 검색/필터 영역을 접었다 펼 수 있게 — 과목 목록(#courseList)은 이 안에 포함되지 않아 항상 보임 */
 .search-filters-panel { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
 .search-filters-toggle {
-  width: 100%; display: flex; align-items: center; gap: 8px;
+  width: 100%; display: flex; flex-direction: column; align-items: stretch; gap: 5px;
   padding: 10px 14px; background: var(--panel-2); border: none; cursor: pointer;
   font-size: 13px; font-weight: 700; color: var(--text); font-family: inherit; text-align: left;
 }
+.search-filters-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .search-filters-toggle .search-filters-summary {
-  flex: 1 1 auto; font-weight: 400; color: var(--text-dim); font-size: 12px;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: 400; color: var(--text-dim); font-size: 12px; line-height: 1.6;
+  white-space: normal; word-break: keep-all; overflow-wrap: break-word;
 }
+.search-filters-toggle .search-filters-summary:empty { display: none; }
 .search-filters-body { padding: 14px 14px 4px; }
 .search-filters-panel.collapsed .search-filters-body { display: none; }
 .search-filters-panel.collapsed .search-filters-toggle { background: none; }
@@ -473,6 +475,7 @@ a { color: var(--accent); }
 .info-tab-panel { display: none; font-size: 12.5px; line-height: 1.7; }
 .info-tab-panel.active { display: block; }
 .sugang-period-table td:nth-child(2), .sugang-period-table td:nth-child(3) { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sugang-period-table tr:not(:first-child):nth-child(odd) td { background: var(--panel-2); }
 .panel-intro { margin-top: 0; }
 .panel-subhead { font-size: 13px; margin: 18px 0 6px; }
 .panel-note { font-size: 12.5px; line-height: 1.7; }

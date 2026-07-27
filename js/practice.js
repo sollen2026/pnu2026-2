@@ -6,6 +6,11 @@ const PRACTICE_KEY = "pnu-practice-2026-2-v1";
 const CREDIT_LIMIT = 24;
 const REMOTE_LIMIT = 6;
 
+const PERIODS = {
+  hope: { label: "희망과목담기 기간", value: "2026-08-03(월) 10:00:00<br>~ 2026-08-04(화) 17:00:00" },
+  sugang: { label: "1차 수강신청 기간", value: "2026-08-10(월) 08:00:00<br>~ 2026-08-12(수) 17:00:00" }
+};
+
 function loadPracticeState() {
   try {
     const raw = localStorage.getItem(PRACTICE_KEY);
@@ -47,6 +52,15 @@ function scheduleLabel(course) {
   if (!course.slots.length) return "시간 미정";
   return course.slots.map(s => `${DAY_LABEL[s.day] || s.dayLabel} ${fmtTime(s.start)}~${fmtTime(s.end)} ${buildingName(s.building)}${s.room ? "-" + s.room : ""}`).join(", ");
 }
+function groupLabel(c) { return c.fixed ? "주전공" : "일반선택"; }
+function typeLabel(c) {
+  if (c.fixed) return "전공기초";
+  if (["goto", "indisa", "english"].includes(c.category)) return "교양필수";
+  if (["gyogaeron", "gyocholsa"].includes(c.category)) return "교직";
+  return "교양선택";
+}
+function deptLabel(c) { return c.dept || c.offerDept || "-"; }
+function classTypeLabel(c) { return c.remote ? "원격" : "대면"; }
 
 function timeConflicts(course, otherIds) {
   return otherIds.some(id => {
@@ -61,10 +75,10 @@ function appliedRemoteCreditTotal() {
 }
 
 function showMsg(el, type, html) {
-  el.className = "result-msg " + type;
-  el.innerHTML = html;
+  el.className = "confirm-bar show " + (type === "err" ? "err" : "");
+  el.innerHTML = `<span>${type === "ok" ? "●" : "⚠"}</span><span>${html}</span>`;
 }
-function clearMsg(el) { el.className = "result-msg"; el.innerHTML = ""; }
+function clearMsg(el) { el.className = "confirm-bar"; el.innerHTML = ""; }
 
 // ===== 희망과목담기 =====
 function addHope(course) {
@@ -73,42 +87,50 @@ function addHope(course) {
   if (pState.hopeIds.length >= 13) { showMsg(msgEl, "err", "희망과목담기는 최대 13개 강좌까지만 담을 수 있습니다."); return; }
   pState.hopeIds.push(course.id);
   savePracticeState();
-  showMsg(msgEl, "ok", `희망과목담기 완료: ${course.name} ${course.section}분반 (시간표 중복 여부와 관계없이 담깁니다)`);
+  showMsg(msgEl, "ok", `${course.name} 교과목 신청이 완료되었습니다.`);
   renderHopeList(); renderHopeSearch(); renderSugangHope();
 }
 function removeHope(id) { pState.hopeIds = pState.hopeIds.filter(x => x !== id); savePracticeState(); renderHopeList(); renderHopeSearch(); renderSugangHope(); }
 
 function renderHopeList() {
   const body = document.getElementById("hopeListBody");
-  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="8">담은 과목이 없습니다.</td></tr>`; return; }
+  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="13">담은 과목이 없습니다.</td></tr>`; return; }
   body.innerHTML = pState.hopeIds.map((id, i) => {
     const c = pGetCourse(id);
     if (!c) return "";
     return `<tr>
-      <td>${i + 1}</td><td>${c.name}</td><td>${c.section}분반</td><td>${c.professor}</td><td>${c.credit || "-"}</td>
-      <td><button class="btn-red" data-hope-remove="${id}">삭제</button></td>
-      <td><button class="btn-gray" data-hope-limit="${id}">보기</button></td>
-      <td><button class="btn-outline" data-hope-auto="${id}">신청</button></td>
+      <td>${i + 1}</td>
+      <td><button class="pill-btn pill-del" data-hope-remove="${id}">삭제</button></td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
+      <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
+      <td><button class="pill-btn pill-apply" data-hope-limit="${id}">보기</button></td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td>▲▼</td>
+      <td><button class="pill-btn pill-apply" data-hope-auto="${id}">신청</button></td>
+      <td class="wrap-cell"></td>
     </tr>`;
   }).join("");
 }
 
 function renderSearchTable(bodyEl, courses, mode) {
-  if (!courses.length) { bodyEl.innerHTML = `<tr class="empty-row"><td colspan="${mode === "hope" ? 7 : 7}">검색 결과가 없습니다.</td></tr>`; return; }
-  bodyEl.innerHTML = courses.slice(0, 100).map(c => {
+  if (!courses.length) { bodyEl.innerHTML = `<tr class="empty-row"><td colspan="14">검색 결과가 없습니다.</td></tr>`; return; }
+  bodyEl.innerHTML = courses.slice(0, 100).map((c, i) => {
     const already = mode === "hope" ? pState.hopeIds.includes(c.id) : pState.appliedIds.includes(c.id);
     const btn = already
-      ? `<button class="btn-gray" disabled>완료</button>`
+      ? `<button class="pill-btn pill-done" disabled>완료</button>`
       : mode === "hope"
-        ? `<button class="btn-navy" data-hope-add="${c.id}">담기</button>`
-        : `<button class="btn-navy" data-sugang-apply="${c.id}">신청</button>`;
-    const capCell = mode === "hope"
+        ? `<button class="pill-btn pill-apply" data-hope-add="${c.id}">신청</button>`
+        : `<button class="pill-btn pill-apply" data-sugang-apply="${c.id}">신청</button>`;
+    const cnt = mode === "hope"
       ? `${hopeCount(c) != null ? hopeCount(c) : "-"} / ${autoCount(c) != null ? autoCount(c) : "-"}`
-      : (c.capacity ? `<span class="${currentEnrolled(c) >= c.capacity ? "cap-full" : "cap-ok"}">${currentEnrolled(c)}</span> / ${c.capacity}` : "정원 없음");
+      : "";
     return `<tr>
-      <td>${c.name}</td><td>${c.section}분반</td><td>${c.professor}</td>
-      <td style="text-align:left;font-size:11.5px;">${scheduleLabel(c)}</td>
-      <td>${c.credit || "-"}</td><td>${capCell}</td><td>${btn}</td>
+      <td>${i + 1}</td><td>${btn}</td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
+      <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
+      <td>${c.professor}</td><td>${deptLabel(c)}</td><td>전학년</td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td>${classTypeLabel(c)}</td><td>${cnt}</td>
     </tr>`;
   }).join("");
 }
@@ -126,29 +148,50 @@ function renderHopeSame() {
   const items = kw ? practiceCourses().filter(c => c.name.toLowerCase().includes(kw)) : [];
   renderSearchTable(document.getElementById("hopeSameBody"), items, "hope");
 }
+
+function renderSugangSearchTable(bodyEl, courses) {
+  if (!courses.length) { bodyEl.innerHTML = `<tr class="empty-row"><td colspan="12">검색 결과가 없습니다.</td></tr>`; return; }
+  bodyEl.innerHTML = courses.slice(0, 100).map((c, i) => {
+    const already = pState.appliedIds.includes(c.id);
+    const btn = already ? `<button class="pill-btn pill-done" disabled>완료</button>` : `<button class="pill-btn pill-apply" data-sugang-apply="${c.id}">신청</button>`;
+    const capCell = c.capacity ? `<span class="${currentEnrolled(c) >= c.capacity ? "cap-full" : "cap-ok"}">${currentEnrolled(c)}</span> / ${c.capacity}` : "정원 없음";
+    return `<tr>
+      <td>${i + 1}</td><td>${btn}</td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
+      <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
+      <td>${c.professor}</td><td>${deptLabel(c)}</td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td>${capCell}</td>
+    </tr>`;
+  }).join("");
+}
 function renderSugangSearch() {
   const cat = document.getElementById("sugangSearchCat").value;
   const kw = document.getElementById("sugangSearchKeyword").value.trim().toLowerCase();
   let items = practiceCourses();
   if (cat !== "all") items = items.filter(c => c.category === cat);
   if (kw) items = items.filter(c => c.name.toLowerCase().includes(kw) || c.professor.toLowerCase().includes(kw));
-  renderSearchTable(document.getElementById("sugangSearchBody"), items, "sugang");
+  renderSugangSearchTable(document.getElementById("sugangSearchBody"), items);
 }
 function renderSugangSame() {
   const kw = document.getElementById("sugangSameKeyword").value.trim().toLowerCase();
   const items = kw ? practiceCourses().filter(c => c.name.toLowerCase().includes(kw)) : [];
-  renderSearchTable(document.getElementById("sugangSameBody"), items, "sugang");
+  renderSugangSearchTable(document.getElementById("sugangSameBody"), items);
 }
 function renderSugangHope() {
   const body = document.getElementById("sugangHopeBody");
-  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="6">희망과목담기 한 과목이 없습니다.</td></tr>`; return; }
-  body.innerHTML = pState.hopeIds.map(id => {
+  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="12">희망과목담기 한 과목이 없습니다.</td></tr>`; return; }
+  body.innerHTML = pState.hopeIds.map((id, i) => {
     const c = pGetCourse(id); if (!c) return "";
     const already = pState.appliedIds.includes(id);
+    const btn = already ? `<button class="pill-btn pill-done" disabled>완료</button>` : `<button class="pill-btn pill-apply" data-sugang-apply="${id}">신청</button>`;
     return `<tr>
-      <td>${c.name}</td><td>${c.section}분반</td><td>${c.professor}</td>
-      <td style="text-align:left;font-size:11.5px;">${scheduleLabel(c)}</td><td>${c.credit || "-"}</td>
-      <td>${already ? `<button class="btn-gray" disabled>완료</button>` : `<button class="btn-navy" data-sugang-apply="${id}">신청</button>`}</td>
+      <td>${i + 1}</td><td>${btn}</td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
+      <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
+      <td>${c.professor}</td><td>${deptLabel(c)}</td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td class="wrap-cell"></td>
     </tr>`;
   }).join("");
 }
@@ -162,11 +205,8 @@ function registerCourse(course, opts) {
   if (appliedCreditTotal() + (course.credit || 0) > CREDIT_LIMIT) { showMsg(msgEl, "err", `학점 초과입니다. (신청 시 ${appliedCreditTotal() + (course.credit || 0)}학점 · 최대 ${CREDIT_LIMIT}학점)`); return; }
   const enrolled = currentEnrolled(course);
   if (!opts.force && enrolled != null && enrolled >= course.capacity) {
-    showMsg(msgEl, "err", `<b>제한인원 초과</b>: ${course.name} ${course.section}분반 (${enrolled}/${course.capacity}명). 대기순번제를 신청하시겠습니까?
-      <div style="margin-top:8px;display:flex;gap:8px;">
-        <button class="btn-navy" id="msgWaitYes">예, 대기순번 신청</button>
-        <button class="btn-gray" id="msgWaitNo">아니요</button>
-      </div>`);
+    showMsg(msgEl, "err", `제한인원 초과: ${course.name} ${course.section}분반 (${enrolled}/${course.capacity}명). 대기순번제를 신청하시겠습니까?
+      <span class="confirm-actions"><button class="btn-red" id="msgWaitYes">예, 대기순번 신청</button><button class="btn-gray" id="msgWaitNo">아니요</button></span>`);
     document.getElementById("msgWaitYes").onclick = () => { clearMsg(msgEl); requestWaitlist(course); };
     document.getElementById("msgWaitNo").onclick = () => clearMsg(msgEl);
     return;
@@ -174,25 +214,28 @@ function registerCourse(course, opts) {
   pState.appliedIds.push(course.id);
   pState.hopeIds = pState.hopeIds.filter(id => id !== course.id);
   savePracticeState();
-  showMsg(msgEl, "ok", `수강신청 완료: ${course.name} ${course.section}분반`);
+  showMsg(msgEl, "ok", `${course.name} 교과목 신청이 완료되었습니다.`);
   renderAllPracticeViews();
 }
 
 function renderSugangList() {
   const body = document.getElementById("sugangListBody");
-  if (!pState.appliedIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="8">신청된 과목이 없습니다.</td></tr>`; return; }
-  body.innerHTML = pState.appliedIds.map(id => {
+  if (!pState.appliedIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="11">신청된 과목이 없습니다.</td></tr>`; return; }
+  body.innerHTML = pState.appliedIds.map((id, i) => {
     const c = pGetCourse(id); if (!c) return "";
     return `<tr>
-      <td>${c.name}</td><td>${c.section}분반</td><td>${c.professor}</td>
-      <td style="text-align:left;font-size:11.5px;">${scheduleLabel(c)}</td><td>${c.credit || "-"}</td>
-      <td><button class="btn-red" data-sugang-remove="${id}">삭제</button></td>
-      <td><input type="text" placeholder="분반" style="width:60px;padding:5px;" data-change-input="${id}"> <button class="btn-outline" data-change-btn="${id}">변경</button></td>
-      <td><button class="btn-gray" data-hope-limit="${id}">보기</button></td>
+      <td>${i + 1}</td>
+      <td><button class="pill-btn pill-del" data-sugang-remove="${id}">삭제</button></td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
+      <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
+      <td><button class="pill-btn pill-apply" data-hope-limit="${id}">보기</button></td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td class="wrap-cell"><input type="text" placeholder="분반" style="width:56px;padding:4px;" data-change-input="${id}"> <button class="pill-btn pill-apply" data-change-btn="${id}">변경</button></td>
     </tr>`;
   }).join("");
-  document.getElementById("sugangTotalCredit").textContent = appliedCreditTotal();
-  document.getElementById("sugangRemoteCredit").textContent = appliedRemoteCreditTotal();
+  document.getElementById("sugangTotalCredit").textContent = appliedCreditTotal().toFixed(1);
+  document.getElementById("sugangTotalCount").textContent = pState.appliedIds.length.toFixed(1);
+  document.getElementById("sugangRemoteCredit").textContent = appliedRemoteCreditTotal().toFixed(1);
 }
 
 // ===== 대기순번제 =====
@@ -213,7 +256,7 @@ function requestWaitlist(course) {
   }
   pState.waitlist.push({ id: course.id, exchangeId: null });
   savePracticeState();
-  showMsg(msgEl, "ok", `대기순번 신청 완료: ${course.name} ${course.section}분반 (현재 대기 ${waitlistCountFor(course.id)}번째)`);
+  showMsg(msgEl, "ok", `${course.name} 교과목 대기순번제 신청이 완료되었습니다.`);
   renderAllPracticeViews();
 }
 
@@ -239,7 +282,7 @@ function openExchangeModal(course, creditOver, conflict) {
     pState.waitlist.push({ id: course.id, exchangeId: picked.value });
     savePracticeState();
     bg.classList.remove("open");
-    showMsg(document.getElementById("sugangQuickMsg"), "ok", `대기순번 신청 완료(교환교과목 지정됨): ${course.name} ${course.section}분반`);
+    showMsg(document.getElementById("sugangQuickMsg"), "ok", `${course.name} 교과목 대기순번제 신청이 완료되었습니다. (교환교과목 지정됨)`);
     renderAllPracticeViews();
   };
   document.getElementById("exchangeModalCancel").onclick = () => bg.classList.remove("open");
@@ -247,15 +290,18 @@ function openExchangeModal(course, creditOver, conflict) {
 
 function renderSugangWaitlist() {
   const body = document.getElementById("sugangWaitlistBody");
-  if (!pState.waitlist.length) { body.innerHTML = `<tr class="empty-row"><td colspan="7">대기순번 신청 내역이 없습니다.</td></tr>`; return; }
+  if (!pState.waitlist.length) { body.innerHTML = `<tr class="empty-row"><td colspan="10">대기순번 신청 내역이 없습니다.</td></tr>`; return; }
   body.innerHTML = pState.waitlist.map((w, i) => {
     const c = pGetCourse(w.id); if (!c) return "";
     const ex = w.exchangeId ? pGetCourse(w.exchangeId) : null;
     return `<tr>
-      <td>${c.name}</td><td>${c.section}분반</td><td>${c.professor}</td><td>${c.credit || "-"}</td>
-      <td>${waitlistCountFor(w.id)}번째 / 제한 ${Math.max(1, Math.round((c.capacity || 0) * 0.3))}명</td>
-      <td>${ex ? `${ex.name} ${ex.section}분반` : "-"}</td>
-      <td><button class="btn-red" data-waitlist-remove="${i}">삭제</button></td>
+      <td>${i + 1}</td>
+      <td><button class="pill-btn pill-del" data-waitlist-remove="${i}">삭제</button></td>
+      <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td><td>${c.credit || "-"}</td>
+      <td><button class="pill-btn pill-apply" data-hope-limit="${c.id}">보기</button></td>
+      <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td>${ex ? `<span title="${ex.name} ${ex.section}분반">설정됨</span>` : `<button class="pill-btn pill-apply">설정</button>`}</td>
+      <td>${waitlistCountFor(w.id)}</td>
     </tr>`;
   }).join("");
 }
@@ -272,6 +318,17 @@ function findByCodeSection(code, section) {
   return practiceCourses().find(c => c.code === code && c.section === section);
 }
 
+function switchMenu(menu) {
+  document.querySelectorAll(".top-nav a[data-menu]").forEach(a => a.classList.toggle("active", a.dataset.menu === menu));
+  document.getElementById("menu-hope").style.display = menu === "hope" ? "" : "none";
+  document.getElementById("menu-sugang").style.display = menu === "sugang" ? "" : "none";
+  document.getElementById("pageTitle").innerHTML = (menu === "hope" ? "희망과목담기" : "수강신청") +
+    `<span>모의 연습 — 실제 수강신청 시스템 화면을 참고해 만든 훈련용 페이지입니다</span>`;
+  document.getElementById("sideMenuName").textContent = menu === "hope" ? "희망과목담기" : "수강신청";
+  document.getElementById("sidePeriodLabel").textContent = PERIODS[menu].label;
+  document.getElementById("sidePeriodValue").innerHTML = PERIODS[menu].value;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // 카테고리 셀렉트 채우기
   ["hopeSearchCat", "sugangSearchCat"].forEach(id => {
@@ -279,14 +336,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sel.innerHTML = `<option value="all">전체 영역</option>` + Object.keys(CATEGORY_META).filter(k => k !== "fixed").map(k => `<option value="${k}">${CATEGORY_META[k].label}</option>`).join("");
   });
 
-  // 상단 메뉴 탭
-  document.querySelectorAll(".menu-tab").forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll(".menu-tab").forEach(b => b.classList.toggle("active", b === btn));
-      document.getElementById("menu-hope").style.display = btn.dataset.menu === "hope" ? "" : "none";
-      document.getElementById("menu-sugang").style.display = btn.dataset.menu === "sugang" ? "" : "none";
-    };
+  // 상단 메뉴 탭 (희망과목담기 / 수강신청)
+  document.querySelectorAll(".top-nav a[data-menu]").forEach(a => {
+    a.onclick = (e) => { e.preventDefault(); switchMenu(a.dataset.menu); };
   });
+
   // 서브 탭 공통 처리
   document.querySelectorAll(".sub-tabs").forEach(row => {
     row.querySelectorAll(".sub-tab").forEach(btn => {
@@ -350,6 +404,16 @@ document.addEventListener("DOMContentLoaded", () => {
       alert(`분반이 변경되었습니다: ${target.name} ${target.section}분반`);
     }
   });
+
+  // 상단 시계(연습용 고정 표시) — 실제 서버시간이 아니라 브라우저 로컬 시간을 그대로 보여줌
+  const clockEl = document.getElementById("clockDisplay");
+  function tickClock() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2, "0");
+    clockEl.textContent = `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  tickClock();
+  setInterval(tickClock, 1000);
 
   renderAllPracticeViews();
 });

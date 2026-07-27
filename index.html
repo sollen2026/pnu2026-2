@@ -30,9 +30,11 @@
     <div class="panel sidebar">
       <div class="search-filters-panel" id="searchFiltersPanel">
         <button class="search-filters-toggle" id="searchFiltersToggle">
-          <span>🔍 과목 검색 · 필터</span>
+          <span class="search-filters-toggle-row">
+            <span>🔍 과목 검색 · 필터</span>
+            <span class="arrow" id="searchFiltersArrow">▴</span>
+          </span>
           <span class="search-filters-summary" id="searchFiltersSummary"></span>
-          <span class="arrow" id="searchFiltersArrow">▴</span>
         </button>
         <div class="search-filters-body" id="searchFiltersBody">
           <div class="fixed-chip-row">
@@ -124,10 +126,11 @@
           </table>
         </div>
         <div class="panel-note" style="margin:8px 0 0;">💡 희망과목담기는 시간표 중복과 관계없이 13개 강좌까지 담을 수 있지만, 별도로 <b>수강신청</b>을 해야 실제로 반영됩니다. 희망과목담기·대기순번제가 처음이라면 <a href="hope-waitlist-guide.html">희망과목담기 · 대기순번제 안내 페이지</a>를 먼저 확인하세요.</div>
+        <div class="panel-note" style="margin:6px 0 0;">🖥️ <b>원격수업 교과목 수강 안내</b>: 학사과정은 학기당 <b>6학점 이내</b>에서만 원격수업 교과목을 신청할 수 있습니다. 직전 학기에 다 채우지 못한 잔여 학점은 3학점 범위 안에서 다음 학기로 1회 이월할 수 있어(최대 9학점) 이 시간표의 랜덤 생성기도 6학점 상한을 지켜 만듭니다.</div>
         <p class="panel-intro">아래는 <b>사범대학 일반사회교육과 2026학번 신입생</b> 기준, 고전읽기와토론·대학영어·인공지능과디지털사고 3개 과목의 1차·2차 수강신청 가능 분반입니다.</p>
         <div class="table-scroll">
           <table class="info-table2">
-            <tr><th>과목명</th><th>1차 신청 가능 분반</th><th>2차 신청 가능 분반</th><th>비고</th></tr>
+            <tr><th>과목명</th><th>1차 신청 가능 분반<br><span style="font-weight:400;">(1차 수강신청: 8.10.(월) 08:00 ~ 8.12.(수) 17:00)</span></th><th>2차 신청 가능 분반<br><span style="font-weight:400;">(2차 수강신청: 8.18.(화) 10:00 ~ 8.19.(수) 17:00)</span></th><th>비고</th></tr>
             <tr><td>고전읽기와토론</td><td>001~074분반<br>(사범대학 등 신입생 대상)</td><td>001~080분반<br>(전 대학, 미달 분반)</td><td>정원 마감 시 2차 기간에 전 대학 대상 미달 분반 신청 가능</td></tr>
             <tr><td>대학영어</td><td>초급 001~011 / 중급 101~138 / 고급 201~227<br>(부산캠퍼스, 본인 수준 분반만)</td><td>여석 있는 분반에 한해 전 대학<br>(수준 구분은 1차와 동일)</td><td>본인 수준(초급/중급/고급)은 <a href="english-diagnostic.html">자가진단 페이지</a>에서 확인</td></tr>
             <tr><td>인공지능과디지털사고</td><td>001~023분반<br>(인문/사회 트랙, 일반사회교육과 포함 대상 학과)</td><td>001~023분반<br>(인문/사회 트랙, 대상 학과 확대)</td><td>자연/공학·예술 트랙(030~059, 070~073 등)은 이 학생 대상 분반이 아님</td></tr>
