@@ -102,7 +102,7 @@ function moveHope(id, dir) {
 
 function renderHopeList() {
   const body = document.getElementById("hopeListBody");
-  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="13">담은 과목이 없습니다.</td></tr>`; return; }
+  if (!pState.hopeIds.length) { body.innerHTML = `<tr class="empty-row"><td colspan="15">담은 과목이 없습니다.</td></tr>`; return; }
   body.innerHTML = pState.hopeIds.map((id, i) => {
     const c = pGetCourse(id);
     if (!c) return "";
@@ -112,7 +112,9 @@ function renderHopeList() {
       <td class="wrap-cell">${c.name}</td><td>${c.code || "-"}</td><td>${c.section}</td>
       <td>${groupLabel(c)}</td><td>${typeLabel(c)}</td><td>${c.credit || "-"}</td>
       <td><button class="pill-btn pill-apply" data-hope-limit="${id}">보기</button></td>
+      <td>-</td>
       <td class="wrap-cell" style="text-align:left;">${scheduleLabel(c)}</td>
+      <td>${i + 1}</td>
       <td><button class="pill-btn pill-apply" data-hope-move="${id}" data-dir="-1" ${i === 0 ? "disabled" : ""}>▲</button> <button class="pill-btn pill-apply" data-hope-move="${id}" data-dir="1" ${i === pState.hopeIds.length - 1 ? "disabled" : ""}>▼</button></td>
       <td><button class="pill-btn pill-apply" data-hope-auto="${id}">신청</button></td>
       <td class="wrap-cell"></td>

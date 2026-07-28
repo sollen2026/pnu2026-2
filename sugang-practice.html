@@ -102,8 +102,9 @@
   .sub-panel.active { display: block; }
   .sub-panel .panel-card { border-top: 1px solid var(--navy); border-radius: 0 4px 4px 4px; }
 
+  .table-scroll-y { max-height: 380px; overflow-y: auto; overflow-x: auto; border: 1px solid var(--border); border-radius: 3px; }
   table.grid { width: 100%; border-collapse: collapse; font-size: 11.5px; white-space: nowrap; }
-  table.grid th { background: var(--gray-bg); border: 1px solid var(--border); padding: 8px 7px; color: #333; font-weight: 700; }
+  table.grid th { background: var(--gray-bg); border: 1px solid var(--border); padding: 8px 7px; color: #333; font-weight: 700; position: sticky; top: 0; z-index: 1; }
   table.grid td { border: 1px solid var(--border); padding: 7px; text-align: center; color: var(--text); }
   table.grid td.wrap-cell { white-space: normal; text-align: left; }
   table.grid tr:hover td { background: #fafbfd; }
@@ -124,6 +125,16 @@
     padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; font-family: inherit;
     width: 180px; max-width: 100%; flex: 0 1 180px;
   }
+  /* 실제 시스템의 대학/대학원·단과대학·학과·교과목번호/명·검색조건 라벨형 검색폼 */
+  .search-form-grid { margin-bottom: 12px; }
+  .search-form-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: 8px; }
+  .search-form-row label { font-size: 11.5px; color: var(--text-dim); white-space: nowrap; flex: 0 0 auto; }
+  .search-form-row select, .search-form-row input {
+    padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; font-size: 12.5px; font-family: inherit;
+    width: 150px; max-width: 100%;
+  }
+  .search-form-row select:disabled { background: var(--gray-bg); color: var(--text-dim); }
+  .search-form-row .btn-outline { margin-left: auto; }
   .credit-total-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 4px; padding: 10px 14px; margin-bottom: 12px; font-size: 12.5px; }
   .credit-total-bar b { color: var(--navy); }
 
@@ -221,12 +232,19 @@
       </div>
       <div class="sub-panel active" id="hopeSearch">
         <div class="panel-card">
-          <div class="search-filter-row">
-            <select id="hopeSearchCat"></select>
-            <input id="hopeSearchKeyword" placeholder="과목명 · 교수명 검색">
-            <button class="btn-outline" id="hopeSearchBtn">조회</button>
+          <div class="search-form-grid">
+            <div class="search-form-row">
+              <label>대학/대학원</label><select disabled><option>대학</option></select>
+              <label>단과대학</label><select disabled><option>전체</option></select>
+              <label>학과</label><select disabled><option>전체</option></select>
+            </div>
+            <div class="search-form-row">
+              <label>교과목번호/명</label><input id="hopeSearchKeyword" placeholder="예: 고전읽기와토론">
+              <label>검색조건</label><select id="hopeSearchCat"></select>
+              <button class="btn-outline" id="hopeSearchBtn">🔍 조회</button>
+            </div>
           </div>
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>신청</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>담당교수</th><th>개설학과</th><th>수강학년</th><th>시간표요약</th><th>수업유형</th><th>신청인원수</th></tr></thead>
               <tbody id="hopeSearchBody"></tbody>
@@ -240,7 +258,7 @@
             <input id="hopeSameKeyword" placeholder="과목명으로 동일교과목(전 분반) 검색">
             <button class="btn-outline" id="hopeSameBtn">조회</button>
           </div>
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>신청</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>담당교수</th><th>개설학과</th><th>수강학년</th><th>시간표요약</th><th>수업유형</th><th>신청인원수</th></tr></thead>
               <tbody id="hopeSameBody"></tbody>
@@ -252,9 +270,9 @@
       <div class="panel-card" style="margin-top:14px;">
         <h3>희망과목담기 내역</h3>
         <p class="notice-line">💡 <b>자동신청</b>은 희망과목담기 한 과목을 별도 조작 없이 자동으로 수강신청 처리해주는 기능입니다. 다만 그 과목의 희망담기 인원이 제한인원을 넘으면 자동신청되지 않으니, 처리 결과를 꼭 다시 확인하세요. 이 연습 화면에서는 "자동신청" 버튼을 누르면 즉시 정원을 확인해 신청을 시도합니다.</p>
-        <div style="overflow-x:auto;">
+        <div class="table-scroll-y">
           <table class="grid">
-            <thead><tr><th>NO</th><th>삭제</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>제한인원</th><th>시간표요약</th><th>정렬순서</th><th>자동신청</th><th>비고</th></tr></thead>
+            <thead><tr><th>NO</th><th>삭제</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>제한인원</th><th>재이수</th><th>시간표요약</th><th>정렬순서</th><th>순서변경</th><th>자동신청</th><th>비고</th></tr></thead>
             <tbody id="hopeListBody"></tbody>
           </table>
         </div>
@@ -288,7 +306,7 @@
       </div>
       <div class="sub-panel active" id="sugangHope">
         <div class="panel-card">
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>신청</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>담당교수</th><th>개설학과</th><th>시간표요약</th><th>비고</th></tr></thead>
               <tbody id="sugangHopeBody"></tbody>
@@ -298,12 +316,19 @@
       </div>
       <div class="sub-panel" id="sugangSearch">
         <div class="panel-card">
-          <div class="search-filter-row">
-            <select id="sugangSearchCat"></select>
-            <input id="sugangSearchKeyword" placeholder="과목명 · 교수명 검색">
-            <button class="btn-outline" id="sugangSearchBtn">조회</button>
+          <div class="search-form-grid">
+            <div class="search-form-row">
+              <label>대학/대학원</label><select disabled><option>대학</option></select>
+              <label>단과대학</label><select disabled><option>전체</option></select>
+              <label>학과</label><select disabled><option>전체</option></select>
+            </div>
+            <div class="search-form-row">
+              <label>교과목번호/명</label><input id="sugangSearchKeyword" placeholder="예: 고전읽기와토론">
+              <label>검색조건</label><select id="sugangSearchCat"></select>
+              <button class="btn-outline" id="sugangSearchBtn">🔍 조회</button>
+            </div>
           </div>
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>신청</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>담당교수</th><th>개설학과</th><th>시간표요약</th><th>신청인원(정원)</th></tr></thead>
               <tbody id="sugangSearchBody"></tbody>
@@ -317,7 +342,7 @@
             <input id="sugangSameKeyword" placeholder="과목명으로 동일교과목(전 분반) 검색">
             <button class="btn-outline" id="sugangSameBtn">조회</button>
           </div>
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>신청</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>담당교수</th><th>개설학과</th><th>시간표요약</th><th>신청인원(정원)</th></tr></thead>
               <tbody id="sugangSameBody"></tbody>
@@ -332,7 +357,7 @@
           <button class="sub-tab" data-sub="sugangWaitlist">대기순번제 신청내역</button>
         </div>
         <div class="sub-panel active" id="sugangList">
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>삭제</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>집단구분</th><th>교과구분</th><th>학점</th><th>제한인원</th><th>시간표요약</th><th>분반변경</th></tr></thead>
               <tbody id="sugangListBody"></tbody>
@@ -341,7 +366,7 @@
         </div>
         <div class="sub-panel" id="sugangWaitlist">
           <p class="notice-line">대기순번 신청은 1차 수강신청 기간에만 가능합니다. 학점 초과·시간표 중복이 있으면 교환교과목을 지정해야 신청이 완료됩니다.</p>
-          <div style="overflow-x:auto;">
+          <div class="table-scroll-y">
             <table class="grid">
               <thead><tr><th>NO</th><th>삭제</th><th>교과목명</th><th>교과목번호</th><th>분반</th><th>학점</th><th>제한인원</th><th>시간표요약</th><th>교환교과목 설정</th><th>대기번호</th></tr></thead>
               <tbody id="sugangWaitlistBody"></tbody>
@@ -359,7 +384,7 @@
   <div class="modal-box">
     <h4>교환교과목 설정</h4>
     <p class="notice-line" id="exchangeModalNote"></p>
-    <div style="overflow-x:auto;">
+    <div class="table-scroll-y">
       <table class="grid">
         <thead><tr><th>선택</th><th>교과목명</th><th>분반</th><th>학점</th></tr></thead>
         <tbody id="exchangeModalBody"></tbody>
