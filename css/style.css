@@ -573,6 +573,8 @@ html[data-viewmode="mobile"] .info-tab { flex: 1 1 auto; text-align: center; }
 
 /* 푸터 링크 */
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 6px; font-size: 12px; }
+.footer-pdf-pair { color: var(--text-dim); }
+.footer-pdf-pair a { margin-left: 2px; }
 
 /* Modal */
 .modal-backdrop {

@@ -1,0 +1,109 @@
+<title>🥚 숨겨진 교직과목 검색 — 2026-2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .wrap { max-width: 760px; margin: 0 auto; padding: 26px 18px 60px; }
+  .egg-badge {
+    display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent);
+    background: var(--accent-2); border-radius: 999px; padding: 4px 12px; margin-bottom: 10px;
+  }
+  .search-box input {
+    width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); font-size: 14px; font-family: inherit;
+  }
+  .track-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 18px; }
+  .track-tab {
+    font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--panel-2); color: var(--text); cursor: pointer; font-family: inherit;
+  }
+  .track-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .gj-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+  .gj-card h3 { margin: 0 0 4px; font-size: 15px; }
+  .gj-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
+  .gj-meta b { color: var(--text); }
+  .gj-sections { display: flex; flex-direction: column; gap: 5px; }
+  .gj-section-row { font-size: 12.5px; color: var(--text); display: flex; gap: 8px; }
+  .gj-section-row .sec { font-weight: 700; color: var(--accent); min-width: 34px; }
+  .empty-note { text-align: center; color: var(--text-dim); font-size: 13px; padding: 30px 0; }
+  .back-link { font-size: 13px; }
+</style>
+
+<div class="topbar">
+  <h1>🥚 숨겨진 교직과목 검색 <span class="sub">2026학년도 2학기</span></h1>
+  <a class="btn back-link" href="index.html">← 시간표로 돌아가기</a>
+</div>
+
+<div class="wrap">
+  <span class="egg-badge">🥚 이스터에그 — 과목 검색창에 "more"를 입력하면 여기로 옵니다</span>
+  <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">
+    이 시간표 도구는 <b>사범대학 일반사회교육과 1학년</b> 기준이라 교직과목은 교육학개론·교육철학및교육사만 다루지만,
+    실제로는 훨씬 많은 교직과목이 있습니다. 궁금해할 학생들을 위해 2026-2학기에 개설되는 나머지 교직과목(사범대학 2·3학년,
+    일반대학 교직과정·교육대학원 과목 포함) 전체를 여기에 모아뒀습니다. <b>담당교수 미지정</b> 등 원본 자료 그대로이며,
+    실제 신청 가능 여부는 학년·계열별 제한을 반드시 확인하세요.
+  </p>
+  <div class="search-box">
+    <input id="gjSearch" type="text" placeholder="과목명으로 검색 (예: 교육평가, 디지털교육)">
+  </div>
+  <div class="track-tabs" id="gjTrackTabs"></div>
+  <div id="gjList"></div>
+  <div class="cite">
+    출처: 「2026학년도 2학기 교직과목 수강안내」(별표4 포함), 「교직과목 자주 묻는 질문(2026.7.)」 —
+    <a href="assets/docs/2026학년도 2학기 교직과목 수강안내.pdf" target="_blank" rel="noopener">수강안내 새 창으로 보기</a> ·
+    <a href="assets/docs/교직과목 자주 묻는 질문(2026.7.).pdf" target="_blank" rel="noopener">FAQ 새 창으로 보기</a>
+  </div>
+</div>
+
+<script src="js/buildings.js"></script>
+<script src="js/data-gyojik-extra.js"></script>
+<script>
+  const GJ_DAY = { "월": 0, "화": 1, "수": 2, "목": 3, "금": 4, "토": 5, "일": 6 };
+  const GJ_DAY_LABEL = ["월", "화", "수", "목", "금", "토", "일"];
+  function gjFmt(min) { const h = Math.floor(min / 60), m = min % 60; return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`; }
+  function gjParse(raw) {
+    const mDur = raw.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})\((\d+)\)\s+(.+)$/);
+    const mRange = raw.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})\s+(.+)$/);
+    let dayCh, start, end, loc;
+    if (mDur) { dayCh = mDur[1]; start = parseInt(mDur[2]) * 60 + parseInt(mDur[3]); end = start + parseInt(mDur[4]); loc = mDur[5]; }
+    else if (mRange) { dayCh = mRange[1]; start = parseInt(mRange[2]) * 60 + parseInt(mRange[3]); end = parseInt(mRange[4]) * 60 + parseInt(mRange[5]); loc = mRange[6]; }
+    else return raw;
+    const dashIdx = loc.indexOf("-");
+    let building = loc, room = "";
+    if (dashIdx > -1) { building = loc.slice(0, dashIdx); room = loc.slice(dashIdx + 1); }
+    const name = (typeof BUILDING_NAMES !== "undefined" && BUILDING_NAMES[building]) ? `${BUILDING_NAMES[building]}(${building})` : building;
+    return `${dayCh} ${gjFmt(start)}~${gjFmt(end)} ${name}${room ? "-" + room : ""}`;
+  }
+
+  let gjTrackFilter = "all";
+  let gjKeyword = "";
+
+  function renderGjTracks() {
+    const tracks = ["all", ...new Set(GYOJIK_EXTRA.map(c => c.track))];
+    const el = document.getElementById("gjTrackTabs");
+    el.innerHTML = tracks.map(t => `<button class="track-tab${t === gjTrackFilter ? " active" : ""}" data-track="${t}">${t === "all" ? "전체" : t}</button>`).join("");
+    el.querySelectorAll(".track-tab").forEach(btn => {
+      btn.onclick = () => { gjTrackFilter = btn.dataset.track; renderGjTracks(); renderGjList(); };
+    });
+  }
+
+  function renderGjList() {
+    const kw = gjKeyword.trim().toLowerCase();
+    let items = GYOJIK_EXTRA;
+    if (gjTrackFilter !== "all") items = items.filter(c => c.track === gjTrackFilter);
+    if (kw) items = items.filter(c => c.name.toLowerCase().includes(kw));
+    const listEl = document.getElementById("gjList");
+    if (!items.length) { listEl.innerHTML = `<div class="empty-note">검색 결과가 없습니다.</div>`; return; }
+    listEl.innerHTML = items.map(c => `
+      <div class="gj-card">
+        <h3>${c.name}</h3>
+        <div class="gj-meta"><b>${c.credit}학점</b> · ${c.track} · ${c.grade} · 과목코드 ${c.code}</div>
+        <div class="gj-sections">
+          ${c.sections.map(([sec, sched]) => `<div class="gj-section-row"><span class="sec">${sec}</span><span>${gjParse(sched)}</span></div>`).join("")}
+        </div>
+      </div>`).join("");
+  }
+
+  document.getElementById("gjSearch").addEventListener("input", (e) => { gjKeyword = e.target.value; renderGjList(); });
+  renderGjTracks();
+  renderGjList();
+</script>

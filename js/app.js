@@ -971,6 +971,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAll();
 
   document.getElementById("searchInput").addEventListener("input", (e) => {
+    if (e.target.value.trim().toLowerCase() === "more") {
+      window.open("gyojik-more.html", "_blank");
+      e.target.value = "";
+      searchTerm = "";
+      renderCourseList();
+      return;
+    }
     searchTerm = e.target.value.trim();
     renderCourseList();
   });
