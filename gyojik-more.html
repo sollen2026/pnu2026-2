@@ -113,6 +113,20 @@
     return `${slot.dayCh} ${gjFmt(slot.start)}~${gjFmt(slot.end)} ${gjBuildingLabel(slot.building, slot.room)}`;
   }
 
+  // 필수 고정 과목(경제학·대학생활설계와비전)과 시간이 겹치는 분반은 애초에 들을 수 없으므로 목록에서 제외
+  const GJ_FIXED_SLOTS = [
+    gjParseSlot("월 15:00(75) 417-306"),
+    gjParseSlot("수 15:00(75) 417-306"),
+    gjParseSlot("화 10:00(100) 417-306")
+  ];
+  function gjConflictsFixed(slot) {
+    if (!slot) return false;
+    return GJ_FIXED_SLOTS.some(f => f.day === slot.day && slot.start < f.end && f.start < slot.end);
+  }
+  GYOJIK_EXTRA.forEach(course => {
+    course.sections = course.sections.filter(([sec, raw]) => !gjConflictsFixed(gjParseSlot(raw)));
+  });
+
   // 원본 데이터를 분반 단위로 펼침
   const GJ_FLAT = [];
   GYOJIK_EXTRA.forEach(course => {
