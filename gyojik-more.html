@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  .wrap { max-width: 760px; margin: 0 auto; padding: 26px 18px 60px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 26px 18px 60px; }
   .egg-badge {
     display: inline-block; font-size: 12px; font-weight: 700; color: var(--accent);
     background: var(--accent-2); border-radius: 999px; padding: 4px 12px; margin-bottom: 10px;
@@ -22,11 +22,29 @@
   .gj-card h3 { margin: 0 0 4px; font-size: 15px; }
   .gj-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
   .gj-meta b { color: var(--text); }
-  .gj-sections { display: flex; flex-direction: column; gap: 5px; }
-  .gj-section-row { font-size: 12.5px; color: var(--text); display: flex; gap: 8px; }
+  .gj-sections { display: flex; flex-direction: column; gap: 6px; }
+  .gj-section-row { font-size: 12.5px; color: var(--text); display: flex; align-items: center; gap: 8px; }
   .gj-section-row .sec { font-weight: 700; color: var(--accent); min-width: 34px; }
+  .gj-section-row .sched { flex: 1 1 auto; }
+  .gj-add-btn, .gj-remove-btn {
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: none; cursor: pointer; font-family: inherit;
+  }
+  .gj-add-btn { background: var(--accent-2); color: var(--accent); }
+  .gj-add-btn:hover { filter: brightness(0.95); }
+  .gj-remove-btn { background: #fdecec; color: #c0392b; }
   .empty-note { text-align: center; color: var(--text-dim); font-size: 13px; padding: 30px 0; }
   .back-link { font-size: 13px; }
+
+  .my-timetable-panel { margin: 22px 0; }
+  .my-timetable-toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer; font-size: 13.5px; font-weight: 700; color: var(--text); font-family: inherit;
+  }
+  .my-timetable-body { padding: 14px 0 0; }
+  .my-timetable-body.collapsed { display: none; }
+  .gj-credit-summary { font-size: 12.5px; color: var(--text-dim); margin-bottom: 10px; }
+  .gj-credit-summary b { color: var(--accent); }
 </style>
 
 <div class="topbar">
@@ -39,9 +57,22 @@
   <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">
     이 시간표 도구는 <b>사범대학 일반사회교육과 1학년</b> 기준이라 교직과목은 교육학개론·교육철학및교육사만 다루지만,
     실제로는 훨씬 많은 교직과목이 있습니다. 궁금해할 학생들을 위해 2026-2학기에 개설되는 나머지 교직과목(사범대학 2·3학년,
-    일반대학 교직과정·교육대학원 과목 포함) 전체를 여기에 모아뒀습니다. <b>담당교수 미지정</b> 등 원본 자료 그대로이며,
+    일반대학 교직과정·교육대학원 과목 포함) 전체를 여기에 모아뒀고, 마음에 드는 분반을 담아 시간표도 짜볼 수 있습니다
+    (이 페이지에는 랜덤 시간표 생성 기능은 없습니다). <b>담당교수 미지정</b> 등 원본 자료 그대로이며,
     실제 신청 가능 여부는 학년·계열별 제한을 반드시 확인하세요.
   </p>
+
+  <div class="my-timetable-panel">
+    <button class="my-timetable-toggle" id="myTtToggle">
+      <span>📅 내 시간표 (<span id="myTtCount">0</span>개 분반)</span>
+      <span class="arrow" id="myTtArrow">▾</span>
+    </button>
+    <div class="my-timetable-body collapsed" id="myTtBody">
+      <div class="gj-credit-summary" id="gjCreditSummary"></div>
+      <div class="timetable-wrap" id="myTtGrid"></div>
+    </div>
+  </div>
+
   <div class="search-box">
     <input id="gjSearch" type="text" placeholder="과목명으로 검색 (예: 교육평가, 디지털교육)">
   </div>
@@ -58,22 +89,80 @@
 <script src="js/data-gyojik-extra.js"></script>
 <script>
   const GJ_DAY = { "월": 0, "화": 1, "수": 2, "목": 3, "금": 4, "토": 5, "일": 6 };
-  const GJ_DAY_LABEL = ["월", "화", "수", "목", "금", "토", "일"];
+  const GJ_DAY_LABEL = ["월", "화", "수", "목", "금"];
+  const GJ_GRID_START = 9 * 60, GJ_GRID_END = 21 * 60, GJ_PX_PER_MIN = 1.1;
   function gjFmt(min) { const h = Math.floor(min / 60), m = min % 60; return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`; }
-  function gjParse(raw) {
+
+  function gjParseSlot(raw) {
     const mDur = raw.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})\((\d+)\)\s+(.+)$/);
     const mRange = raw.match(/^([월화수목금토일])\s+(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})\s+(.+)$/);
     let dayCh, start, end, loc;
     if (mDur) { dayCh = mDur[1]; start = parseInt(mDur[2]) * 60 + parseInt(mDur[3]); end = start + parseInt(mDur[4]); loc = mDur[5]; }
     else if (mRange) { dayCh = mRange[1]; start = parseInt(mRange[2]) * 60 + parseInt(mRange[3]); end = parseInt(mRange[4]) * 60 + parseInt(mRange[5]); loc = mRange[6]; }
-    else return raw;
+    else return null;
     const dashIdx = loc.indexOf("-");
     let building = loc, room = "";
     if (dashIdx > -1) { building = loc.slice(0, dashIdx); room = loc.slice(dashIdx + 1); }
+    return { day: GJ_DAY[dayCh], dayCh, start, end, building, room };
+  }
+  function gjBuildingLabel(building, room) {
     const name = (typeof BUILDING_NAMES !== "undefined" && BUILDING_NAMES[building]) ? `${BUILDING_NAMES[building]}(${building})` : building;
-    return `${dayCh} ${gjFmt(start)}~${gjFmt(end)} ${name}${room ? "-" + room : ""}`;
+    return `${name}${room ? "-" + room : ""}`;
+  }
+  function gjSlotLabel(slot) {
+    return `${slot.dayCh} ${gjFmt(slot.start)}~${gjFmt(slot.end)} ${gjBuildingLabel(slot.building, slot.room)}`;
   }
 
+  // 원본 데이터를 분반 단위로 펼침
+  const GJ_FLAT = [];
+  GYOJIK_EXTRA.forEach(course => {
+    course.sections.forEach(([sec, raw]) => {
+      const slot = gjParseSlot(raw);
+      GJ_FLAT.push({
+        id: `${course.name}-${sec}`, name: course.name, section: sec, code: course.code,
+        credit: course.credit, track: course.track, grade: course.grade, raw, slot
+      });
+    });
+  });
+  function gjGetSection(id) { return GJ_FLAT.find(s => s.id === id); }
+
+  // ===== 내 시간표 상태 =====
+  const GJ_STATE_KEY = "pnu-gyojik-more-2026-2";
+  let gjSelected = new Set();
+  try { const raw = localStorage.getItem(GJ_STATE_KEY); if (raw) gjSelected = new Set(JSON.parse(raw)); } catch (e) {}
+  function gjSaveState() { localStorage.setItem(GJ_STATE_KEY, JSON.stringify([...gjSelected])); }
+
+  function gjConflictWith(slot, excludeId) {
+    for (const id of gjSelected) {
+      if (id === excludeId) continue;
+      const other = gjGetSection(id);
+      if (!other || !other.slot || !slot) continue;
+      if (other.slot.day === slot.day && slot.start < other.slot.end && other.slot.start < slot.end) return other;
+    }
+    return null;
+  }
+
+  function gjAdd(id) {
+    const sec = gjGetSection(id);
+    if (!sec) return;
+    if (gjSelected.has(id)) return;
+    if (sec.slot) {
+      const conflict = gjConflictWith(sec.slot, id);
+      if (conflict) { alert(`시간이 겹칩니다: ${conflict.name} ${conflict.section}분반`); return; }
+    }
+    gjSelected.add(id);
+    gjSaveState();
+    renderGjList();
+    renderMyTimetable();
+  }
+  function gjRemove(id) {
+    gjSelected.delete(id);
+    gjSaveState();
+    renderGjList();
+    renderMyTimetable();
+  }
+
+  // ===== 검색/필터 =====
   let gjTrackFilter = "all";
   let gjKeyword = "";
 
@@ -98,12 +187,82 @@
         <h3>${c.name}</h3>
         <div class="gj-meta"><b>${c.credit}학점</b> · ${c.track} · ${c.grade} · 과목코드 ${c.code}</div>
         <div class="gj-sections">
-          ${c.sections.map(([sec, sched]) => `<div class="gj-section-row"><span class="sec">${sec}</span><span>${gjParse(sched)}</span></div>`).join("")}
+          ${c.sections.map(([sec]) => {
+            const id = `${c.name}-${sec}`;
+            const s = gjGetSection(id);
+            const already = gjSelected.has(id);
+            return `<div class="gj-section-row">
+              <span class="sec">${sec}</span>
+              <span class="sched">${s.slot ? gjSlotLabel(s.slot) : s.raw}</span>
+              ${already
+                ? `<button class="gj-remove-btn" data-gj-remove="${id}">담음 · 취소</button>`
+                : `<button class="gj-add-btn" data-gj-add="${id}">담기</button>`}
+            </div>`;
+          }).join("")}
         </div>
       </div>`).join("");
   }
 
+  // ===== 내 시간표 그리드 =====
+  function renderMyTimetable() {
+    document.getElementById("myTtCount").textContent = gjSelected.size;
+    const totalCredit = [...gjSelected].reduce((s, id) => { const sec = gjGetSection(id); return s + (sec ? sec.credit : 0); }, 0);
+    document.getElementById("gjCreditSummary").innerHTML = `담은 분반 <b>${gjSelected.size}</b>개 · 합계 <b>${totalCredit}</b>학점`;
+
+    const wrap = document.getElementById("myTtGrid");
+    wrap.innerHTML = `
+      <div class="timetable">
+        <div class="tt-head" style="background:none;border:none;"></div>
+        <div class="tt-head">월</div><div class="tt-head">화</div><div class="tt-head">수</div><div class="tt-head">목</div><div class="tt-head">금</div>
+        <div class="tt-time-axis"></div>
+        <div class="tt-col" data-day="0"></div>
+        <div class="tt-col" data-day="1"></div>
+        <div class="tt-col" data-day="2"></div>
+        <div class="tt-col" data-day="3"></div>
+        <div class="tt-col" data-day="4"></div>
+      </div>`;
+    const axis = wrap.querySelector(".tt-time-axis");
+    for (let t = GJ_GRID_START; t <= GJ_GRID_END; t += 60) {
+      const div = document.createElement("div");
+      div.className = "tt-time";
+      div.style.height = `${60 * GJ_PX_PER_MIN}px`;
+      div.textContent = gjFmt(t);
+      axis.appendChild(div);
+    }
+    wrap.querySelectorAll(".tt-col").forEach(col => { col.style.height = `${(GJ_GRID_END - GJ_GRID_START) * GJ_PX_PER_MIN}px`; });
+
+    [...gjSelected].forEach(id => {
+      const sec = gjGetSection(id);
+      if (!sec || !sec.slot || sec.slot.day < 0 || sec.slot.day > 4) return;
+      const col = wrap.querySelector(`.tt-col[data-day="${sec.slot.day}"]`);
+      if (!col) return;
+      const top = (sec.slot.start - GJ_GRID_START) * GJ_PX_PER_MIN;
+      const height = (sec.slot.end - sec.slot.start) * GJ_PX_PER_MIN;
+      const block = document.createElement("div");
+      block.className = "tt-block";
+      block.style.top = `${top}px`;
+      block.style.height = `${Math.max(height, 30)}px`;
+      block.style.background = sec.track.startsWith("사범대학") ? "#c2536b" : "#3aa0c9";
+      block.innerHTML = `<b>${sec.name}</b><span class="tt-block-time">${gjFmt(sec.slot.start)}~${gjFmt(sec.slot.end)}</span><span>${sec.section}분반</span><div class="loc">${gjBuildingLabel(sec.slot.building, sec.slot.room)}</div><span class="remove-x" data-gj-remove="${id}">✕</span>`;
+      col.appendChild(block);
+    });
+  }
+
+  document.body.addEventListener("click", (e) => {
+    const t = e.target;
+    if (t.dataset.gjAdd) gjAdd(t.dataset.gjAdd);
+    else if (t.dataset.gjRemove) gjRemove(t.dataset.gjRemove);
+  });
+
   document.getElementById("gjSearch").addEventListener("input", (e) => { gjKeyword = e.target.value; renderGjList(); });
+  const myTtBody = document.getElementById("myTtBody");
+  const myTtArrow = document.getElementById("myTtArrow");
+  document.getElementById("myTtToggle").onclick = () => {
+    const collapsed = myTtBody.classList.toggle("collapsed");
+    myTtArrow.textContent = collapsed ? "▾" : "▴";
+  };
+
   renderGjTracks();
   renderGjList();
+  renderMyTimetable();
 </script>

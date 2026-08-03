@@ -610,8 +610,12 @@ function renderCourseList() {
   renderFilterSummary();
   const listEl = document.getElementById("courseList");
   listEl.innerHTML = "";
+  const isMoreEgg = searchTerm.toLowerCase() === "more";
+  if (isMoreEgg) {
+    listEl.insertAdjacentHTML("beforeend", `<a class="more-egg-card" href="gyojik-more.html" target="_blank" rel="noopener">🥚 교직과목을 더 검색할까요? <span>교육학개론·교육철학및교육사 외 숨겨진 교직과목 검색 페이지로 이동</span></a>`);
+  }
   let items = activeTab === "all" ? ALL_COURSES.filter(c => !c.fixed) : ALL_COURSES.filter(c => c.category === activeTab);
-  if (searchTerm) {
+  if (searchTerm && !isMoreEgg) {
     const t = searchTerm.toLowerCase();
     items = items.filter(c => c.name.toLowerCase().includes(t) || c.professor.toLowerCase().includes(t) || c.section.includes(t) || c.scheduleRaw.toLowerCase().includes(t));
   }
@@ -971,13 +975,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAll();
 
   document.getElementById("searchInput").addEventListener("input", (e) => {
-    if (e.target.value.trim().toLowerCase() === "more") {
-      window.open("gyojik-more.html", "_blank");
-      e.target.value = "";
-      searchTerm = "";
-      renderCourseList();
-      return;
-    }
     searchTerm = e.target.value.trim();
     renderCourseList();
   });

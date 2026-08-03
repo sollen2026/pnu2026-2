@@ -267,6 +267,15 @@ a { color: var(--accent); }
   transition: border-color .15s;
 }
 .course-card:hover { border-color: var(--accent); }
+
+.more-egg-card {
+  display: flex; flex-direction: column; gap: 3px;
+  border: 1px dashed var(--accent); border-radius: 10px;
+  padding: 12px 14px; background: var(--accent-2); color: var(--accent);
+  text-decoration: none; font-size: 13.5px; font-weight: 700;
+}
+.more-egg-card span { font-size: 11.5px; font-weight: 400; color: var(--text-dim); }
+.more-egg-card:hover { border-style: solid; }
 .course-card .name { font-size: 13px; font-weight: 700; }
 .course-card .meta { font-size: 11.5px; color: var(--text-dim); margin-top: 2px; line-height: 1.5; }
 .course-card .row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
@@ -573,8 +582,7 @@ html[data-viewmode="mobile"] .info-tab { flex: 1 1 auto; text-align: center; }
 
 /* 푸터 링크 */
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 6px; font-size: 12px; }
-.footer-pdf-pair { color: var(--text-dim); }
-.footer-pdf-pair a { margin-left: 2px; }
+.footer-pdf-row { justify-content: center; margin: 10px 0 2px; }
 
 /* Modal */
 .modal-backdrop {
