@@ -1,0 +1,187 @@
+<title>📊 희망인원 확인 — 2026-2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .wrap { max-width: 920px; margin: 0 auto; padding: 26px 18px 60px; }
+  .back-link { font-size: 13px; }
+  .notice-box {
+    font-size: 12.5px; color: var(--text-dim); line-height: 1.7; background: var(--panel-2);
+    border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px;
+  }
+  .notice-box b { color: var(--text); }
+  .search-box input {
+    width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--panel-2); color: var(--text); font-size: 14px; font-family: inherit;
+  }
+  .area-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+  .area-tab {
+    font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--panel-2); color: var(--text); cursor: pointer; font-family: inherit;
+  }
+  .area-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .wc-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .wc-count { font-size: 12.5px; color: var(--text-dim); }
+  table.wc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.wc-table th { background: var(--panel-2); border: 1px solid var(--border); padding: 8px 7px; color: var(--text); font-weight: 700; }
+  table.wc-table td { border: 1px solid var(--border); padding: 7px; text-align: center; color: var(--text); }
+  table.wc-table td.wc-name { text-align: left; }
+  table.wc-table tr:hover td { background: var(--panel-2); }
+  .wc-ratio { font-weight: 800; font-variant-numeric: tabular-nums; }
+  .wc-ratio.safe { color: #1f8a56; }
+  .wc-ratio.warn { color: #c88a1c; }
+  .wc-ratio.danger { color: #c0392b; }
+  .wc-ratio.none { color: var(--text-dim); font-weight: 400; }
+  .rec-panel { margin-top: 20px; }
+  .rec-toggle-btn { width: 100%; }
+  .rec-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .rec-item {
+    display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 14px;
+  }
+  .rec-num {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-size: 12.5px; font-weight: 800; display: flex; align-items: center; justify-content: center;
+  }
+  .rec-body { flex: 1 1 auto; font-size: 13px; }
+  .rec-body b { display: block; }
+  .rec-body span { font-size: 11.5px; color: var(--text-dim); }
+  .empty-note { text-align: center; color: var(--text-dim); font-size: 13px; padding: 30px 0; }
+</style>
+
+<div class="topbar">
+  <h1>📊 희망인원 확인 <span class="sub">2026학년도 2학기</span></h1>
+  <a class="btn back-link" href="index.html">← 시간표로 돌아가기</a>
+</div>
+
+<div class="wrap">
+  <div class="notice-box">
+    ℹ️ 이 페이지는 <b>희망과목담기 기간 중 특정 시점의 신청인원 스냅샷</b>을 보여줍니다. 희망인원·배정인원은 실시간으로 계속 바뀌므로
+    참고용으로만 활용하고, 실제 수강신청 전에는 반드시 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">학생지원시스템</a>에서
+    최신 정보를 확인하세요. <b>경쟁률</b> = 희망인원 합계 ÷ 배정인원 합계(집단 구분 전체 합산 기준)로 계산했습니다.
+  </div>
+
+  <div class="search-box">
+    <input id="wcSearch" type="text" placeholder="과목명으로 검색">
+  </div>
+  <div class="area-tabs" id="wcAreaTabs"></div>
+
+  <div class="wc-toolbar">
+    <span class="wc-count" id="wcCount"></span>
+    <label class="filter-check"><input type="checkbox" id="wcSelectedOnly"> 선택한 과목만 보기</label>
+  </div>
+
+  <div class="table-scroll">
+    <table class="wc-table">
+      <thead><tr><th></th><th>과목명</th><th>분반</th><th>학점</th><th>희망인원</th><th>배정인원</th><th>경쟁률</th></tr></thead>
+      <tbody id="wcBody"></tbody>
+    </table>
+  </div>
+
+  <div class="rec-panel">
+    <button class="btn primary rec-toggle-btn" id="wcRecBtn">🎯 선택한 과목 신청 순서 추천 보기</button>
+    <div id="wcRecOutput"></div>
+  </div>
+</div>
+
+<script src="js/data-wishcount.js"></script>
+<script>
+  let wcArea = "all";
+  let wcKeyword = "";
+  let wcSelectedOnlyFlag = false;
+  let wcSelected = new Set();
+
+  function ratioClass(r) {
+    if (r == null) return "danger"; // 배정인원 0인데 희망만 있는 경우 = 가장 위험
+    if (r === 0) return "none";
+    if (r < 0.8) return "safe";
+    if (r < 1.5) return "warn";
+    return "danger";
+  }
+  function ratioLabel(r) {
+    if (r == null) return "배정 0명";
+    if (r === 0) return "희망 0명";
+    return `${r.toFixed(2)}배`;
+  }
+
+  function renderAreaTabs() {
+    const areas = ["all", ...new Set(WISH_DATA.map(d => d.area))];
+    const el = document.getElementById("wcAreaTabs");
+    el.innerHTML = areas.map(a => {
+      const label = a === "all" ? "전체" : (WISH_DATA.find(d => d.area === a) || {}).areaLabel || a;
+      return `<button class="area-tab${a === wcArea ? " active" : ""}" data-area="${a}">${label}</button>`;
+    }).join("");
+    el.querySelectorAll(".area-tab").forEach(btn => {
+      btn.onclick = () => { wcArea = btn.dataset.area; renderAreaTabs(); renderWcTable(); };
+    });
+  }
+
+  function filteredData() {
+    let items = WISH_DATA;
+    if (wcArea !== "all") items = items.filter(d => d.area === wcArea);
+    const kw = wcKeyword.trim().toLowerCase();
+    if (kw) items = items.filter(d => d.name.toLowerCase().includes(kw));
+    if (wcSelectedOnlyFlag) items = items.filter(d => wcSelected.has(`${d.code}-${d.section}`));
+    return items;
+  }
+
+  function renderWcTable() {
+    const items = filteredData();
+    document.getElementById("wcCount").textContent = `${items.length}개 분반 표시 중 · 선택 ${wcSelected.size}개`;
+    const body = document.getElementById("wcBody");
+    if (!items.length) { body.innerHTML = `<tr class="empty-row"><td colspan="7" class="empty-note">검색 결과가 없습니다.</td></tr>`; return; }
+    body.innerHTML = items.map(d => {
+      const id = `${d.code}-${d.section}`;
+      const checked = wcSelected.has(id) ? "checked" : "";
+      return `<tr>
+        <td><input type="checkbox" data-wc-pick="${id}" ${checked}></td>
+        <td class="wc-name">${d.name}</td>
+        <td>${d.section}</td>
+        <td>${d.credit || "-"}</td>
+        <td>${d.hopeTotal}</td>
+        <td>${d.assignedTotal}</td>
+        <td><span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></td>
+      </tr>`;
+    }).join("");
+    body.querySelectorAll("[data-wc-pick]").forEach(cb => {
+      cb.onchange = () => {
+        const id = cb.dataset.wcPick;
+        if (cb.checked) wcSelected.add(id); else wcSelected.delete(id);
+        document.getElementById("wcCount").textContent = `${filteredData().length}개 분반 표시 중 · 선택 ${wcSelected.size}개`;
+      };
+    });
+  }
+
+  function renderRecommendation() {
+    const out = document.getElementById("wcRecOutput");
+    const picked = WISH_DATA.filter(d => wcSelected.has(`${d.code}-${d.section}`));
+    if (!picked.length) {
+      out.innerHTML = `<p class="empty-note">추천을 보려면 위 표에서 신청할 과목을 먼저 선택하세요(체크박스).</p>`;
+      return;
+    }
+    const sorted = [...picked].sort((a, b) => {
+      const ra = a.ratio == null ? 999 : a.ratio, rb = b.ratio == null ? 999 : b.ratio;
+      return rb - ra;
+    });
+    out.innerHTML = `
+      <p class="panel-note" style="margin:10px 0 0;">💡 경쟁률이 높은(정원 대비 희망인원이 많은) 과목일수록 수강신청 시작 직후 정원이 먼저 마감될 가능성이 큽니다.
+      아래 순서대로, <b>경쟁이 치열한 과목부터 먼저</b> 신청하고 여유 있는 과목은 뒤로 미루는 것을 추천합니다.</p>
+      <ul class="rec-list">
+        ${sorted.map((d, i) => `
+          <li class="rec-item">
+            <span class="rec-num">${i + 1}</span>
+            <span class="rec-body">
+              <b>${d.name} ${d.section}분반</b>
+              <span>희망 ${d.hopeTotal}명 / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></span>
+            </span>
+          </li>`).join("")}
+      </ul>`;
+  }
+
+  document.getElementById("wcSearch").addEventListener("input", (e) => { wcKeyword = e.target.value; renderWcTable(); });
+  document.getElementById("wcSelectedOnly").addEventListener("change", (e) => { wcSelectedOnlyFlag = e.target.checked; renderWcTable(); });
+  document.getElementById("wcRecBtn").onclick = renderRecommendation;
+
+  renderAreaTabs();
+  renderWcTable();
+</script>

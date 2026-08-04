@@ -14,6 +14,7 @@
   <div class="topbar-actions">
     <a class="btn primary pill" href="english-diagnostic.html">🧭 대학영어 자가진단</a>
     <a class="btn primary pill" href="sugang-practice.html">🖥️ 모의 수강신청 연습</a>
+    <a class="btn primary pill" href="wish-count.html">📊 희망인원 확인</a>
     <div class="theme-toggle" id="viewToggle">
       <button data-view="desktop" title="데스크톱 화면">💻</button>
       <button data-view="mobile" title="모바일 화면">📱</button>
@@ -108,6 +109,7 @@
       <div class="info-tabs-bar" role="tablist">
         <button class="info-tab active" data-tab="eligibility">📋 1차 신청 가능 분반</button>
         <button class="info-tab" data-tab="grading">📐 성적 평가 기준</button>
+        <button class="info-tab" data-tab="cancel">📉 폐강 기준</button>
         <button class="info-tab" data-tab="pdf">📥 분반 PDF</button>
       </div>
 
@@ -170,6 +172,43 @@
           <li>대학영어 이수 면제로 인해 추가로 수강한 효원균형교양·효원창의교양 교과목 중 초과된 1학점</li>
         </ul>
         <div class="cite">출처: 「부산대학교 교육과정 편성 및 운영 규정」 제11조(이수) 제8항, 제16조(일반선택학점 인정 기준). 신청 절차 등 최신 세부사항은 소속 학과사무실 또는 <a href="https://onestop.pusan.ac.kr/login" target="_blank" rel="noopener">부산대 학생지원시스템</a>에서 확인하세요.</div>
+      </div>
+
+      <div class="info-tab-panel" id="panel-cancel">
+        <p class="panel-intro">개설된 과목이라도 수강인원이 기준에 미달되면 <b>합반 또는 폐강</b> 조치될 수 있습니다. 부산대 학생지원시스템의 공식 기준을 정리했습니다.</p>
+        <h3 class="panel-subhead">1개 분반만 개설할 때</h3>
+        <div class="table-scroll">
+          <table class="info-table2">
+            <tr><th>구분</th><th>폐강 기준</th></tr>
+            <tr><td>전공기초 · 전공필수 · 교직과목 · 일반대학 교직과정 교과교육영역</td><td>수강인원 <b>5명 미만</b>일 때 폐강</td></tr>
+            <tr><td>전공선택 (학년별 재학생 30명 이상 학과)</td><td>수강인원 <b>10명 미만</b>일 때 폐강</td></tr>
+            <tr><td>전공선택 (학년별 재학생 30명 미만 학과)</td><td>수강인원이 학년별 재학생 <b>1/3명 미만</b>일 때 폐강</td></tr>
+            <tr><td>교양필수</td><td>수강인원 <b>10명 미만</b>일 때 폐강</td></tr>
+            <tr><td>교양선택·일반선택 (이론)</td><td>수강인원 <b>25명 미만</b>일 때 폐강</td></tr>
+            <tr><td>교양선택·일반선택 (실험·실습·실기, 일반선택 한국어교육과정)</td><td>수강인원 <b>20명 미만</b>일 때 폐강</td></tr>
+            <tr><td>원어강의</td><td>수강인원 <b>15명 미만</b>일 때 폐강</td></tr>
+          </table>
+        </div>
+        <h3 class="panel-subhead">2개 이상 분반을 개설할 때</h3>
+        <div class="table-scroll">
+          <table class="info-table2">
+            <tr><th>구분</th><th>합반·폐강 기준</th></tr>
+            <tr><td>전공기초·전공필수·전공선택·일반선택·교직과목 (이론)</td><td><b>30명 단위</b>로 합반 또는 폐강<br><small>(제2외국어 회화·원어강의·일반선택 한국어교육과정은 20명 단위)</small></td></tr>
+            <tr><td>실험·실습·실기 과목</td><td><b>20명 단위</b>로 개설·합반, <b>15명 미만</b>이면 폐강</td></tr>
+            <tr><td>교양필수</td><td><b>20명 단위</b>로 합반 또는 폐강<br><small>(원어강의는 15명 단위)</small></td></tr>
+            <tr><td>교양선택 (이론)</td><td><b>25명 단위</b>로 합반 또는 폐강<br><small>(제2외국어 회화·원어강의는 20명 단위)</small></td></tr>
+            <tr><td>교양선택 (실험·실습·실기)</td><td><b>20명 단위</b>로 합반 또는 폐강</td></tr>
+          </table>
+        </div>
+        <div class="panel-note" style="margin:10px 0 0;">💡 분반당 최대 수강인원은 300명까지이며(원격수업은 시스템 여건 안에서 확대 가능), 이 시간표 도구가 다루는 과목에 적용하면 대략 이렇습니다.</div>
+        <ul class="panel-list">
+          <li><b>고전읽기와토론·인공지능과디지털사고·대학영어</b>(효원핵심교양/교양필수): 20명 단위 합반·폐강</li>
+          <li><b>교육학개론·교육철학및교육사</b>(교직과목): 30명 단위 합반·폐강</li>
+          <li><b>효원균형교양·효원창의교양 8개 영역</b>(교양선택, 이론 기준): 25명 단위 합반·폐강</li>
+          <li><b>경제학</b>(전공기초): 30명 단위 합반·폐강</li>
+          <li><b>대학생활설계와비전</b>(일반선택): 25명 미만이면 폐강 위험(1개 분반 기준)</li>
+        </ul>
+        <div class="cite">출처: 부산대학교 학생지원시스템 「폐강 기준 및 수강신청 불인정」(<a href="https://onestop.pusan.ac.kr/page?menuCD=000000000000051" target="_blank" rel="noopener">onestop.pusan.ac.kr/page?menuCD=000000000000051</a>). 실제 적용 여부는 학과·전공 사정에 따라 예외가 있을 수 있으니 최종 확인은 소속 학과사무실에 문의하세요.</div>
       </div>
 
       <div class="info-tab-panel" id="panel-pdf">
