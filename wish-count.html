@@ -52,14 +52,31 @@
   }
   .rec-body { flex: 1 1 auto; font-size: 13px; }
   .rec-body b { display: block; }
-  .rec-body span { font-size: 11.5px; color: var(--text-dim); }
+  .rec-body span { display: block; font-size: 11.5px; color: var(--text-dim); }
   .empty-note { text-align: center; color: var(--text-dim); font-size: 13px; padding: 30px 0; }
   .truncate-note { text-align: center; color: var(--text-dim); font-size: 12px; padding: 10px 0; }
+  .btn-cart {
+    font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--panel-2); color: var(--text); cursor: pointer; font-family: inherit; white-space: nowrap;
+  }
+  .btn-cart.picked { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .cart-badge {
+    display: inline-flex; align-items: center; justify-content: center; min-width: 16px; height: 16px;
+    padding: 0 4px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 10.5px; font-weight: 800;
+  }
+  #wcCartBtn, .back-link { white-space: nowrap; }
+  @media (max-width: 560px) {
+    .topbar { flex-wrap: wrap; }
+    .topbar-actions { width: 100%; justify-content: flex-end; }
+  }
 </style>
 
 <div class="topbar">
   <h1>📊 희과담 인원 확인 <span class="sub">2026학년도 2학기</span></h1>
-  <a class="btn back-link" href="index.html">← 시간표로 돌아가기</a>
+  <div class="topbar-actions">
+    <button class="btn" id="wcCartBtn">🛒 내가 담은 과목 확인하기<span class="cart-badge" id="wcCartBadge" style="display:none;">0</span></button>
+    <a class="btn back-link" href="index.html">← 시간표로 돌아가기</a>
+  </div>
 </div>
 
 <div class="wrap">
@@ -84,14 +101,12 @@
     <table class="wc-table">
       <thead>
         <tr>
-          <th rowspan="2"></th>
+          <th rowspan="2">담기</th>
           <th rowspan="2">과목명</th>
           <th rowspan="2">분반</th>
           <th rowspan="2">구분</th>
           <th rowspan="2">학점</th>
-          <th rowspan="2">교수</th>
-          <th rowspan="2">시간</th>
-          <th rowspan="2">장소</th>
+          <th rowspan="2">상세</th>
           <th colspan="5" class="grp-hope">희망인원</th>
           <th colspan="5" class="grp-assign">배정인원</th>
           <th rowspan="2">경쟁률</th>
@@ -105,9 +120,12 @@
     </table>
   </div>
 
-  <div class="rec-panel">
-    <button class="btn primary rec-toggle-btn" id="wcRecBtn">🎯 선택한 과목 신청 순서 추천 보기</button>
-    <div id="wcRecOutput"></div>
+</div>
+
+<div class="modal-backdrop" id="wcModalBackdrop">
+  <div class="modal timetable-view-modal">
+    <span class="modal-close-x" id="wcModalCloseX">&times;</span>
+    <div id="wcModalContent"></div>
   </div>
 </div>
 
@@ -204,20 +222,18 @@
     const items = filteredData();
     document.getElementById("wcCount").textContent = `${items.length}개 분반 중 ${Math.min(items.length, RENDER_CAP)}개 표시 · 선택 ${wcSelected.size}개`;
     const body = document.getElementById("wcBody");
-    if (!items.length) { body.innerHTML = `<tr class="empty-row"><td colspan="19" class="empty-note">검색 결과가 없습니다.</td></tr>`; return; }
+    if (!items.length) { body.innerHTML = `<tr class="empty-row"><td colspan="17" class="empty-note">검색 결과가 없습니다.</td></tr>`; return; }
     const shown = items.slice(0, RENDER_CAP);
     let html = shown.map(d => {
       const id = `${d.code}-${d.section}`;
-      const checked = wcSelected.has(id) ? "checked" : "";
+      const picked = wcSelected.has(id);
       return `<tr>
-        <td><input type="checkbox" data-wc-pick="${id}" ${checked}></td>
+        <td><button class="btn-cart${picked ? " picked" : ""}" data-wc-pick="${id}">${picked ? "담음 ✓" : "담기"}</button></td>
         <td class="wc-name">${d.name}</td>
         <td>${d.section}</td>
         <td>${d.category}</td>
         <td>${d.credit || "-"}</td>
-        <td>${d.professor || "-"}</td>
-        <td>${d.schedule || "-"}</td>
-        <td>${d.location || "-"}</td>
+        <td><button class="btn small" data-wc-detail="${id}">상세</button></td>
         <td>${d.hopeMain}</td>
         <td>${d.hopeSub}</td>
         <td>${d.hopeGeneral}</td>
@@ -232,50 +248,106 @@
       </tr>`;
     }).join("");
     if (items.length > RENDER_CAP) {
-      html += `<tr><td colspan="19" class="truncate-note">검색 결과가 많아 ${RENDER_CAP}개만 표시했습니다. 검색어를 더 구체적으로 입력해 보세요.</td></tr>`;
+      html += `<tr><td colspan="17" class="truncate-note">검색 결과가 많아 ${RENDER_CAP}개만 표시했습니다. 검색어를 더 구체적으로 입력해 보세요.</td></tr>`;
     }
     body.innerHTML = html;
-    body.querySelectorAll("[data-wc-pick]").forEach(cb => {
-      cb.onchange = () => {
-        const id = cb.dataset.wcPick;
-        if (cb.checked) wcSelected.add(id); else wcSelected.delete(id);
-        document.getElementById("wcCount").textContent = `${filteredData().length}개 분반 중 ${Math.min(filteredData().length, RENDER_CAP)}개 표시 · 선택 ${wcSelected.size}개`;
-      };
+    body.querySelectorAll("[data-wc-pick]").forEach(btn => {
+      btn.onclick = () => toggleCourse(btn.dataset.wcPick);
+    });
+    body.querySelectorAll("[data-wc-detail]").forEach(btn => {
+      btn.onclick = () => openDetailModal(btn.dataset.wcDetail);
     });
   }
 
-  function renderRecommendation() {
-    const out = document.getElementById("wcRecOutput");
-    const picked = WISH_DATA.filter(d => wcSelected.has(`${d.code}-${d.section}`));
-    if (!picked.length) {
-      out.innerHTML = `<p class="empty-note">추천을 보려면 위 표에서 신청할 과목을 먼저 선택하세요(체크박스).</p>`;
+  function toggleCourse(id) {
+    if (wcSelected.has(id)) wcSelected.delete(id); else wcSelected.add(id);
+    updateCartBadge();
+    if (wcSelectedOnlyFlag) {
+      renderWcTable();
       return;
     }
+    document.getElementById("wcCount").textContent = `${filteredData().length}개 분반 중 ${Math.min(filteredData().length, RENDER_CAP)}개 표시 · 선택 ${wcSelected.size}개`;
+    const picked = wcSelected.has(id);
+    document.querySelectorAll(`[data-wc-pick="${id}"]`).forEach(btn => {
+      btn.textContent = picked ? "담음 ✓" : "담기";
+      btn.classList.toggle("picked", picked);
+    });
+  }
+
+  function updateCartBadge() {
+    const badge = document.getElementById("wcCartBadge");
+    if (wcSelected.size > 0) { badge.textContent = wcSelected.size; badge.style.display = ""; }
+    else { badge.style.display = "none"; }
+  }
+
+  function openWcModal() { document.getElementById("wcModalBackdrop").classList.add("open"); }
+  function closeWcModal() { document.getElementById("wcModalBackdrop").classList.remove("open"); }
+
+  function openDetailModal(id) {
+    const d = WISH_DATA.find(x => `${x.code}-${x.section}` === id);
+    if (!d) return;
+    const picked = wcSelected.has(id);
+    document.getElementById("wcModalContent").innerHTML = `
+      <h3>${d.name} <span style="font-weight:400; color:var(--text-dim); font-size:14px;">${d.section}분반</span></h3>
+      <div class="modal-sub">${d.category} · ${d.credit || "-"}학점${d.areaLabel ? ` · ${d.areaLabel}` : ""}</div>
+      <div class="modal-section"><h4>교수</h4><div>${d.professor || "정보 없음"}</div></div>
+      <div class="modal-section"><h4>수업 시간</h4><div>${d.schedule || "정보 없음"}</div></div>
+      <div class="modal-section"><h4>강의 장소</h4><div>${d.location || "정보 없음"}</div></div>
+      <div class="modal-section"><h4>희망 / 배정 인원</h4><div>희망 ${d.hopeTotal}명 (주전공 ${d.hopeMain}·부전공 ${d.hopeSub}·일반선택 ${d.hopeGeneral}·타대생 ${d.hopeOther}) / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></div></div>
+      <div class="modal-actions">
+        <button class="btn primary" id="wcModalPickBtn">${picked ? "담음 ✓ (빼기)" : "🛒 담기"}</button>
+        <button class="btn" id="wcModalContentCloseBtn">닫기</button>
+      </div>`;
+    document.getElementById("wcModalPickBtn").onclick = () => { toggleCourse(id); openDetailModal(id); };
+    document.getElementById("wcModalContentCloseBtn").onclick = closeWcModal;
+    openWcModal();
+  }
+
+  function openCartModal() {
+    const picked = WISH_DATA.filter(d => wcSelected.has(`${d.code}-${d.section}`));
     const sorted = [...picked].sort((a, b) => {
       const ra = a.ratio == null ? 999 : a.ratio, rb = b.ratio == null ? 999 : b.ratio;
       return rb - ra;
     });
-    out.innerHTML = `
-      <p class="panel-note" style="margin:10px 0 0;">💡 경쟁률이 높은(정원 대비 희망인원이 많은) 과목일수록 수강신청 시작 직후 정원이 먼저 마감될 가능성이 큽니다.
-      아래 순서대로, <b>경쟁이 치열한 과목부터 먼저</b> 신청하고 여유 있는 과목은 뒤로 미루는 것을 추천합니다.</p>
-      <ul class="rec-list">
-        ${sorted.map((d, i) => `
-          <li class="rec-item">
-            <span class="rec-num">${i + 1}</span>
-            <span class="rec-body">
-              <b>${d.name} ${d.section}분반</b>
-              <span>희망 ${d.hopeTotal}명 / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></span>
-            </span>
-          </li>`).join("")}
-      </ul>`;
+    const body = !picked.length
+      ? `<p class="empty-note">아직 담은 과목이 없습니다. 표에서 "담기" 버튼을 눌러 과목을 담아보세요.</p>`
+      : `<p class="panel-note" style="margin:0 0 10px;">💡 경쟁률이 높은(정원 대비 희망인원이 많은) 과목일수록 수강신청 시작 직후 정원이 먼저 마감될 가능성이 큽니다.
+         아래 순서대로 <b>경쟁이 치열한 과목부터 먼저</b> 신청하세요.</p>
+         <ul class="rec-list">
+           ${sorted.map((d, i) => `
+             <li class="rec-item">
+               <span class="rec-num">${i + 1}</span>
+               <span class="rec-body">
+                 <b>${d.name} ${d.section}분반</b>
+                 <span>${d.professor || "교수 미정"} · ${d.schedule || "시간 미정"}</span>
+                 <span>희망 ${d.hopeTotal}명 / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></span>
+               </span>
+               <button class="btn small" data-wc-remove="${d.code}-${d.section}">빼기</button>
+             </li>`).join("")}
+         </ul>`;
+    document.getElementById("wcModalContent").innerHTML = `
+      <h3>🛒 내가 담은 과목 <span style="font-weight:400; color:var(--text-dim); font-size:14px;">(${picked.length}개)</span></h3>
+      <div class="modal-sub">담은 과목을 바탕으로 신청 순서를 추천해드립니다.</div>
+      ${body}
+      <div class="modal-actions"><button class="btn" id="wcModalContentCloseBtn">닫기</button></div>`;
+    document.getElementById("wcModalContentCloseBtn").onclick = closeWcModal;
+    document.getElementById("wcModalContent").querySelectorAll("[data-wc-remove]").forEach(btn => {
+      btn.onclick = () => { toggleCourse(btn.dataset.wcRemove); openCartModal(); };
+    });
+    openWcModal();
   }
 
   document.getElementById("wcSearch").addEventListener("input", (e) => { wcKeyword = e.target.value; renderWcTable(); });
   document.getElementById("wcOurOnly").addEventListener("change", (e) => { wcOurOnlyFlag = e.target.checked; renderWcTable(); });
   document.getElementById("wcSelectedOnly").addEventListener("change", (e) => { wcSelectedOnlyFlag = e.target.checked; renderWcTable(); });
-  document.getElementById("wcRecBtn").onclick = renderRecommendation;
+  document.getElementById("wcCartBtn").onclick = openCartModal;
+  document.getElementById("wcModalCloseX").onclick = closeWcModal;
+  document.getElementById("wcModalBackdrop").addEventListener("click", (e) => {
+    if (e.target.id === "wcModalBackdrop") closeWcModal();
+  });
 
   renderAreaTabs();
   renderSubAreaTabs();
   renderWcTable();
+  updateCartBadge();
 </script>
