@@ -180,6 +180,15 @@
     });
   }
 
+  // 「2026학년도 2학기 교직과목 수강안내」(별표4) - 가. 사범대학 시간표 기준
+  // 사범대학(일반사회교육과 포함) 학생은 1차 수강신청기간에 이 과목들만 신청 가능하며,
+  // 2차 수강신청기간부터는 계열별 제한이 모두 해제되어 교직과목 전체를 신청할 수 있다.
+  const GYOJIK_WAVE1_NAMES = new Set([
+    "교육철학및교육사", "교육학개론", "교육과정", "생활지도및상담", "교육평가",
+    "특수교육학개론", "학교폭력예방및학생의이해", "교육봉사활동"
+  ]);
+  const GYOJIK_NOTE = '💡 「2026학년도 2학기 교직과목 수강안내」 기준: <b>1차 수강신청기간</b>에는 사범대학 계열(일반사회교육과 포함) 학생은 위 8개 과목만 신청할 수 있고, 그 외 과목(교육심리·교육행정및교육경영·교육사회·교육방법및교육공학·디지털교육·교직실무 등, 일반대학 교직과정 계열)은 <b>2차 수강신청기간</b>부터 계열 제한이 풀리면서 신청할 수 있습니다.';
+
   function subTabsConfigFor(category) {
     if (SUB_AREAS[category]) return { field: "area", options: SUB_AREAS[category] };
     if (category === "효원핵심교양") {
@@ -187,6 +196,12 @@
       WISH_DATA.forEach(d => { if (d.category === category) counts.set(d.name, (counts.get(d.name) || 0) + 1); });
       const options = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name]) => ({ key: name, label: name }));
       return { field: "name", options };
+    }
+    if (category === "교직과목") {
+      return { field: "wave", options: [
+        { key: "wave1", label: "1차 신청 가능 과목" },
+        { key: "wave2", label: "2차 신청 가능 과목(전체)" }
+      ] };
     }
     return null;
   }
@@ -199,7 +214,9 @@
     if (!config) { wrap.style.display = "none"; el.innerHTML = ""; wcSubField = null; return; }
     wrap.style.display = "";
     wcSubField = config.field;
-    note.style.display = config.field === "area" ? "" : "none";
+    if (config.field === "area") { note.style.display = ""; note.innerHTML = '💡 세부영역은 일반사회교육과 학생이 신청 가능한 분반(타 캠퍼스·유학생 전용·본과 개설 분반 제외) 기준으로 분류했습니다. 전체 개설 분반은 위 "전체" 상태에서 검색하세요.'; }
+    else if (config.field === "wave") { note.style.display = ""; note.innerHTML = GYOJIK_NOTE; }
+    else { note.style.display = "none"; }
     const tabs = [{ key: "all", label: "전체" }, ...config.options];
     el.innerHTML = tabs.map(t => `<button class="sub-area-tab${t.key === wcSubArea ? " active" : ""}" data-sub="${t.key}">${t.label}</button>`).join("");
     el.querySelectorAll(".sub-area-tab").forEach(btn => {
@@ -210,7 +227,12 @@
   function filteredData() {
     let items = WISH_DATA;
     if (wcCategory !== "all") items = items.filter(d => d.category === wcCategory);
-    if (wcSubArea !== "all" && wcSubField) items = items.filter(d => d[wcSubField] === wcSubArea);
+    if (wcSubField === "wave") {
+      if (wcSubArea === "wave1") items = items.filter(d => GYOJIK_WAVE1_NAMES.has(d.name));
+      // wave2(2차)는 계열 제한이 모두 풀리므로 별도 필터 없이 교직과목 전체를 그대로 보여준다.
+    } else if (wcSubArea !== "all" && wcSubField) {
+      items = items.filter(d => d[wcSubField] === wcSubArea);
+    }
     if (wcOurOnlyFlag) items = items.filter(d => d.area !== null);
     const kw = wcKeyword.trim().toLowerCase();
     if (kw) items = items.filter(d => d.name.toLowerCase().includes(kw));
