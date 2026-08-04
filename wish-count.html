@@ -9,12 +9,20 @@
     width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border);
     background: var(--panel-2); color: var(--text); font-size: 14px; font-family: inherit;
   }
-  .area-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+  .area-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
   .area-tab {
     font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 999px;
     border: 1px solid var(--border); background: var(--panel-2); color: var(--text); cursor: pointer; font-family: inherit;
   }
   .area-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .sub-area-wrap { margin: 10px 0 16px; }
+  .sub-area-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sub-area-tab {
+    font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text-dim); cursor: pointer; font-family: inherit;
+  }
+  .sub-area-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .sub-area-note { font-size: 11.5px; color: var(--text-dim); margin: 6px 0 0; }
   .wc-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
   .wc-count { font-size: 12.5px; color: var(--text-dim); }
   .filter-check { font-size: 12.5px; display: flex; align-items: center; gap: 5px; }
@@ -59,6 +67,10 @@
     <input id="wcSearch" type="text" placeholder="과목명으로 검색 (예: 대학영어, 경제학원론, 미적분학...)">
   </div>
   <div class="area-tabs" id="wcAreaTabs"></div>
+  <div class="sub-area-wrap" id="wcSubAreaWrap" style="display:none;">
+    <div class="sub-area-tabs" id="wcSubAreaTabs"></div>
+    <div class="sub-area-note">💡 세부영역은 일반사회교육과 학생이 신청 가능한 분반(타 캠퍼스·유학생 전용·본과 개설 분반 제외) 기준으로 분류했습니다. 전체 개설 분반은 위 "전체" 상태에서 검색하세요.</div>
+  </div>
 
   <div class="wc-toolbar">
     <span class="wc-count" id="wcCount"></span>
@@ -99,7 +111,18 @@
 <script src="js/data-wishcount.js"></script>
 <script>
   const RENDER_CAP = 300;
+  const CATEGORY_ORDER = ["all", "효원핵심교양", "효원균형교양", "효원창의교양", "교직과목", "일반선택", "전공기초", "전공필수", "전공선택"];
+  const SUB_AREAS = {
+    "효원균형교양": [
+      { key: "sasang", label: "사상과 역사" }, { key: "sahoe", label: "사회와 문화" }, { key: "segye", label: "세계와 소통" },
+      { key: "munhak", label: "문학과 예술" }, { key: "gwahak", label: "과학과 기술" }
+    ],
+    "효원창의교양": [
+      { key: "yunghap", label: "융합과 창의" }, { key: "geongang", label: "건강과 레포츠" }, { key: "inseong", label: "인성과 사회봉사" }
+    ]
+  };
   let wcCategory = "all";
+  let wcSubArea = "all";
   let wcKeyword = "";
   let wcOurOnlyFlag = false;
   let wcSelectedOnlyFlag = false;
@@ -119,22 +142,39 @@
   }
 
   function renderAreaTabs() {
-    const counts = new Map();
-    WISH_DATA.forEach(d => counts.set(d.category, (counts.get(d.category) || 0) + 1));
-    const cats = ["all", ...[...counts.entries()].sort((a, b) => b[1] - a[1]).map(e => e[0])];
+    const present = new Set(WISH_DATA.map(d => d.category));
+    const cats = CATEGORY_ORDER.filter(c => c === "all" || present.has(c));
     const el = document.getElementById("wcAreaTabs");
     el.innerHTML = cats.map(c => {
       const label = c === "all" ? "전체" : c;
       return `<button class="area-tab${c === wcCategory ? " active" : ""}" data-cat="${c}">${label}</button>`;
     }).join("");
     el.querySelectorAll(".area-tab").forEach(btn => {
-      btn.onclick = () => { wcCategory = btn.dataset.cat; renderAreaTabs(); renderWcTable(); };
+      btn.onclick = () => {
+        wcCategory = btn.dataset.cat;
+        wcSubArea = "all";
+        renderAreaTabs(); renderSubAreaTabs(); renderWcTable();
+      };
+    });
+  }
+
+  function renderSubAreaTabs() {
+    const wrap = document.getElementById("wcSubAreaWrap");
+    const el = document.getElementById("wcSubAreaTabs");
+    const subs = SUB_AREAS[wcCategory];
+    if (!subs) { wrap.style.display = "none"; el.innerHTML = ""; return; }
+    wrap.style.display = "";
+    const tabs = [{ key: "all", label: "전체" }, ...subs];
+    el.innerHTML = tabs.map(t => `<button class="sub-area-tab${t.key === wcSubArea ? " active" : ""}" data-sub="${t.key}">${t.label}</button>`).join("");
+    el.querySelectorAll(".sub-area-tab").forEach(btn => {
+      btn.onclick = () => { wcSubArea = btn.dataset.sub; renderSubAreaTabs(); renderWcTable(); };
     });
   }
 
   function filteredData() {
     let items = WISH_DATA;
     if (wcCategory !== "all") items = items.filter(d => d.category === wcCategory);
+    if (wcSubArea !== "all") items = items.filter(d => d.area === wcSubArea);
     if (wcOurOnlyFlag) items = items.filter(d => d.area !== null);
     const kw = wcKeyword.trim().toLowerCase();
     if (kw) items = items.filter(d => d.name.toLowerCase().includes(kw));
@@ -215,5 +255,6 @@
   document.getElementById("wcRecBtn").onclick = renderRecommendation;
 
   renderAreaTabs();
+  renderSubAreaTabs();
   renderWcTable();
 </script>
