@@ -69,7 +69,7 @@
   <div class="area-tabs" id="wcAreaTabs"></div>
   <div class="sub-area-wrap" id="wcSubAreaWrap" style="display:none;">
     <div class="sub-area-tabs" id="wcSubAreaTabs"></div>
-    <div class="sub-area-note">💡 세부영역은 일반사회교육과 학생이 신청 가능한 분반(타 캠퍼스·유학생 전용·본과 개설 분반 제외) 기준으로 분류했습니다. 전체 개설 분반은 위 "전체" 상태에서 검색하세요.</div>
+    <div class="sub-area-note" id="wcSubAreaNote">💡 세부영역은 일반사회교육과 학생이 신청 가능한 분반(타 캠퍼스·유학생 전용·본과 개설 분반 제외) 기준으로 분류했습니다. 전체 개설 분반은 위 "전체" 상태에서 검색하세요.</div>
   </div>
 
   <div class="wc-toolbar">
@@ -89,6 +89,9 @@
           <th rowspan="2">분반</th>
           <th rowspan="2">구분</th>
           <th rowspan="2">학점</th>
+          <th rowspan="2">교수</th>
+          <th rowspan="2">시간</th>
+          <th rowspan="2">장소</th>
           <th colspan="5" class="grp-hope">희망인원</th>
           <th colspan="5" class="grp-assign">배정인원</th>
           <th rowspan="2">경쟁률</th>
@@ -123,6 +126,7 @@
   };
   let wcCategory = "all";
   let wcSubArea = "all";
+  let wcSubField = null;
   let wcKeyword = "";
   let wcOurOnlyFlag = false;
   let wcSelectedOnlyFlag = false;
@@ -158,13 +162,27 @@
     });
   }
 
+  function subTabsConfigFor(category) {
+    if (SUB_AREAS[category]) return { field: "area", options: SUB_AREAS[category] };
+    if (category === "효원핵심교양") {
+      const counts = new Map();
+      WISH_DATA.forEach(d => { if (d.category === category) counts.set(d.name, (counts.get(d.name) || 0) + 1); });
+      const options = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([name]) => ({ key: name, label: name }));
+      return { field: "name", options };
+    }
+    return null;
+  }
+
   function renderSubAreaTabs() {
     const wrap = document.getElementById("wcSubAreaWrap");
     const el = document.getElementById("wcSubAreaTabs");
-    const subs = SUB_AREAS[wcCategory];
-    if (!subs) { wrap.style.display = "none"; el.innerHTML = ""; return; }
+    const note = document.getElementById("wcSubAreaNote");
+    const config = subTabsConfigFor(wcCategory);
+    if (!config) { wrap.style.display = "none"; el.innerHTML = ""; wcSubField = null; return; }
     wrap.style.display = "";
-    const tabs = [{ key: "all", label: "전체" }, ...subs];
+    wcSubField = config.field;
+    note.style.display = config.field === "area" ? "" : "none";
+    const tabs = [{ key: "all", label: "전체" }, ...config.options];
     el.innerHTML = tabs.map(t => `<button class="sub-area-tab${t.key === wcSubArea ? " active" : ""}" data-sub="${t.key}">${t.label}</button>`).join("");
     el.querySelectorAll(".sub-area-tab").forEach(btn => {
       btn.onclick = () => { wcSubArea = btn.dataset.sub; renderSubAreaTabs(); renderWcTable(); };
@@ -174,7 +192,7 @@
   function filteredData() {
     let items = WISH_DATA;
     if (wcCategory !== "all") items = items.filter(d => d.category === wcCategory);
-    if (wcSubArea !== "all") items = items.filter(d => d.area === wcSubArea);
+    if (wcSubArea !== "all" && wcSubField) items = items.filter(d => d[wcSubField] === wcSubArea);
     if (wcOurOnlyFlag) items = items.filter(d => d.area !== null);
     const kw = wcKeyword.trim().toLowerCase();
     if (kw) items = items.filter(d => d.name.toLowerCase().includes(kw));
@@ -186,7 +204,7 @@
     const items = filteredData();
     document.getElementById("wcCount").textContent = `${items.length}개 분반 중 ${Math.min(items.length, RENDER_CAP)}개 표시 · 선택 ${wcSelected.size}개`;
     const body = document.getElementById("wcBody");
-    if (!items.length) { body.innerHTML = `<tr class="empty-row"><td colspan="15" class="empty-note">검색 결과가 없습니다.</td></tr>`; return; }
+    if (!items.length) { body.innerHTML = `<tr class="empty-row"><td colspan="19" class="empty-note">검색 결과가 없습니다.</td></tr>`; return; }
     const shown = items.slice(0, RENDER_CAP);
     let html = shown.map(d => {
       const id = `${d.code}-${d.section}`;
@@ -197,6 +215,9 @@
         <td>${d.section}</td>
         <td>${d.category}</td>
         <td>${d.credit || "-"}</td>
+        <td>${d.professor || "-"}</td>
+        <td>${d.schedule || "-"}</td>
+        <td>${d.location || "-"}</td>
         <td>${d.hopeMain}</td>
         <td>${d.hopeSub}</td>
         <td>${d.hopeGeneral}</td>
@@ -211,7 +232,7 @@
       </tr>`;
     }).join("");
     if (items.length > RENDER_CAP) {
-      html += `<tr><td colspan="16" class="truncate-note">검색 결과가 많아 ${RENDER_CAP}개만 표시했습니다. 검색어를 더 구체적으로 입력해 보세요.</td></tr>`;
+      html += `<tr><td colspan="19" class="truncate-note">검색 결과가 많아 ${RENDER_CAP}개만 표시했습니다. 검색어를 더 구체적으로 입력해 보세요.</td></tr>`;
     }
     body.innerHTML = html;
     body.querySelectorAll("[data-wc-pick]").forEach(cb => {
