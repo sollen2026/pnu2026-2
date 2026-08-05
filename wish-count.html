@@ -315,6 +315,11 @@
       <div class="modal-section"><h4>교수</h4><div>${d.professor || "정보 없음"}</div></div>
       <div class="modal-section"><h4>수업 시간</h4><div>${d.schedule || "정보 없음"}</div></div>
       <div class="modal-section"><h4>강의 장소</h4><div>${d.location || "정보 없음"}</div></div>
+      ${d.textbook ? `<div class="modal-section"><h4>사용 교재</h4><div>${d.textbook}</div></div>` : ""}
+      ${d.syllabusPdf ? `<div class="modal-section"><h4>강의계획서(교수계획표)</h4><div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="btn small" href="${d.syllabusPdf}" target="_blank" rel="noopener">📄 새 탭에서 보기</a>
+        <a class="btn small" href="${d.syllabusPdf}" download>⬇️ 다운로드</a>
+      </div></div>` : ""}
       <div class="modal-section"><h4>희망 / 배정 인원</h4><div>희망 ${d.hopeTotal}명 (주전공 ${d.hopeMain}·부전공 ${d.hopeSub}·일반선택 ${d.hopeGeneral}·타대생 ${d.hopeOther}) / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></div></div>
       <div class="modal-actions">
         <button class="btn primary" id="wcModalPickBtn">${picked ? "담음 ✓ (빼기)" : "🛒 담기"}</button>
