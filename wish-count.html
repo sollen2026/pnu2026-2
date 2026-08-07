@@ -52,7 +52,7 @@
   }
   .rec-body { flex: 1 1 auto; font-size: 13px; }
   .rec-body b { display: block; }
-  .rec-body span { display: block; font-size: 11.5px; color: var(--text-dim); }
+  .rec-body > span { display: block; font-size: 11.5px; color: var(--text-dim); }
   .empty-note { text-align: center; color: var(--text-dim); font-size: 13px; padding: 30px 0; }
   .truncate-note { text-align: center; color: var(--text-dim); font-size: 12px; padding: 10px 0; }
   .btn-cart {
@@ -170,6 +170,22 @@
   let wcOurOnlyFlag = false;
   let wcSelectedOnlyFlag = false;
   let wcSelected = new Set();
+
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise((resolve, reject) => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { /* ignore */ }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error("copy failed"));
+    });
+  }
 
   function ratioClass(r) {
     if (r == null) return "danger"; // 배정인원 0인데 희망만 있는 경우 = 가장 위험
@@ -331,8 +347,12 @@
     if (!d) return;
     const picked = wcSelected.has(id);
     document.getElementById("wcModalContent").innerHTML = `
-      <h3>${d.name} <span style="font-weight:400; color:var(--text-dim); font-size:14px;">${d.section}분반</span></h3>
+      <h3>${d.name}</h3>
       <div class="modal-sub">${d.category} · ${d.credit || "-"}학점${d.areaLabel ? ` · ${d.areaLabel}` : ""}</div>
+      <div class="badge-row">
+        <div class="badge"><span class="badge-k">분반</span><span class="badge-v hl-yellow">${d.section}분반</span></div>
+        <div class="badge"><span class="badge-k">과목코드</span><span class="badge-v-row"><span class="badge-v">${d.code}</span><button class="badge-copy-btn" id="wcModalCopyCodeBtn" type="button" title="과목코드 복사">📋 복사</button></span></div>
+      </div>
       <div class="modal-section"><h4>교수</h4><div>${d.professor || "정보 없음"}</div></div>
       <div class="modal-section"><h4>수업 시간</h4><div>${d.schedule || "정보 없음"}</div></div>
       <div class="modal-section"><h4>강의 장소</h4><div>${d.location || "정보 없음"}</div></div>
@@ -348,6 +368,12 @@
       </div>`;
     document.getElementById("wcModalPickBtn").onclick = () => { toggleCourse(id); openDetailModal(id); };
     document.getElementById("wcModalContentCloseBtn").onclick = closeWcModal;
+    document.getElementById("wcModalCopyCodeBtn").onclick = (e) => {
+      copyTextToClipboard(d.code)
+        .then(() => { e.target.textContent = "✅ 복사됨"; })
+        .catch(() => { e.target.textContent = "❌ 복사 실패"; })
+        .finally(() => { setTimeout(() => { e.target.textContent = "📋 복사"; }, 1200); });
+    };
     openWcModal();
   }
 
@@ -366,8 +392,9 @@
              <li class="rec-item">
                <span class="rec-num">${i + 1}</span>
                <span class="rec-body">
-                 <b>${d.name} ${d.section}분반</b>
+                 <b>${d.name} <span class="hl-yellow">${d.section}분반</span></b>
                  <span>${d.professor || "교수 미정"} · ${d.schedule || "시간 미정"}</span>
+                 <span>과목코드 ${d.code} <button class="badge-copy-btn" data-wc-copy-code="${d.code}" type="button" title="과목코드 복사">📋</button></span>
                  <span>희망 ${d.hopeTotal}명 / 배정 ${d.assignedTotal}명 · 경쟁률 <span class="wc-ratio ${ratioClass(d.ratio)}">${ratioLabel(d.ratio)}</span></span>
                </span>
                <button class="btn small" data-wc-remove="${d.code}-${d.section}">빼기</button>
@@ -381,6 +408,15 @@
     document.getElementById("wcModalContentCloseBtn").onclick = closeWcModal;
     document.getElementById("wcModalContent").querySelectorAll("[data-wc-remove]").forEach(btn => {
       btn.onclick = () => { toggleCourse(btn.dataset.wcRemove); openCartModal(); };
+    });
+    document.getElementById("wcModalContent").querySelectorAll("[data-wc-copy-code]").forEach(btn => {
+      const prev = btn.textContent;
+      btn.onclick = () => {
+        copyTextToClipboard(btn.dataset.wcCopyCode)
+          .then(() => { btn.textContent = "✅"; })
+          .catch(() => { btn.textContent = "❌"; })
+          .finally(() => { setTimeout(() => { btn.textContent = prev; }, 1200); });
+      };
     });
     openWcModal();
   }

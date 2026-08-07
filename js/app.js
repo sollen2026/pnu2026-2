@@ -32,6 +32,22 @@ function parseSchedule(raw) {
   return { slots, hasCyber };
 }
 
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { /* ignore */ }
+    document.body.removeChild(ta);
+    ok ? resolve() : reject(new Error("copy failed"));
+  });
+}
+
 function remoteBadgeHtml(course) {
   return course.remote ? `<span class="remote-badge">🖥️ ${course.remote}</span>` : "";
 }
@@ -834,7 +850,11 @@ function openModal(id) {
   if (c.dept) badges.push({ k: "개설학과", v: c.dept });
   if (c.offerDept) badges.push({ k: "개설학과", v: c.offerDept });
   if (c.remote) badges.push({ k: "수업 방식", v: `🖥️ ${c.remote}` });
-  const badgeHtml = `<div class="badge-row">${badges.map(b => `<div class="badge"><span class="badge-k">${b.k}</span><span class="badge-v">${b.v}</span></div>`).join("")}</div>`;
+  const badgeHtml = `<div class="badge-row">${badges.map(b => {
+    if (b.k === "분반") return `<div class="badge"><span class="badge-k">${b.k}</span><span class="badge-v hl-yellow">${b.v}</span></div>`;
+    if (b.k === "과목코드" && c.code) return `<div class="badge"><span class="badge-k">${b.k}</span><span class="badge-v-row"><span class="badge-v">${b.v}</span><button class="badge-copy-btn" id="modalCopyCodeBtn" type="button" title="과목코드 복사">📋 복사</button></span></div>`;
+    return `<div class="badge"><span class="badge-k">${b.k}</span><span class="badge-v">${b.v}</span></div>`;
+  }).join("")}</div>`;
 
   const gr = c.grading ? GRADING_RULES[c.grading] : null;
   const maxRows = gr ? gr.computeMax(c.capacity) : [];
@@ -867,6 +887,15 @@ function openModal(id) {
   backdrop.classList.add("open");
   document.getElementById("modalCloseX").onclick = closeModal;
   document.getElementById("modalCloseBtn").onclick = closeModal;
+  const copyCodeBtn = document.getElementById("modalCopyCodeBtn");
+  if (copyCodeBtn) {
+    copyCodeBtn.onclick = () => {
+      copyTextToClipboard(c.code)
+        .then(() => { copyCodeBtn.textContent = "✅ 복사됨"; })
+        .catch(() => { copyCodeBtn.textContent = "❌ 복사 실패"; })
+        .finally(() => { setTimeout(() => { copyCodeBtn.textContent = "📋 복사"; }, 1200); });
+    };
+  }
   document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => openModal(b.dataset.goto));
   const altToggle = document.getElementById("altToggle");
   if (altToggle) {
